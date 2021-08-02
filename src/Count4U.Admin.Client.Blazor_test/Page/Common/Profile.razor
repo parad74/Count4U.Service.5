@@ -1,0 +1,206 @@
+@page "/profile"
+@inherits ProfileBase
+@attribute [Authorize]
+
+<h4>@LocalizationResources.Menu_Profile</h4>
+
+@if (_profileModel == null) {
+    <p><em>Loading...</em></p>
+}
+else {
+    <div class="card">
+        <div class="card-body">
+            @*<h5 class="card-title">@LocalizationResources.Profile_Please_enter_your_details</h5>*@
+            <div class="alert alert-secondary" role="alert">
+                @LocalizationResources.Profile_TopInfo1
+                <p></p>
+                @LocalizationResources.Profile_TopInfo2
+            </div>
+            <EditForm Model="@_profileModel" OnValidSubmit="@UpdateProfileAsync">
+                <DataAnnotationsValidator />
+                <ValidationSummary />
+                @if (this._updateProfileResult != null)
+                {
+                    @if (this._updateProfileResult.Successful == SuccessfulEnum.NotSuccessful)
+                    {
+                        <div class="alert alert-danger" role="alert">
+                                <p>@this._updateProfileResult.Error</p>
+                        </div>
+                     }
+                }
+                @*@bind="@_profileModel.DataServerAddress"*@
+                @*<button class="btn btn-outline-info btn-sm" @onclick=@UrlClicked><span class="oi oi-loop-circular" /></button>*@
+                <div class="form-group">
+                    <label for="dataserveraddress">@LocalizationResources.Profile_Data_Server_Address</label>
+                    <select class="form-control" aria-describedby="serverAddresslHelp" @bind="@_profileModel.DataServerAddress" @oninput=@UrlOnInput required>
+                        <option value=""></option>
+                        @foreach (var url in _urls) {
+                            <option value="@url">
+                                @url
+                            </option>
+                        }
+                    </select>
+                    <small id="serverAddresslHelp" class="form-text text-muted">@LocalizationResources.Profile_serverAddresslHelp</small>
+                </div>
+                @if (_showSuccessfulUrl == true) {
+                    <div class="alert alert-info" role="alert">
+                        <p>@LocalizationResources.Profile_Server_open_Successfuly</p>
+                    </div>
+                }
+                @if (_showErrorsUrl == true) {
+                    <div class="alert alert-danger" role="alert">
+                        @foreach (var error in _errors) {
+                            <p>@error</p>
+                        }
+                    </div>
+                }
+
+
+
+
+                @*<div class="form-group">
+                        <label for="dataserveraddress">Data Server Address</label>
+                        <InputText id="dataserveraddress" class="form-control" @bind-Value="@_profileModel.DataServerAddress" />
+                    </div>*@
+
+                <div class="form-group">
+                    <label for="accesskey">@LocalizationResources.Profile_Process_Code</label>
+                    <select class="form-control" aria-describedby="processCodeHelp" @bind="@_profileModel.AccessKey" @oninput=@ProcessCodeOnInput>
+                        <option value=""></option>
+                        @foreach (var processeCode in _processeCodes) {
+                            <option value="@processeCode">
+                                @processeCode
+                            </option>
+                        }
+                    </select>
+                    <small id="processCodeHelp" class="form-text text-muted">@LocalizationResources.Profile_processCodeHelp</small>
+                </div>
+
+
+                @*<div class="form-group">
+                        <label for="accesskey">Access Key</label>
+                        <InputText id="accesskey" class="form-control" @bind-Value="@_profileModel.AccessKey" />
+                    </div>*@
+
+                <div class="form-group">
+                    <label for="accesskey">@LocalizationResources.Property_Inventor_CustomerCode</label>
+                    <select class="form-control" aria-describedby="customerCodeHelp" @bind="@_profileModel.CustomerCode" @oninput=@CustomerCodeOnInput>
+                        <option value=""></option>
+                        @foreach (var customerCode in _customerCodes) {
+                            <option value="@customerCode">
+                                @customerCode
+                            </option>
+                        }
+                    </select>
+                    <small id="customerCodeHelp" class="form-text text-muted">@LocalizationResources.Profile_customerCodeHelp</small>
+                </div>
+
+                @*<div class="form-group">
+                        <label for="customerCode">@LocalizationResources.Property_Inventor_CustomerCode</label>
+                        <InputText id="customerCode" class="form-control" placeholder="Customer Code" @bind-Value="@_profileModel.CustomerCode" />
+                    </div>*@
+
+                <div class="form-group">
+                    <label for="accesskey">@LocalizationResources.Property_Inventor_BranchCode</label>
+                    <select class="form-control" aria-describedby="branchCodeHelp" @bind="@_profileModel.BranchCode" @oninput=@BranchCodeOnInput>
+                        <option value=""></option>
+                        @foreach (var branchCode in _branchCodes) {
+                            <option value="@branchCode">
+                                @branchCode
+                            </option>
+                        }
+                    </select>
+                    <small id="branchCodeHelp" class="form-text text-muted">@LocalizationResources.Profile_branchCodeHelp</small>
+                </div>
+
+                @*<div class="form-group">
+                        <label for="branchCode">@LocalizationResources.Property_Inventor_BranchCode</label>
+                        <InputText id="branchCode" class="form-control" placeholder="Branch Code" @bind-Value="@_profileModel.BranchCode" />
+                    </div>*@
+
+                <div class="form-group">
+                    <label for="accesskey">@LocalizationResources.Property_Inventor_InventorCode</label>
+                    <select class="form-control" aria-describedby="inventorCodeHelp" @bind="@_profileModel.InventorCode" @oninput=@InventorCodeOnInput>
+                        <option value=""></option>
+                        @foreach (var inventorCode in _inventorCodes) {
+                            <option value="@inventorCode">
+                                @inventorCode
+                            </option>
+                        }
+                    </select>
+                    <small id="inventorCodeHelp" class="form-text text-muted">@LocalizationResources.Profile_inventorCodeHelp</small>
+                </div>
+
+                @*<div class="form-group">
+                        <label for="inventorCode">@LocalizationResources.Property_Inventor_InventorCode</label>
+                        <InputText id="inventorCode" class="form-control" placeholder="Inventor Code" @bind-Value="@_profileModel.InventorCode" />
+                    </div>*@
+
+                <div class="form-group">
+                    <label for="dbPath">@LocalizationResources.Profile_DB_Path</label>
+                    <InputText id="dbPath" class="form-control" placeholder="DB Path" @bind-Value="@_profileModel.DBPath" disabled />
+                </div>
+
+                @if (_showErrorsPathDB == true) {
+                    <div class="alert alert-danger" role="alert">
+                        @foreach (var error in _errorsPathDB) {
+                            <p>@error</p>
+                        }
+                    </div>
+                }
+
+                @*<button type="submit" class="btn btn-info">Submit</button>
+                    @if (_showSuccessful == true)
+                    {
+                        <div class="alert alert-info" role="alert">
+                            <p>Profile updated Successfuly</p>
+                        </div>
+                    }
+                *@
+
+                @*<div class="valid-feedback">Success! You've done it.</div>
+                    <div class="invalid-feedback">No, you missed this one.</div>*@
+            </EditForm>
+        </div>
+
+    </div>
+}
+
+
+
+@*LetТs break down whatТs on the EditForm
+
+    Model Ц This is the validation logic that we created
+    OnValidSubmit Ц this will be call when the submit is valid
+    OnInvalidSubmit Ц This will be call when the submit is invalid
+    OnSubmit Ц This will be call when user submit(if you choose to use Onsubmit you will need to check the validation yourself. Since OnValidSubmit and OnInvalidSubmit can bu use if you use OnSubmit)
+    DataAnnotationsValidator Ц Attaches validation support using data annotations.
+    ValidationSummary Ц  Summarizes validation messages
+    ValidationSummary Ц Will only show validation message from a specific field.
+    Blazor already comes with components that support receiving and validate user input:
+
+    InputText Ц it will render has
+    <input>
+    InputTextArea Ц it will render has <textarea>
+    InputSelect Ц it will render has <select>
+    InputNumber Ц it will render has <input type=ФnumberФ>
+    InputCheckbox Ц it will render has <input type=ФcheckboxФ>
+    InputDate Ц it will render has <input type=ФdateФ>*@
+@*https://www.c-sharpcorner.com/article/validate-your-blazor-form-using-the-editform/*@
+@*AspNetCore.Components.Forms.EditContext
+    Ётот класс группирует информацию проверки (валидатор, сообщение, пол€) дл€ одного экземпл€ра модели. Ёто точка интеграции вашей пользовательской проверки, подписавшись на ее событие, вы можете выполнить свою собственную логику проверки и отправить свою ошибку в графический интерфейс.
+
+    AspNetCore.Components.Forms.EditForm
+    Ётот компонент представл€ет собой тег HTML-формы, который будет создавать экземпл€р EditContext дл€ данного экземпл€ра модели. ќн также предоставл€ет событие дл€ отправки вашей формы только в случае успешной проверки или обработки при сбое проверки.
+
+    AspNetCore.Components.Forms.ValidationMessageStore
+    Ётот класс используетс€ дл€ добавлени€ ошибки о поле в EditContext.
+    ¬от как выполн€етс€ проверка:
+
+    EditForm создает экземпл€р EditContext с экземпл€ром модели, который вы ему дали.
+    —лужбы создаютс€ вами или некоторыми компонентами инфраструктуры и прослушивают событие EditContext, они должны создать ValidationMessageStore дл€ того, чтобы ошибки были доступны дл€ EditContext.
+     огда форма отправлена, EditForm вызывает Validate дл€ EditContext
+    EditContext вызывает событие OnValidationRequested с самим собой в качестве параметра
+     аждый сервис, который прослушивает это событие экземпл€ра, выполнит свою проверку и отправит сообщение об ошибке в хранилище сообщений.
+     огда вы отправл€ете сообщение об ошибке в хранилище сообщений, оно создает ссылку на поле в EditContext, св€зывает себ€ с этим полем (внутренний класс FieldState) и сохран€ет сообщение об ошибке на карте.
+     огда каждый слушатель сделал свою работу, EditContext просматривает все состо€ни€ полей и провер€ет, есть ли кака€-либо ошибка. ≈сли есть одна ошибка, то обратный вызов submit не вызываетс€.*@

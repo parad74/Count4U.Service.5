@@ -1,0 +1,35 @@
+﻿   <InventoryListDefaultUIConfiguration>
+        <ShowInventoryImageIndicator>false</ShowInventoryImageIndicator>
+        <InventoryItemsProperties>
+            <InventoryItemDisplayProperty id="Catalog.ItemName" itemtype="SN:Q">
+                <Title en="Item Name" he="תיאור פריט"/>
+                <invalid>false</invalid>
+                <id>1</id>
+            </InventoryItemDisplayProperty>
+            <InventoryItemDisplayProperty id="Catalog.ItemCode" itemtype="SN:Q">
+                <Title en="Item Code" he="קוד פריט"/>
+                <invalid>false</invalid>
+                <id>2</id>
+            </InventoryItemDisplayProperty>
+            <InventoryItemDisplayProperty id="Quantity" itemtype="SN:Q">
+                <Title en="Quantity" he="כמות"/>
+                <invalid>false</invalid>
+                <id>3</id>
+            </InventoryItemDisplayProperty>
+            <InventoryItemDisplayProperty id="SerialNumberLocal" itemtype="SN">
+                <Title en="SN local" he="סריאלי מקומי"/>
+                <invalid>false</invalid>
+                <id>4</id>
+            </InventoryItemDisplayProperty>
+            <InventoryItemDisplayProperty id="PropertyStr3" itemtype="SN:Q">
+                <Title en="For Customer" he="ציוד עבור"/>
+                <invalid>false</invalid>
+                <id>5</id>
+            </InventoryItemDisplayProperty>
+            <InventoryItemDisplayProperty id="PropertyStr6" itemtype="SN:Q">
+                <Title en="Remarks" he="הערות"/>
+                <invalid>false</invalid>
+                <id>6</id>
+            </InventoryItemDisplayProperty>
+        </InventoryItemsProperties>
+    </InventoryListDefaultUIConfiguration>

@@ -1,0 +1,7 @@
+﻿app {
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	text-align: right;
+	direction: rtl;
+}

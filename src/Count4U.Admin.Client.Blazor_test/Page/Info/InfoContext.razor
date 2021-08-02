@@ -1,0 +1,317 @@
+﻿@page "/InfoContext"
+@inherits InfoContextBase
+@attribute [Authorize]
+
+
+<AuthorizeView Policy="@UserPolicy.IsUser">
+    <button @onclick="ChangePasswordClicked">Change Password</button>
+    <p />
+</AuthorizeView>
+
+<AuthorizeView Policy="@UserPolicy.IsOwner">
+    <h5>IsOwner</h5>
+</AuthorizeView>
+<AuthorizeView Policy="@UserPolicy.IsProfile">
+    <h5>IsProfile</h5>
+</AuthorizeView>
+<AuthorizeView Policy="@UserPolicy.IsManager">
+    <h5>IsManager</h5>
+</AuthorizeView>
+
+<AuthorizeView Policy="@UserPolicy.IsAdmin">
+    <h5>IsAdmin</h5>
+    @*<button @onclick="LogUsername">Write user info to console</button>*@
+
+    @*<p>@Configuration["message"]</p>
+        <div class="content px-4">
+            <ContextCount4U ViewModel="@_profileModel" />
+        </div>*@
+
+
+    @*<label for="Summary">Select Color: </label>
+        <select class="form-control"
+                @bind="@SelectedColor">
+            @foreach (var option in Options)
+            {
+                <option value="@option">
+                    @option
+                </option>
+            }
+        </select>
+        <br />*@
+
+    @*@bind="@_webAPISettings.authenticationWebapiUrl"*@
+    <br />
+    <h5> HOST PING - @PingServer</h5>
+    <span class="badge badge-info">@SessionStorageMode</span>
+    <span class="badge badge-secondary">@SessionAuthenticationServer</span>
+    <span class="badge badge-light">@StorageMonitorWebApiUrl</span>
+    <span class="badge badge-light">@StorageSignalRHubUrl</span>
+    <span class="badge badge-primary">@_profileModel.DataServerAddress</span>
+
+    <br />
+    <p />
+
+
+    @*<h5>Set Url of Authentication Service</h5>*@
+    @if (_urls2 == null)
+    {
+        <p><em>Loading...</em></p>
+    }
+    else
+    {
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <button class="btn btn-info" type="button" @onclick="@AuthenticationServerClicked">Set Authentication Service</button>
+            </div>
+            <select class="custom-select" id="select-urls2" @bind="@SessionAuthenticationServer">
+                @foreach (var url in _urls2)
+                {
+                    <option value=@url>@url</option>
+                }
+            </select>
+        </div>
+
+    }
+
+    @if (_urls3 == null)
+    {
+        <p><em>Loading...</em></p>
+    }
+    else
+    {
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <button class="btn btn-info" type="button" @onclick="@MonitorWebapiUrlSet">Set Address MonitorDB</button>
+            </div>
+            <select class="custom-select" id="select-urls2" @bind="@StorageMonitorWebApiUrl">
+                @foreach (var url in _urls3)
+                {
+                    <option value=@url>@url</option>
+                }
+            </select>
+        </div>
+    }
+
+    @if (_urls4 == null)
+    {
+        <p><em>Loading...</em></p>
+    }
+    else
+    {
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <button class="btn btn-info" type="button" @onclick="@SignalRHubUrlSet">Set SignalR Hub Url</button>
+            </div>
+            <select class="custom-select" id="select-urls2" @bind="@StorageSignalRHubUrl">
+                @foreach (var url in _urls4)
+                {
+                    <option value=@url>@url</option>
+                }
+            </select>
+        </div>
+    }
+
+    @*<div class="row">
+            <div class="col-auto">
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <button class="btn btn-info" type="button" @onclick="@AdapterInitAsync">Adapter Init</button>
+                    </div>
+                </div>
+            </div>
+            <div class="col-auto">
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <button class="btn btn-info" type="button" @onclick="@ClearAsync">Clear</button>
+                    </div>
+                </div>
+            </div>
+            <div class="col-auto">
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <button class="btn btn-info" type="button" @onclick="@ImportAsync">Import</button>
+                    </div>
+                </div>
+            </div>
+            <div class="col-auto">
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <button class="btn btn-info" type="button" @onclick="@PingAdapterInitCommandAsync">Ping Adapter Init Test</button>
+                    </div>
+                </div>
+            </div>
+        </div>*@
+
+
+    @*<div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <button class="btn btn-outline-secondary" type="button">Button</button>
+            </div>
+            <select class="custom-select" id="inputGroupSelect03">
+                <option selected>Choose...</option>
+                <option value="1">One</option>
+                <option value="2">Two</option>
+                <option value="3">Three</option>
+            </select>
+        </div>*@
+
+    <button @onclick="GetAuthenticationUrls">Get Authentication Urls - test</button>
+
+    @if (_urls2 == null)
+    {
+        <p><em>Loading...</em></p>
+    }
+    else
+    {
+        <div class="scrollme">
+            @*<div class="container" width="100%">*@
+            <table class="table table-responsive">
+                <thead>
+                    <tr>
+                        <th>Authentication Server Urls</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var url in _urls2)
+                    {
+                        <tr>
+                            <td>@url</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+
+    }
+
+    <button @onclick="GetMonitorUrls">Get MonitorDB Urls - test</button>
+
+    @if (_urls3 == null)
+    {
+        <p><em>Loading...</em></p>
+    }
+    else
+    {
+        <div class="scrollme">
+            @*<div class="container" width="100%">*@
+            <table class="table table-responsive">
+                <thead>
+                    <tr>
+                        <th>Monitor Server Urls</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var url in _urls3)
+                    {
+                        <tr>
+                            <td>@url</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    }
+
+    <button @onclick="GetSignalRHubUrls">Get SignalR Hub Urls - test</button>
+
+    @if (_urls4 == null)
+    {
+        <p><em>Loading...</em></p>
+    }
+    else
+    {
+        <div class="scrollme">
+            @*<div class="container" width="100%">*@
+            <table class="table table-responsive">
+                <thead>
+                    <tr>
+                        <th>Get SignalR Hub Urls</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var url in _urls4)
+                    {
+                        <tr>
+                            <td>@url</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    }
+
+
+    <button @onclick="GetCount4UModelUrls">Get Count4UModel Urls - test</button>
+
+    @if (_urls == null)
+    {
+        <p><em>Loading...</em></p>
+    }
+    else
+    {
+        <div class="scrollme">
+            @*<div class="container" width="100%">*@
+            <table class="table table-responsive">
+                <thead>
+                    <tr>
+                        <th>url</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var url in _urls)
+                    {
+                        <tr>
+                            <td>@url</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    }
+
+    @*<button @onclick=ButtonClicked>Perform interop test</button>
+            @code
+            {
+                private async Task ButtonClicked()
+                {
+                    await JSRuntime.InvokeVoidAsync("alert", "Hello world");
+                }
+            }
+
+            <p>
+                Status: @Result
+            </p>
+            <p>
+                <button @onclick=ShowConfirm>Confirm popup</button>
+            </p>
+            <p>
+                <button @onclick=ShowPrompt>Prompt popup</button>
+            </p>
+            @code
+        {
+                private string Result;
+                private async Task ShowConfirm()
+                {
+                    bool confirmed = await JSRuntime.InvokeAsync<bool>("confirm", "Are you sure?");
+                    Result = confirmed ? "You clicked OK" : "You clicked Cancel";
+                }
+                private async Task ShowPrompt()
+                {
+                    string name = await JSRuntime.InvokeAsync<string>("prompt", "What is your name?");
+                    Result = "Your name is: " + name;
+                }
+            }*@
+
+</AuthorizeView>
+
+
+@*@code{
+        // SelectedColor will be the cascading parameter
+        // Set the color to Green
+        protected string SelectedColor { get; set; } = "Green";
+        // Create a collection of colors that will be bound to a dropdown
+        List<string> Options = new List<string>() { "Green", "Red", "Blue" };
+
+
+    }*@

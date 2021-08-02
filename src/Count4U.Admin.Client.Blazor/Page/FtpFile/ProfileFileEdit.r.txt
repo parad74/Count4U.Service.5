@@ -1,0 +1,67 @@
+﻿using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Xml.Serialization;
+using Blazored.LocalStorage;
+using Blazored.SessionStorage;
+using BlazorMonacoJosn;
+using BlazorMonacoXml;
+using Count4U.Model.Count4U;
+using Count4U.Service.Shared;
+using Microsoft.AspNetCore.Components;
+using Microsoft.AspNetCore.Components.Authorization;
+using Microsoft.Extensions.Configuration;
+using Monitor.Service.Model;
+using Monitor.Service.Shared;
+using Monitor.Service.Urls;
+
+namespace Count4U.Admin.Client.Blazor.Page
+{
+	public class ProfileFileEditBase : ComponentBase
+	{
+		//[Parameter]
+		//public Count4U.Service.Format.Json.Profile _profileObject { get; set; }
+		[Parameter]
+		public ProfileFile _profileFile { get; set; }
+
+		[Inject]
+		protected IProfileFileService _profileFileService { get; set; }
+
+		[Inject]
+		protected NavigationManager _navigationManager { get; set; }
+
+		public ProfileFileEditBase()
+		{
+			//this._profileFile = null;
+		}
+		public async Task SaveObjectAsync()
+		{
+
+			XmlSerializer xmlSerializer = new XmlSerializer(typeof(Count4U.Service.Format.Json.Profile));
+			using (StringWriter textWriter = new StringWriter())
+			{
+				xmlSerializer.Serialize(textWriter, _profileFile.ProfileJsonObject);
+				Console.WriteLine("SaveObjectAsync 1 ");
+				Console.WriteLine(_profileFile.ProfileXml);
+				_profileFile.ProfileXml = textWriter.ToString();
+				//Console.WriteLine("RootToXml 1");
+				//Console.WriteLine(ret);
+			}
+			Console.WriteLine("SaveObjectAsync 2 ");
+			Console.WriteLine(_profileFile.ProfileXml);
+			ProfileFile profileFile = _profileFile;
+			profileFile.ProfileJsonObject = null;
+			profileFile.ProfileJosn = "";
+			await _profileFileService.Update(profileFile, @"http://localhost:12389");
+			this._navigationManager.NavigateTo("inventorgrid/" + _profileFile.BranchCode);
+		}
+		public async Task Cancel()
+		{
+		
+		}
+		
+	}
+}

@@ -1,0 +1,63 @@
+﻿@*@typeparam TItem
+
+    @if (items == null)
+    {
+        @Loading
+    }
+    else if (items.Count == 0)
+    {
+        @Empty
+    }
+    else
+    {
+        <div class="list-group @ListGroupClass">
+            @foreach (var item in items)
+            {
+                <div class="list-group-item">
+                    @Item(item)
+                </div>
+            }
+        </div>
+    }
+
+    @code {
+        List<TItem> items;
+
+        [Parameter] public Func<Task<List<TItem>>> Loader { get; set; }
+        [Parameter] public RenderFragment Loading { get; set; }
+        [Parameter] public RenderFragment Empty { get; set; }
+        [Parameter] public RenderFragment<TItem> Item { get; set; }
+        [Parameter] public string ListGroupClass { get; set; }
+
+        protected override async Task OnParametersSetAsync()
+        {
+            items = await Loader();
+        }
+    }*@
+
+@*//how use
+        //https://github.com/dotnet-presentations/blazor-workshop/blob/master/docs/08-templated-components.md
+    <TemplatedList Loader="@LoadOrders" ListGroupClass="orders-list">
+        <Loading>Loading...</Loading>
+        <Empty>
+            <h2>No orders placed</h2>
+            <a class="btn btn-success" href="">Order some pizza</a>
+        </Empty>
+        <Item Context="item">
+            <div class="col">
+                <h5>@item.Order.CreatedTime.ToLongDateString()</h5>
+                Items:
+                <strong>@item.Order.Pizzas.Count()</strong>;
+                Total price:
+                <strong>£@item.Order.GetFormattedTotalPrice()</strong>
+            </div>
+            <div class="col">
+                Status: <strong>@item.StatusText</strong>
+            </div>
+            <div class="col flex-grow-0">
+                <a href="myorders/@item.Order.OrderId" class="btn btn-success">
+                    Track &gt;
+                </a>
+            </div>
+        </Item>
+    </TemplatedList>*@

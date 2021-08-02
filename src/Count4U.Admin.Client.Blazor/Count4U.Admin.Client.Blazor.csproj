@@ -1,0 +1,184 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.BlazorWebAssembly">
+
+	<PropertyGroup>
+		<TargetFramework>net5.0</TargetFramework>
+		
+		<!--<OutputType>Exe</OutputType>-->
+		<!--<PublishSingleFile>true</PublishSingleFile>-->
+		<!--<PublishReadyToRun>true</PublishReadyToRun>-->
+		<!--<LangVersion>8.0</LangVersion>-->
+		<!--<RazorLangVersion>3.0</RazorLangVersion>-->
+		<I18nTextFallBackLanguage>he</I18nTextFallBackLanguage>
+		<DisableScopedCssBundling>true</DisableScopedCssBundling>
+	</PropertyGroup>
+
+	<PropertyGroup>
+		<GenerateMvcApplicationPartsAssemblyAttributes>false</GenerateMvcApplicationPartsAssemblyAttributes>
+		<BlazorWebAssemblyEnableLinking>false</BlazorWebAssemblyEnableLinking>
+		<AssemblyName>Count4U.Admin.Client.Blazor</AssemblyName>
+		<RootNamespace>Count4U.Admin.Client.Blazor</RootNamespace>
+		<EnableNETAnalyzers>false</EnableNETAnalyzers>
+		<RunAnalyzersDuringBuild>false</RunAnalyzersDuringBuild>
+		<!--<OutputType>Exe</OutputType>-->
+	</PropertyGroup>
+
+	<ItemGroup>
+	  <Compile Remove="bin\Debug\net5.0\dist\lib\**" />
+	  <Compile Remove="bin\Debug\net5.0\dist\_content\BlazorMonaco\**" />
+	  <Content Remove="bin\Debug\net5.0\dist\lib\**" />
+	  <Content Remove="bin\Debug\net5.0\dist\_content\BlazorMonaco\**" />
+	  <EmbeddedResource Remove="bin\Debug\net5.0\dist\lib\**" />
+	  <EmbeddedResource Remove="bin\Debug\net5.0\dist\_content\BlazorMonaco\**" />
+	  <None Remove="bin\Debug\net5.0\dist\lib\**" />
+	  <None Remove="bin\Debug\net5.0\dist\_content\BlazorMonaco\**" />
+	</ItemGroup>
+
+	<!--PrivateAssets="all"-->
+	<ItemGroup>
+		<!--<PackageReference Include="Blazor.ContextMenu" Version="1.8.0" />-->
+		<!--<PackageReference Include="Blazored.LocalStorage" Version="3.0.0" />-->
+		<!--<PackageReference Include="Blazored.SessionStorage" Version="1.0.12" />-->
+	
+		<PackageReference Include="blazor-dragdrop" Version="2.2.1" />
+	
+		<PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" Version="5.0.0" />
+		<PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" Version="5.0.0" PrivateAssets="all" />
+		<PackageReference Include="Microsoft.AspNetCore.Hosting.Abstractions" Version="2.2.0" />
+		<PackageReference Include="System.Net.Http.Json" Version="5.0.0" />
+		 <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
+
+		<PackageReference Include="Microsoft.AspNetCore.Components" Version="5.0.0" />
+		<PackageReference Include="Microsoft.AspNetCore.Components.Authorization" Version="5.0.0" />
+		<PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="5.0.0" />
+		<PackageReference Include="Microsoft.AspNetCore.Http.Abstractions" Version="2.2.0" />
+		<PackageReference Include="Microsoft.AspNetCore.SignalR.Client" Version="5.0.0" />
+		<PackageReference Include="Microsoft.AspNetCore.Mvc.Core" Version="2.2.5" />
+		<PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="5.0.0" />
+		<PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="5.0.0" />
+		<PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="5.0.0" />
+		<PackageReference Include="Microsoft.Extensions.Logging" Version="5.0.0" />
+		<PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="5.0.0" />
+		<PackageReference Include="Microsoft.Extensions.Logging.Configuration" Version="5.0.0" />
+		<PackageReference Include="Microsoft.Extensions.Logging.Console" Version="5.0.0" />
+		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="5.0.0" />
+		<PackageReference Include="Toolbelt.Blazor.I18nText" Version="9.3.0" />
+		<PackageReference Include="Microsoft.AspNetCore.Authorization.Policy" Version="2.2.0" />
+		<PackageReference Include="Toolbelt.Blazor.LoadingBar" Version="12.1.0" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\Blazored.LocalStorage\Blazored.LocalStorage.csproj" />
+		<ProjectReference Include="..\Blazored.SessionStorage\Blazored.SessionStorage.csproj" />
+		<ProjectReference Include="..\BlazorMonacoJosn\BlazorMonacoJosn.csproj" />
+		<ProjectReference Include="..\BlazorMonacoXml\BlazorMonacoXml.csproj" />
+		<ProjectReference Include="..\Count4U.Client.Shared\Count4U.Client.Shared.csproj" />
+		<ProjectReference Include="..\Count4U.Model.ServiceContract\Count4U.Model.ServiceContract.csproj" />
+		<ProjectReference Include="..\Count4U.Service.Common\Count4U.Service.Common.csproj" />
+		<ProjectReference Include="..\Count4U.Service.Model\Count4U.Service.Model.csproj" />
+		<ProjectReference Include="..\Count4U.Service.Shared\Count4U.Service.Shared.csproj" />
+		<ProjectReference Include="..\Monitor.Service.Shared\Monitor.Service.Shared.csproj" />
+	</ItemGroup>
+
+	
+	<ItemGroup>
+		<Folder Include="bin\Debug\net5.0\dist\_content\" />
+		<Folder Include="Page\C4U\" />
+		<Folder Include="wwwroot\favicon\1\" />
+	</ItemGroup>
+
+	<!-- Note: this is not necessary since preview 6, since the framework now has a built-in mechanism for obtaining static content from referenced packages/projects. -->
+	<!--<Target Name="CopyStaticAssets" BeforeTargets="CoreCompile">
+		<ItemGroup>
+			<_FilesToCopy Include="..\Count4U.Service.Core.Server\wwwroot\**" />
+		</ItemGroup>
+		<Copy SourceFiles="@(_FilesToCopy)" DestinationFolder="wwwroot\%(RecursiveDir)" />
+	</Target>-->
+	<ItemGroup>
+			<ContentWithTargetPath Include="wwwroot\js\Toolbelt.Blazor.I18nText\script.js">
+			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+			<TargetPath>dist\_content\Toolbelt.Blazor.I18nText\script.js</TargetPath>
+		</ContentWithTargetPath>
+	</ItemGroup>
+	<ItemGroup>
+			<ContentWithTargetPath Include="wwwroot\jsInterop.js">
+			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+			<TargetPath>dist\_content\jsInterop.js</TargetPath>
+		</ContentWithTargetPath>
+	</ItemGroup>
+	<!--<ItemGroup>
+		<ContentWithTargetPath Include="wwwroot\js\Toolbelt.Blazor.LoadingBar\script.js">
+			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+			<TargetPath>dist\_content\Toolbelt.Blazor.LoadingBar\script.js</TargetPath>
+		</ContentWithTargetPath>
+	</ItemGroup>-->
+	<ItemGroup>
+	  <Content Update="wwwroot\testdata - Copy.json">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </Content>
+	  <Content Update="wwwroot\testdata.json">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </Content>
+	  <Content Update="wwwroot\appsettings.Development.json">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </Content>
+	  <Content Update="wwwroot\appsettings.json">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </Content>
+	  <Content Update="wwwroot\appsettings.Production.json">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </Content>
+	</ItemGroup>
+	<ItemGroup>
+		<Watch Remove="i18ntext\GetResources.en-Gb.csv" />
+	</ItemGroup>
+	<ItemGroup>
+		<Content Remove="i18ntext\GetResources.en-Gb.csv" />
+	</ItemGroup>
+	<ItemGroup>
+		<Watch Remove="i18ntext\GetResources.en.csv" />
+	</ItemGroup>
+	<ItemGroup>
+		<Content Remove="i18ntext\GetResources.en.csv" />
+	</ItemGroup>
+	<ItemGroup>
+		<Watch Remove="i18ntext\GetResources.he.csv" />
+	</ItemGroup>
+	<ItemGroup>
+		<Content Remove="i18ntext\GetResources.he.csv" />
+	</ItemGroup>
+	<ItemGroup>
+		<Watch Remove="i18ntext\GetResources.ru-Ru.csv" />
+	</ItemGroup>
+	<ItemGroup>
+		<Content Remove="i18ntext\GetResources.ru-Ru.csv" />
+	</ItemGroup>
+	<ItemGroup>
+		<Watch Remove="i18ntext\GetResources.ru.csv" />
+	</ItemGroup>
+	<ItemGroup>
+		<Content Remove="i18ntext\GetResources.ru.csv" />
+	</ItemGroup>
+	<ItemGroup>
+		<None Remove="Page\Common\ResetPasswordsample.txt" />
+		<None Remove="Page\FtpFile\ProfileFileEdit.r.txt" />
+		<None Remove="Page\FtpFile\ProfileFileEdit.txt" />
+		<None Remove="Page\User\UserGrid.txt" />
+	</ItemGroup>
+	<ItemGroup>
+	  <Compile Include="Page\FtpFile\ProfileFileEdit.r.txt" />
+	</ItemGroup>
+	<ItemGroup>
+		<Content Include="Page\Common\ResetPasswordsample.txt" />
+		<Content Include="Page\FtpFile\ProfileFileEdit.txt" />
+	</ItemGroup>
+	<ItemGroup>
+	  <None Include="wwwroot\angular\angular.js" />
+	  <None Include="wwwroot\angular\angular.min.js" />
+	  <None Include="wwwroot\angular\angular.min.js.gzip" />
+	  <None Include="wwwroot\angular\angular.min.js.map" />
+	  <None Include="wwwroot\xml-js\sax.js" />
+	  <None Include="wwwroot\xml-js\xml-js.js" />
+	</ItemGroup>
+
+
+</Project>

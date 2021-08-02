@@ -1,0 +1,188 @@
+﻿<CascadingAuthenticationState>
+    <div class="top-row pl-4 navbar navbar-dark">
+        <a class="navbar-brand" href="">COUNT4U.ADMIN</a>
+        <button class="navbar-toggler" @onclick="ToggleNavMenu">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+    </div>
+
+    <div class="@NavMenuCssClass" @onclick="ToggleNavMenu">
+
+        <ul class="nav flex-column">
+            <AuthorizeView>
+                <Authorized>
+                    <li class="nav-item px-3">
+                        <NavLink class="nav-link" href="InfoContext">
+                            <span class="oi oi-person" aria-hidden="true"></span>@LocalizationResources.Menu_UserContext
+                        </NavLink>
+                    </li>
+                    <li class="nav-item px-3">
+                        <NavLink class="nav-link" href="rolegrid">
+                            <span class="oi oi-people" aria-hidden="true"></span>Roles
+                        </NavLink>
+                    </li>
+                    <li class="nav-item px-3">
+                        <NavLink class="nav-link" href="usergrid">
+                            <span class="oi oi-person" aria-hidden="true"></span>Users
+                        </NavLink>
+                    </li>
+
+                    @*<li class="nav-item px-3">
+                            <NavLink class="nav-link" href="Profile">
+                                <span class="oi oi-pencil" aria-hidden="true"></span>@LocalizationResources.Menu_Profile
+                            </NavLink>
+                        </li>*@
+                </Authorized>
+                <Authorizing>
+                </Authorizing>
+                <NotAuthorized>
+                    <li class="nav-item px-3">
+                        <NavLink class="nav-link" href="Register">
+                            <span class="oi oi-pencil" aria-hidden="true"></span>@LocalizationResources.Menu_Register
+                        </NavLink>
+                    </li>
+                    <li class="nav-item px-3">
+                        <NavLink class="nav-link" href="" Match="NavLinkMatch.All">
+                            <span class="oi oi-account-login" aria-hidden="true"></span>@LocalizationResources.Menu_Login
+                        </NavLink>
+                    </li>
+                </NotAuthorized>
+            </AuthorizeView>
+
+            <AuthorizeView Policy="@UserPolicy.IsAdmin">
+                @*<li class="nav-item px-3">
+                        <NavLink class="nav-link" href="InfoContext">
+                            <span class="oi oi-person" aria-hidden="true"></span>@LocalizationResources.Menu_UserContext
+                        </NavLink>
+                    </li>*@
+                @*<li class="nav-item px-3">
+                        <NavLink class="nav-link" href="GetDataTest">
+                            <span class="oi oi-cloud-download" aria-hidden="true"></span>@LocalizationResources.Menu_GetDataTest
+                        </NavLink>
+                    </li>*@
+
+                <li class="nav-item px-3">
+                    <NavLink class="nav-link" href="claims">
+                        <span class="oi oi-list" aria-hidden="true"></span>@LocalizationResources.Menu_Claims
+                    </NavLink>
+                </li>
+            </AuthorizeView>
+        </ul>
+    </div>
+
+
+</CascadingAuthenticationState>
+
+
+
+@code {
+    bool collapseNavMenu = true;
+    [Parameter]
+    public GetResources LocalizationResources { get; set; }
+
+    string NavMenuCssClass => collapseNavMenu ? "collapse" : null;
+
+    [AllowAnonymous]
+    public void ToggleNavMenu()
+    {
+        collapseNavMenu = !collapseNavMenu;
+    }
+}
+
+
+@*<CascadingAuthenticationState>
+        <AuthorizeView>
+            <Authorized>
+                @context.User.Identity.Name
+                <span style="padding: 0px 20px;">&nbsp;</span>
+                <a href="Profile">@LocalizationResources.Menu_Profile</a>
+                <a href="LogOut">@LocalizationResources.Menu_Logout</a>
+            </Authorized>
+            <Authorizing>
+                Wait...
+            </Authorizing>
+            <NotAuthorized>
+                <a href="Register">@LocalizationResources.Menu_Register</a>
+                <a href="">@LocalizationResources.Menu_Login</a>
+            </NotAuthorized>
+        </AuthorizeView>
+    </CascadingAuthenticationState>*@
+
+@*<li class="nav-item px-3">
+        <NavLink class="nav-link" href="welcome" Match="NavLinkMatch.All">
+            <span class="oi oi-home" aria-hidden="true"></span>@LocalizationResources.Menu_Home
+        </NavLink>
+    </li>*@
+
+@*<li class="nav-item px-3">
+        <NavLink class="nav-link" href="ValidationSample">
+            <span class="oi oi-list-rich" aria-hidden="true"></span> Validation
+        </NavLink>
+    </li>*@
+
+
+@*<li class="nav-item px-3">
+        <NavLink class="nav-link" href="counter">
+            <span class="oi oi-plus" aria-hidden="true"></span> Counter
+        </NavLink>
+    </li>*@
+@*<li class="nav-item px-3">
+        <NavLink class="nav-link" href="fetchdata">
+            <span class="oi oi-list-rich" aria-hidden="true"></span> Fetch data
+        </NavLink>
+    </li>
+
+    <li class="nav-item px-3">
+        <NavLink class="nav-link" href="customertest">
+            <span class="oi oi-list-rich" aria-hidden="true"></span> Customer Test
+        </NavLink>
+    </li>
+    <li class="nav-item px-3">
+        <NavLink class="nav-link" href="LocalStorageTest">
+            <span class="oi oi-list-rich" aria-hidden="true"></span> Test local storage
+        </NavLink>
+    </li>
+
+
+    <li class="nav-item px-3">
+        <NavLink class="nav-link" href="BlazorMVVM">
+            <span class="oi oi-list-rich" aria-hidden="true"></span> Blazor MVVM
+        </NavLink>
+    </li>
+
+    <li class="nav-item px-3">
+        <NavLink class="nav-link" href="BlazorHealthApp">
+            <span class="oi oi-list-rich" aria-hidden="true"></span> Blazor Health App
+        </NavLink>
+    </li>
+
+
+    <li class="nav-item px-3">
+        <NavLink class="nav-link" href="databinding">
+            <span class="oi oi-grid-three-up" aria-hidden="true"></span> Data binding
+        </NavLink>
+    </li>
+
+
+    <li class="nav-item px-3">
+        <NavLink class="nav-link" href="TestDragAndDrop">
+            <span class="oi oi-grid-three-up" aria-hidden="true"></span> Drag And Drop
+        </NavLink>
+    </li>*@
+
+@*<li class="nav-item px-3">
+        <NavLink class="nav-link" href="TestWebApi">
+            <span class="oi oi-grid-three-up" aria-hidden="true"></span> Web Api
+        </NavLink>
+    </li>*@
+@*<li class="nav-item px-3">
+        <NavLink class="nav-link" href="logout">
+            <span class="oi oi-account-logout	" aria-hidden="true"></span>@LocalizationResources.Menu_Logout
+        </NavLink>
+    </li>*@
+
+@*<li class="nav-item px-3">
+        <NavLink class="nav-link" href="LocalStorageTest">
+            <span class="oi oi-list-rich" aria-hidden="true"></span> Test local storage
+        </NavLink>
+    </li>*@

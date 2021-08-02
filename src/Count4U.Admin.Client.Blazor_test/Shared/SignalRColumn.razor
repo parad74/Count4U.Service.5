@@ -1,0 +1,46 @@
+﻿<CascadingAuthenticationState>
+    @*<div class="top-row pl-4 navbar navbar-dark">
+        <button class="navbar-toggler" @onclick="ToggleSignalR">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+    </div>*@
+
+    <div class="@SignalRCssClass" @onclick="ToggleSignalR">
+
+        <ul class="flex-column">
+            <AuthorizeView>
+                <Authorized>
+                    <label>SignaR</label>
+                 </Authorized>
+                <Authorizing>
+                </Authorizing>
+                <NotAuthorized>
+                 </NotAuthorized>
+            </AuthorizeView>
+
+            <AuthorizeView Policy="@UserPolicy.IsAdmin">
+               </AuthorizeView>
+        </ul>
+    </div>
+
+
+</CascadingAuthenticationState>
+
+
+
+@code {
+
+    [Parameter]
+    public bool CollapseSignalR   { get; set; }
+
+    [Parameter]
+    public GetResources LocalizationResources { get; set; }
+
+    string SignalRCssClass => CollapseSignalR ? "collapse" : null;
+
+     public void ToggleSignalR()
+    {
+        CollapseSignalR = !CollapseSignalR;
+    }
+}
+

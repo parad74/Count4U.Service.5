@@ -1,0 +1,68 @@
+﻿@page "/usergrid"
+@namespace Count4U.Admin.Client.Page
+@inherits UserGridBase
+@attribute [Authorize(Policy = UserPolicy.IsAdmin)]
+
+    <AuthorizeView Policy="@UserPolicy.IsAdmin">
+
+        @if (_users == null)
+        {
+            <p><em>Loading...</em></p>
+        }
+        else
+        {
+
+            <PagedDataList Data=@_users Prev="Prev" Next="Next" ItemsPerPage="10">
+                <ListTemplate Context="listOfUser">
+                    <h6 class="bg-success p-1 text-white">Users</h6>
+                    <table class="table table-bordered table-sm">
+                        @*<thead>
+                            <tr>
+                                <th scope="col">Id</th>
+                                <th scope="col">Name</th>
+                                <th scope="col">Users</th>
+                                <th scope="col">Edit</th>
+                            </tr>
+                        </thead>*@
+                        <tbody>
+                            @listOfUser
+                        </tbody>
+                    </table>
+                </ListTemplate>
+                <ItemTemplate Context="user">
+                    <tr @key=@user>
+                        @*<td>@role.RoleID</td>*@
+                        @*<td>@user.UserID</td>*@
+                        <td>@user.Email</td>
+                        @*<td>
+            <ul class="nav flex-column">
+                @foreach (var user in role.Members)
+                    {
+                    <li @key=@user.UserID>
+                        @user.Email
+                    </li>
+                    }
+            </ul>
+        </td>*@
+                        @*<td style="align-content:center;padding-left: 30px;padding-right: 30px">*@
+                        @*<td style="padding-left: 30px;padding-right: 30px;width:132px">
+                            <button class="btn btn-outline-danger  btn-sm" style="width:70px" @onclick="@(()=>UserChangePassword(user.UserID))">
+                                <span>Change Password</span>
+                            </button>
+                        </td>*@
+                        <td style="padding-left: 30px;padding-right: 30px;width:132px">
+                            <button class="btn btn-outline-danger  btn-sm" style="width:70px" @onclick="@(()=>UserDelete(user.UserID))">
+                                <span>Delete</span>
+                            </button>
+                        </td>
+                    </tr>
+                </ItemTemplate>
+            </PagedDataList>
+        }
+
+    <div>
+       <button class="btn btn-outline-success  btn-sm" style="width:70px" @onclick="@(()=>UserAdd())">
+            <span>Add</span>
+        </button>
+    </div>
+    </AuthorizeView>

@@ -1,0 +1,2330 @@
+﻿Property_Inventor_InventorCode,Inventor Code
+Lable_SurveyPrompt,Please take our ({0}) and tell us what you think
+Line_7,UpdateVer
+Bit_Branch_CodeEmpty,Code can not be Empty
+Bit_Branch_CodeErpEmpty,Code ERP can not be Empty
+Bit_Branch_CodeErpFormat,Unacceptable symbols
+Bit_Branch_CodeFormat,Unacceptable symbols
+Bit_Branch_CodeLength,Code Length must be in range between 3 and 10
+Bit_Branch_CodeLocalEmpty,Code Local can not be empty
+Bit_Branch_CodeLocalFormat,Unacceptable symbols
+Bit_Branch_CodeUnique,Branch with such Code already exists
+Bit_Branch_ContactPersonFormat,Unacceptable symbols
+Bit_Customer_CodeEmpty,Code can not be Empty
+Bit_Customer_CodeFormat,Unacceptable symbols
+Bit_Customer_CodeLength,Code Length must be in range between 3 and 10
+Bit_Customer_CodeUnique,Customer with such code already exists
+Bit_Customer_ContactPersonFormat,Unacceptable symbols
+Bit_Customer_PicFileInvalid,File is not valid image
+Bit_Customer_PicFileMissed,File doesn't exist
+Bit_FKCodeIsEmpty_BarcodeOrMakatIsEmpty,Barcode or Makat Is Empty
+Bit_FKCodeIsEmpty_BarcodeOrMakatIsNotExistsInCatalog,Barcode or Makat Is Not Exists In Catalog 
+Bit_FKCodeIsEmpty_DocumentCode,DocumentCode Is Empty
+Bit_FKCodeIsEmpty_General,FK Code Is Empty
+Bit_FKCodeIsEmpty_IturCode,IturCode Is Empty
+Bit_FKCodeIsEmpty_LocationCode,LocationCode Is Empty
+Bit_HebrewCharsAreNotAllowed,Hebrew chars are not allowed
+Bit_InvalidFormat_General,Invalid Format
+Bit_InvalidValue_Code,Invalid Code Value
+Bit_InvalidValue_DocumentCode,Invalid DocumentCode Value
+Bit_InvalidValue_Email,Invalid Email Value
+Bit_InvalidValue_Fax,Invalid Fax Value
+Bit_InvalidValue_General,Invalid Value
+Bit_InvalidValue_Name,Invalid Name Value
+Bit_InvalidValue_Phone,Invalid Phone Value
+Bit_InvalidValue_Prefix,Invalid Prefix Value. {0} Prefix can not be Empty. {1} It Is Expected Numeric String {2} 4 characters maximum
+Bit_InventProduct_MakatFormat,Unacceptable symbols
+Bit_InventProduct_MakatIsEmpty,Can not be Empty
+Bit_InventProduct_QuantityEditFormat,Wrong quantity edit format
+Bit_InventProduct_QuantityOriginalFormat,QuantityOriginalFormat
+Bit_IsEmpty_Barcode,Barcode can not be Empty
+Bit_IsEmpty_Code,Code can not be Empty
+Bit_IsEmpty_DocumentCode,DocumentCode can not be Empty
+Bit_IsEmpty_General,Code can not be Empty
+Bit_IsEmpty_Makat,Makat can not be Empty
+Bit_IsEmpty_Name,Name can not be Empty
+Bit_IsEmpty_Number,Number can not be Empty
+Bit_IsEmpty_Prefix,Prefix or Suffix can not be Empty
+Bit_Location_CodeEmpty,Name can not be empty
+Bit_Location_CodeExist,Location with such code already exists
+Bit_MessageTypeCaption_Error,Error
+Bit_MessageTypeCaption_ErrorDB,ErrorDB
+Bit_MessageTypeCaption_Fatal,Fatal
+Bit_MessageTypeCaption_SimpleTrace,Simple Trace
+Bit_MessageTypeCaption_Trace,Trace
+Bit_MessageTypeCaption_TraceParser,TraceParser
+Bit_MessageTypeCaption_TraceParserResult,TraceParserResult
+Bit_MessageTypeCaption_TraceProvider,TraceProvider
+Bit_MessageTypeCaption_TraceProviderResult,TraceProviderResult
+Bit_MessageTypeCaption_TraceRepository,TraceRepository
+Bit_MessageTypeCaption_TraceRepositoryResult,TraceRepositoryResult
+Bit_MessageTypeCaption_Warning,Warning
+Bit_MessageTypeCaption_WarningParser,WarningParser
+Bit_MessageTypeCaption_WarningRepository,WarningRepository
+Bit_NoError_General,
+Bit_Product_MakatFormat,Unacceptable symbols
+Bit_Product_MakatIsEmpty,Can not be Empty
+Bit_Product_MakatIsNotUnique,Makat is not unique
+Bit_Product_PriceBuyFormat,Incorrect format
+Bit_Product_PriceSaleFormat,Incorrect format
+Bit_SameCodeExist_Document,Document with the Same DocumentCode Exist in DB
+Bit_SameCodeExist_General,Object with the Same Code Exist in DB
+Bit_SameCodeExist_Itur,Itur with the Same Code Exist in DB
+Bit_SameCodeExist_Location,Location with the Same Code Exist in DB
+Bit_SameCodeExist_ProductBarcode,Product with the Same Barcode Exist in DB
+Bit_SameCodeExist_ProductMakat,Product with the Same Makat Exist in DB
+Bit_Validate_Empty,Can't be empty
+Bit_Validate_Format,Wrong format
+Bit_ValidateErrorMessage_BarcodeExistInDB,Same Barcode [{0}] Exist in DB
+Bit_ValidateErrorMessage_BarcodeIsEmpty,Barcode : [{0}] Is Empty
+Bit_ValidateErrorMessage_BarcodeNotExistInDB,Barcode [{0}] Exist in Data Row, but Not Exist in Catalog as Barcode
+Bit_ValidateErrorMessage_DocumentCodeExistInDB,Document with Same Code [{0}] Exist in DB
+Bit_ValidateErrorMessage_Error,Parser Error : 
+Bit_ValidateErrorMessage_FileIsEmpty,File : [{0}] Is Empty or Is not Exist
+Bit_ValidateErrorMessage_FileIsNotExist,File : [{0}] Is not Exist
+Bit_ValidateErrorMessage_IturCodeExistInDB,Itur with Same Code [{0}] Exist in DB
+Bit_ValidateErrorMessage_IturCodeNotExistInDB,IturCode [{0}] Exist in Data Row, but Not Exist in Itur as Code
+Bit_ValidateErrorMessage_LocationCodeExistInDB,Location with Same Code [{0}] Exist in DB
+Bit_ValidateErrorMessage_LocationCodeNotExistInDB,LocationCode [{0}] Exist in Data Row, but Not Exist in Location as Code
+Bit_ValidateErrorMessage_MakatAndBarcodeNotExistInDB,Barcode (or Makat) [{0}] Exist in Data Row, but Not Exist in Catalog
+Bit_ValidateErrorMessage_MakatExistInDB,Same Makat [{0}] Exist in DB
+Bit_ValidateErrorMessage_MakatIsEmpty,Makat : [{0}] Is Empty
+Bit_ValidateErrorMessage_MakatNotExistInDB,Makat [{0}] Exist in Data Row, but Not Exist in Catalog as Makat
+Bit_ValidateErrorMessage_NoExpectedLengthString,Length of Input String does not match the Expected Length : [{0}]
+Bit_ValidateErrorMessage_NoExpectedMarker,Data Row no Expected Marker : [{0}]
+Bit_ValidateErrorMessage_NoHeaderLine,There Is no Header Line or not the Marker Header in the First Line of File :  [{0}]
+Bit_ValidateErrorMessage_NoMatchNumberSubstrings,Does not Match the Number of Substrings in the Data Row with the Expected :  [{0}]
+Bit_ValidateErrorMessage_NoOneDataRow,There Is no One Data Row in File : [{0}]
+Bit_ValidateErrorMessage_ParentMakatIsEmpty,Parent Makat : [{0}] Is Empty
+Bit_ValidateErrorMessage_SessionCodeExistInDB,Session with Same Code [{0}] Exist in DB
+Bit_ValidateErrorMessage_Warning,Parser Warning : 
+Command_Accept,Accept
+Command_Add,Add
+Command_AlignBottom,Bottom
+Command_AlignLeft,Left
+Command_AlignRight,Right
+Command_AlignSameHeight,Same Height
+Command_AlignSameWidth,Same Width
+Command_AlignTop,Top
+Command_Apply,Apply
+Command_AutorImportFromPda,Auto Import from PDA
+Command_BranchPostAddBranch,Create new Branch
+Command_BranchPostAddInventor,Create new Inventor
+Command_BranchPostBranchDashboard,Branch Dashboard
+Command_BranchPostEditBranch,Edit branch
+Command_BranchPostHomeDashboard,Home Dashboard
+Command_BranchPostMainDashboard,Main Dashboard
+Command_BringForward,Bring to Front
+Command_Browse,Browse
+Command_BuildNewInventor,Build New Inventory
+Command_BuildNewProcess,Add New Process
+Command_Cancel,Cancel
+Command_ChangeCurrentInventor,Change Current Inventor
+Command_Clear,Clear
+Command_ClearByConfig,Clear
+Command_ClearItemsFromItur,Clear
+Command_Clone,Clone
+Command_Close,Close
+Command_Compare,Compare...
+Command_ContinueCurrentInventor,Continue Inventory which is In Process
+Command_Copy,Copy
+Command_Create,Create
+Command_CreateAndNavigateToProcessInventor,Create New Inventor >>
+Command_CreateNewInventor,Create New Inventor
+Command_CurrentInventor,Current Inventor
+Command_CustomerPostAddBranch,Create new Branch
+Command_CustomerPostAddCustomer,Create new Customer
+Command_CustomerPostCustomerDashboard,Customer Dashboard
+Command_CustomerPostEditCustomer,Edit customer
+Command_CustomerPostHomeDashboard,Home Dashboard
+Command_CustomerPostMainDashboard,Main Dashboard
+Command_Delete,Delete
+Command_DeleteAll,Delete All
+Command_DeleteAllChecked,Delete All Checked
+Command_DeleteAllCheckSelect,Delete Checked
+Command_DeleteAllWithoutChild,Delete All Without Child
+Command_DeleteFromMainDB,Delete from Main DB
+Command_DeleteNoneInCatalog,Delete All Not Existing in Catalog
+Command_DeleteWithItems,Delete with Items
+Command_DeleteWithoutChild,Delete without children
+Command_DevicePDAStatistic,PDA Statistic
+Command_DocumentHeaderStatistic,DocumentHeader
+Command_Down,Down
+Command_Edit,Edit
+Command_EditCustomerOptions,Edit Customer Settings
+Command_Export,Export
+Command_Filter,Filter
+Command_Find,Find
+Command_Import,Import
+Command_ImportExport,Import - Export
+Command_Info,Info
+Command_InventorPostEditInventor,Edit inventor
+Command_InventorPostHomeDashboard,Home Dashboard
+Command_InventorPostInventorDashboard,Inventor Dashboard
+Command_InventorPostInventorForm,Inventor form
+Command_InventorPostMainDashboard,Main Dashboard
+Command_More,More...
+Command_MultiAdd,Multi Add
+Command_NavigateToGrid,View
+Command_OK,Ok
+Command_OpenInExplorer,Open in explorer
+Command_OpenScript,Open script
+Command_Pack,Pack
+Command_Planogram,Planogram
+Command_Print,Print
+Command_Print_ByLocationCode_Report,Print Reports for Location
+Command_Print_ByTag_Report,Print Reports by Tag
+Command_Print_Report,Print Report
+Command_RefreshStatus,Refresh Status
+Command_Rename,Rename
+Command_RepairFromDb,Repair from DB
+Command_Report,Report
+Command_Reset,Reset
+Command_Reset_ToDefaultProcess,Back to Root Process
+Command_ResetErrorStatus,Reset error status
+Command_Run,Run
+Command_RunByConfig,Run
+Command_Save,Save
+Command_SaveScript,Save Script
+Command_Search,Search
+Command_Select,Select...
+Command_SendBackward,Send to Back
+Command_SessionStatistic,Session
+Command_SetAsDefault,Set as Default
+Command_SetAsDefaultLikeInCustomer,Default from Customer
+Command_SetAsProcess,Set as Process
+Command_SetOptions,Edit Inventor Options
+Command_ShowConfig,Config
+Command_ShowIni,Ini
+Command_ShowLogByConfig,Log
+Command_Statistic,Statistic
+Command_ToProcess,To Process
+Command_ToProcessInventor,To Process Inventor >>
+Command_Unpack,Unpack
+Command_Up,Up
+Command_Update,Update
+Command_UpdateCatalog,Update
+Command_UpdateInventorDateTime,Update
+Command_Validate,Validate
+Command_View,View
+Command_ViewConfig,View Config
+Command_ViewLog,View Log
+Command_WorkerStatistic,Worker
+Common_FromImportToGrid,Open Grid
+Constant_Barcode,Barcode
+Constant_Code,Code
+Constant_ERP,ERP Code
+Constant_Makat,Makat
+Constant_Number,Number
+Constant_Path,Path
+Constant_Product,Product
+Control_Pagination_Of,of {0}
+Domain_Adapter,Adapter
+Domain_Branch,Branch
+Domain_Customer,Customer
+Domain_DevicePDA,PDA - Documents
+Domain_Family,Family
+Domain_Inventor,Inventor
+Domain_InventProduct,Invent Product
+Domain_InventProductAnalyze,Invent Product Analyze
+Domain_Itur,Itur
+Domain_Itur_NAME,ITUR
+Domain_Location,Location
+Domain_Product,Product
+Domain_Report,Report
+Domain_Section,Section
+Domain_StatusGroup,Status
+Domain_Supplier,Supplier
+Domain_Tag,Tag
+Domain_Template,Template
+Domain_UnitPlan,Unit Plan
+DomainUnknownName_UnknownDevice,UnknownDevice
+DomainUnknownName_UnknownFamily,UnknownFamily
+DomainUnknownName_UnknownLocation,UnknownLocation
+DomainUnknownName_UnknownPropertyStr,UnknownPropertyStr
+DomainUnknownName_UnknownSection,UnknownSection
+DomainUnknownName_UnknownSupplier,UnknownSupplier
+DomainUnknownName_UnknownUnitType,UnknownUnitType
+DomainUnknownName_UnknownWorker,Unknown Worker
+DownloadButtonText,Download
+Err_ConnectionDBException, Connection Error 
+GoToPage,Go to Page
+InventProductListDetailsView_Clalit_Column_PropertyStr1,serial
+InventProductListDetailsView_Clalit_Column_PropertyStr10,vend_id 
+InventProductListDetailsView_Clalit_Column_PropertyStr11,last_upd_date 
+InventProductListDetailsView_Clalit_Column_PropertyStr12,purchase_date 
+InventProductListDetailsView_Clalit_Column_PropertyStr13,Item_Id
+InventProductListDetailsView_Clalit_Column_PropertyStr14,client_id 
+InventProductListDetailsView_Clalit_Column_PropertyStr15,purchase_date
+InventProductListDetailsView_Clalit_Column_PropertyStr2,prod_id
+InventProductListDetailsView_Clalit_Column_PropertyStr3,manufacturer 
+InventProductListDetailsView_Clalit_Column_PropertyStr4,model_id 
+InventProductListDetailsView_Clalit_Column_PropertyStr5,descr 
+InventProductListDetailsView_Clalit_Column_PropertyStr6,configuration_stat_id 
+InventProductListDetailsView_Clalit_Column_PropertyStr7,leasingProperty 
+InventProductListDetailsView_Clalit_Column_PropertyStr8,pc_screen_size 
+InventProductListDetailsView_Clalit_Column_PropertyStr9,longtext 
+InventProductListDetailsView_Column_SupplierCode,SupplierCode
+InventProductListDetailsView_Compare_Column_PropertyFloat1,In1
+InventProductListDetailsView_Compare_Column_PropertyFloat2,In2
+InventProductListDetailsView_Compare_Column_PropertyFloat3,Difference
+InventProductListDetailsView_Compare_Column_PropertyFloat4,Result
+InventProductListDetailsView_Compare_Column_PropertyStr1,File1
+InventProductListDetailsView_Compare_Column_PropertyStr2,File2
+InventProductListDetailsView_InventProduct_Column_IPValueStr1,Batch
+InventProductListDetailsView_InventProduct_Column_IPValueStr2,Date
+InventProductListDetailsView_Merkava_Column_Code,Code
+InventProductListDetailsView_Merkava_Column_PropertyStr1,Equipment 
+InventProductListDetailsView_Merkava_Column_PropertyStr10,Purchase Date 
+InventProductListDetailsView_Merkava_Column_PropertyStr11,Purchase Value 
+InventProductListDetailsView_Merkava_Column_PropertyStr12,Property 12
+InventProductListDetailsView_Merkava_Column_PropertyStr13,Property 13
+InventProductListDetailsView_Merkava_Column_PropertyStr17,Property 17
+InventProductListDetailsView_Merkava_Column_PropertyStr18,Property 18
+InventProductListDetailsView_Merkava_Column_PropertyStr19,Property 19
+InventProductListDetailsView_Merkava_Column_PropertyStr2,Description Equipment 
+InventProductListDetailsView_Merkava_Column_PropertyStr20,Property 20
+InventProductListDetailsView_Merkava_Column_PropertyStr3,Reduced Property Value 
+InventProductListDetailsView_Merkava_Column_PropertyStr4,Field Sorting 
+InventProductListDetailsView_Merkava_Column_PropertyStr5,Hotel 
+InventProductListDetailsView_Merkava_Column_PropertyStr6,Property 6
+InventProductListDetailsView_Merkava_Column_PropertyStr7,Property 7
+InventProductListDetailsView_Merkava_Column_PropertyStr8,UID-RFID 
+InventProductListDetailsView_Merkava_Column_PropertyStr9,Notes 
+InventProductListDetailsView_Nativ_Column_PropertyStr1,Property 1
+InventProductListDetailsView_Nativ_Column_PropertyStr10,Property 10
+InventProductListDetailsView_Nativ_Column_PropertyStr11,Property 11
+InventProductListDetailsView_Nativ_Column_PropertyStr12,Property 12
+InventProductListDetailsView_Nativ_Column_PropertyStr13,Property 13
+InventProductListDetailsView_Nativ_Column_PropertyStr14,Property 14
+InventProductListDetailsView_Nativ_Column_PropertyStr15,Property 15
+InventProductListDetailsView_Nativ_Column_PropertyStr16,Property 16
+InventProductListDetailsView_Nativ_Column_PropertyStr17,Property 17
+InventProductListDetailsView_Nativ_Column_PropertyStr18,Property 18
+InventProductListDetailsView_Nativ_Column_PropertyStr19,Property 19
+InventProductListDetailsView_Nativ_Column_PropertyStr2,Property 2
+InventProductListDetailsView_Nativ_Column_PropertyStr20,Property 20
+InventProductListDetailsView_Nativ_Column_PropertyStr3,Property 3
+InventProductListDetailsView_Nativ_Column_PropertyStr4,Property 4
+InventProductListDetailsView_Nativ_Column_PropertyStr5,Property 5
+InventProductListDetailsView_Nativ_Column_PropertyStr6,Property 6
+InventProductListDetailsView_Nativ_Column_PropertyStr7,Property 7
+InventProductListDetailsView_Nativ_Column_PropertyStr8,Property 8
+InventProductListDetailsView_Nativ_Column_PropertyStr9,Property 9
+IturStatusGroup_AllDocsIsApprove,AllDocsIsApprove
+IturStatusGroup_DisableAndNoOneDoc,DisableAndNoOneDoc
+IturStatusGroup_DisableWithDocs,DisableWithDocs
+IturStatusGroup_Empty,Empty
+IturStatusGroup_Error,Error
+IturStatusGroup_None,All
+IturStatusGroup_NotApprove,NotApprove
+IturStatusGroup_OneDocIsApprove,OneDocIsApprove
+Log_Error1001,In  ProductParserList {0} - Is Not Exists
+Log_Error1003,In  InventProductSimpleParserList {0} - Is Not Exists
+Log_Error1004,Try Delete File  [{0}]
+Log_Error1005,File Path  Is Empty
+Log_Error1007,In  IturParserList {0} - Is Not Exists
+Log_Error1009,In  LocationParserList {0} - Is Not Exists
+Log_Error1010,In  {0} {1} - Is Not Exists
+Log_ParserFileErrorMessage_BarcodeExistInDB,Same Barcode [ {0} ] Exist in DB
+Log_ParserFileErrorMessage_BarcodeIsEmpty,Barcode : [ {0} ] Is Empty
+Log_ParserFileErrorMessage_BarcodeNotExistInDB,Barcode [ {0} ] Exist in Data Row, but Not Exist in Catalog as Barcode
+Log_ParserFileErrorMessage_BranchCodeExistInDB,Same BranchCode [ {0} ] Exist in DB
+Log_ParserFileErrorMessage_DocumentCodeExistInDB,Document with Same Code [ {0} ] Exist in DB
+Log_ParserFileErrorMessage_Error,Parser Error : 
+Log_ParserFileErrorMessage_FileIsEmpty,File : [ {0} ] Is Empty or Is not Exist
+Log_ParserFileErrorMessage_FileIsNotExist,File : [ {0} ] Is not Exist
+Log_ParserFileErrorMessage_FileTxtExpected,File : [ {0} ] must be text file
+Log_ParserFileErrorMessage_FileXlsxExpected,File : [ {0} ] must have .xlsx Format
+Log_ParserFileErrorMessage_IturCodeExistInDB,Itur with Same Code [ {0} ] Exist in DB
+Log_ParserFileErrorMessage_IturCodeIsEmpty,IturCode : [ {0} ] Is Empty
+Log_ParserFileErrorMessage_IturCodeNotExistInDB,IturCode [ {0} ] Exist in Data Row, but Not Exist in Itur as Code
+Log_ParserFileErrorMessage_KeyIsEmpty,Key : [ {0} ] Is Empty
+Log_ParserFileErrorMessage_KeyNotFind,Key : [ {0} ] Not Find
+Log_ParserFileErrorMessage_LocationCodeExistInDB,Location with Same Code [ {0} ] Exist in DB
+Log_ParserFileErrorMessage_LocationCodeIsEmpty,LocationCode : [ {0} ] Is Empty
+Log_ParserFileErrorMessage_LocationCodeNotExistInDB,LocationCode [ {0} ] Exist in Data Row, but Not Exist in Location as Code
+Log_ParserFileErrorMessage_MakatAndBarcodeNotExistInDB,Barcode (or Makat) [ {0} ] Exist in Data Row, but Not Exist in Catalog
+Log_ParserFileErrorMessage_MakatExistInDB,Same Makat [ {0} ] Exist in DB
+Log_ParserFileErrorMessage_MakatIsEmpty,Makat : [ {0} ] Is Empty
+Log_ParserFileErrorMessage_MakatNotExistInDB,Makat [ {0} ] Exist in Data Row, but Not Exist in Catalog as Makat
+Log_ParserFileErrorMessage_NoExpectedLengthString,Length of Input String does not match the Expected Length : [ {0} ]
+Log_ParserFileErrorMessage_NoExpectedMarker,Data Row no Expected Marker : [ {0} ]
+Log_ParserFileErrorMessage_NoHeaderLine,There Is no Header Line or not the Marker Header in the First Line of File :  [ {0} ]
+Log_ParserFileErrorMessage_NoMatchNumberSubstrings,Does not Match the Number of Substrings in the Data Row with the Expected :  [ {0} ]
+Log_ParserFileErrorMessage_NoOneDataRow,There Is no One Data Row in File : [ {0} ]
+Log_ParserFileErrorMessage_ParentMakatIsEmpty,Parent Makat : [ {0} ] Is Empty
+Log_ParserFileErrorMessage_SessionCodeExistInDB,Session with Same Code [ {0} ] Exist in DB
+Log_ParserFileErrorMessage_TableNameIsEmpty,Table Name Is Empty
+Log_ParserFileErrorMessage_TableNotExistInDB,Table Not Exist In DB
+Log_ParserFileErrorMessage_Warning,Parser Warning : 
+Log_TraceParser1001,Parser Error And Message : 
+Log_TraceProvider1101,[{0}] is [{1}]
+Log_TraceProvider1102,From  [{0}]
+Log_TraceProvider1103,Import Option - [{0}]
+Log_TraceRepository1001,Start process: Clear Table [{0}] Via ADO.NET
+Log_TraceRepository1005,Start process: Select Ver DB [{0}]  Via ADO.NET
+Log_TraceRepository1006,End process: Select Ver DB
+Log_TraceRepository1015,Export to [{0}] is [{1}]
+Log_TraceRepository1040,[{0}] is [{1}]
+Log_TraceRepository1045,Clear [{0}]
+Log_TraceRepositoryResult1001,subFolder : [{0}]
+Log_TraceRepositoryResult1002,fileDB : [{0}]
+Log_TraceRepositoryResult1003,Sql : [{0}]
+Log_TraceRepositoryResult10031,[{0}] in DB [{1}]
+Log_TraceRepositoryResult1004,Start Commit process 
+Log_TraceRepositoryResult1005,End Commit process
+Log_TraceRepositoryResult1006,[{0}] in DB {1}\\{2}
+Log_TraceRepositoryResult1007,End process Clear 
+Log_TraceRepositoryResult1008,Start Process: Copy Table [{0}] Via BulkCopy
+Log_TraceRepositoryResult1009,From DB [{0}] To DB [{1}] 
+Log_TraceRepositoryResult1011,Add {0} {1} in DB [{2}]
+Log_TraceRepositoryResult1015,Clear [{0}] Via ADO.NET
+Log_TraceRepositoryResult1016,Start Write to File [{0}] 
+Log_TraceRepositoryResult1020,Start Fill [{0}]
+Log_TraceRepositoryResult1021,End Fill [{0}]
+Log_TraceRepositoryResult1035,Start process: Commit Data To DB [{0}] 
+Log_TraceRepositoryResult1036,End process: Commit Data To DB [{0}] 
+Log_TraceRepositoryResult1050,Parser Error And Message : 
+Log_TraceRepositoryResult1055,Copy Table [{0}] Via BulkCopy
+Log_TraceRepositoryResult1056,Delete File  [{0}]
+Log_TraceRepositoryResult1057,Cancel Write to File [{0}] 
+Log_TraceRepositoryResult1058,Write to File [{0}] 
+Log_TraceRepositoryResult1059,Cancel Insert [{0}] in DB [{1}] from file [{2}]
+Log_TraceRepositoryResult1061,Source Table [{0}] in DB [{1}] {2} have [{3}] Row
+Log_TraceRepositoryResult1062,Destination Table [{0}] in DB [{1}] {2} after Copy, have [{3}] Row
+Mdi_AllBranches,Branches
+Mdi_Application,Application
+Mdi_Branch,Branch
+Mdi_CatalogInfoForBranch,Catalog Info for Branch
+Mdi_CatalogInfoForCustomer,Catalog Info for Customer
+Mdi_CatalogInfoForInventor,Catalog Info for Inventor
+Mdi_Customer,Customer
+Mdi_DomainObject,Domain Object
+Mdi_Family,Family
+Mdi_GetFromPdaLog,Get from PDA Log
+Mdi_Inventor,Inventor
+Mdi_InventorStatus,Inventor Status
+Mdi_InventProduct,Invent Product
+Mdi_InventProductSimple,Invent Product Advanced
+Mdi_InventProductSum,Invent Product Aggregate
+Mdi_Iturim,Iturim
+Mdi_LastBraches,Last Branches Used In Inventory
+Mdi_LastBrachesForCustomer,Last Branches For Customer Used In Inventory
+Mdi_LastCustomers,Last Customers Used In Inventory
+Mdi_LastCustomersBuild,Customers
+Mdi_LastInventors,Last Inventors
+Mdi_LastInventorsForBranch,Last Inventors for Branch
+Mdi_LastInventorsForCustomer,Last Inventors for Customer
+Mdi_Location,Location
+Mdi_Menu,Menu
+Mdi_PdaSendData,PDA Send Data
+Mdi_Planogram,Planogram
+Mdi_Reports,Reports
+Mdi_Section,Section
+Mdi_Statistic,Statistics
+Mdi_Supplier,Supplier
+Menu_Name_Adapters,Adapters
+Menu_Name_AddBranch,Add Branch
+Menu_Name_AddCustomer,Add Customer
+Menu_Name_AddInventor,Add Inventor
+Menu_Name_AddItem,Add Item
+Menu_Name_AddNewInventor,Add Inventor
+Menu_Name_AddToPackData,Add Selected to Code List
+Menu_Name_Catalog,Catalog
+Menu_Name_ChangeCatalog,Change Catalog
+Menu_Name_ChangeStatus,Change Inventor Status
+Menu_Name_ClearCodeList,Clear Code List
+Menu_Name_DownloadFromPDA,Download Files From PDA
+Menu_Name_EditBranch,Edit Branch
+Menu_Name_EditCustomer,Edit Customer
+Menu_Name_EditInventor,Edit Inventor
+Menu_Name_ERPExpected,ERP Expected
+Menu_Name_ExportERP,ExportERP
+Menu_Name_ExportPDA,ExportPDA
+Menu_Name_FromFtp,From Ftp
+Menu_Name_Ftp,Ftp
+Menu_Name_GetFromFtp,Get From Ftp
+Menu_Name_GetFromPDA,Get From PDA
+Menu_Name_GetFtp,Menu_Name_GetFtp
+Menu_Name_Iturim,Iturim
+Menu_Name_Location,Location
+Menu_Name_PackData,Pack Data
+Menu_Name_Profile,Profile
+Menu_Name_Properties,Properties
+Menu_Name_ReportFavorites,Reports Favorites
+Menu_Name_SaveZipInventor,Save/Zip Inventor
+Menu_Name_SearchBranch,Branch Grid
+Menu_Name_SearchCustomer,Customer Grid
+Menu_Name_SearchInventor,Inventor Grid
+Menu_Name_SendDataInMail,Send Data In Mail
+Menu_Name_SendZipOffice,Send Zip to Office
+Menu_Name_StartWizard,Wizard Create Inventor
+Menu_Name_ToFtp,To Ftp
+Menu_Name_UnpackData,Unpack Data
+Menu_Name_UploadToPDA,Upload File To PDA
+Message_CreateProfile,Do you want to ask create Profile via Service?
+Message_Repair,Do you want to restore objects via database relations?
+Message_ReportMissedInFileSystem,Report File doesn't exist in file system
+Msg_Add_Another_Branch,New branch successfully saved. Add another one?
+Msg_Add_Another_Customer,New customer successfully saved. Add another one?
+Msg_BackupDb,Backuping db files...
+Msg_Branch_Sdf_File_Missed,{0} file is missed. Application will create new one. Inherit database file from customer?
+Msg_CatalogNotEmpty,"Catalog exist (It is not Empty). If you want to Clear it and Import the new one - click ""Yes"""
+Msg_CheckingDb,Checking imported Databases for consistency
+Msg_Clear_Export_ERP,Do you really want to clear?
+Msg_Clear_Export_PDA,Do you really want to clear?
+Msg_Clear_Import,Do you really want to clear?
+Msg_Clear_Import_Directory,You are about to clear {0}. Are you sure?
+Msg_ClearDocument,Do you really want to clear Document (Related Products will be removed permanently)?
+Msg_Close_Application,Are you sure want close Application?
+Msg_Close_Application_Printing,Printing is in progress. Are you sure want close application?
+Msg_Common_Error_Occured,An Error has occured. Description is available in the Log File.
+Msg_ConfigurationSetExist,Configuration set with such Name already Exists
+Msg_Customer_Sdf_File_Missed,{0} file is missed. Application will create new one.
+Msg_Default_Adapter_Unaccessible,Your default adapter is unaccessible due to licensing permissions. Fallback adapter selected.
+Msg_Delete_Adapter_Link,Are you sure you want to delete Adapter Link?
+Msg_Delete_Branch,Are you sure want delete {0} ?
+Msg_Delete_Customer,Are you sure want delete {0} ?
+Msg_Delete_Document_Header,Are you sure you want to delete Document Header: {0} ?
+Msg_Delete_Familys,Are you sure want to delete Familys {0} ?
+Msg_Delete_Invent_Product,Are you sure you want to delete {0} {1} {2}?
+Msg_Delete_Invent_Product_NotExistInCatalog,Are you sure that you want to delete all inventory items which not exist in catalog?
+Msg_Delete_Inventor,Are you sure want delete {0} ?
+Msg_Delete_Itur,Are you sure you want to delete Itur(s): {0} ?
+Msg_Delete_IturHierarchical,There are Items in selected Itur(s). Are you sure that you want to delete Items in : {0} Itur(s)?
+Msg_Delete_Location,Are you sure you want to delete Location(s): {0} ?
+Msg_Delete_Parsing_Mask,Are you sure want to delete Masks for {0} Adapter?
+Msg_Delete_Product,Are you sure you want to delete Product(s): {0} ?
+Msg_Delete_Report,Are you sure want to delete Report {0}\{1} ?
+Msg_Delete_Section,Are you sure want to delete Section {0} ?
+Msg_Delete_Supplier,Are you sure want to delete Supplier {0} ?
+Msg_Delete_Suppliers,Are you sure want to delete Supplier(s) ?
+Msg_DynViewModelCanNotExport,Can Not Export
+Msg_DynViewModelCanNotImport,Can't Import. Check that Files exist.
+Msg_DynViewModelNotInitialaze,DynViewModel not Initialize
+Msg_FileNotFound,File {0} not found
+Msg_FilterTemplateExists,Filter template with such name already exists
+Msg_FilterWindow,Filter Window
+Msg_Incorrect_File_Format,Incorrect file format
+Msg_IturNotEmpty,Non-empty iturs were found. They would have been skipped during delete. Proceed?
+Msg_Migrate_Db_Done,Database scheme updated from version {0} to {1}{2}Backup path: {3}
+Msg_Migrate_Db_Done2,Database scheme updated.
+Msg_Migrate_Db_Error,Error while preparing db: {0}
+Msg_Migrate_Db_Error_Rollback,Database migration error has occured. Please contact administrator.{0}Database files will be rolled back to initial state.
+Msg_Migrate_Db_Error_Version,Your program version is older than database files.
+Msg_NotValidFileName,File name is not valid
+Msg_PrepareDatabase,Preparing database for first use...
+Msg_Recalculate_Itur_Status,Recalculation of itur statuses can take a lot of time. Do you want to proceed?
+Msg_ReportLinkFill,Table ReportLink filled with data from {0}
+Msg_RestoreDone,Restore done
+Msg_Rollback,Rolling back changes
+Msg_SearchWindow,Search Window
+Msg_SuppliersNotEmpty,There are some suppliers in DB. Do you want to clear them?
+Msg_Unhandled_Exception,Unhandled exception occured.
+Msg_UpdateDbScheme,Updating db scheme...
+Msg_Zip_Changes_Apply_After_Restart,Adapters changes will apply after application restart.
+Operator_Contains,Contains {0}
+Operator_DateTimeGreaterOrEqual, >= {0}
+Operator_DateTimeLessOrEqual, <= {0}
+Operator_EndsWith,Ends with {0}
+Operator_Equal, = {0}
+Operator_Greater, > {0}
+Operator_GreaterOrEqual, >= {0}
+Operator_Less, < {0}
+Operator_LessOrEqual, <= {0}
+Operator_Multiple, = {0}
+Operator_MultipleString, = {0}
+Operator_StartsWith,Starts with {0}
+PlanCanvas_mnuAssignLocation,Assign Location
+PlanCanvas_mnuAssignPicture,Assign Picture
+PlanCanvas_mnuAssignText,Assign Text
+Process_EmptyMainDB,New MainDB
+Process_EmptyUserSetting,New UserSetting
+Process_RootMainDB,Root MainDB
+Process_RootUserSetting,Root UserSetting
+Property_Branch_Code,Code
+Property_Branch_CodeERP,Code ERP
+Property_Branch_CodeLocal,Code Local
+Property_Branch_ContactPerson,Contact Person
+Property_Branch_CustomerCode,Customer Code
+Property_Branch_Name,Name
+Property_Branch_Phone,Phone
+Property_Customer_Address,Address
+Property_Customer_Code,Code
+Property_Customer_ContactPerson,Contact Person
+Property_Customer_Description,Description
+Property_Customer_Name,Name
+Property_Customer_Phone,Phone
+Property_Family_Code,Code
+Property_Family_Name,Name
+Property_Inventor_BranchCode,Branch Code
+Property_Inventor_Code,Code
+Property_Inventor_CustomerCode,Customer Code
+Property_Inventor_Description,Description
+Property_Inventor_InventorDate,Inventor Date
+Property_InventProduct_Barcode,Original Code From PDA
+Property_InventProduct_CodeFromPda,Input Type
+Property_InventProduct_ERPIturCode,ERPIturCode
+Property_InventProduct_FamilyCode,Family Code
+Property_InventProduct_Itur,Itur
+Property_InventProduct_IturCode,IturCode
+Property_InventProduct_Makat,Makat
+Property_InventProduct_PriceBuy,Price Buy
+Property_InventProduct_PriceSell,Price Sell
+Property_InventProduct_ProductName,Product Name
+Property_InventProduct_SectionCode,Section Code
+Property_InventProduct_SupplierCode,Supplier Code
+Property_Itur_Code,Code
+Property_Itur_ERPCode,ERP Code
+Property_Itur_LocationCode,Location Code
+Property_Itur_Number,Number
+Property_Itur_NumberPrefix,Prefix
+Property_Itur_NumberSuffix,Suffix
+Property_Itur_StatusGroupBit,Status Group Bit
+Property_Location_Code,Code
+Property_Location_Name,Name
+Property_PriceType_PriceBuy,Price Buy
+Property_PriceType_PriceExtra,Price Extra
+Property_PriceType_PriceSale,Price Sale
+Property_Product_Barcode,Barcode
+Property_Product_Makat,Makat
+Property_Product_PriceBuy,Price Buy
+Property_Product_PriceSale,Price Sale
+Property_Product_ProductName,Product Name
+Property_Product_Section,Section
+Property_Product_Supplier,Supplier
+Property_Section_Code,Code
+Property_Section_Name,Name
+Property_Supplier_Code,Code
+Property_Supplier_Name,Name
+Report_Menu_Caption_AuditConfig_AuditConfigDetaile,AuditConfigDetaile
+Report_Menu_Caption_Branch_BranchDetaile,BranchDetaile
+Report_Menu_Caption_Catalog_Catalog,Catalog
+Report_Menu_Caption_Customer_CustomerDetaile,CustomerDetaile
+Report_Menu_Caption_Device_DV1_01,Device Statistic
+Report_Menu_Caption_Device_DV1_02,Device Statistic - Quick Format
+Report_Menu_Caption_Device_DV1_03,Device Statistic on Bar Chart
+Report_Menu_Caption_DH3_2,Document Report Sum Quentity
+Report_Menu_Caption_Doc_DH1_02,Document Header Statistic
+Report_Menu_Caption_FM1_01,Family Detailed
+Report_Menu_Caption_Inventor_InventorDetaile,InventorDetaile
+Report_Menu_Caption_InventProduct_DetailedInventProduct,Detailed - InventProduct
+Report_Menu_Caption_IP1_02,InventProducts Compare
+Report_Menu_Caption_IP1_03,Report Compare Statistics
+Report_Menu_Caption_IP1_04,Report Compare- Property
+Report_Menu_Caption_IP1_05,InventProduct Sum by Itur
+Report_Menu_Caption_IS1_07,Summary Report per Supplier
+Report_Menu_Caption_IS1_12f,Summary by Family
+Report_Menu_Caption_IS1_60,Report Sum Quentity
+Report_Menu_Caption_IS1_70,Document Family Report
+Report_Menu_Caption_IS1_77,Itur Family Sum Quentity
+Report_Menu_Caption_IS1_80,Report Sum Quentity by Location
+Report_Menu_Caption_IS1_82,Report  by Location and Itur
+Report_Menu_Caption_IS1_82p,Report Sum Quentity by Barcode
+Report_Menu_Caption_IS1_85,Not Exist in all others Location
+Report_Menu_Caption_IT2_02,Document Report Sum Quentity
+Report_Menu_Caption_IT2_03,Document Family Report
+Report_Menu_Caption_IT2_04,Lady Comfort Family Report
+Report_Menu_Caption_IT2_05,Made4Net Report
+Report_Menu_Caption_IT2_06,Priority Keds ShowRoom Per Itur Report
+Report_Menu_Caption_IT2_07,Report by Itur with QuanityPartial
+Report_Menu_Caption_Itur_DetailedItur,Detailed - Itur
+Report_Menu_Caption_Itur_IT1_02,Plaine Itur List
+Report_Menu_Caption_Itur_IT1_03,Itur Barcodes
+Report_Menu_Caption_Iturs_CorporativeReport,CorporativeReport - Iturs
+Report_Menu_Caption_Iturs_DetailedBySectionReportBranch,Detailed By Section Report Branch - Iturs
+Report_Menu_Caption_Iturs_DetailedReportBranch,Detailed Report Branch - Iturs
+Report_Menu_Caption_Iturs_DocumentReport,Document Report -Iturs
+Report_Menu_Caption_Iturs_IS1_14,Summary Abs Report BranchWith Sections - Iturs
+Report_Menu_Caption_Iturs_IS1_22,Total Inventory Summary
+Report_Menu_Caption_Iturs_IS1_22p,Total Inventory Summary
+Report_Menu_Caption_Iturs_IS1_23p,Total Inventory Summary
+Report_Menu_Caption_Iturs_IS1_24,Summary Report Branch With Sections Ext
+Report_Menu_Caption_Iturs_IS1_25p,Warehouse Inventory Summary
+Report_Menu_Caption_Iturs_IS1_27p,Total Inventory Summary
+Report_Menu_Caption_Iturs_IS1_29p,Total Inventory Summary QuantityPartial
+Report_Menu_Caption_Iturs_IS1_32p,JAFORA Report
+Report_Menu_Caption_Iturs_IS1_53,Inventory Detailed Report
+Report_Menu_Caption_Iturs_IS1_53pt,Inventory Detailed Report with Date Time
+Report_Menu_Caption_Iturs_IS1_54,Inventory Detailed by Itur Report
+Report_Menu_Caption_Iturs_IS1_54sn,Report Sum by Itur Makat SN
+Report_Menu_Caption_Iturs_IS1_56,Itur Expected Report
+Report_Menu_Caption_Iturs_IS1_56nc,Items Not Exist In Catalog
+Report_Menu_Caption_Iturs_IS1_57,Inventory Detailed by Itur Report
+Report_Menu_Caption_Iturs_IS1_58,Inventory Makat- Itur Sum Report
+Report_Menu_Caption_Iturs_IS1_59,Summary Report - Boxes in pallet
+Report_Menu_Caption_Iturs_IS1_69,Summary Report - Pallet in Tag (Truck)
+Report_Menu_Caption_Iturs_IS1_74p,Documents Report - Family Sum Quantity
+Report_Menu_Caption_Iturs_IS1_75p,Lady Comfort Itur Family Report
+Report_Menu_Caption_Iturs_IS1_86,Report Count ByIturMakat More6
+Report_Menu_Caption_Iturs_IS1_90,Summary report - total asset counting per day
+Report_Menu_Caption_Iturs_IS1_92,Summary report - total asset counting per itur
+Report_Menu_Caption_Iturs_IS1_92L,Summary report - total asset counting per Location
+Report_Menu_Caption_Iturs_IS1_93,Report Without SN Supplier
+Report_Menu_Caption_Iturs_IS1_94,Report with ModifyDate
+Report_Menu_Caption_Iturs_IS1_95,Compare Quantity By Itur-Makat-Docs
+Report_Menu_Caption_Iturs_SummaryReportBranch,Summary Report Branch - Iturs
+Report_Menu_Caption_Iturs_SummaryReportBranchSections,Summary Report BranchWith Sections - Iturs
+Report_Menu_Caption_Iturs_SummaryReportFamilyBranch,Summary Report Family - Iturs
+Report_Menu_Caption_Iturs_SummaryReportIturBranch,Summary Report Iturs - Iturs
+Report_Menu_Caption_Iturs_SummaryReportLocationBranch,Summary Report Locations - Iturs
+Report_Menu_Caption_ItursItur_DocumentReport,Document Report -Itur
+Report_Menu_Caption_ItursIturDoc_DocumentReport,Document Report -Doc
+Report_Menu_Caption_Rep_IS1_62,Detailed Report - Iturs
+Report_Menu_Caption_Rep_IS1_62b,Detailed Report blank - Itur
+Report_Menu_Caption_Rep_IS1_62n,Detailed Report by Barcode-Itur
+Report_Menu_Caption_Rep_IS1_63,Detailed Report by barcode
+Report_Menu_Caption_Rep_IS1_64,Detailed Report - Iturs
+Report_Menu_Caption_Rep_IS1_65,Sfira
+Report_Menu_Caption_Rep_IS1_83,Inventory Report by Location
+Report_Menu_Location_L1_01,Location Detailed
+Report_Menu_Location_L1_02,TagLocation Detailed
+Report_Menu_Location_L1_03,Tag Location Count
+Report_Menu_Location_L1_04,Import Locations with Tag
+Report_Menu_Section_SK1_01,Section Detailed
+Report_Menu_Supplier_SP1_01,Supplier Detailed
+Report_Menu_Supplier_SP1_02,Supplier-Itur Detailed
+Report_Menu_Supplier_SP1_03,Itur-Supplier Detailed
+Selected_Adapter_Not_Equals_CustomerAdapter,Selected Adapter not equals Adapter for Customer
+SortAsc,{0} (ASC)
+SortDesc,{0} (DESC)
+SortFileGrid_DateAndTime,Date and Time
+SortFileGrid_FileName,File
+Status_ConvertDataErrorMessage_CodeIsEmpty,Code Is Empty in Data Row [{0}] 
+Status_ConvertDataErrorMessage_FKCodeIsEmpty,FK Code Is Empty in Data Row [{0}] 
+Status_ConvertDataErrorMessage_InvalidValue,Invalid Value in Data Row [{0}]
+Status_ConvertDataErrorMessage_SameCodeExist,Object with the Same Code [{0}] Exist in DB
+Status_DocumentStatusTitle_None,None
+Status_DocumentStatusTitle_NoOneDoc,No One Document
+Status_DocumentStatusTitle_OneDocIsApprove,One Document Is Approve
+Status_DocumentStatusTitle_OneDocIsNotApprove,One Document Is Not Approve
+Status_DocumentStatusTitle_SomeDocIsApprove,Some Documents And This Is Approve
+Status_DocumentStatusTitle_SomeDocsIsNotApprove,Some Documents And This Is Not Approve
+Status_IturStatusGroupTitle_AllDocsIsApprove,All Docs Are Approve
+Status_IturStatusGroupTitle_DisableAndNoOneDoc,Disable And No One Doc
+Status_IturStatusGroupTitle_DisableWithDocs,Disable With Docs
+Status_IturStatusGroupTitle_Empty,Empty
+Status_IturStatusGroupTitle_Error,Error
+Status_IturStatusGroupTitle_None,All
+Status_IturStatusGroupTitle_NotApprove,Not Approve
+Status_IturStatusGroupTitle_OneDocIsApprove,One Doc Is Approve
+Status_IturStatusTitle_AllDocIsApprove,Some of Documents Is Approve
+Status_IturStatusTitle_AnyDocIsNotApprove,Some of Documents Is Not Approve
+Status_IturStatusTitle_DisableAndAllDocIsApprove,Disable And Some of Documents Is Approve
+Status_IturStatusTitle_DisableAndAnyDocIsNotApprove,Disable And Some of Documents Is Not Approve
+Status_IturStatusTitle_DisableAndNoOneDoc,Disable And No One Document
+Status_IturStatusTitle_DisableAndOneDocIsApprove,Disable And One Document Is Approve
+Status_IturStatusTitle_DisableAndOneDocIsNotApprove,Disable And One Document Is Not Approve
+Status_IturStatusTitle_DisableAndSomeDocIsApprove,Disable And Some of Documents Is Approve
+Status_IturStatusTitle_DisableAndSomeDocIsNotApprove,Disable And Some of Documents Is Not Approve
+Status_IturStatusTitle_None,None
+Status_IturStatusTitle_NoOneDoc,No One Document
+Status_IturStatusTitle_OneDocIsApprove,One Document Is Approve
+Status_IturStatusTitle_OneDocIsNotApprove,One Document Is Not Approve
+Status_IturStatusTitle_SomeDocIsApprove,Some of Documents Is Approve
+Status_IturStatusTitle_SomeDocIsNotApprove,Some of Documents Is Not Approve
+Status_IturStatusTitle_WarningConvert,Error
+String,
+StringReport_Menu_Caption_Iturs_IS1_69,Report_Menu_Caption_Iturs_IS1_69
+Validation_DirectoryNotExist,Directory doesn't exist
+Validation_File_Not_Exist,File doesn't exist
+Validation_FileNotExist,File doesn't exist
+Validation_Files_Cant_Equal,Files can't be equal
+Validation_Not_Valid_Directory,Not valid directory
+Validation_Not_Valid_File,Not valid file
+Validation_Not_Valid_Path,Path is not valid
+View_AdapterLink_btnDeleteLink,Delete link
+View_AdapterLink_btnRestoreLinks,Restore  Links of Adapter
+View_AdapterLink_columnAdapterCode,Adapter Code
+View_AdapterLink_columnCode,Code
+View_AdapterLink_columnDescription,Description
+View_AdapterLink_columnDomainType,Domain type
+View_AdapterLink_columnName,Name
+View_AdapterLink_tbAdapterMissed,Adapter doesn't exist in file system
+View_AdaptersMask_btnSetAsDefault,Set as Default
+View_AdaptersMask_grpGetMasksFrom,Get masks from:
+View_AdaptersMask_radioBranch,Branch
+View_AdaptersMask_radioCustomer,Customer
+View_AdaptersMask_radioInventor,Inventor
+View_AdaptersMask_tbBarcodeMask,BarcodeMask
+View_AdaptersMask_tbBarcodeMask1,BarcodeMask1
+View_AdaptersMask_tbMakatMask,MakatMask
+View_AdaptersMask_tbMakatMask1,MakatMask1
+View_BasePdaViewModel_tbQuantityPda,Pda started/checked: {0}/{1}
+View_BranchAdd_chkAddOtherBranch,Add other Branch on save
+View_BranchAdd_chkClearFields,Clear Fields on save
+View_BranchAdd_chkInheritData,Inherit data from customer
+View_BranchAdd_tbCreateNewBranch,Create new Branch
+View_BranchAdd_tbCurrentCustomer,Current Customer:
+View_BranchAdd_tiDefaultImportAdapters,Default import adapters
+View_BranchAdd_tiGeneral,General
+View_BranchChoose_bntCreateNewBranch,Create new Branch
+View_BranchChoose_btnNext,Next > select inventor
+View_BranchChoose_btnOpenDashboard,Open branch dashboard
+View_BranchChoose_btnPrev,Select customer < Previous
+View_BranchChoose_columnAddress,Address
+View_BranchChoose_columnCodeErp,CodeErp
+View_BranchChoose_columnCodeLocal,CodeLocal
+View_BranchChoose_columnContactPerson,ContactPerson
+View_BranchChoose_columnCustomerCode,Customer code
+View_BranchChoose_columnCustomerName,Customer Name
+View_BranchChoose_columnDescription,Description
+View_BranchChoose_columnFax,Fax
+View_BranchChoose_columnMail,Mail
+View_BranchChoose_columnManager,Manager
+View_BranchChoose_columnName,Name
+View_BranchChoose_columnPhone,Phone
+View_BranchChoose_columnSource,Source
+View_BranchChoose_columnTitle,Title
+View_BranchChoose_tbBranch,Branch
+View_BranchChoose_tbBy,by
+View_BranchEdit_tbCurrentCustomer,Current Customer:
+View_BranchEdit_tbTitle,Branch Edit
+View_BranchEdit_tiDefaultImportAdapters,Default import adapters
+View_BranchEdit_tiGeneral,General
+View_BranchesDashboardPart_columnCode,Code
+View_BranchesDashboardPart_columnCodeLocal,Code Local
+View_BranchesDashboardPart_columnLastUpdate,Last Update
+View_BranchesDashboardPart_columnName,Name
+View_BranchesDashboardPart_columnSelect,Select
+View_BranchesDashboardPart_columnToPack,To Pack
+View_BranchForm_btnClear,Clear
+View_BranchForm_btnCopyInfoFromCustomer,Copy info from Customer
+View_BranchForm_btnGenerateNew,Generate new
+View_BranchForm_tbAddress,Address
+View_BranchForm_tbBranchName,Branch Name
+View_BranchForm_tbCode,Code
+View_BranchForm_tbCodeErp,Code ERP
+View_BranchForm_tbCodeLocal,Code Local
+View_BranchForm_tbContact,Contact
+View_BranchForm_tbContactPerson,Contact person
+View_BranchForm_tbContinuationAddress,Continuation Address
+View_BranchForm_tbDescription,Description
+View_BranchForm_tbFAX,FAX
+View_BranchForm_tbMail,Mail
+View_BranchForm_tbParameters,Parameters
+View_BranchForm_tbPhone,Phone
+View_BranchPost_btnCreateNewInventor,Create new Inventor
+View_BranchPost_btnEditCurrent,Edit current branch
+View_CatalogForm_BarcodeOriginal,Barcode Original
+View_CatalogForm_columnBalanceQuantityERP,BalanceQuantityERP
+View_CatalogForm_columnBalanceQuantityPartialERP,Balance Quantity Partial ERP
+View_CatalogForm_columnBarcode,Barcode
+View_CatalogForm_columnCountInParentPack,Count in Parent Pack
+View_CatalogForm_columnFamily,Family
+View_CatalogForm_columnFamilyCode,Family Code
+View_CatalogForm_columnInputTypeCode,Input Type Code
+View_CatalogForm_columnIturCodeExpected,Itur Code Expected
+View_CatalogForm_columnMakat,Makat
+View_CatalogForm_columnMakatOriginal,Makat original
+View_CatalogForm_columnModifyDate,ModifyDate
+View_CatalogForm_columnName,Name
+View_CatalogForm_columnParentMakat,Parent Makat
+View_CatalogForm_columnPriceBuy,Price Buy
+View_CatalogForm_columnPriceExtra,Price Extra
+View_CatalogForm_columnPriceSale,Price Sale
+View_CatalogForm_columnPropertyCode,Code
+View_CatalogForm_columnPropertyName,Name
+View_CatalogForm_columnPropertyValue,Value
+View_CatalogForm_columnSectionCode,Section Code
+View_CatalogForm_columnSupplierCode,Supplier Code
+View_CatalogForm_columnTag,Tag
+View_CatalogForm_columnTypeCode,Type Code
+View_CatalogForm_columnUnitTypeCode,Unit Type
+View_CatalogForm_tblSearch,Search
+View_CatalogInfoForCBI_tbEditMask,Mask
+View_CatalogInfoForCBIPath_tbUpdate,ERP Balance
+View_CBIObjectProperties_tbCode,Code:
+View_CBIObjectProperties_tbCopyToClipboard,Copy to Clipboard
+View_CBIObjectProperties_tbCreateDate,Create date:
+View_CBIObjectProperties_tbDatabasePath,Database path:
+View_CBIObjectProperties_tbExportToPdaPath,Export to PDA path:
+View_CBIObjectProperties_tbImportPath,Import path:
+View_CBIObjectProperties_tbInventorDate,Inventor date:
+View_CBIObjectProperties_tbInventorStatus,Inventor status:
+View_CBIObjectProperties_tbOpenInExplorer,Open in explorer
+View_CommonImportExport_chkWriteToLog,Also write Log to File
+View_CommonInventProduct_chkOnlyWithError,Only item with error
+View_CommonInventProduct_columnAccept1,Accept1
+View_CommonInventProduct_columnAccept2,Accept2
+View_CommonInventProduct_columnAcceptQuantity,AcceptQuantity
+View_CommonInventProduct_columnCreateDate,Create Date
+View_CommonInventProduct_columnDocument,Document
+View_CommonInventProduct_columnERPIturCode,ERPIturCode
+View_CommonInventProduct_columnInputType,Input Type
+View_CommonInventProduct_columnIturCode,Itur Code
+View_CommonInventProduct_columnMakat,Makat
+View_CommonInventProduct_columnMark,Mark
+View_CommonInventProduct_columnNum,Num
+View_CommonInventProduct_columnOriginalCode,Code input from PDA
+View_CommonInventProduct_columnPhoto,Photo
+View_CommonInventProduct_columnProductName,Product Name
+View_CommonInventProduct_columnQuantityEdit,QuantityEdit
+View_CommonInventProduct_columnResultQuantityEdit,Result Quantity
+View_CommonInventProduct_columnSerialNumber,Serial Number
+View_CommonInventProduct_columnStatusBit,Status bit
+View_CommonInventProduct_SerialNumber,Serial Number
+View_CommonInventProduct_SupplierCode,Supplier Code
+View_ConfigAdapterSetting_tbConfig,Config
+View_ConfigAdapterSetting_tbConfigPath,Config Path
+View_ConfigAdapterSetting_tbExportErpConfig,Export ERP Config
+View_ConfigAdapterSetting_tbExportERPLog,Export ERP Log
+View_ConfigAdapterSetting_tbExportPdaConfig,Export PDA Config
+View_ConfigAdapterSetting_tbExportPDALog,Export PDA Log
+View_ConfigAdapterSetting_tbImportConfig,Import Config
+View_ConfigAdapterSetting_tbImportLog,Import Log
+View_ConfigAdapterSetting_tbIni,Ini
+View_ConfigAdapterSetting_tbIniPath,Ini Path
+View_ConfigAdapterSetting_tbLog,Log
+View_ConfigAdapterSetting_tbPath,Path
+View_ConfigAdapterSetting_tbSendToOfficeIni,Ini
+View_ConfigAdapterSetting_tbZipPath,Zip Path
+View_ConfigEditAndSave_radioInDataPath,Object Path
+View_ConfigurationSetAdd,Name
+View_CustomerAdd_chkAddOtherOnSave,Add other Bustomer on save
+View_CustomerAdd_chkClearFieldsOnSave,Clear Fields on save
+View_CustomerAdd_tbCreateNewCustomer,Create new Customer
+View_CustomerAdd_tiExportAdapters,Export adapters
+View_CustomerAdd_tiGeneral,General
+View_CustomerAdd_tiImportAdapters,Import Adapters
+View_CustomerChoose_btnCreateNew,Create new Customer
+View_CustomerChoose_btnNext,Next > select branch
+View_CustomerChoose_btnOpenDashboard,Open customer dashboard
+View_CustomerChoose_columnAddress,Address
+View_CustomerChoose_columnContactPerson,Contact Person
+View_CustomerChoose_columnDescription,Description
+View_CustomerChoose_columnFax,Fax
+View_CustomerChoose_columnLogo,Logo
+View_CustomerChoose_columnMail,Mail
+View_CustomerChoose_columnName,Name
+View_CustomerChoose_columnPhone,Phone
+View_CustomerChoose_tbBy,by
+View_CustomerChoose_tbCustomer,Customer
+View_CustomerCommon_tbAdditional,Additional
+View_CustomerCommon_tbAutoResult,Send to Office
+View_CustomerCommon_tbEditorTemplates,Editor Templates
+View_CustomerCommon_tbErpExport,Export ERP adapter
+View_CustomerCommon_tbGeneral,General
+View_CustomerCommon_tbImportAdapters,Import Adapters
+View_CustomerCommon_tbPdaExport,Export PDA adapter
+View_CustomerCommon_tbUpdateAdapter,Update Adapter
+View_CustomerCommon_tbUpdateAdapters,Update adapters
+View_CustomerEdit_tiExportAdapters,Export adapters
+View_CustomerEdit_tiImportAdapters,Import Adapters
+View_CustomerForm_btnGenerateNew,Generate new
+View_CustomerForm_tbAddress,Address
+View_CustomerForm_tbCode,Code
+View_CustomerForm_tbContact,Contact
+View_CustomerForm_tbContactPerson,Contact Person
+View_CustomerForm_tbContinuationAddress,Continuation Address
+View_CustomerForm_tbCustomerName,Customer Name
+View_CustomerForm_tbDescription,Description
+View_CustomerForm_tbFAX,FAX
+View_CustomerForm_tbLogo,Logo
+View_CustomerForm_tbMail,Mail
+View_CustomerForm_tbParameters,Parameters
+View_CustomerForm_tbPhone,Phone
+View_CustomerPost_btnCreateNewBranch,Create new Branch
+View_CustomerPost_tbWhatYouWantNow,What do you want now?
+View_DeviceAddEdit_tbAdditionTime,Addition Time
+View_DeviceAddEdit_tbAdditionTimeFormat,Format [dd:hh:mm]
+View_DeviceListDetails_columnPeriodAddtionTime,Addtion Time
+View_DeviceListDetails_columnPeriodStartEnd,Period (Begin - End)
+View_DeviceListDetails_columnSumPeriod,Sum of Time
+View_DocumentHeaderAddEdit_chkApprove,Approve
+View_DocumentHeaderAddEdit_tbDeleteSourceInventPtoduct,Remove all InventProducts in Current Document
+View_DocumentHeaderAddEdit_tbDocumentCode,Document code
+View_DocumentHeaderAddEdit_tbERPIturCode,ERP Itur Code
+View_DocumentHeaderAddEdit_tbFrom,From
+View_DocumentHeaderAddEdit_tbIturCode,Itur Code
+View_DocumentHeaderAddEdit_tbName,Name
+View_DocumentHeaderAddEdit_tbTo,To
+View_DocumentHeaderAddEdit_tbWorkerGuid,WorkerGUID
+View_DocumentHeaderAddEdit_tbWorkerId,Worker Id
+View_DocumentHeaderAddEdit_tbWorkerName,Worker Name
+View_DocumrntHeaderListDetails_columnEmployeeId,Employee Id
+View_DocumrntHeaderListDetails_columnEmployeeName,Employee Name
+View_DocumrntHeaderListDetails_columnEndInventorDateTime,End Inventor
+View_DocumrntHeaderListDetails_columnPeriodPeriodFromFirstToLast,Period (Frist-Last)
+View_DocumrntHeaderListDetails_columnStartInventorDateTime,Begin Inventor
+View_DocumrntHeaderListDetails_columnTheFirst,The First
+View_DocumrntHeaderListDetails_columnTheLast,The Last
+View_DownloadFromPda_btnDownload,Download
+View_DownloadFromPda_btnStop,Stop
+View_DynamicColumnSettings_tbInventProduct,Grid - Total InventProduct list view
+View_DynamicColumnSettings_tbInventProductListView,Document - InventProduct list view
+View_DynamicColumnSettings_tbPriceType,Price Type
+View_DynamicColumnSettings_tbStaticPath,Import Catalog Path
+View_DynamicColumnSettings_tbStaticPath2,Export to Erp Path
+View_DynamicColumnSettings_tbStaticPath3,Send to Office Path
+View_ExportErp_radioMakat,Makat
+View_ExportErp_radioMakatOriginal,Makat Original
+View_ExportErpSettings_tbDefaultAdapter,ERP
+View_ExportErpWithModules_btnDefault,Set as Default
+View_ExportErpwithModules_busyContent,Exporting...
+View_ExportErpWithModules_chkExcludeNotExistingInCatalog,Exclude Items with Makat not existing in Catalog
+View_ExportErpWithModules_chkFull,Full
+View_ExportErpWithModules_chkItur,Itur
+View_ExportErpWithModules_grpInclude,Include
+View_ExportErpwithModules_tbExportAdapter,Export ERP adapter
+View_ExportErpwithModules_tbExportProgress,Export progress:
+View_ExportErpWithModules_tbNumbers,Numbers
+View_ExportErpWithModules_tbPrefix,Prefix
+View_ExportLog_btnApply,Apply
+View_ExportLog_btnBrowse,Browse
+View_ExportLog_btnOpen,Open
+View_ExportLog_btnReload,Reload
+View_ExportLog_tbExportPath,Export path:
+View_ExportPdaAdapter_expCommon,Common
+View_ExportPdaExtraSettings_chkAutoPrint,Auto print
+View_ExportPdaExtraSettings_tbReportTemplates,Report Templates:
+View_ExportPdaProgramType_expProgramType,PDA Program Type
+View_ExportPdaProgramType_tbMaintenanceType,Maintenance Type
+View_ExportPdaProgramType_tbPdaType,PDA Type
+View_ExportPdaProgramType_tbProgramType,Program Type
+View_ExportPdaSettings_grpExportToErp,Export to ERP
+View_ExportPdaSettings_grpExportToPda,Export to PDA
+View_ExportPdaSettings_grpExtraSettings,Extra settings
+View_ExportPdaSettings_radioMakat,Makat
+View_ExportPdaSettings_radioMakatOriginal,Makat original
+View_ExportPdaSettings_tbDefaultAdapter,Default Adapter
+View_ExportPdaSettings_tbDefaultAdapter1,Default adapter:
+View_ExportPdaSettings_tbDescription,Description
+View_ExportPdaSettingsControl_chkAddBinarySearch,Add Binary Search
+View_ExportPdaSettingsControl_chkInvertPrefix,Invert Prefix
+View_ExportPdaSettingsControl_expConfig,Config
+View_ExportPdaSettingsControl_expItur,Itur
+View_ExportPdaSettingsControl_expLookup,Lookup
+View_ExportPdaSettingsControl_tbAddExtraInputBatch,Show Extra Input Value Batch List
+View_ExportPdaSettingsControl_tbAddExtraInputValue,Add Extra Input Value
+View_ExportPdaSettingsControl_tbAddExtraInputValueHeaderName,Add Extra Input Value Header
+View_ExportPdaSettingsControl_tbAddNewLocation,Add New Location
+View_ExportPdaSettingsControl_tbAllowMinusQuantity,Allow Minus Quantity
+View_ExportPdaSettingsControl_tbAllowNewBatch,Allow New Value from Batch List
+View_ExportPdaSettingsControl_tbAllowQuantityFraction,Allow Quantity Fraction
+View_ExportPdaSettingsControl_tbAllowZeroQuantity,Allow Zero Quantity
+View_ExportPdaSettingsControl_tbAutoSendData,Send automatic from PDA
+View_ExportPdaSettingsControl_tbByERPCode,By ERP Code
+View_ExportPdaSettingsControl_tbByName,By Name
+View_ExportPdaSettingsControl_tbClientId,Client id
+View_ExportPdaSettingsControl_tbConfirmNewItem,Confirm Add new Item
+View_ExportPdaSettingsControl_tbConfirmNewLocation,Confirm Add new Location
+View_ExportPdaSettingsControl_tbDefaultHost,Default Host
+View_ExportPdaSettingsControl_tbFileType,File type
+View_ExportPdaSettingsControl_tbFractionCalculate,Calculate Fraction
+View_ExportPdaSettingsControl_tbHash,Hash
+View_ExportPdaSettingsControl_tbHTcalculateLookUp,HT Calculate LookUp
+View_ExportPdaSettingsControl_tbIturNamePrefix,Itur Name Prefix
+View_ExportPdaSettingsControl_tbIturNameType,Itur Name Type
+View_ExportPdaSettingsControl_tbLastSync,Last Sync
+View_ExportPdaSettingsControl_tbLookUpEXE,LookUp Path
+View_ExportPdaSettingsControl_tbMaxCharacters,Max Characters For Name
+View_ExportPdaSettingsControl_tbMaxQuantity,Max Quantity
+View_ExportPdaSettingsControl_tbNewItem,New item
+View_ExportPdaSettingsControl_tbPartialHost1,Host1
+View_ExportPdaSettingsControl_tbPartialHost2,Host2
+View_ExportPdaSettingsControl_tbPartialQuantity,Partial Quantity
+View_ExportPdaSettingsControl_tbPassword,Password
+View_ExportPdaSettingsControl_tbQType,Q type
+View_ExportPdaSettingsControl_tbRetry,Retry
+View_ExportPdaSettingsControl_tbSameBarcodeInLocation,Same Barcode In Location
+View_ExportPdaSettingsControl_tbSearchDef,Search Def
+View_ExportPdaSettingsControl_tbSearchIfExistBatch,Search If Exist in Batch List
+View_ExportPdaSettingsControl_tbTimeout,Timeout
+View_ExportPdaSettingsControl_tbUseAlphaKey,Use alpha key
+View_ExportPdaWithModules_busyContent,Exporting...
+View_ExportPdaWithModules_chkBarcodeWithoutMask,Barcode without Mask
+View_ExportPdaWithModules_chkMakatWithoutMask,Makat without mask
+View_ExportPdaWithModules_chkOptionsHT630_BaudratePDA,Check Baudrate PDA
+View_ExportPdaWithModules_chkWithoutProductName,Without product name
+View_ExportPdaWithModules_tbExportAdapter,Export  PDA adapter
+View_ExportPdaWithModules_tbExportProgress,Export progress:
+View_ExportPdaWithModules_tpDelete,Delete all export files
+View_FamilyAddEdit_CodeExist,Family with such code already exists
+View_FamilyAddEditDelete_columnCode,Code
+View_FamilyAddEditDelete_columnDescription,Description
+View_FamilyAddEditDelete_columnExtra1,Extra1
+View_FamilyAddEditDelete_columnExtra2,Extra2
+View_FamilyAddEditDelete_columnName,Name
+View_FamilyAddEditDelete_columnSize,Size
+View_FamilyAddEditDelete_columnType,Type
+View_FilterSet_tbTemplate,Template
+View_FilterTemplateAddEdit_tbDisplayName,Display Name
+View_FilterTemplateAddEdit_tbFileName,File Name
+View_FromFtp_tbBackupFolder,Backup Folders
+View_FromFtp_tbSortBy,Sort By
+View_FromFtpPda_chkBackupFolder,backup
+View_FromFtpPda_chkCopyPhoto,Copy Photo
+View_FromFtpPda_chkCopySignature,Copy Signature
+View_FromPdaDashboardPart_columnDate,Date
+View_FromPdaDashboardPart_columnDocumentsCount,Documents Count
+View_FromPdaDashboardPart_columnItemsCount,Records Count
+View_FromPdaDashboardPart_columnItur,Itur
+View_FromPdaDashboardPart_columnTotalItems,Total Items
+View_FromPdaDashboardPart_tbGetDataFromPda,Get Data From PDA
+View_HomeDashboard_tiConfig,Config
+View_HomeDashboard_tiExportZip,Export zip file
+View_HomeDashboard_tiHomeDashboard,Home Dashboard
+View_HomeDashboard_tiImportZip,Import zip file
+View_HomeDashboard_tiPathSettings,Path settings
+View_HomeDashboard_tiProcessDashboard,Process Dashboard
+View_HomeDashboard_tiSqlScript,Sql script
+View_ImportAdapter_chkBarcodes,Import Barcodes from
+View_ImportAdapter_chkImportBarcodeWithSpace,Import Barcode with Space
+View_ImportAdapter_chkImportBuildingConfig,BuildingConfig
+View_ImportAdapter_chkImportCatalog,Catalog
+View_ImportAdapter_chkImportEmployees,Employee
+View_ImportAdapter_chkImportFamily,Import Family
+View_ImportAdapter_chkImportLocations,Location
+View_ImportAdapter_chkImportPreviousInventory,PreviousInventory
+View_ImportAdapter_chkImportProfile,Profile
+View_ImportAdapter_chkImportPropertyDecorator,PropertyDecorator
+View_ImportAdapter_chkImportPropertyStr10List,PropertyStr10List
+View_ImportAdapter_chkImportPropertyStr11List,PropertyStr11List
+View_ImportAdapter_chkImportPropertyStr12List,PropertyStr12List
+View_ImportAdapter_chkImportPropertyStr13List,PropertyStr13List
+View_ImportAdapter_chkImportPropertyStr14List,PropertyStr14List
+View_ImportAdapter_chkImportPropertyStr15List,PropertyStr15List
+View_ImportAdapter_chkImportPropertyStr16List,PropertyStr16List
+View_ImportAdapter_chkImportPropertyStr17List,PropertyStr17List
+View_ImportAdapter_chkImportPropertyStr18List,PropertyStr18List
+View_ImportAdapter_chkImportPropertyStr19List,PropertyStr19List
+View_ImportAdapter_chkImportPropertyStr1List,PropertyStr1List
+View_ImportAdapter_chkImportPropertyStr20List,PropertyStr20List
+View_ImportAdapter_chkImportPropertyStr2List,PropertyStr2List
+View_ImportAdapter_chkImportPropertyStr3List,PropertyStr3List
+View_ImportAdapter_chkImportPropertyStr4List,PropertyStr4List
+View_ImportAdapter_chkImportPropertyStr5List,PropertyStr5List
+View_ImportAdapter_chkImportPropertyStr6List,PropertyStr6List
+View_ImportAdapter_chkImportPropertyStr7List,PropertyStr7List
+View_ImportAdapter_chkImportPropertyStr8List,PropertyStr8List
+View_ImportAdapter_chkImportPropertyStr9List,PropertyStr9List
+View_ImportAdapter_chkImportPropertyStrList,PropertyStrList
+View_ImportAdapter_chkImportSection,Import Section
+View_ImportAdapter_chkImportSelectAllPropertyStrList,Select All
+View_ImportAdapter_chkImportSuppliers,Import Supplier
+View_ImportAdapter_chkImportTemplateInventory,TemplateInventory
+View_ImportAdapter_chkOnlyMask,Only xxxx-xxxx-xx or xxxx-xxxx
+View_ImportAdapter_chkUpdatePriceBuy,Update Price Buy
+View_ImportAdapter_chkUpdatePriceSell,Update Price Sell
+View_ImportAdapter_chkUpdateProfileFromFtp,Update Profile from Ftp before Import
+View_ImportAdapter_chkUpdateSN,Copy Supplier Code to SerialNumber Code
+View_ImportAdapter_MergeWith,Merge With
+View_ImportAdapter_radioDirectory,Directory content
+View_ImportAdapter_radioFile,Single file
+View_ImportAdapter_radioInventorys,Inventories
+View_ImportAdapter_radioInventoryShift,Movements
+View_ImportAdapter_tbByMakat,By Makat
+View_ImportAdapter_tbCopyFromSourceFolder,Copy Files from Source Folder to Import Folder
+View_ImportAdapter_tbFromSourceFolder,From Source Folder
+View_ImportAdapter_tbImportSection,Import Section
+View_ImportAdapter_tbProfile,Profile
+View_ImportAdapter_tbShowDestination,Show Destination
+View_ImportAdapter_tbShowDetails,Show Details
+View_ImportAdapter_tbShowSource,Show Source
+View_ImportAdapter_tbStep1,Step 1
+View_ImportAdapter_tbStep2,Step 2
+View_ImportAdapter_tbStep3,Step 3
+View_ImportAdapter_tbStep4,Step 4
+View_ImportAdapter_tbUpdatePriceSell,Update Price Sell
+View_ImportAdapter_tbWithBarcode,With Additional Barcode
+View_ImportAdapter_tbWithFamily,With Family
+View_ImportAdapter_tbWithQuantityERP,With Quantity ERP
+View_ImportAdapter_tbWithSerialNumber,With SerialNumber
+View_ImportAdapterCountFiles,Quantity Files
+View_ImportAdapterFromNativPlus,From Nativ_Infrastructure.xlsx [Nativ +]
+View_ImportAdapterMultiFiles,Multi Files from Folders
+View_ImportAdapterPath,Path
+View_ImportAdapterSourcePath,Source Path
+View_ImportFolders_grpCatalogs,Catalogs
+View_ImportFolders_grpIturs,Iturs
+View_ImportFolders_grpLocations,Locations
+View_ImportFolders_grpSections,Sections
+View_ImportFolders_tbAdapter,Adapter:
+View_ImportFolders_tbCatalog,Catalog
+View_ImportFolders_tbDescription,Description:
+View_ImportFolders_tbFamily,Family
+View_ImportFolders_tbInventProduct,Invent Product
+View_ImportFolders_tbIturim,Iturim
+View_ImportFolders_tbLocation,Location
+View_ImportFolders_tbSection,Section
+View_ImportFolders_tbSupplier,Supplier
+View_ImportFromPda_busyContent,Importing...
+View_ImportFromPda_tbComplexAdapter,Complex Adapter
+View_ImportFromPda_tbImportAdapter,Import PDA adapter
+View_ImportPda_chkContinueGrab,Import until in inData there are Files
+View_ImportPda_chkNavigateBack,Navigate backward after import process
+View_ImportPosSuperPharmAdapter_chkClearBeforeUpdate,Clear Before Update
+View_ImportPosSuperPharmAdapter_chkUpdateOnlyErp,Update Only Erp Quantity
+View_ImportWithModel_chkTryFast,Fast Import
+View_ImportWithModules_ChangeCurrentInventor,Change Current Inventory
+View_ImportWithModules_chkCopyFilesToFtp,Copy to Ftp
+View_ImportWithModules_chkCreateZipFile,Zip File
+View_ImportWithModules_chkCutAfterInvert,Cut after invert Lf2Rt
+View_ImportWithModules_chkIncludeCurrentInventor,Include Current Inventor
+View_ImportWithModules_chkIncludePreviousInventor,Include Previous Inventor
+View_ImportWithModules_chkIncludeProfile,Include Profile
+View_ImportWithModules_chkInvertLetters,Invert Letters
+View_ImportWithModules_chkInvertWords,Invert Words
+View_ImportWithModules_CurrentInventor,Current Inventory
+View_ImportWithModules_grpDefaultAdapterFrom,Default adapter from:
+View_ImportWithModules_InitFromGUIForm,Init from GUI
+View_ImportWithModules_radioAbsolutePath,Absolute Path
+View_ImportWithModules_radioFile,File
+View_ImportWithModules_radioFromAdapter,From Adapter
+View_ImportWithModules_radioFromBranch,From branch:
+View_ImportWithModules_radioFromCustomer,From customer:
+View_ImportWithModules_radioFromInventor,From inventor:
+View_ImportWithModules_radioFtpPath,Ftp Path
+View_ImportWithModules_radioGetConfigFrom,Get Data From
+View_ImportWithModules_radioInitFromConfigResources,Init from Config
+View_ImportWithModules_radioInternalResources,Internal resources
+View_ImportWithModules_tbBranchName,Branch Name
+View_ImportWithModules_tbCustomerName,Customer Name
+View_ImportWithModules_tbEncoding,Encoding
+View_ImportWithModules_tbImportAdapter,Import Adapter
+View_ImportWithModules_tbImportExportAdapter,Complex Adapter
+View_ImportWithModules_tbImportExportFrom,Import- Export From
+View_ImportWithModules_tbImportFrom,Import from:
+View_ImportWithModules_tbInventorName,Inventor Name
+View_ImportWithModules_tbLogLevel,Logging level
+View_ImportWithModules_tbSetAdapter,Adapter as Defaut
+View_ImportWithModules_tbUpdateAdapter,Update adapter:
+View_ImportWithModules_tbUpdateFrom,Update from:
+View_InProcessDBPath,InProcess Path
+View_InventorAdd_grpChooseAction,Choose Action
+View_InventorAdd_grpInheritDataBaseFrom,Inherit DB From 
+View_InventorAdd_grpInheritDataFrom,Inherit data from:
+View_InventorAdd_tbBranch,Branch:
+View_InventorAdd_tbCreateNew,Create new Inventor
+View_InventorAdd_tbCustomer,Customer:
+View_InventorAdd_tbSaveOpenInventor,Save Inventory, set it as process and open in Inventor Dashboard
+View_InventorAdd_tbSaveOpenMain,Save Inventory, set it as process and open in Main Dashboard
+View_InventorAdd_tbSaveReturnHome,Save Inventory and return to Home Dashboard
+View_InventorAdd_tbWithoutInheritance,Without inheritance
+View_InventorAdd_tiDefaultImportAdapters,Default import adapters
+View_InventorAdd_tiGeneral,General
+View_InventorChangeStatus_columnFileType,File Type
+View_InventorChangeStatus_columnInclude,Include
+View_InventorChangeStatus_columnPrint,Print
+View_InventorChangeStatus_columnReportCode,Report Code
+View_InventorChoose_btnCreateNew,Create new Inventor
+View_InventorChoose_btnOpenCurrentInventor,Open current inventory
+View_InventorChoose_btnOpenInventorDashboard,Open inventor dashboard
+View_InventorChoose_btnPrevious,Select branch < Previous
+View_InventorChoose_columnBranchCode,Branch Code
+View_InventorChoose_columnBranchName,Branch Name
+View_InventorChoose_columnCode,Code
+View_InventorChoose_columnCreateDate,CreateDate
+View_InventorChoose_columnCustomerCode,Customer code
+View_InventorChoose_columnCustomerName,Customer Name
+View_InventorChoose_columnDescription,Description
+View_InventorChoose_columnImportCatalogAdapter,Import Catalog Adapter
+View_InventorChoose_columnInventorDate,InventorDate
+View_InventorChoose_columnUpdateCatalogDate,Updated Catalog
+View_InventorChoose_tbDateFrom,Date from:
+View_InventorChoose_tbDateTo,Date to:
+View_InventorChoose_tbInventor,Inventor
+View_InventorEdit_tbEdit,Edit inventor
+View_InventorEdit_tiDefaultImportAdapters,Default import adapters
+View_InventorEdit_tiGeneral,General
+View_InventorForm_tbBranchCodeLocal,Local Branch Code
+View_InventorForm_tbCode,Code:
+View_InventorForm_tbDescription,Description:
+View_InventorForm_tbERPBranchCode,ERP Branch Code
+View_InventorForm_tbInventorDate,Inventor date:
+View_InventorForm_tbParameters,Parameters
+View_InventorForm_tbPathToDb,Path to database file:
+View_InventorForm_tpCreateDate,Create date:
+View_InventorPost_btnOpenHomeDashboard,Open Home Dashboard
+View_InventorPost_btnOpenInventorDashboard,Open Inventor Dashboard
+View_InventorPost_btnOpenMainDashboard,Open Main Dashboard
+View_InventorStatusChange_btnOpenConfig,Open Config
+View_InventorStatusChange_btnPrint,Print
+View_InventorStatusChange_btnReloadConfig,Reload Config
+View_InventorStatusChange_btnRunConfig,Run Config
+View_InventorStatusChange_btnSave,Save
+View_InventorStatusChange_btnSaveConfigAsDefault,Save as Default
+View_InventorStatusChange_btnSendData,Start Process
+View_InventorStatusChange_chkDataSent,Data is sent to the Office
+View_InventorStatusChange_chkIncludeEndInventor,include End of Inventory Files
+View_InventorStatusChange_chkIncludePack,include Pack zip file
+View_InventorStatusChange_chkIncludeSdf,include Inventor .SDF 
+View_InventorStatusChange_chkReportsPrinted,reports are printed
+View_InventorStatusChange_grpPreClosedActions,Pre-closed actions
+View_InventorStatusChange_tbChangeStatus,Change Status:
+View_InventorStatusChange_tbDescription,Description:
+View_InventorStatusChange_tbInventor,Inventor:
+View_InventorStatusChange_tbInventorDate,Inventor date:
+View_InventorStatusChange_tbManager,Manager:
+View_InventorStatusChange_tbSavePath,Save Config Path
+View_InventorStatusChange_tbZipPath,Zip path
+View_InventorStatusDashboardPart_tbChangeStatus,Change Status
+View_InventorStatusDashboardPart_tbSetCurrentAsProcess,Set Current As Process
+View_InventorStatusDashboardPart_tbShowInventor,Show Inventor
+View_InventorStatusDashboardPart_tbStatus,Status:
+View_InventProductAddEdit_btnUndo,Undo
+View_InventProductAddEdit_tbMakat,Makat:
+View_InventProductAddEdit_tbOriginalCode,Original Code from PDA:
+View_InventProductAddEdit_tbProductName,Product name:
+View_InventProductAddEdit_tbQuantityEdit,QuantityEdit:
+View_InventProductAddEdit_tbQuantityOriginal,QuantityOriginal:
+View_InventProductAddEdit_tbQuantityPartialEdit,Quantity Partial Edit
+View_InventProductAddEdit_tbRemark,Remark
+View_InventProductAddEdit_tbSerialNumber,SerialNumber:
+View_InventProductAddEdit_tbStatusBit,Status Bit:
+View_InventProductClone_Quantity,QuantityEdit
+View_InventProductClone_QuantityAfter,QuantityEdit after
+View_InventProductClone_QuantityBefore,QuantityEdit in DB before
+View_InventProductClone_tbMakat,Makat
+View_InventProductListDetails_btnDisable,Enable/Disable itur
+View_InventProductListDetails_busyPrinting,Printing...
+View_InventProductListDetails_columnApprove,Approve
+View_InventProductListDetails_columnCreateDate,CreateDate
+View_InventProductListDetails_columnDeviceCode,Device Code
+View_InventProductListDetails_columnDocumentCode,DocumentCode
+View_InventProductListDetails_columnDocumentNumber,Document Number
+View_InventProductListDetails_columnFromInventorToStart,To Start
+View_InventProductListDetails_columnFromTime,Start Time
+View_InventProductListDetails_columnInventorData,Inventor Data
+View_InventProductListDetails_columnIturName,Itur Name
+View_InventProductListDetails_columnName,Name
+View_InventProductListDetails_columnPeriodFromTo,Period Start - End
+View_InventProductListDetails_columnPeriodFromToEdit,Addition Time
+View_InventProductListDetails_columnQuantityEdit,Quantity Edit
+View_InventProductListDetails_columnQuantityPerEmployee,Per Hour for Employee
+View_InventProductListDetails_columnQuantityPerHour,Per Hour from Device
+View_InventProductListDetails_columnQuantityPerHourFromStart,Per Hour from Start
+View_InventProductListDetails_columnQuantityPerHourTotal,Per Hour (Total)
+View_InventProductListDetails_columnTotalItems,Total items
+View_InventProductListDetails_columnToTime,End Time
+View_InventProductListDetails_columnWorkerId,WorkerID
+View_InventProductListDetails_columnWorkerName,Worker Name
+View_InventProductListDetails_tbChangeItur,Change Itur
+View_InventProductListDetails_tbDisable,Disable
+View_InventProductListDetails_tbDocumentHeaders,Document headers
+View_InventProductListDetails_tbEnable,Enable
+View_InventProductListDetails_tbInventProducts,Invent products
+View_InventProductListDetails_tbIturInfo,Itur info:
+View_InventProductListDetails_tbStatusApproveBit,StatusApproveBit
+View_InventProductListDetails_tbStatusDocHeaderBit,StatusDocHeaderBit
+View_InventProductListDetails_tbStatusInventProductBit,StatusInventProductBit
+View_InventProductListDetails_tbUndo,Undo to Quantity original fro PDA
+View_Itur_tpChangeName,Edit
+View_IturAdd_chkDisabled,Disabled
+View_IturAdd_Printer2NotSet,Not Set
+View_IturAdd_tbErpCode,ERP Code
+View_IturAdd_tbLocation,Location
+View_IturAdd_tbNumberPrefix,Number prefix
+View_IturAdd_tbNumbers,Number(s)
+View_IturAdd_tbPrinter2,Second Printer
+View_IturAdd_tbTotalIturs,Total Iturs
+View_IturAddEditDelete_columnCode,Code
+View_IturAddEditDelete_columnCreateDate,Create Date
+View_IturAddEditDelete_columnDisabled,Disabled
+View_IturAddEditDelete_columnErpCode,ERP Code
+View_IturAddEditDelete_columnLocation,Location
+View_IturAddEditDelete_columnModifyDate,Modify Date
+View_IturAddEditDelete_columnName,Name
+View_IturAddEditDelete_columnNumber,Number
+View_IturAddEditDelete_columnNumberPrefix,Number Preffix
+View_IturAddEditDelete_columnNumberSufix,Number suffix
+View_IturAddEditDelete_columnPublished,Published
+View_IturAddEditDelete_columnStatusBit,Status bit
+View_IturAddEditDelete_columnStatusDocHeaderBit,Status doc header bit
+View_IturAddEditDelete_columnStatusGroupBit,Status group bit
+View_IturAddEditDelete_columnTag,Tag
+View_IturAddEditDelete_tbChangeState,Change state
+View_IturAddEditDelete_tpChangeIturName,Edit
+View_IturAddEditDelete_tpChangeIturPrefix,Change Itur Prefix
+View_IturAddEditDelete_tpChangeIturTag,Change Itur Tag
+View_IturAddEditDelete_tpChangeLocation,Change Location
+View_IturAddEditDelete_tpExportERPByItur,Export ERP by Iturs
+View_IturAddEditDelete_tpIturListPrint,Print Report
+View_IturAddEditDelete_tpIturListPrintIS0155,Print Family Report
+View_IturAddEditDelete_tpIturListPrintIS0160,Print by Item Code Report
+View_IturAddEditDelete_tpShelf,Show Shelves
+View_IturChangeTag_tbIturs,Iturs
+View_IturEdit_chkDisabled,Disabled
+View_IturEdit_tbErpCode,ERP Code
+View_IturEdit_tbNumber,Number:
+View_IturEdit_tbNumberPrefix,Number Preffix:
+View_IturEdit_tbStatus,Status:
+View_IturFilter_chkGroupStatus,Group status
+View_IturFilter_chkGroupTag,Tag
+View_IturFilter_chkInventProducts,Invent Products
+View_IturFilter_chkLocation,Location
+View_IturFilter_tbItur,Itur
+View_IturListDetails_btnAddEditDelete,Itur Grid
+View_IturListDetails_btnImportFromPda,Import from PDA
+View_IturListDetails_btnRefresh,Refresh Iturs Status
+View_IturListDetails_btnSpeedLink,Speed links
+View_IturListDetails_busyContent,Refreshing Itur Status
+View_IturListDetails_busyContentPrinting,Printing...
+View_IturListDetails_chkDisabled,Disabled
+View_IturListDetails_chkFilterByInventProduct,Filter by invent product
+View_IturListDetails_tbAdapterFromPDA,Adapter {0}
+View_IturListDetails_tbCodeInputFromPda,Code input from PDA
+View_IturListDetails_tbFilters1,Filters #1
+View_IturListDetails_tbFilters2,Filters #2
+View_IturListDetails_tbGroupBy,Group by
+View_IturListDetails_tbIturim,Iturim
+View_IturListDetails_tbIturMode,Mode
+View_IturListDetails_tbIturNumber,Itur number
+View_IturListDetails_tbLastSessionCountDocuments,Last Session added {0} Documents
+View_IturListDetails_tbLastSessionCountItem,Last Session added {0} Items
+View_IturListDetails_tbLastSessionSumQuantityEdit,Last Session Sum Quantity {0}
+View_IturListDetails_tbLocation,Location:
+View_IturListDetails_tbMakat,Makat
+View_IturListDetails_tbMode,Mode
+View_IturListDetails_tbModeLocation,Location
+View_IturListDetails_tbModePaging,Paging
+View_IturListDetails_tbModeStatus,Status
+View_IturListDetails_tbModeTag,Tag
+View_IturListDetails_tbOrderBy,Order by
+View_IturListDetails_tbProductModifyDate,Modify Date
+View_IturListDetails_tbProductName,Product Name
+View_IturListDetails_tbProductPriceBuy,Price Buy
+View_IturListDetails_tbProductPriceSell,Price Sell
+View_IturListDetails_tbProducts,Products
+View_IturListDetails_tbProductSection,Section
+View_IturListDetails_tbQuantityFilesInMISFolder,Quantity Files in MIS Folder  {0}
+View_IturListDetails_tbQuantityFilesInSourceFolder,Quantity Files in Folder  {0}
+View_IturListDetails_tbQuantityFilesInUnsureFolder,Quantity Files in Unsure Folder {0}
+View_IturListDetails_tbSerialNumber,Serial Number
+View_IturListDetails_tbStatusGroup,Status:
+View_IturListDetails_tbTag,Tag:
+View_IturListDetails_tbTotal,Total:
+View_IturListDetails_tbTotalStatus,Total: {0}
+View_IturLocationChange_tbItur,Iturim
+View_IturLocationChange_tbLocation,New Location
+View_IturLocationTagChange_tbTag,Tag
+View_IturNameChange_tbCode,Itur Code
+View_IturNameChange_tbERPCode,ERP Code
+View_IturNameChange_tbName,Name
+View_IturPrefixChange_All_chk,All
+View_IturPrefixChange_tbPrefix,New Prefix
+View_IturStateChange_tbDisabled,Disabled
+View_IturStateChange_tbItur,Iturim
+View_IturStatusChange_tbItur,Iturim
+View_IturStatusChange_tbStatus,New status
+View_IturTagChange_tbTotal,Total Iturs
+View_LastCustomersDashboardPart_tbFind,Find
+View_LastInventorsDashboardPart_columnDate,Date
+View_LastInventorsDashboardPart_columnStatus,Status
+View_LocationAddEdit_tbCode,Code
+View_LocationAddEdit_tbColor,Color
+View_LocationAddEdit_tbDescription,Description
+View_LocationAddEdit_tbManager,Manager
+View_LocationAddEdit_tbName,Name
+View_LocationAddEdit_tbProcessCode,Process Code
+View_LocationAddEdit_tbTag,Tag
+View_LocationAddEdit_tbTitle,Title
+View_LocationAddEditDelete_columnCode,Code
+View_LocationAddEditDelete_columnColor,Color
+View_LocationAddEditDelete_columnDescription,Description
+View_LocationAddEditDelete_columnName,Name
+View_LocationAddEditDelete_columnTag,Tag
+View_LocationAddEditDelete_tpChangeIturTag,Change Itur Tag
+View_LocationAddEditDelete_tpChangeLocationTag,Change Location Tag
+View_LocationChangeTag_tbLocations,Locations
+View_LocationChangeTag_tbTotalLocations,Total Locations
+View_LocationCodeSelect_columnPrint,Print
+View_LocationCodeSelect_columnReportCode,Report Code
+View_LocationCodeSelect_columnSecondPrint,Print Second time
+View_LocationCodeSelect_tbLocationCode,Location Code
+View_LocationDashboardPart_columnColor,Color
+View_LocationDashboardPart_columnDescription,Description
+View_LocationDashboardPart_columnLocation,Location
+View_LocationFilter_chkedAllLocations,Select All
+View_LocationListDetail_chkFilterByLocations,Filter by locations
+View_LocationListDetail_tbViewAll,View all
+View_LocationMultiAdd_tbCount,Count
+View_MaskAddEdit_tbAdapter,Adapter
+View_MaskAddEdit_tbBarcodeMask,BarcodeMask
+View_MaskAddEdit_tbMakatMask,MakatMask
+View_MaskList_columnAdapter,Adapter
+View_MaskList_columnBarcodeMask,BarcodeMask
+View_MaskList_columnFile,File
+View_MaskList_columnMakatMask,MakatMask
+View_MaskSelect_columnMaskTemplate,Mask template
+View_MaskSelect_columnResultOfApply,Result of applying Mask
+View_MaskSelect_columnUseAsResult,Use as result
+View_MaskSelect_tbApply,Applying input to List of standard Masks
+View_MaskSelect_tbInputString,Input string
+View_MaskTemplateAddEdit_tbAction,Action
+View_MaskTemplateAddEdit_tbExpression,Expression
+View_MaskTemplateAddEdit_tbName,Name
+View_MdiFilter_expanderMdi,Mdi
+View_MdiFilter_expanderMenu,Menu
+View_MdiManager_tbReset,Reset Layout to Default
+View_Model_CatalogForm_Enter_Valid_Number,Please enter valid number
+View_Pack_busyContent,Compressing objects into zip archive
+View_Pack_chkAutoCheck,Auto check
+View_Pack_columnCatalogFiles,Data Files (for Catalog)
+View_Pack_columnConfigFiles,Config Files
+View_Pack_columnInDataFiles,InData (from PDA)
+View_Pack_tbExpandTree,Expand Tree
+View_Pack_tbSelectAllInvestorOnly,Select All Inventors Only
+View_Pack_tbSelectObjects,Select objects to pack into zip archive:
+View_PackSettings_tiCommon,Pack Settings
+View_PathDashboardBrushSettings_BranchDashboard,Path Branch Dashboard Brush
+View_PathDashboardBrushSettings_CustomerDashboard,Path Customer Dashboard Brush
+View_PathDashboardBrushSettings_HomeDashboard,Path Home Dashboard Brush
+View_PathDashboardBrushSettings_InventorDashboard,Path Inventor Dashboard Brush
+View_PathDashboardBrushSettings_MainDashboard,Path Main Dashboard Brush
+View_Pathettings_tbCommunicatorPath,MIS Communicator Path
+View_Pathettings_tbExport,Export Path
+View_Pathettings_tbExportAdapters,ExportAdapters
+View_Pathettings_tbExportPda,Export Pda Path
+View_Pathettings_tbFilterTemplates,Filter Templates
+View_Pathettings_tbImportAdapters,Import Adapters
+View_Pathettings_tbLog,Log Path
+View_Pathettings_tbPlanPicture,Planogram Pictures
+View_Pathettings_tbReportTemplate,Report Template Path
+View_Pathettings_tbTerminalID,Terminal ID (JENG.EXE)
+View_Pathettings_tbTransferFilesPath,MIS Transfer Files Path
+View_Pathettings_tbUIConfigFolder,UI Config Folder
+View_Pathettings_tbUIPropertySet,Dynamic Columns
+View_Pathettings_tbZipFileToOffice,Zip Files To Office Path
+View_PathSettings_columnName,Name
+View_PathSettings_columnOpen,Open
+View_PathSettings_columnPath,Path
+View_PathSettings_tbDatabaseFolder,Databases Folder Path
+View_PathSettings_tbImportFolderPath,Import Folder Path
+View_PathSettings_tbOpenInExplorer,Open in explorer
+View_PathSettings_tbParamsIni,Params.ini/params_ansi.ini Path
+View_PathSettings_tbSettingsFolderPath,Settings Folder Path
+View_PdaDashboardPart_tbSendDataToPda,Send Data To PDA
+View_PdaDashboardPart_tbViewStatus,View Status
+View_PlanCanvas_mnuIturAdd,Add Iturim
+View_PlanCanvas_mnuIturClear,Delete all iturim
+View_PlanCanvas_mnuIturDelete,Delete iturim
+View_PlanCanvas_mnuLocked,Locked
+View_PlanCanvas_tbAngle,Angle
+View_PlanCanvas_tbHeight,Height
+View_PlanCanvas_tbName,Name
+View_PlanCanvas_tbWidth,Width
+View_PlanCavas_mnuArrange,Arrange
+View_PlanCavas_mnuBringForward,Bring Forward
+View_PlanCavas_mnuSendBackward,Send Backward
+View_PlanInfo_tbHeaderIturNumber,Itur Num
+View_PlanInfo_tbHeaderTotalItems,Total Items
+View_PlanInfo_tbProcess,Process:
+View_PlanInfo_tbTotalItems,Total Items
+View_PlanInfo_tbTotalIturs,Total Iturs
+View_PlanIturAdd_tbNumbers,Number(s)
+View_PlanLocationAssign_columnColor,Color
+View_PlanLocationAssign_columnName,Name
+View_PlanLocationAssign_tbLocations,Locations
+View_PlanogramAddEditDelete_columnAngle,Rotate angle
+View_PlanogramAddEditDelete_columnCode,Code
+View_PlanogramAddEditDelete_columnHeight,Height
+View_PlanogramAddEditDelete_columnName,Name
+View_PlanogramAddEditDelete_columnType,Type
+View_PlanogramAddEditDelete_columnWidth,Width
+View_PlanogramAddEditDelete_columnX,X
+View_PlanogramAddEditDelete_columnY,Y
+View_PlanSizeChange_tbHeight,Height(m)
+View_PlanSizeChange_tbWidth,Width(m)
+View_PlanTextAssign_tbColor,Color
+View_PlanTextAssign_tbFontSize,Font Size
+View_PlanTextAssign_tbText,Text
+View_ProcessAddEdit_AddAuditDB,Add New AuditDB
+View_ProcessAddEdit_AddMainDB,Add MainDB
+View_ProcessAddEdit_UserSettings,Add userSettings.config
+View_ProductAddEdit_tbMakat,Makat
+View_ProductAddEdit_tbName,Name
+View_ProductAddEdit_tbPriceBuy,Price buy
+View_ProductAddEdit_tbPriceSale,Price sale
+View_ProductAddEdit_tbPriceString,Price string
+View_ReportAddEdit_FromForm,From form
+View_ReportAddEdit_tbDesc,Description
+View_ReportAddEdit_tbMenuCaption,Menu Caption
+View_ReportAddEdit_tbMenuLocalizationCode,Menu Localization Code
+View_ReportAddEdit_tbName,Name
+View_ReportAddEdit_tbPath,Path
+View_ReportAddEdit_tbReportCode,Report Code
+View_ReportAddEdit_tbReportList,Reports List
+View_ReportAddEdit_tbShowInMenu,Show in Menu
+View_ReportAddEdit_tbTag,Tag
+View_ReportFavorites_btnOpenScript,Open script
+View_ReportFavorites_btnRestoreLinks,Restore  Links of Report Template
+View_ReportFavorites_btnSaveScript,Save Script
+View_ReportFavorites_busyContent,Executing script...
+View_ReportFavorites_columnDescription,Description
+View_ReportFavorites_columnFileName,File Name
+View_ReportFavorites_columnMenuCaption,Menu Caption
+View_ReportFavorites_columnPath,Path
+View_ReportFavorites_columnReportCode,Report Code
+View_ReportFavorites_columnShowInMenu,Show in Menu
+View_ReportFavorites_columnTag,Tag
+View_ReportFavorites_radioCurrentUser,Current User
+View_ReportFavorites_radioMain,Main
+View_ReportScript_btnBrowse,Browse
+View_ReportScript_btnClose,Close
+View_ReportScript_btnRun,Run
+View_ReportScript_busyContent,Executing script...
+View_ReportScript_chkClear,Clear Relations Table before Start
+View_ReportScript_radioCurrentUser,Current User
+View_ReportScript_radioMain,Main
+View_ReportScript_tbContext,Context:
+View_ReportScript_tbLog,Log:
+View_ReportScript_tbPath,Path to input file:
+View_ReportScriptSave_btnBrowse,Browse
+View_ReportScriptSave_btnClose,Close
+View_ReportScriptSave_btnRun,Run
+View_ReportScriptSave_busyContent,Executing script...
+View_ReportScriptSave_radioCurrentUser,Current User
+View_ReportScriptSave_radioMain,Main
+View_ReportScriptSave_tbContext,Context:
+View_ReportScriptSave_tbLog,Log:
+View_ReportScriptSave_tbPath,Path to output file:
+View_ReportsDashboardPart_mnuGenerateReport,Generate report
+View_ReportTemplate_btnGenerate,Generate
+View_ReportTemplate_chkAll,All
+View_ReportTemplate_chkContext,Context
+View_ReportTemplate_chkCurrentUser,Current user
+View_ReportTemplate_chkMain,Main
+View_ReportTemplate_chkUseCurrentContext,Use current context's filter
+View_ReportTemplate_columnDescription,Description
+View_ReportTemplate_columnFileName,File Name
+View_ReportTemplate_columnMenuCaption,Menu Caption
+View_ReportTemplate_columnPath,Path
+View_ReportTemplate_columnShowInMenu,Show in Menu
+View_ReportTemplate_columnTag,Tag
+View_ScriptSaveOpen_busyContent,Executing script...
+View_ScriptSaveOpen_tbClearRelations,Clear Relations Table before Start
+View_ScriptSaveOpen_tbLog,Log:
+View_ScriptSaveOpen_tbPathToInput,Path to input file:
+View_ScriptSaveOpen_tbPathToOutput,Path to output file:
+View_ScriptSaveOpen_tbUserCurrentContext,Use Current Context Filter
+View_Search_btnSearch,Search
+View_Search_busyContent,Searching...
+View_Search_tbObjectType,Object Type
+View_SearchBranch_tbBranch,Branches
+View_SearchBranch_tbCustomer,Customers
+View_SearchBranch_tbInventor,Inventors
+View_SearchBranch_tbInventProduct,Invent Products
+View_SearchBranchField_tbAddress,Address
+View_SearchBranchField_tbCodeERP,Code ERP
+View_SearchBranchField_tbCodeLocal,CodeLocal
+View_SearchBranchField_tbContactPerson,Contact Person
+View_SearchBranchField_tbName,Name
+View_SearchBranchField_tbPhone,Phone
+View_SearchCustomerField_tbAddress,Address
+View_SearchCustomerField_tbCode,Code
+View_SearchCustomerField_tbContactPerson,Contact Person
+View_SearchCustomerField_tbName,Name
+View_SearchCustomerField_tbPhone,Phone
+View_SearchInventorField_tbCode,Code
+View_SearchInventorField_tbDateFrom,DateFrom
+View_SearchInventorField_tbDateTo,DateTo
+View_SearchInventorField_tbDescription,Description
+View_SearchInventProduct_tbIturCode,Itur Code
+View_SearchInventProductAdvancedField_chkAggregate,Aggregate
+View_SearchInventProductAdvancedField_tbCode,Filter List by Code
+View_SearchInventProductAdvancedField_tbTag,Filter List by Tag
+View_SearchInventProductAdvancedFieldSimple_chkItemsFromCatalog,Items from Catalog
+View_SearchInventProductAdvancedFieldSimple_chkItemsNotInCatalog,Items not in Catalog
+View_SearchInventProductAdvancedFieldSimple_expFamily,Family
+View_SearchInventProductAdvancedFieldSimple_expSupplier,Supplier
+View_SearchInventProductAdvancedFieldSimple_grpInputTypeCode,Input Type Code
+View_SearchInventProductAdvancedFieldSimple_tbAbsolute,Absolute
+View_SearchInventProductAdvancedFieldSimple_tbBarcode,Barcode
+View_SearchInventProductAdvancedFieldSimple_tbBuilding,Building Analyze Table...
+View_SearchInventProductAdvancedFieldSimple_tbFamilyCode,Family Code
+View_SearchInventProductAdvancedFieldSimple_tbFamilyName,Family Name
+View_SearchInventProductAdvancedFieldSimple_tbIturCode,Code
+View_SearchInventProductAdvancedFieldSimple_tbIturDisabled,Disabled
+View_SearchInventProductAdvancedFieldSimple_tbIturERPCode,ERP Code
+View_SearchInventProductAdvancedFieldSimple_tbIturNumberPrefix,Number Prefix
+View_SearchInventProductAdvancedFieldSimple_tbIturNumberSuffix,Number Suffix
+View_SearchInventProductAdvancedFieldSimple_tbIturStatus,Status
+View_SearchInventProductAdvancedFieldSimple_tbMakat,Makat
+View_SearchInventProductAdvancedFieldSimple_tbPriceBuy,Price Buy
+View_SearchInventProductAdvancedFieldSimple_tbPriceSale,Price Sale
+View_SearchInventProductAdvancedFieldSimple_tbProductName,Product Name
+View_SearchInventProductAdvancedFieldSimple_tbQuantityDifference,Quantity Difference
+View_SearchInventProductAdvancedFieldSimple_tbQuantityDifferenceOriginalERP,Quantity Difference  ERP
+View_SearchInventProductAdvancedFieldSimple_tbQuantityEdit,Quantity
+View_SearchInventProductAdvancedFieldSimple_tbQuantityOriginalERP,Quantity Original ERP
+View_SearchInventProductAdvancedFieldSimple_tbReport,Report Parameters
+View_SearchInventProductAdvancedFieldSimple_tbSupplierCode,Supplier Code
+View_SearchInventProductAdvancedFieldSimple_tbSupplierName,Supplier Name
+View_SearchInventProductAdvancedFieldSimple_tbValueBuyDifference,Value Difference
+View_SearchInventProductAdvancedFieldSimple_tbValueBuyEdit,Value
+View_SearchInventProductAdvancedFieldSimple_tbValueDifferenceOriginalERP,Value Difference ERP
+View_SearchInventProductAdvancedGridSimple_columnBarcode,Barcode
+View_SearchInventProductAdvancedGridSimple_columnDocNum,Doc Num
+View_SearchInventProductAdvancedGridSimple_columnFamilyCode,Family Code
+View_SearchInventProductAdvancedGridSimple_columnInputTypeCode,Input Type Code
+View_SearchInventProductAdvancedGridSimple_columnIPNum,IP Num
+View_SearchInventProductAdvancedGridSimple_columnIturCode,Itur Code
+View_SearchInventProductAdvancedGridSimple_columnIturDisabled,Disabled
+View_SearchInventProductAdvancedGridSimple_columnIturERPCode,ERP Itur Code
+View_SearchInventProductAdvancedGridSimple_columnIturName,Name
+View_SearchInventProductAdvancedGridSimple_columnIturNumberPrefix,Number Prefix
+View_SearchInventProductAdvancedGridSimple_columnIturNumberSuffix,Number Suffix
+View_SearchInventProductAdvancedGridSimple_columnIturStatusGroupBit,Status Group Bit
+View_SearchInventProductAdvancedGridSimple_columnLocationName,Location Name
+View_SearchInventProductAdvancedGridSimple_columnMakat,Makat
+View_SearchInventProductAdvancedGridSimple_columnPDA_StatusInventProductBit,PDA_StatusInventProductBit
+View_SearchInventProductAdvancedGridSimple_columnPriceBuy,Price Buy
+View_SearchInventProductAdvancedGridSimple_columnPriceSale,Price Sale
+View_SearchInventProductAdvancedGridSimple_columnProductName,Product Name
+View_SearchInventProductAdvancedGridSimple_columnQuantityDifference,Difference Quantity (Original - Edit)
+View_SearchInventProductAdvancedGridSimple_columnQuantityEdit,Quantity Edit
+View_SearchInventProductAdvancedGridSimple_columnSectionName,Section Name
+View_SearchInventProductAdvancedGridSimple_columnSupplierCode,Supplier Code
+View_SearchInventProductAdvancedGridSimple_columnSupplierName,Supplier Name
+View_SearchInventProductAdvancedGridSimple_columnTypeMakat,Type Makat
+View_SearchInventProductAdvancedGridSimple_columnValueBuyDifference,Difference Value (Original - Edit)
+View_SearchInventProductAdvancedGridSimple_columnValueBuyEdit,Value per Item
+View_SearchInventProductAdvancedGridSum_columnFamilyCode,Family Code
+View_SearchInventProductAdvancedGridSum_columnMakat,Makat
+View_SearchInventProductAdvancedGridSum_columnPriceBuy,Price Buy
+View_SearchInventProductAdvancedGridSum_columnPriceSale,Price Sale
+View_SearchInventProductAdvancedGridSum_columnProductName,Product Name
+View_SearchInventProductAdvancedGridSum_columnQuantityDifference,Difference Quantity (Original - Edit)
+View_SearchInventProductAdvancedGridSum_columnQuantityDifferenceOriginalERP,QuantityDifferenceOriginalERP
+View_SearchInventProductAdvancedGridSum_columnQuantityEdit,Quantity Edit
+View_SearchInventProductAdvancedGridSum_columnQuantityOriginalERP,QuantityOriginalERP 
+View_SearchInventProductAdvancedGridSum_columnSectionName,Section Name
+View_SearchInventProductAdvancedGridSum_columnSupplierName,Supplier Name
+View_SearchInventProductAdvancedGridSum_columnValueBuyDifference,Difference Value (Original - Edit)
+View_SearchInventProductAdvancedGridSum_columnValueBuyEdit,Value per Item
+View_SearchInventProductAdvancedGridSum_columnValueDifferenceOriginalERP,ValueDifferenceOriginalERP
+View_SearchInventProductAdvancedGridSum_columnValueOriginalERP,ValueOriginalERP
+View_SearchLocationField_tbCode,Code
+View_SearchLocationField_tbName,Name
+View_SearchPackField_tbCode,Code
+View_SearchPackField_tbDateFrom,Inventor Date From
+View_SearchPackField_tbName,Name
+View_SearchPackFiled_tbDateTo,Inventor Date To
+View_SearchProductField_tbBarcode,Barcode
+View_SearchProductField_tbMakat,Makat
+View_SearchProductField_tbPriceBuy,Price Buy
+View_SearchProductField_tbPriceSale,Price Sale
+View_SearchProductField_tbProductName,Product Name
+View_SearchSectionField_tbCode,Code
+View_SearchSectionField_tbName,Name
+View_SearchSectoinField_tbTag,Tag
+View_SearchSupplierField_tbCode,Code
+View_SearchSupplierField_tbName,Name
+View_SectionAddEdit_CodeExist,Section with such Code already exists
+View_SectionAddEdit_tbCode,Code
+View_SectionAddEdit_tbDescription,Description
+View_SectionAddEdit_tbExtra1,Extra1
+View_SectionAddEdit_tbExtra2,Extra2
+View_SectionAddEdit_tbName,Name
+View_SectionAddEdit_tbParentSectionCode,Parent Code
+View_SectionAddEdit_tbSize,Size
+View_SectionAddEdit_tbTag,Tag
+View_SectionAddEdit_tbType,Type
+View_SectionAddEditDelete_columnCode,Code
+View_SectionAddEditDelete_columnDescription,Description
+View_SectionAddEditDelete_columnName,Name
+View_SectionAddEditDelete_columnParentSectionCode,Parent Section Code
+View_SectionAddEditDelete_columnTag,Tag
+View_SectionAddEditDelete_columnTypeCode,Type Code
+View_SectionAddEditDelete_tpChangeSectionTag,Change Section Tag
+View_SectionChangeTag_tbSections,Sections
+View_SectionChangeTag_tbTotalSections,Total Sections
+View_SectionDashboardPart_columnCode,Code
+View_SectionDashboardPart_columnDescription,Description
+View_SectionDashboardPart_columnName,Name
+View_SelectTag_columnSave,Save
+View_SendDataOffice_BuildingEndInventor,Building End of Inventory files...
+View_SendDataOffice_BuildingInventorSdf,Building Inventor SDF file...
+View_SendDataOffice_BuildingPackZipFile,Building Pack zip File...
+View_SendDataOffice_BuildingZip,Building zip...
+View_SendDataOffice_GeneratingReport,Generating report: {0} {1}
+View_SendDataOffice_PrintingReport,Printing Report: {0}
+View_ShowShelf_tbIturArea,Area
+View_ShowShelf_tbIturCode,Itur Code
+View_ShowShelf_tbIturHeight,Height
+View_ShowShelf_tbIturIncludeInFacing,Include
+View_ShowShelf_tbIturMaxNum,Max Num
+View_ShowShelf_tbIturShelfNum,Num In Itur
+View_ShowShelf_tbIturShelvesInItur,Shelves In Itur
+View_ShowShelf_tbIturSumArea,Total Area
+View_ShowShelf_tbIturSumWidth,Sum Width
+View_ShowShelf_tbIturSupplierCode,Supplier Code
+View_ShowShelf_tbIturWidth,Width
+View_Sort_imgSortDirection,Sort direction
+View_Sort_tbSort,Sort by
+View_SqlScriptSettings_btnLoad,Load
+View_SqlScriptSettings_btnSave,Save
+View_SqlScriptSettings_radioUpdateByDbVersion,Update by DB version
+View_SqlScriptSettings_radioUpdateDbSetupVersion,Update DB Version for Setup
+View_SqlScriptSettings_radioUpdateScript,Update with SQL script
+View_SqlScriptSettings_tbDbType,Db type:
+View_SqlScriptSettings_tbFromVersion,From version:
+View_SqlScriptSettings_tbLog,Log:
+View_SqlScriptSettings_tbRun,Run
+View_SqlScriptSettings_tbSql,Sql:
+View_SqlScriptSettings_tbToVersion,To version:
+View_StatusGroupList_tbFilterByStatusGroups,Filter by status groups:
+View_Strip_tbBranch,branch
+View_Strip_tbCustomer,customer
+View_Strip_tbInventor,inventor
+View_SupplierAddEdit_CodeExist,Supplier with such code already exists
+View_SupplierAddEdit_tbCode,Code
+View_SupplierAddEdit_tbDescription,Description
+View_SupplierAddEdit_tbName,Name
+View_SupplierAddEditDelete_columnCode,Code
+View_SupplierAddEditDelete_columnDescription,Description
+View_SupplierAddEditDelete_columnName,Name
+View_SupplierDashboardPart_columnCode,Code
+View_SupplierDashboardPart_columnDescription,Description
+View_SupplierDashboardPart_columnName,Name
+View_TagSelect_CheckBoxInclude,Substring
+View_TagSelect_columnReportCode,Report Code
+View_TagSelect_tbDomainObject,Object Type
+View_TagSelect_tbPath,Path
+View_TagSelect_tbTag,Tag
+View_TagSelect_tbTotal,Total
+View_TagSelected_btnSave,Save Reports
+View_Unapck_tbFilesToOverwrite,Following DB Files exist on this Computer, so if you want to overwrite it - select it in grid and check:
+View_Unpack_busyContent,Unpacking zip archive
+View_Unpack_chkOverwriteConfig,Overwrite Config
+View_Unpack_chkOverwriteImportData,Overwrite Import Data Files
+View_Unpack_chkOverwriteIndata,Overwrite Import Data Files from PDA
+View_Unpack_columnFile,File
+View_Unpack_columnOverwrite,Overwrite
+View_Unpack_tbFilesResult,Result Files to be unpacked:
+View_Unpack_tbInputArchive,Path to Archive:
+View_Unpack_tbMainSdfWarning,The package contains MainDB.sdf database. It will overwrite local one.
+View_Unpack_tbMainSdfWarningOffice,Package contains MainDB.sdf, but will not be unpacked, because MainDB.sdf can copy only from Office to Laptop.
+View_UpdateAdatpersView_tbCatalog,Catalog
+View_UploadToPda_btnRefresh,Refresh
+View_UploadToPda_btnStart,Start
+View_UploadToPda_btnStop,Stop
+View_UploadToPda_btnUpload,Upload
+View_UploadToPda_chkOnlyZip,*.zip
+View_UploadToPda_columnDate,Date and Time
+View_UploadToPda_columnDateCreated,Date Created
+View_UploadToPda_columnDateModify,Date Modify
+View_UploadToPda_columnDevice,Device
+View_UploadToPda_columnFile,File
+View_UploadToPda_columnInventoryDate,Inventor Date
+View_UploadToPda_columnNumber,Number
+View_UploadToPda_columnPort,Port
+View_UploadToPda_columnProcess,Process
+View_UploadToPda_columnProcessCode,Process Code
+View_UploadToPda_columnSize,Size
+View_UploadToPda_columnValue,Value
+View_UploadToPda_tbDownload,Download
+View_UploadToPda_tbExportPath,Export Path:
+View_UploadToPda_tbInitializing,Initializing...
+View_UploadToPda_tbUpload,Upload
+View_UserSetting_grpPlanogram,Planogram
+View_UserSetting_tiColors,Colors
+View_UserSettings_AdditionFieldInFilterInventProductProperty,Property String
+View_UserSettings_AdditionFieldInFilterInventProductPropertyNumber,Property Number
+View_UserSettings_AdditionFieldInFilterInventProperty,Add In Invent Product Filter
+View_UserSettings_btnResetToDefault,Reset to default
+View_UserSettings_cbCustomerFilterUse,Use Customer Filter
+View_UserSettings_cbSearchDialogIsModal,Search Dialog Is Modal
+View_UserSettings_chkCurrentDataPDA,Set Current Date on PDA
+View_UserSettings_chkDeleteAllFilePDA,Delete All Files on PDA
+View_UserSettings_chkNavigateBack,Auto navigate backward on Import PDA
+View_UserSettings_chkSetBaudratePDA,Set Current Baudrate to PDA
+View_UserSettings_chkShowERP,Show ERP Code
+View_UserSettings_chkUploadOptionsHT630_AfterUploadPerformWarmStart,After Upload - Perform Warm Start
+View_UserSettings_chkUploadOptionsHT630_AfterUploadRunExeFile,After Upload Run .Exe File
+View_UserSettings_columnColor,Color
+View_UserSettings_columnStatus,Status
+View_UserSettings_grpExportPdaHt630Adapter,ExportPdaHt630Adapter
+View_UserSettings_grpItur,Itur List Settings
+View_UserSettings_grpIturGroupStatusColor,Itur Group Status Color
+View_UserSettings_grpIturStatusColor,Itur Status Color
+View_UserSettings_grpLoggingMessage,Logging Message Types
+View_UserSettings_grpPortionSize,Portion Size
+View_UserSettings_grpReportSettings,Report Settings
+View_UserSettings_grpSearchFilter,Search/Filter
+View_UserSettings_grpUploadOptionsForAll,For All
+View_UserSettings_Language,Language
+View_UserSettings_MarkInventProperty,Mark Invent Product
+View_UserSettings_ShowMarkInventProduct,Show Mark 
+View_UserSettings_ShowMarkInventProductProperty,Property
+View_UserSettings_ShowMarkRadioIsEmpty,Is Empty
+View_UserSettings_ShowMarkRadioIsNotEmpty,Is Not Empty
+View_UserSettings_ShowPhotoInventProductProperty,Property
+View_UserSettings_ShowPhotoInventProperty,Show Photo
+View_UserSettings_ShowPhotoTemplate,Template
+View_UserSettings_tbBarcodePrefix,Barcode Prefix
+View_UserSettings_tbBarcodeType,Barcode Type
+View_UserSettings_tbBehavior,Behavior
+View_UserSettings_tbBranchBackground,Branch Dashboard Background
+View_UserSettings_tbBranchBackgroundOpacity,Branch Dashboard Background Opacity
+View_UserSettings_tbCurrency,Currency
+View_UserSettings_tbCustomerBackground,Customer Dashboard Background
+View_UserSettings_tbCustomerBackgroundOpacity,Customer Dashboard Background Opacity
+View_UserSettings_tbCustomerBranchInventor,Customer/Branch/Inventor:
+View_UserSettings_tbDefaultEncoding,Encoding
+View_UserSettings_tbDelay,UI controls delay
+View_UserSettings_tbFamilys,Familys
+View_UserSettings_tbHomeBackground,Home Dashboard Background
+View_UserSettings_tbHomeBackgroundOpacity,Home Dashboard Background Opacity
+View_UserSettings_tbInventorBackground,Inventor Dashboard Background
+View_UserSettings_tbInventorBackgroundOpacity,Inventor Dashboard Background Opacity
+View_UserSettings_tbInventProductFilterFocus,Focused field for Invent Product search
+View_UserSettings_tbInventProducts,Invent Products
+View_UserSettings_tbIturFilterSelected,Default itur search
+View_UserSettings_tbIturNamePrefix,Itur Name Prefix
+View_UserSettings_tbItursDashboard,Iturs Dashboard
+View_UserSettings_tbItursList,Iturs List
+View_UserSettings_tbLanguage,Language: (applied after restart)
+View_UserSettings_tbMark,Marking
+View_UserSettings_tbPlanEmptyColor,Empty object
+View_UserSettings_tbPlanFromColor,From 
+View_UserSettings_tbPlanToColor,To
+View_UserSettings_tbPrinter,Second Printer
+View_UserSettings_tbProducts,Products
+View_UserSettings_tbReportAppName,Main Title
+View_UserSettings_tbReportRepository,Invent Product Advanced
+View_UserSettings_tbRunMemory,Run Memory
+View_UserSettings_tbSections,Sections
+View_UserSettings_tbSetBaudratePDA,Set Current Baudrate to PDA
+View_UserSettings_tbStatusGroup,Status group
+View_UserSettings_tbSuppliers,Suppliers
+View_UserSettings_tbUploadOptionsHT630_AfterUploadRunExeFile,After Upload Run .Exe File
+View_UserSettings_tbUploadOptionsHT630_ExeptionFileNotDeleteItems,Exceptions File not Delete Items
+View_UserSettings_tbUploadWakeupTime,Upload Wakeup Time
+View_UserSettings_tiColors,Colors
+View_UserSettings_tiCommon,Common
+View_UserSettings_tiCopying,Copying from Source Folder
+View_UserSettings_tiCopyingHost,Copying from Host
+View_UserSettings_tiCopyOnlyCurrentInventor,Copy only Current Inventor
+View_UserSettings_tiCounting,Counting files 
+View_UserSettings_tiForwardResend,Forward resend Data from PDA
+View_UserSettings_tiFtpFolder,Folder
+View_UserSettings_tiFtpFrom,From
+View_UserSettings_tiFtpPassword,Password
+View_UserSettings_tiFtpServerName,Host
+View_UserSettings_tiFtpUser,User
+View_UserSettings_tiImportExport,Import - Export
+View_UserSettings_tiInclude,Include
+View_UserSettings_tiIncludeProfile,Profile
+View_UserSettings_tiIncomming,Root Folder for incoming Data from PDA
+View_UserSettings_tiMisc,Misc
+View_UserSettings_tiOutbox,Root Folder for sending Data to PDA
+View_UserSettings_tiSwapPDAOptions,Swap PDA Options
+View_UserSettings_tiUploadOptions,Multi Upload - Download
+View_ZipExport_busyContent,Compressing files into zip archive
+View_ZipExport_chkCheckUncheck,Check/Uncheck all
+View_ZipExport_tbSelectFiles,Select files to pack into zip archive:
+View_ZipImport_busyContent,Unpacking
+View_ZipImport_chkCheckUncheck,Check/Uncheck all
+View_ZipImport_chkClearImportFolder,Previously clear import data folder
+View_ZipImport_chkOverwrite,Overwrite existing files
+View_ZipImport_expOptions,Options
+View_ZipImport_tbPathArchive,Path to the archive:
+ViewImportBranch_chkCreateDb,Build SDF File
+ViewInventProduct_columnQuantityPartialEdit,Quantity Partial Edit
+ViewModel_BranchChoose_FilterCodeErp,Code ERP
+ViewModel_BranchChoose_FilterCodeLocal,Code Local
+ViewModel_BranchChoose_FilterLocation,Address
+ViewModel_BranchChoose_FilterName,Name
+ViewModel_BranchChoose_FilterPhone,Phone
+ViewModel_BranchChoose_msgDeleteAllWithoutChildren,Are you sure want to delete all Branches without Inventors?
+ViewModel_BranchChoose_msgDeleteWithoutChild,Some branches contain child inventors and will not be removed.
+ViewModel_BranchesDashboardPart_TotalBranches,Total {0} branches
+ViewModel_BranchPost_Address,Address: {0}{1}
+ViewModel_BranchPost_Code,Code: {0}{1}
+ViewModel_BranchPost_CodeERP,CodeERP: {0}{1}
+ViewModel_BranchPost_CodeLocal,CodeLocal: {0}{1}
+ViewModel_BranchPost_ContactPerson,Contact Person: {0}{1}
+ViewModel_BranchPost_Description,Description: {0}{1}
+ViewModel_BranchPost_Fax,Fax: {0}{1}
+ViewModel_BranchPost_ImportCatalog,Import Catalog: {0}{1}
+ViewModel_BranchPost_ImportItur,Import Itur: {0}{1}
+ViewModel_BranchPost_ImportLocation,Import Location: {0}{1}
+ViewModel_BranchPost_Mail,Mail: {0}{1}
+ViewModel_BranchPost_Name,Name: {0}{1}
+ViewModel_BranchPost_PDA,PDA: {0}{1}
+ViewModel_BranchPost_Phone,Phone: {0}{1}
+ViewModel_BranchPost_tbCreated,Branch {0} created
+ViewModel_CatalogForm_Barcode,Barcode
+ViewModel_CatalogForm_Makat,Makat
+ViewModel_CatalogForm_PriceBuy,Price Buy
+ViewModel_CatalogForm_PriceSale,Price Sale
+ViewModel_CatalogForm_ProductName,Product Name
+ViewModel_CatalogInfoForCBIPart_LastChanges,Last Changes: {0}
+ViewModel_CatalogInfoForCBIPart_TotalItemCodes,Total Item Codes (makat): {0}
+ViewModel_CatalogInfoForCBIPart_TotalItems,Total Items: {0}
+ViewModel_CatalogInfoForCBIPart_TotalItems2,ViewModel_CatalogInfoForCBIPart_TotalItems2
+ViewModel_ContextCBIChoose_All,[All]
+ViewModel_CustomerAdd_CreateNewCustomer,Create New Customer
+ViewModel_CustomerChoose_FilterAddress,Address
+ViewModel_CustomerChoose_FilterName,Name
+ViewModel_CustomerChoose_FilterPhone,Phone
+ViewModel_CustomerChoose_msgDeleteWithoutChild,Some customers contain child branches and will not be removed.
+ViewModel_CustomerEdit_EditCustomer,Edit Customer
+ViewModel_CustomerPost_Address,Address: {0}{1}
+ViewModel_CustomerPost_Code,Code: {0}{1}
+ViewModel_CustomerPost_ContactPerson,Contact Person: {0}{1}
+ViewModel_CustomerPost_Description,Description: {0}{1}
+ViewModel_CustomerPost_Fax,Fax: {0}{1}
+ViewModel_CustomerPost_ImportCatalog,Import Catalog: {0}{1}
+ViewModel_CustomerPost_ImportItur,Import Itur: {0}{1}
+ViewModel_CustomerPost_ImportLocation,Import Location: {0}{1}
+ViewModel_CustomerPost_Mail,Mail: {0}{1}
+ViewModel_CustomerPost_Name,Name: {0}{1}
+ViewModel_CustomerPost_PDA,PDA: {0}{1}
+ViewModel_CustomerPost_Phone,Phone: {0}{1}
+ViewModel_CustomerPost_tbCreated,Customer {0} created
+ViewModel_DocumentHeaderItem_Itur,ITUR {0}-{1}
+ViewModel_ExportErpWithModules_invalidPrefix,Invalid prefix
+ViewModel_ExportModuleBase,Total export time : {0}
+ViewModel_ExportPdaSettingsControl_MakatAndNameAndListBarcode,Makat & Name & List of Barcodes
+ViewModel_ExportPdaSettingsControl_NoLookupFile,No Lookup File
+ViewModel_ExportPdaSettingsControl_OnlyBarcodes,Only Barcodes
+ViewModel_ExportPdaSettingsControl_OnlyBarcodesAndName,Only Barcodes & Name
+ViewModel_ExportPdaSettingsControl_OnlyMakat,Only Makats
+ViewModel_ExportPdaSettingsControl_OnlyProductCode,Only Product Code (Barcode or Makat)
+ViewModel_ExportPdaSettingsControl_ProductCodeAndFamilyNameAndFamilyColor, Product Code & Family Name & Family Color
+ViewModel_ExportPdaSettingsControl_ProductCodeAndNameAndQuantityInPackAndUnitType,Product Code & Name & QuantityInPack & Unit Type
+ViewModel_ExportPdaSettingsControl_ProductCodeAndNameAndSupplierCode,Product Code & Name & Supplier Code
+ViewModel_ExportPdaSettingsControl_ProductCodeAndNameAndUnitNameAndSerial,Product Code & Name & Unit Name & Serial
+ViewModel_ExportPdaSettingsControl_ProductCodeAndNameAndUnitType,Product Code & Name & Unit Type
+ViewModel_ExportPdaSettingsControl_ProductCodeName,Product Code & Name
+ViewModel_ExportPdaSettingsControl_ValidIntegerRequired,Valid positive integer required
+ViewModel_FamilesDashboardPart,Total {0} familes
+ViewModel_FamilyAddEdit_CodeFormat,Code must consist of alphanumeric characters
+ViewModel_FamilyAddEditDelete_deleteAll,Are you sure want to delete all Familes?
+ViewModel_FilterTemplate_msgAreYouSureDelete,Are you sure want to delete {0} ?
+ViewModel_FromPdaDahsboardPart_tbTotalDocuments,Total import time : {0}
+ViewModel_FromPdaDahsboardPart_tbTotalItems,Total Records: {0}
+ViewModel_ImportCatalogAs400_msgInventorDate,File Date is not equal to the Inventory date, the file may be not updated, do you want to continue with the update?
+ViewModel_ImportFromPda_Printing,Printing...
+ViewModel_ImportModuleBase,Total import time : {0}
+ViewModel_ImportModuleBaseTotalTime,Total time : {0}
+ViewModel_ImportWithModules_TitleImport,Import Adapters
+ViewModel_ImportWithModules_TitleImportBranch,Import Branch Adapters
+ViewModel_ImportWithModules_TitleImportCatalog,Import Catalog Adapters
+ViewModel_ImportWithModules_TitleImportExport,Complex Adapters
+ViewModel_ImportWithModules_TitleImportFamily,Import Family Adapters
+ViewModel_ImportWithModules_TitleImportItur,Import Itur Adapters
+ViewModel_ImportWithModules_TitleImportLocation,Import Location Adapters
+ViewModel_ImportWithModules_TitleImportSection,Import Section Adapters
+ViewModel_ImportWithModules_TitleImportSupplier,Import Supplier Adapters
+ViewModel_ImportWithModules_TitleImportUnitPlan,Import UnitPlan Adapters
+ViewModel_ImportWithModules_TitleUpdate,Update Adapters
+ViewModel_ImportWithModulesBase_ImportProgress,Import progress: 
+ViewModel_ImportWithModulesBase_Progress,Progress
+ViewModel_ImportWithModulesBase_Step,Step: {0}/{1}
+ViewModel_ImportWithModulesBase_StepSession,Step: {0}/{1}, session {2}
+ViewModel_ImportWithModulesBase_UpdateProgress,Update progress:
+ViewModel_InventorChangeStatus_InvalidPath,Invalid path
+ViewModel_InventorForm_InventorCodeEmpty,Code can not be Empty
+ViewModel_InventorForm_InventorExist,Inventor with such code already exists
+ViewModel_InventorPost_Code,Code: {0}{1}
+ViewModel_InventorPost_CreateDate,Create Date: {0}{1}
+ViewModel_InventorPost_DbPath,DbPath: {0}{1}
+ViewModel_InventorPost_Description,Description: {0}{1}
+ViewModel_InventorPost_ImportCatalog,Import Catalog: {0}{1}
+ViewModel_InventorPost_ImportItur,Import Itur: {0}{1}
+ViewModel_InventorPost_ImportLocation,Import Location: {0}{1}
+ViewModel_InventorPost_tbCreated,Inventor created
+ViewModel_InventorStatusChange_msgAdapterNotSet,Export ERP Adapter not set
+ViewModel_InventorStatusChange_Status,Status: {0}
+ViewModel_InventProductClone_quantityValidation,Total quantity can't be smaller then zero
+ViewModel_InventProductItem_QuantityEdit,Value must be positive and non null
+ViewModel_InventProductListDetails_Location,Location name: 
+ViewModel_InventProductListDetails_NumberPrefix,Number prefix: 
+ViewModel_InventProductListDetails_NumberSuffix,Number suffix: 
+ViewModel_InventProductListDetails_StatusBit,Status bit: 
+ViewModel_InventProductListDetails_StatusDocHeaderBit,ERP Code:
+ViewModel_InventProductListDetails_StatusGroupBit,Status group bit: 
+ViewModel_InventProductListDetails_tbNoSuchItur,No Itur with such code
+ViewModel_InventProductListDetails_TotalItems,Total Items:
+ViewModel_InventProductPart_InsertFromBarcode,Items Inserted from Barcode: {0}
+ViewModel_InventProductPart_InsertManually,Items Inserted Manually: {0}
+ViewModel_IturAdd_Expression,Expression is not valid{0} Format example: {1} 1,2,45-60
+ViewModel_IturAddEditDelete_AlreadyExist,Following itur(s) already exist: {0}
+ViewModel_IturAddEditDelete_FilterDate,Date
+ViewModel_IturAddEditDelete_FilterLocation,Location
+ViewModel_IturAddEditDelete_FilterNumber,Number
+ViewModel_IturAddEditDelete_FilterStatus,Status
+ViewModel_IturimDashboardPart_total,Total {0}
+ViewModel_IturListDetails_CountProductsString,Products in Catalog {0}
+ViewModel_IturListDetails_GroupLocation,Location
+ViewModel_IturListDetails_GroupStatus,Status
+ViewModel_IturListDetails_GroupStatusNotEmpty,Status group NE
+ViewModel_IturListDetails_GroupTag,Tag
+ViewModel_IturListDetails_ProgressDoneTotalItemsString,(Total {0} items)
+ViewModel_IturListDetails_ProgressTotalString,{0}% done
+ViewModel_IturListDetails_SortIturERPCode,IturERPCode
+ViewModel_IturListDetails_SortLocation,Location
+ViewModel_IturListDetails_SortNumber,Number
+ViewModel_IturListDetails_SortStatusGroup,Status group
+ViewModel_LastCustomersDashboardPart_TotalCustomers,Total {0} customers
+ViewModel_LocationAddEdit_CodeEmpty,Code can not be empty
+ViewModel_LocationAddEdit_NameEmpty,Name can not be empty
+ViewModel_LocationTag_Expression,Tag is Invalid
+ViewModel_MaskAddEdit_NotValidMask,Not valid mask
+ViewModel_msgDeleteAllCheckSelect,Are you sure want to delete all checked InventProducts?
+ViewModel_msgDeleteCustomerWithBranch,Will be delete Customers with Branches from Main BD (without delete Count4U DB)
+ViewModel_Pack_CBIDb,Customers ->  Branchs -> Inventors DB
+ViewModel_Pack_MainDbFromOffice,Main DB from Office
+ViewModel_Pack_Packing,Packing:
+ViewModel_Pack_Preparing,Preparing...
+ViewModel_PlanBasement_msgContinue,Planogram has unsaved changes. Do you want to save now?
+ViewModel_PlanCanvas_btnHand,Pan (H)
+ViewModel_PlanCanvas_btnLocation,Location
+ViewModel_PlanCanvas_btnPicture,Picture
+ViewModel_PlanCanvas_btnPointer,Selection (V)
+ViewModel_PlanCanvas_btnShelf,Shelf
+ViewModel_PlanCanvas_btnText,Text
+ViewModel_PlanCanvas_btnWall,Wall
+ViewModel_PlanCanvas_btnWindow,Window
+ViewModel_PlanCanvas_btnZoom,Zoom (Z)
+ViewModel_PlanCanvas_mnuAlign,Align
+ViewModel_PlanCanvas_msgClearAll,Are you sure want to delete all Iturs from object?
+ViewModel_PlanCanvas_msgDelete,Are you sure want to delete object(s) ?
+ViewModel_PlanCanvas_msgLinkedToOtherPlan,Following iturs are linked to other planogram unit: {0}. Do you want to move them?
+ViewModel_PlanCanvas_msgMissingInDb,Following iturs are not found: {0}.
+ViewModel_PlanCanvas_msgValueIsIncorrect,Value is incorrect
+ViewModel_PlanInfo_msgCalculating,Calculating...
+ViewModel_PlanLocation_Assign_EmptyLocation,Empty
+ViewModel_PlanSizeChange_maxHeight,Max height is {0}
+ViewModel_PlanSizeChange_maxWidth,Max width is {0}
+ViewModel_PlanSizeChange_minHeight,Min height is {0}
+ViewModel_PlanSizeChange_minWidth,Min width is {0}
+ViewModel_PlanTree_nodeLocations,Locations
+ViewModel_PlanTree_nodePicture,Picture
+ViewModel_PlanTree_nodeShelves,Shelves
+ViewModel_PlanTree_nodeText,Text
+ViewModel_PlanTree_nodeWalls,Walls
+ViewModel_PlanTree_nodeWindows,Windows
+ViewModel_PlanTreeItem_nodeLocation,Location
+ViewModel_PlanTreeItem_nodePicture,Picture
+ViewModel_PlanTreeItem_nodeText,Text
+ViewModel_PlanTreeItem_nodeUnnamed,Unnamed
+ViewModel_PlanTreeItem_nodeWall,Wall
+ViewModel_PlanTreeItem_nodeWindow,Window
+ViewModel_ProcessCodeAddEdit_CodeEmpty,Process Code Is Empty
+ViewModel_ReportAddEdit_CodeUnique,Report Code is not Unique
+ViewModel_Search_IturAdvanced,Itur Advanced
+ViewModel_SearchBranch,Branch
+ViewModel_SearchBranchTotal,Total {0} branches
+ViewModel_SearchCustomer,Customer
+ViewModel_SearchCustomerTotal,Total {0} customers
+ViewModel_SearchFamilyTotal,Total {0} familes
+ViewModel_SearchInventor,Inventor
+ViewModel_SearchInventorTotal,Total {0} inventors
+ViewModel_SearchInventProduct,Invent Product
+ViewModel_SearchInventProduct_TotalIturs,Total Iturs: {0}
+ViewModel_SearchInventProductAdvanced,Invent Product Advanced
+ViewModel_SearchInventProductAdvancedAggregate,Invent Product Advanced Aggregate
+ViewModel_SearchInventProductAdvancedGridSimple_tbTotal,Total {0} Items
+ViewModel_SearchInventProductAdvancedGridSimple_tbTotal2,Row Count: {0}
+ViewModel_SearchInventProductAdvancedGridSimple_tbTotalString2,Row Count: {0}
+ViewModel_SearchInventProductSum,Total Item: {0}
+ViewModel_SearchInventProductTotal,Total {0} Invent Prodcuts
+ViewModel_SearchInventProductTotal2,Row Count: {0}
+ViewModel_SearchIturTotal,Total {0} iturs
+ViewModel_SearchLocationTotal,Total {0} Locations
+ViewModel_SearchProductTotal,Total {0} Products
+ViewModel_SearchSectionTotal,Total {0} Sections
+ViewModel_SearchSupplierTotal,Total {0} suppliers
+ViewModel_SectionAddEdit_CodeFormat,Code must consist of alphanumeric characters
+ViewModel_SectionAddEditDelete_deleteAll,Are you sure want to delete all Sections?
+ViewModel_SectionTag_Expression,Tag is Invalid
+ViewModel_SupplierAddEdit_CodeFormat,Code must consist of alphanumeric characters
+ViewModel_SupplierAddEditDelete_deleteAll,Are you sure want to delete all Suppliers?
+ViewModel_SupplierDashboardPart,Total {0} suppliers
+ViewModel_Unpack_busyText,Unpacking:
+ViewModel_Unpack_fileDone,Unpacked: {0}
+ViewModel_Unpack_PostProcess,Validating databases...
+ViewModel_Unpack_summaryNumberBranches,Number of branches being affected: {0}
+ViewModel_Unpack_summaryNumberCustomers,Number of customers being affected: {0}
+ViewModel_Unpack_summaryNumberInventors,Number of inventors being affected: {0}
+ViewModel_Unpack_summaryPath,Source File: {0}
+ViewModel_Unpack_summaryStatusFailed,Status: Failed
+ViewModel_Unpack_summaryStatusOk,Status: OK
+ViewModel_Unpack_summaryTotalUnpacked,Total files being unpack: {0}
+ViewModel_UserSettings_cmbReportsRepositoryADO,Reader ADO
+ViewModel_UserSettings_cmbReportsRepositoryBulk,Try Fast
+ViewModel_UserSettings_LoggingSetConfigurable,Configurable
+ViewModel_UserSettings_LoggingSetDebug,Debug
+ViewModel_UserSettings_LoggingSetInfo,Info
+ViewModel_UserSettings_LoggingSetSimple,Simple
+ViewModel_XTechMeuhedet_ERP_Code_Different,ERP code ({0}) in file is not equal to the Branch ERP code ({1}), do you want to continue & update the ERP quantity expected?
+ViewModel_ZipExport_Checking,Checking...
+ViewModel_ZipExport_Packing,Packing:
+ViewModel_ZipImport_FileNotCount4UZip,File is not Count4U zip archive
+ViewModel_ZipImport_FileNotExist,File doesn't exist in filesystem
+ViewModel_ZipImport_FileNotZip,File is not zip archive
+ViewModel_ZipImport_Unpacking,Unpacking:
+Warning_AdapterInCustomerNotSet,Warning : Adapter in Customer not Set
+Window_Title_AddItur,Itur Add
+Window_Title_AddMask,Add Mask
+Window_Title_AddMaskTemplate,Add Mask Template
+Window_Title_AddReportToFavorites,Add Report To Favorites
+Window_Title_BranchDashboard,Branch Dashboard
+Window_Title_Catalog,Catalog
+Window_Title_CBIObjectProperties,CBI Object Properties
+Window_Title_ChooseBranch,Choose Branch
+Window_Title_ChooseCustomer,Choose Customer
+Window_Title_ChooseInventor,Choose Inventor
+Window_Title_ClearIturs,Clear Iturs
+Window_Title_Complex,Complex Adapter
+Window_Title_ConfigurationSetAdd,Add configuration set
+Window_Title_CustomerDashboard,Customer Dashboard
+Window_Title_CustomerSetting,Customer Setting
+Window_Title_DeleteIturWithItems,Delete Iturs with Items
+Window_Title_Device,Device
+Window_Title_DeviceAddEdit,Add/Edit Device
+Window_Title_DocumentHeaderAddEdit,Add/Edit Document Header
+Window_Title_DocumentHeaderClone,Clone
+Window_Title_DownloadPda,Download from PDA
+Window_Title_EditBranch,Edit branch
+Window_Title_EditCustomer,Edit customer
+Window_Title_EditInventor,Edit inventor
+Window_Title_EditItur,Itur Edit
+Window_Title_EditMask,Edit mask
+Window_Title_EditMaskTemplate,Edit mask template
+Window_Title_EditReportToFavorites,Edit Report in Favorites
+Window_Title_ErpExpectedStep1,ERP Expected Step 1
+Window_Title_FamilyAdd,Family Add
+Window_Title_FamilyEdit,Family Edit
+Window_Title_FilterTemplateAdd,Filter template
+Window_Title_FilterTemplateEdit,Filter Template Edit
+Window_Title_FromFtp,Copy from Ftp
+Window_Title_ImportCatalog,Import/Update Catalog
+Window_Title_ImportFromPda,Import From PDA
+Window_Title_ImportIturs,Import Iturs
+Window_Title_ImportLocations,Import Locations
+Window_Title_ImportSection,Import Section
+Window_Title_InventorDashboard,Inventor Dashboard
+Window_Title_InventorStatusChange,Inventor Change Status
+Window_Title_InventoryForm,Inventory Form
+Window_Title_InventProduct,Invent Product List
+Window_Title_InventProductAdd,Invent Product Add
+Window_Title_InventProductClone,Clone
+Window_Title_InventProductEdit,Invent Product Edit
+Window_Title_IturChangeLocation,Change Location
+Window_Title_IturChangeName,Edit
+Window_Title_IturChangePrefix,Change Itur Prefix
+Window_Title_IturChangeState,Change State
+Window_Title_IturChangeStatus,Change Status
+Window_Title_IturChangeTag,Change Itur Tag 
+Window_Title_IturimAddEdit,Edit/Add/Delete Iturim
+Window_Title_IturSelect,Select Iturs
+Window_Title_LocationAdd,Location Add
+Window_Title_LocationAddEditDelete,Add/Delete Location
+Window_Title_LocationChangeTag,Change Location Tag
+Window_Title_LocationEdit,Location Edit
+Window_Title_LocationMultiAdd,Location Multi Add
+Window_Title_LocationSelect,Select Location by Code
+Window_Title_MainDashboard,Main Dashboard
+Window_Title_NewBranch,New branch
+Window_Title_NewCustomer,New customer
+Window_Title_NewInventor,New inventor
+Window_Title_PlanIturAdd,Add Iturim
+Window_Title_PlanIturDelete,Delete iturim
+Window_Title_PlanogramAddEditDelete,Planogram Add/Edit
+Window_Title_PlanogramLocationAssign,Assign Location
+Window_Title_PlanogramPictureAssign,Assign Picture
+Window_Title_PlanogramTextAssign,Assign Text
+Window_Title_PlanSizeChange,Change size
+Window_Title_ProcessAdd,Process Add
+Window_Title_ProcessEdit,Process Edit
+Window_Title_ProductAdd,Product Add
+Window_Title_ProductEdit,Product Edit
+Window_Title_ReportScript,Open Script
+Window_Title_ReportScriptSave,Save Script
+Window_Title_ScriptOpen,Open Script
+Window_Title_ScriptSave,Save Script
+Window_Title_SectionAdd,Section Add
+Window_Title_SectionAddEditDelete,Section
+Window_Title_SectionChangeTag,Change Section Tag
+Window_Title_SectionEdit,Section Edit
+Window_Title_ShowShelf,Shelves
+Window_Title_SupplierAdd,Supplier Add
+Window_Title_SupplierEdit,Supplier Edit
+Window_Title_TagSelect,Select by Tag
+Window_Title_ToFtp,Upload to Ftp
+Window_Title_UploadPda,Upload to PDA
+Window_Title_ViewBranch,View branch
+Window_Title_ViewConfig,View Config
+Window_Title_ViewCustomer,View customer
+Window_Title_ViewExportErpLog,View Export ERP Log
+Window_Title_ViewExportLog,View Export Log
+Window_Title_ViewImportLog,View Import Log
+Window_Title_ViewInventor,View inventor
+Window_Title_ViewLog,View Log
+Window_Title_ViewUnpackLog,Unpack Log
+GUI_,GUI
+Menu_UserContext,User Context
+Menu_Claims,Claims
+Menu_Login,Login
+Menu_Logout,Logout
+Menu_Home,Home
+Menu_About,About
+Menu_Contact,Contact
+Menu_Profile,Profile
+Menu_Register,Register
+Profile_Please_enter_your_details,Please enter your Details
+Profile_Data_Server_Address,Data Server Address
+Profile_Server_open_Successfuly,Data Server open Successfully
+Profile_Process_Code,Process Code
+Profile_DB_Path,DB Path
+Login_Please_enter_your_details,Please enter your Details
+Login_Email_address,Email Address
+Login_Password,Password
+Login_Submit,Submit
+Login_Register,Register
+Register_Please_enter_your_details,Please enter your details
+Register_Email_address,Email address
+Register_Password,Password
+Register_Confirm_Password,Confirm Password
+Register_Registered_Successfuly,Registered Successfully
+Register_Cant_register,Can't register
+Menu_GetDataTest,Test Data
+Register_Create_User_Account,Create a User Account
+Register_email,email
+Register_Email_will_be_use_as_login_for_your_account,Email will be use as login for your account
+Register_Already_a_Member,Already a Member
+Register_password,password
+Register_Password_for_your_account,Password for your account
+Register_Confirm_password_for_your_account,Confirm password for your account
+Profile_TopInfo1,Profile data is used to access and determine valid operations with data of Count4U
+Profile_TopInfo2,Settings can be changed when user is granted rights and take effect immediately after the change
+Profile_serverAddresslHelp,Select address of data server Count4U, where is your data stored
+Profile_processCodeHelp,Select your processe code in Count4U
+Profile_customerCodeHelp,Select your customer code in Count4U
+Profile_branchCodeHelp,Select your branch code in Count4U
+Profile_inventorCodeHelp,Select your inventor code in Count4U
+Menu_Upload,Upload
+Menu_Download,Download
+Select_Files_from,From
+Select_Files_to_work1,Select Files from Path above. 
+Select_Files_to_work2,Selected Files will be displayed in List.
+Select_Files_to_work3,Selected Files will be download.
+Server_Count4UWebAPI_not_reachable,Server Count4U.WebAPI is not reachable. Check if Server is running
+Select_Files,Select Files
+Size,Size
+Last_modified,Last modified 
+Type,Type
+Loaded,Loaded
+Load,Load
+Menu_Trace,Trace
+Itur_RefreshStatus,Refresh
+Itur_RefreshStatusDone,Done
+Itur_ClearStatusBit,Clear Status
+Itur_RefreshStatusAsync,Refresh Async
+Itur_RefreshStatusParallel,Refresh Parallel
+Menu_ImportFromPda,Import from PDA
+Imported,Imported
+Import,Import
+Menu_NativPlus,Nativ +
+Change_Password,Change Password
+Old_Password,Old Password
+New_Password,New Password
+Confirm_Password,Confirm Password

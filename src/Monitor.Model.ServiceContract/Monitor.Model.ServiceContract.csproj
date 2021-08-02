@@ -1,0 +1,27 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Razor">
+
+	<PropertyGroup>
+		<TargetFramework>net5.0</TargetFramework>
+		<OutputType>Library</OutputType>
+		<BlazorWebAssemblyEnableLinking>false</BlazorWebAssemblyEnableLinking>
+	</PropertyGroup>
+	
+	<ItemGroup>
+		<PackageReference Include="System.ComponentModel.Annotations" Version="4.7.0" />
+	</ItemGroup>
+	<ItemGroup>
+		<ProjectReference Include="..\Service.Model.EF.SelectParam\Service.Model.EF.SelectParam.csproj" />
+	</ItemGroup>
+	<ItemGroup>
+		<Reference Include="Microsoft.Practices.Prism.UnityExtensions">
+			<HintPath>..\Lib\Microsoft.Practices.Prism.UnityExtensions.dll</HintPath>
+		</Reference>
+	</ItemGroup>
+	<ItemGroup>
+	  <Folder Include="CommandResult\" />
+	  <Folder Include="Enum\" />
+	  <Folder Include="SignalR\" />
+	</ItemGroup>
+
+	
+</Project>

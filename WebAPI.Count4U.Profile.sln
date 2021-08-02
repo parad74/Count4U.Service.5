@@ -1,0 +1,55 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30717.126
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Service.Model.EF.SelectParam", "src\Service.Model.EF.SelectParam\Service.Model.EF.SelectParam.csproj", "{C16923B3-034C-4041-84F7-01B5658623DB}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Count4U.Service.Common", "src\Count4U.Service.Common\Count4U.Service.Common.csproj", "{904583F6-36C0-41B3-9685-09CFC523CB86}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Monitor.Service.Shared", "src\Monitor.Service.Shared\Monitor.Service.Shared.csproj", "{15833C35-A9F8-4224-BE89-EE0D3D10903F}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Monitor.Profile.Sqlite.CodeFirst.ExportImport", "src\Monitor.Profile.Sqlite.CodeFirst.ExportImport\Monitor.Profile.Sqlite.CodeFirst.ExportImport.csproj", "{17ED2869-41A6-49F4-BA6C-B7AB28D66084}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebAPI.Profile.Model.Sqlite.CodeFirst", "src\WebAPI.Profile.Model.Sqlite.CodeFirst\WebAPI.Profile.Model.Sqlite.CodeFirst.csproj", "{0D8F99E7-AC59-4D6F-8FC7-80EBD1D55F3F}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Count4U.Model.ServiceContract", "src\Count4U.Model.ServiceContract\Count4U.Model.ServiceContract.csproj", "{54C25600-5DE2-4B3A-BFB4-E8B39990DB73}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{C16923B3-034C-4041-84F7-01B5658623DB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C16923B3-034C-4041-84F7-01B5658623DB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C16923B3-034C-4041-84F7-01B5658623DB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C16923B3-034C-4041-84F7-01B5658623DB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{904583F6-36C0-41B3-9685-09CFC523CB86}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{904583F6-36C0-41B3-9685-09CFC523CB86}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{904583F6-36C0-41B3-9685-09CFC523CB86}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{904583F6-36C0-41B3-9685-09CFC523CB86}.Release|Any CPU.Build.0 = Release|Any CPU
+		{15833C35-A9F8-4224-BE89-EE0D3D10903F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{15833C35-A9F8-4224-BE89-EE0D3D10903F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{15833C35-A9F8-4224-BE89-EE0D3D10903F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{15833C35-A9F8-4224-BE89-EE0D3D10903F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{17ED2869-41A6-49F4-BA6C-B7AB28D66084}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{17ED2869-41A6-49F4-BA6C-B7AB28D66084}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{17ED2869-41A6-49F4-BA6C-B7AB28D66084}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{17ED2869-41A6-49F4-BA6C-B7AB28D66084}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0D8F99E7-AC59-4D6F-8FC7-80EBD1D55F3F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0D8F99E7-AC59-4D6F-8FC7-80EBD1D55F3F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0D8F99E7-AC59-4D6F-8FC7-80EBD1D55F3F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0D8F99E7-AC59-4D6F-8FC7-80EBD1D55F3F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{54C25600-5DE2-4B3A-BFB4-E8B39990DB73}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{54C25600-5DE2-4B3A-BFB4-E8B39990DB73}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{54C25600-5DE2-4B3A-BFB4-E8B39990DB73}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{54C25600-5DE2-4B3A-BFB4-E8B39990DB73}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {E0C98D69-4F2D-4B61-A17E-089551BCC2C5}
+	EndGlobalSection
+EndGlobal

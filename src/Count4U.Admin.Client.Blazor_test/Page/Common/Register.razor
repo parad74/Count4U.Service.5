@@ -1,0 +1,66 @@
+@page "/register"
+
+@inherits RegisterBase
+
+@if (_registerModel == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <div class="card" style="border:none">
+        <div class="card-body" style="border:none">
+            <h4>@LocalizationResources.Login_Register</h4>
+            @*<h5 class="card-title">@LocalizationResources.Register_Create_User_Account</h5>*@
+            <p></p>
+            <a href="" style="color:green">@LocalizationResources.Register_Already_a_Member</a>
+            <p></p>
+
+            <EditForm Model="@_registerModel" OnValidSubmit="@RegistrationAsync">
+                <DataAnnotationsValidator />
+                <ValidationSummary />
+                <div class="form-group">
+                    <label for="email">@LocalizationResources.Register_Email_address</label>
+                    <InputText id="email" class="form-control" @bind-Value="@_registerModel.Email"
+                               aria-describedby="emailHelp" />
+                    <ValidationMessage For="@(() => _registerModel.Email)" />
+                    <small id="emailHelp" class="form-text text-muted">@LocalizationResources.Register_Email_will_be_use_as_login_for_your_account</small>
+                </div>
+
+                <div class="form-group">
+                    <label for="password">@LocalizationResources.Register_Password</label>
+                    <InputText id="password" class="form-control" @bind-Value="@_registerModel.Password"
+                               aria-describedby="passwordHelp" />
+                    <ValidationMessage For="@(() => _registerModel.Password)" />
+                    <small id="passwordHelp" class="form-text text-muted">@LocalizationResources.Register_Password_for_your_account</small>
+                </div>
+
+                <div class="form-group">
+                    <label for="passwordConfirm">@LocalizationResources.Register_Confirm_Password</label>
+                    <InputText id="passwordConfirm" class="form-control" @bind-Value="@_registerModel.ConfirmPassword"
+                               aria-describedby="passwordHelp1" />
+                    <ValidationMessage For="@(() => _registerModel.ConfirmPassword)" />
+                    <small id="passwordHelp1" class="form-text text-muted">Confirm password for your account</small>
+                </div>
+                <button type="submit" class="btn btn btn-success">Submit</button>
+                @if (this._registerResult != null)
+                {
+                    @if (this._registerResult.Successful == SuccessfulEnum.Successful)
+                    {
+                        <div class="alert alert-success" role="alert">
+                            <p>@LocalizationResources.Register_Registered_Successfuly</p>
+                        </div>
+                    }
+
+                    @if (this._registerResult.Successful == SuccessfulEnum.NotSuccessful)
+                    {
+                        <div class="alert alert-danger" role="alert">
+                            <p>@LocalizationResources.Register_Cant_register</p>
+                            <p>@this._registerResult.Error</p>
+                        </div>
+                    }
+                }
+            </EditForm>
+        </div>
+    </div>
+}

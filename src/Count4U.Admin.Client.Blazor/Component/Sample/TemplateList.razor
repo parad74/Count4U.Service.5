@@ -1,0 +1,22 @@
+﻿@typeparam TItem
+<ul>
+    @foreach (TItem item in Data ?? Array.Empty<TItem>())
+    {
+        @ItemTemplate(item)
+    }
+</ul>
+@code
+{
+    [Parameter]
+    public IEnumerable<TItem> Data { get; set; }
+  
+    [Parameter]
+    public RenderFragment<TItem> ItemTemplate { get; set; }
+}
+
+//https://blazor-university.com/templating-components-with-renderfragements/passing-placeholders-to-renderfragments/
+@*<DataList Data=@Data>
+    <ItemTemplate>
+        <li @key=context>@context.Salutation @context.GivenName @context.FamilyName</li>
+    </ItemTemplate>
+</DataList>*@

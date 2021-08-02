@@ -1,0 +1,229 @@
+﻿Command_Add,הוסף
+Command_Apply,החל
+Command_AutorImportFromPda,ייבא מהמסופון - אוטומטי
+Command_BranchPostAddBranch,הוסף סניף
+Command_BranchPostAddInventor,הוסף ספירה
+Command_BranchPostBranchDashboard,מסך מרכזי - סניף
+Command_BranchPostEditBranch,ערוך סניף
+Command_BranchPostHomeDashboard,עמוד הבית
+Command_BranchPostMainDashboard,מסך ספירה ראשי
+Command_BringForward,הבא לקידמה
+Command_Browse,עיין
+Command_Cancel,בטל
+Command_Clear,נקה
+Command_Clone,שכפל
+Command_Close,סגור
+Command_Copy,העתק
+Command_Create,צור
+Command_CustomerPostAddBranch,הוסף סניף
+Command_CustomerPostAddCustomer,הוסף לקוח
+Command_CustomerPostCustomerDashboard,מסך מרכזי - לקוח
+Command_CustomerPostEditCustomer,ערוך לקוח
+Command_CustomerPostHomeDashboard,עמוד הבית
+Command_CustomerPostMainDashboard,מסך עבודה - ספירה
+Command_Delete,מחק
+Command_DeleteAll,מחק הכל
+Command_DeleteAllCheckSelect,מחק מסומנים
+Command_DeleteAllWithoutChild,מחק הכל - ללא בנים
+Command_DeleteNoneInCatalog,מחיקת פריטים שאינם נמצאים בקטלוג
+Command_DeleteWithoutChild,מחק ללא בנים
+Command_DevicePDAStatistic,סטטיסטיקת מסופונים
+Command_DocumentHeaderStatistic,כותרת מסמך
+Command_Down,למטה
+Command_Edit,ערוך
+Command_Export,ייצא
+Command_Filter,מסנן
+Command_Find,מצא
+Command_Import,ייבא
+Command_Info,מידע
+Command_InventorPostEditInventor,ערוך ספירה
+Command_InventorPostHomeDashboard,עמוד הבית
+Command_InventorPostInventorDashboard,מסך מרכז - ספירה
+Command_InventorPostInventorForm,מסך ספירה
+Command_InventorPostMainDashboard,מסך עבודה - ספירה
+Command_More,עוד...
+Command_MultiAdd,הוספה מרובה
+Command_OK,אשר
+Command_OpenInExplorer,פתח באמצעות סייר
+Command_OpenScript,פתח תסריט
+Command_Pack,אריזה
+Command_Planogram,פלנוגרמה
+Command_Print,הדפס
+Command_Print_ByLocationCode_Report,הדפס דוחות עבור מיקום
+Command_Print_ByTag_Report,הדפסת דוחות עבור מכולה
+Command_Print_Report,הדפס דוח
+Command_RefreshStatus,רענן סטאטוס
+Command_Rename,שנה שם
+Command_RepairFromDb,תקן מתוך בסיס הנתונים
+Command_Report,דוח
+Command_Reset,אפס
+Command_ResetErrorStatus,אפס סטאטוס שגיאות
+Command_Run,הפעל
+Command_Save,שמור
+Command_SaveScript,שמור תסריט
+Command_Search,חפש
+Command_Select,בחר...
+Command_SendBackward,העבר לרקע
+Command_SessionStatistic,פריקה
+Command_SetAsDefault,קבע כברירת מחדל
+Command_Statistic,סטטיסטיקה
+Command_Unpack,עדכון נתונים מאריזה
+Command_Up,למעלה
+Command_Update,עדכן
+Command_UpdateCatalog,עדכן יתרה
+Command_UpdateInventorDateTime,עדכן
+Command_Validate,אמת את הנתון
+Command_View,הצג
+Command_ViewLog,צפה בלוג
+Command_WorkerStatistic,עובדים
+Common_FromImportToGrid,הצג נתונים כטבלה
+Constant_Barcode,ברקוד
+Constant_Code,קוד:
+Constant_ERP,ERP
+Constant_Makat,מק"ט
+Constant_Number,מספר
+Constant_Path,נתיב:
+Constant_Product,פריט
+Control_Pagination_Of,מתוך {0}
+Domain_Adapter,מתאם
+Domain_Branch,סניף
+Domain_Customer,לקוח
+Domain_DevicePDA,מסמכי מסופון
+Domain_Family,משפחה
+Domain_Inventor,ספירה
+Domain_InventProduct,פריט שנספר
+Domain_InventProductAnalyze,מנתח ספירת פריט
+Domain_Itur,איתור
+Domain_Itur_NAME,איתור
+Domain_Location,אתר
+Domain_Product,מוצר
+Domain_Report,דו"ח
+Domain_Section,מחלקה
+Domain_StatusGroup,סטאטוס
+Domain_Supplier,ספק
+Domain_Tag,תג
+Domain_Template,תבנית
+Property_Branch_Code,קוד סניף
+Property_Branch_CodeERP,קוד ERP
+Property_Branch_CodeLocal,קוד מקומי
+Property_Branch_ContactPerson,איש קשר
+Property_Branch_CustomerCode,קוד לקוח
+Property_Branch_Name,שם סניף
+Property_Branch_Phone,טלפון
+Property_Customer_Address,כתובת
+Property_Customer_Code,קוד לקוח
+Property_Customer_ContactPerson,איש קשר
+Property_Customer_Description,תיאור
+Property_Customer_Name,שם לקוח
+Property_Customer_Phone,טלפון
+Property_Family_Code,קוד משפחה
+Property_Family_Name,שם משפחה
+Property_Inventor_BranchCode,קוד סניף
+Property_Inventor_Code,קוד
+Property_Inventor_CustomerCode,קוד לקוח
+Property_Inventor_Description,תיאור
+Property_Inventor_InventorCode,קוד ספירה
+Property_Inventor_InventorDate,תאריך ספירה
+Property_InventProduct_Barcode,קוד מקורי מהמסופון
+Property_InventProduct_CodeFromPda,סוג קלט
+Property_InventProduct_FamilyCode,קוד משפחה
+Property_InventProduct_Itur,איתור
+Property_InventProduct_Makat,מקט
+Property_InventProduct_PriceBuy,מחיר קניה
+Property_InventProduct_PriceSell,מחיר מכירה
+Property_InventProduct_ProductName,שם פריט
+Property_InventProduct_SectionCode,קוד מחלקה
+Property_InventProduct_SupplierCode,קוד ספק
+Property_Itur_Code,קוד איתור
+Property_Itur_ERPCode,קוד ERP
+Property_Itur_LocationCode,קוד מיקום
+Property_Itur_Number,מספר
+Property_Itur_NumberPrefix,קידומת
+Property_Itur_NumberSuffix,קוד איתור
+Property_Itur_StatusGroupBit,סטאטוס קבוצה
+Property_Location_Code,קוד
+Property_Location_Name,שם
+Property_PriceType_PriceBuy,מחיר קנייה
+Property_PriceType_PriceExtra,מחיר נוסף
+Property_PriceType_PriceSale,מחיר מכירה
+Property_Product_Barcode,ברקוד
+Property_Product_Makat,מקט
+Property_Product_PriceBuy,מחיר קנייה
+Property_Product_PriceSale,מחיר מכירה
+Property_Product_ProductName,שם פריט
+Property_Product_Section,מחלקה
+Property_Product_Supplier,ספק
+Property_Section_Code,קוד
+Property_Section_Name,שם
+Property_Supplier_Code,קוד
+Property_Supplier_Name,שם
+Lable_SurveyPrompt,Please take our ({0}) and tell us what you think
+Line_7,UpdateVer
+GUI_,GUI
+Menu_UserContext,הקשר למשתמש
+Menu_Claims,טוען
+Menu_Login,כניסה
+Menu_Logout,יציאה
+Menu_Home,הבית
+Menu_About,עלינו
+Menu_Contact,מגעים
+Menu_Profile,פרופיל
+Menu_Register,הרשמה
+Profile_Please_enter_your_details,הזן את הפרופיל שלך
+Profile_Data_Server_Address,כתובת שרת
+Profile_Server_open_Successfuly,כתובת האתר של השרת עודכנה בהצלחה
+Profile_Process_Code,קוד תהליך
+Profile_DB_Path,נתיב בסיס נתונים
+Login_Please_enter_your_details,הזן את הפרטים שלך
+Login_Email_address,כתובת דוא ל
+Login_Password,סיסמה
+Login_Submit,החל
+Login_Register,הרשמה
+Register_Please_enter_your_details,הזן את הפרטים שלך
+Register_Email_address,כתובת דוא ל
+Register_Password,סיסמה
+Register_Confirm_Password,אשר סיסמה
+Register_Registered_Successfuly,נרשם בהצלחה
+Register_Cant_register,לא יכול להירשם
+Menu_GetDataTest,נתוני מבחן
+Register_Create_User_Account,Create a User Account
+Register_email,email
+Register_Email_will_be_use_as_login_for_your_account,Email will be use as login for your account
+Register_Already_a_Member,Already a Member
+Register_password,password
+Register_Password_for_your_account,Password for your account
+Register_Confirm_password_for_your_account,Confirm password for your account
+Profile_TopInfo1,Profile data is used to access and determine valid operations with data of Count4U
+Profile_TopInfo2,Settings can be changed when user is granted rights and take effect immediately after the change
+Profile_serverAddresslHelp,Select address of data server Count4U, where is your data stored
+Profile_processCodeHelp,Select your processe code in Count4U
+Profile_customerCodeHelp,Select your customer code in Count4U
+Profile_branchCodeHelp,Select your branch code in Count4U
+Profile_inventorCodeHelp,Select your inventor code in Count4U
+Menu_Upload,Upload
+Menu_Download,Download 
+Select_Files_from,מ
+Select_Files_to_work1,Select Files from Path above.
+Select_Files_to_work2,Selected Files will be displayed in List.
+Select_Files_to_work3,Selected Files will be download.
+Server_Count4UWebAPI_not_reachable,השרת אינו זמין. נא לבדוק הגדרות חיבור לשרת
+Select_Files,בחר קבצים
+Size,גודל 
+Last_modified,השתנה לאחרונה 
+Type,סוג 
+Loaded,טעינה
+Load,טען
+Menu_Trace,Trace
+Itur_RefreshStatus,Refresh
+Itur_RefreshStatusDone,Done
+Itur_ClearStatusBit,Clear Status
+Itur_RefreshStatusAsync,Refresh Async
+Itur_RefreshStatusParallel,Refresh Parallel
+Menu_ImportFromPda,Import from PDA
+Imported,Imported
+Import,Import
+Menu_NativPlus,Nativ +
+Change_Password,Change Password
+Old_Password,Old Password
+New_Password,New Password
+Confirm_Password,Confirm Password

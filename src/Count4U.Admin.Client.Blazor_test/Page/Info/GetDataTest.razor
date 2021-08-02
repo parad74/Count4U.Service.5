@@ -1,0 +1,185 @@
+﻿@page "/GetDataTest"
+
+@inherits InfoContextBase
+
+   
+<AuthorizeView Policy="@UserPolicy.IsUser">
+</AuthorizeView>
+
+<AuthorizeView Policy="@UserPolicy.IsOwner">
+
+</AuthorizeView>
+
+<AuthorizeView Policy="@UserPolicy.IsAdmin">
+
+    <div class="content px-4">
+        <ContextCount4U ViewModel="@_profileModel" />
+    </div>
+
+    <span class="badge badge-info">@SessionStorageMode</span>
+    <span class="badge badge-secondary">@SessionAuthenticationServer</span>
+    <span class="badge badge-light">@StorageMonitorWebApiUrl</span>
+    <span class="badge badge-light">@StorageSignalRHubUrl</span>
+    <span class="badge badge-primary">@_profileModel.DataServerAddress</span>
+
+    <br />
+    <p />
+    <button @onclick="ChangePasswordClicked">Change Password</button>
+
+    <button disabled="@_processes" @onclick="GetProcesses">Get Processes - test</button>
+
+    @if (_processes == null)
+    {
+        <p><em>Loading...</em></p>
+    }
+    else
+    {
+        <div class="scrollme">
+            @*<div class="container" width="100%">*@
+            <table class="table table-responsive">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Code</th>
+                        <th>Name</th>
+                        <th>Manager</th>
+                        <th>Description</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var process in _processes)
+                    {
+                        <tr>
+                            <td>@process.ID</td>
+                            <td>@process.ProcessCode</td>
+                            <td>@process.Name</td>
+                            <td>@process.Manager</td>
+                            <td>@process.Description</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    }
+
+    <button disabled="@_customeres" @onclick="GetCustomers">Get Customers - test</button>
+
+    @if (_customeres == null)
+    {
+        <p><em>Loading...</em></p>
+    }
+    else
+    {
+        <div class="scrollme">
+            @*<div class="container" width="100%">*@
+            <table class="table table-responsive">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Code</th>
+                        <th>Name</th>
+                        <th>DBPath</th>
+                        <th>Description</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var customer in _customeres)
+                    {
+                        <tr>
+                            <td>@customer.ID</td>
+                            <td>@customer.Code</td>
+                            <td>@customer.Name</td>
+                            <td>@customer.DBPath</td>
+                            <td>@customer.Description</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    }
+
+    <button disabled="@_branches" @onclick="GetBranches">Get Branches - test</button>
+
+    @if (_branches == null)
+    {
+        <p><em>Loading...</em></p>
+    }
+    else
+    {
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>CustomerCode</th>
+                    <th>Code</th>
+                    <th>Name</th>
+                    <th>DBPath</th>
+                    <th>Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var branch in _branches)
+                {
+                    <tr>
+                        <td>@branch.ID</td>
+                        <td>@branch.CustomerCode</td>
+                        <td>@branch.Code</td>
+                        <td>@branch.Name</td>
+                        <td>@branch.DBPath</td>
+                        <td>@branch.Description</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+
+    <button disabled="@_inventors" @onclick="GetInventors">Get Inventors - test</button>
+
+    @if (_inventors == null)
+    {
+        <p><em>Loading...</em></p>
+    }
+    else
+    {
+        <div class="scrollme">
+            @*<div class="container" width="100%">*@
+            <table class="table table-responsive">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>CustomerCode</th>
+                        <th>BranchCode</th>
+                        <th>Code</th>
+                        <th>Name</th>
+                        <th>DBPath</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var inventor in _inventors)
+                    {
+                        <tr>
+                            <td>@inventor.ID</td>
+                            <td>@inventor.CustomerCode</td>
+                            <td>@inventor.BranchCode</td>
+                            <td>@inventor.Code</td>
+                            <td>@inventor.Name</td>
+                            <td>@inventor.DBPath</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+
+    }
+</AuthorizeView>
+
+
+@code{
+    // SelectedColor will be the cascading parameter
+    // Set the color to Green
+    protected string SelectedColor { get; set; } = "Green";
+    // Create a collection of colors that will be bound to a dropdown
+    List<string> Options = new List<string>() { "Green", "Red", "Blue" };
+
+
+}

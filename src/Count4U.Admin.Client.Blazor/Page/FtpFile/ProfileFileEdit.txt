@@ -1,0 +1,113 @@
+﻿@inherits ProfileFileEditBase
+
+<!--  <EditForm Model="@_profileFile" OnValidSubmit="SaveObjectAsync">-->
+    @*<DataAnnotationsValidator />*@
+
+    <!--<div class="form-group row">
+        <label class="control-label col-md-2">Customer Code</label>
+        <label class="control-label col-md-4">@_profileFile.ProfileJsonObject.Profile.InventoryProcessInformation.Customer.Code </label>
+    </div>
+
+    <div class="form-group row">
+        <label class="control-label col-md-2">Customer Name</label>
+        <div class="col-md-10">
+            <input class="form-control" @bind="_profileFile.ProfileJsonObject.Profile.InventoryProcessInformation.Customer.Name" />
+        </div>-->
+        @*<ValidationMessage For="@(() => emp.EmployeeName)" />*@
+    <!--</div>
+
+
+    <div class="form-group row">
+        <label class="control-label col-md-2">Branch Code</label>
+        <label class="control-label col-md-10">@_profileFile.ProfileJsonObject.Profile.InventoryProcessInformation.Branch.Code</label>
+    </div>
+    <div class="form-group row">
+        <label class="control-label col-md-2">Branch Name</label>
+        <div class="col-md-10">
+            <input class="form-control" @bind="_profileFile.ProfileJsonObject.Profile.InventoryProcessInformation.Branch.Name" />
+        </div>-->
+        @*<ValidationMessage For="@(() => emp.Designation)" />*@
+    <!--</div>
+
+    <div class="form-group row">
+        <label class="control-label col-md-2">Inventor Code</label>
+        <label class="control-label col-md-10">@_profileFile.ProfileJsonObject.Profile.InventoryProcessInformation.Inventory.Code</label>
+    </div>
+    <div class="form-group row">
+        <label class="control-label col-md-2">Inventor Date</label>
+        <label class="control-label col-md-10">@_profileFile.ProfileJsonObject.Profile.InventoryProcessInformation.Inventory.CreatedDate</label>
+    </div>-->
+
+    @*<div class="form-group row">
+            <label class="control-label col-md-12">Gender</label>
+            <div class="col-md-4">
+                <select class="form-control" @bind="emp.Gender">
+                    <option value="">-- Select Gender --</option>
+                    <option value="Male">Male</option>
+                    <option value="Female">Female</option>
+                </select>
+            </div>
+            <ValidationMessage For="@(() => emp.Gender)" />
+        </div>*@
+    @*<div class="form-group row">
+                <label class="control-label col-md-12">City</label>
+                <div class="col-md-4">
+                    <select class="form-control" @bind="emp.CityName">
+                        <option value="-- Select City --">-- Select City --</option>
+                        @foreach (var city in cityList)
+                        {
+        <option value="@city.CityName">@city.CityName</option>
+        }
+                    </select>
+                </div>
+                <ValidationMessage For="@(() => emp.CityName)" />
+            </div>*@
+    <!--<div class="form-group">
+        <button type="submit" class="btn btn-outline-success  btn-sm">Save</button>-->
+        @*<button class="btn btn-light" @onclick="Cancel">Cancel</button>*@
+    <!--</div>
+</EditForm>-->
+
+
+@*<div class="col-xs-10 profile-main-block">
+    <a id="customer"></a>
+    <customer customer="customer"></customer>
+
+    <a id="scanner-type"></a>
+    <scanner-type scanner-type="ScannerType" validation="validation"></scanner-type>
+
+    <a id="location-inventory"></a>
+    <location-inventory location-inventory="LocationInventoryListScreenConfiguration"
+                        validation="validation"></location-inventory>
+
+    <a id="list-default-ui-configuration"></a>
+    <list-default-ui-configuration object="InventoryListDefaultUIConfiguration"
+                                   validation="validation"></list-default-ui-configuration>
+
+    <a id="database-settings"></a>
+    <database-settings object="DatabaseSettings" validation="validation"></database-settings>
+
+    <a id="rfid-component"></a>
+    <rfid object="RFID"></rfid>
+
+    <a id="inventory-item-details-form"></a>
+    <inventory-item-details-form object="Forms" validation="validation"></inventory-item-details-form>
+
+    <a id="search-configuration"></a>
+    <search-configuration object="Search"></search-configuration>
+
+    <a id="additional-screens-configuration"></a>
+    <additional-screens-configuration scanner-type-object="ScannerType" object="ScreensConfiguration"></additional-screens-configuration>
+
+    <a id="inventory-images"></a>
+    <inventory-images object="InventoryImage"></inventory-images>
+
+    <a id="printer-settings"></a>
+    <printer-settings object="PrinterSettings"></printer-settings>
+
+    <a type="submit" ng-click="save()" class="btn btn-success" i18n="profile.save"></a>
+    <button type="submit" ng-click="back()" class="btn btn-warning mrgn-btn" i18n="ui.cancel"></button>
+</div>
+<div class="col-xs-2 profile-menu">
+    <profile-menu></profile-menu>
+</div>*@

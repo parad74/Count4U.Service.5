@@ -1,0 +1,19 @@
+﻿.monaco-editor-container {
+    height: 50vh;
+    position: sticky;
+    top: 0
+}
+
+.decorationGlyphMarginClass {
+    background: red;
+}
+
+.decorationContentClass {
+    background: lightblue;
+}
+
+div.editorContent {
+    height: 50vh;
+    position: sticky;
+    top: 0
+}

@@ -1,0 +1,1771 @@
+﻿{
+  "_declaration": {
+    "_attributes": {
+      "version": "1.0",
+      "encoding": "utf-8"
+    }
+  },
+  "Profile": [
+    {
+      "InventoryProcessInformation": [
+        {
+          "Customer": [
+            {
+              "_attributes": {
+                "name": "NextLine1",
+                "code": "900"
+              }
+            }
+          ],
+          "Branch": [
+            {
+              "_attributes": {
+                "name": "name1",
+                "code": "900-002"
+              }
+            }
+          ],
+          "Inventory": [
+            {
+              "_attributes": {
+                "code": "cdc05120-05d8-4422-9d2e-940b16aed62f",
+                "created_date": "2019/12/3"
+              }
+            }
+          ]
+        }
+      ],
+      "InventoryProcessConfiguration": [
+        {
+          "InventoryProcessMode": [
+            {
+              "AssertModeEnabled": [ { "_text": [ "true" ] } ],
+              "StockModeEnabled": [ { "_text": [ "false" ] } ]
+            }
+          ]
+        }
+      ],
+      "_comment": [ "  RFID or Barcode  ", "\n        UI configuration for Inventory List (LocationDetails) screen.\n        Note: To add new property use id as field name from Inventory class.\n        Also, if property is a member of class that Inventory class contains reference on, you have to\n        use id as ClassName.Field name. f.e. Catalog.ItemName\n    " ],
+      "ScannerType": [ { "_text": [ "RFID" ] } ],
+      "LocationInventoryListScreenConfiguration": [
+        {
+          "AddNewInventoryEnabled": [ { "_text": [ "true" ] } ],
+          "TemplateInventoriesEnabled": [ { "_text": [ "false" ] } ],
+          "SignatureToVerifyClosureOfLocationRequired": [ { "_text": [ "true" ] } ],
+          "AddNewInventoryOfflineEnabled": [ { "_text": [ "false" ] } ]
+        }
+      ],
+      "InventoryListDefaultUIConfiguration": [
+        {
+          "ShowInventoryImageIndicator": [ { "_text": [ "false" ] } ],
+          "InventoryItemsProperties": [
+            {
+              "InventoryItemDisplayProperty": [
+                {
+                  "_attributes": {
+                    "id": "Catalog.ItemName",
+                    "itemtype": "SN:Q"
+                  },
+                  "Title": [
+                    {
+                      "_attributes": {
+                        "en": "Item Name",
+                        "he": "תיאור פריט"
+                      }
+                    }
+                  ],
+                  "invalid": [ { "_text": [ "false" ] } ],
+                  "id": [ { "_text": [ "1" ] } ]
+                },
+                {
+                  "_attributes": {
+                    "id": "Catalog.ItemCode",
+                    "itemtype": "SN:Q"
+                  },
+                  "Title": [
+                    {
+                      "_attributes": {
+                        "en": "Item Code",
+                        "he": "קוד פריט"
+                      }
+                    }
+                  ],
+                  "invalid": [ { "_text": [ "false" ] } ],
+                  "id": [ { "_text": [ "2" ] } ]
+                },
+                {
+                  "_attributes": {
+                    "id": "Quantity",
+                    "itemtype": "SN:Q"
+                  },
+                  "Title": [
+                    {
+                      "_attributes": {
+                        "en": "Quantity",
+                        "he": "כמות"
+                      }
+                    }
+                  ],
+                  "invalid": [ { "_text": [ "false" ] } ],
+                  "id": [ { "_text": [ "3" ] } ]
+                },
+                {
+                  "_attributes": {
+                    "id": "PropertyStr3",
+                    "itemtype": "SN:Q"
+                  },
+                  "Title": [
+                    {
+                      "_attributes": {
+                        "en": "For Customer",
+                        "he": "ציוד עבור"
+                      }
+                    }
+                  ],
+                  "invalid": [ { "_text": [ "false" ] } ],
+                  "id": [ { "_text": [ "4" ] } ]
+                },
+                {
+                  "_attributes": {
+                    "id": "SerialNumberLocal",
+                    "itemtype": "SN"
+                  },
+                  "Title": [
+                    {
+                      "_attributes": {
+                        "en": "SN local",
+                        "he": "סריאלי מקומי"
+                      }
+                    }
+                  ],
+                  "invalid": [ { "_text": [ "false" ] } ],
+                  "id": [ { "_text": [ "5" ] } ]
+                },
+                {
+                  "_attributes": {
+                    "id": "PropertyStr14",
+                    "itemtype": "SN:Q"
+                  },
+                  "Title": [
+                    {
+                      "_attributes": {
+                        "en": "777",
+                        "he": "777"
+                      }
+                    }
+                  ],
+                  "invalid": [ { "_text": [ "false" ] } ],
+                  "id": [ { "_text": [ "6" ] } ]
+                },
+                {
+                  "_attributes": {
+                    "id": "PropertyStr6",
+                    "itemtype": "SN:Q"
+                  },
+                  "Title": [
+                    {
+                      "_attributes": {
+                        "en": "Remarks",
+                        "he": "הערות"
+                      }
+                    }
+                  ],
+                  "invalid": [ { "_text": [ "false" ] } ],
+                  "id": [ { "_text": [ "9" ] } ]
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "DatabaseSettings": [
+        {
+          "UIDKey": [ { "_text": [ "SerialNumberLocal|ItemCode|LocationCode|PropertyStr3" ] } ],
+          "CurrentInventoryDeviceIdProperty": [ { "_text": [ "PropertyStr3" ] } ],
+          "CurrentInventoryUserNameProperty": [ { "_text": [ "PropertyStr18" ] } ],
+          "ClearInventoryDataAfterUpload": [ { "_text": [ "true" ] } ],
+          "CurrentInventoryDeviceNameProperty": [ { "_text": [ "PropertyStr8" ] } ]
+        }
+      ],
+      "Forms": [
+        {
+          "Form": [
+            {
+              "_attributes": { "id": "ItemDetails" },
+              "Field": [
+                {
+                  "DataSource": [
+                    {
+                      "_attributes": {
+                        "fieldname": "ItemCode",
+                        "keyboard_type": "keyboard: 1",
+                        "tablename": "CurrentInventory"
+                      }
+                    }
+                  ],
+                  "DataTarget": [
+                    {
+                      "_attributes": {
+                        "fieldname": "ItemCode",
+                        "tablename": "CurrentInventory"
+                      }
+                    }
+                  ],
+                  "Details": [
+                    {
+                      "_attributes": {
+                        "default": "",
+                        "id": "ItemCode",
+                        "itemtype": "SN:Q",
+                        "mandatory": "True",
+                        "type": "Textbox",
+                        "typeview": "TextBox",
+                        "viewonly": "False",
+                        "camera_barcode_scanner_enable": "False",
+                        "negative_value_enable": "False"
+                      }
+                    }
+                  ],
+                  "Titles": [
+                    {
+                      "Title": [
+                        {
+                          "_attributes": {
+                            "en": "Item Code",
+                            "he": "קוד פריט"
+                          }
+                        }
+                      ],
+                      "Description": [ { "_attributes": { "en": "Item Code" } } ]
+                    }
+                  ],
+                  "invalid": [ { "_text": [ "false" ] } ],
+                  "id": [ { "_text": [ "1" ] } ]
+                },
+                {
+                  "DataSource": [
+                    {
+                      "_attributes": {
+                        "fieldname": "ItemCode",
+                        "keyboard_type": "keyboard: 1",
+                        "tablename": "Catalog",
+                        "fieldnametoshow": "ItemName"
+                      }
+                    }
+                  ],
+                  "DataTarget": [
+                    {
+                      "_attributes": {
+                        "fieldname": "ItemCode",
+                        "tablename": "CurrentInventory"
+                      }
+                    }
+                  ],
+                  "Details": [
+                    {
+                      "_attributes": {
+                        "default": "",
+                        "id": "ItemName",
+                        "itemtype": "SN:Q",
+                        "mandatory": "True",
+                        "type": "Textbox",
+                        "typeview": "TextBox",
+                        "viewonly": "False",
+                        "camera_barcode_scanner_enable": "False",
+                        "negative_value_enable": "False"
+                      }
+                    }
+                  ],
+                  "Titles": [
+                    {
+                      "Title": [
+                        {
+                          "_attributes": {
+                            "en": "Item Name",
+                            "he": "תיאור פריט"
+                          }
+                        }
+                      ],
+                      "Description": [ { "_attributes": { "en": "Item Name" } } ]
+                    }
+                  ],
+                  "invalid": [ { "_text": [ "false" ] } ],
+                  "id": [ { "_text": [ "2" ] } ]
+                },
+                {
+                  "Actions": [ {} ],
+                  "DataSource": [
+                    {
+                      "_attributes": {
+                        "fieldname": "PropStr5Code",
+                        "fieldnametoshow": "PropStr5Name",
+                        "keyboard_type": "keyboard: 1",
+                        "tablename": "PropertyStr5List"
+                      }
+                    }
+                  ],
+                  "DataTarget": [
+                    {
+                      "_attributes": {
+                        "fieldname": "PropertyStr10",
+                        "tablename": ""
+                      }
+                    }
+                  ],
+                  "Details": [
+                    {
+                      "_attributes": {
+                        "add_enable": "true",
+                        "clear_enable": "true",
+                        "default": "",
+                        "id": "PropertyStr10",
+                        "itemtype": "SN",
+                        "mandatory": "false",
+                        "type": "Search list",
+                        "typeview": "SearchList",
+                        "viewonly": "false"
+                      }
+                    }
+                  ],
+                  "Titles": [
+                    {
+                      "Title": [
+                        {
+                          "_attributes": {
+                            "en": "Specification",
+                            "he": "מידע נוסף"
+                          }
+                        }
+                      ]
+                    }
+                  ],
+                  "invalid": [ { "_text": [ "false" ] } ],
+                  "id": [ { "_text": [ "3" ] } ]
+                },
+                {
+                  "Actions": [ { "SelectInFocus": [ { "_text": [ "true" ] } ] } ],
+                  "DataSource": [
+                    {
+                      "_attributes": {
+                        "fieldname": "Quantity",
+                        "keyboard_type": "keyboard: 4",
+                        "tablename": "CurrentInventory"
+                      }
+                    }
+                  ],
+                  "DataTarget": [
+                    {
+                      "_attributes": {
+                        "fieldname": "Quantity",
+                        "tablename": "CurrentInventory"
+                      }
+                    }
+                  ],
+                  "Details": [
+                    {
+                      "_attributes": {
+                        "default": "1",
+                        "id": "Quantity",
+                        "itemtype": "Q",
+                        "mandatory": "true",
+                        "type": "Textbox",
+                        "typeview": "TextBox",
+                        "viewonly": "false",
+                        "camera_barcode_scanner_enable": "False",
+                        "negative_value_enable": "true",
+                        "zero_value_enable": "true"
+                      }
+                    }
+                  ],
+                  "Titles": [
+                    {
+                      "Title": [
+                        {
+                          "_attributes": {
+                            "en": "Quantity",
+                            "he": "כמות"
+                          }
+                        }
+                      ],
+                      "Description": [ { "_attributes": { "en": "Quantity" } } ]
+                    }
+                  ],
+                  "invalid": [ { "_text": [ "false" ] } ],
+                  "id": [ { "_text": [ "4" ] } ]
+                },
+                {
+                  "Actions": [
+                    {
+                      "SelectInFocus": [ { "_text": [ "false" ] } ],
+                      "AutoGenerateCode": [ { "_text": [ "true" ] } ]
+                    }
+                  ],
+                  "DataSource": [
+                    {
+                      "_attributes": {
+                        "fieldname": "SerialNumberLocal",
+                        "keyboard_type": "keyboard: 1",
+                        "tablename": "CurrentInventory"
+                      }
+                    }
+                  ],
+                  "DataTarget": [
+                    {
+                      "_attributes": {
+                        "fieldname": "SerialNumberLocal",
+                        "tablename": "CurrentInventory"
+                      }
+                    }
+                  ],
+                  "Details": [
+                    {
+                      "_attributes": {
+                        "default": "",
+                        "id": "SerialNumberLocal",
+                        "itemtype": "SN",
+                        "mandatory": "True",
+                        "type": "Textbox",
+                        "typeview": "TextBox",
+                        "viewonly": "False",
+                        "camera_barcode_scanner_enable": "False",
+                        "negative_value_enable": "False",
+                        "add_enable": "false"
+                      }
+                    }
+                  ],
+                  "Titles": [
+                    {
+                      "Title": [
+                        {
+                          "_attributes": {
+                            "en": "Serial number local",
+                            "he": "סיריאלי מקומי"
+                          }
+                        }
+                      ],
+                      "Description": [ { "_attributes": { "en": "Serial number local" } } ]
+                    }
+                  ],
+                  "invalid": [ { "_text": [ "false" ] } ],
+                  "id": [ { "_text": [ "5" ] } ]
+                },
+                {
+                  "Actions": [ { "SelectInFocus": [ { "_text": [ "false" ] } ] } ],
+                  "DataSource": [
+                    {
+                      "_attributes": {
+                        "fieldname": "SerialNumberSupplier",
+                        "keyboard_type": "keyboard: 1",
+                        "tablename": "CurrentInventory"
+                      }
+                    }
+                  ],
+                  "DataTarget": [
+                    {
+                      "_attributes": {
+                        "fieldname": "SerialNumberSupplier",
+                        "tablename": "CurrentInventory"
+                      }
+                    }
+                  ],
+                  "Details": [
+                    {
+                      "_attributes": {
+                        "default": "",
+                        "id": "SerialNumberSupplier",
+                        "itemtype": "SN",
+                        "mandatory": "false",
+                        "type": "Textbox",
+                        "typeview": "TextBox",
+                        "viewonly": "false",
+                        "camera_barcode_scanner_enable": "False",
+                        "negative_value_enable": "False"
+                      }
+                    }
+                  ],
+                  "Titles": [
+                    {
+                      "Title": [
+                        {
+                          "_attributes": {
+                            "en": "SN Supplier",
+                            "he": "סיריאלי יצרן"
+                          }
+                        }
+                      ]
+                    }
+                  ],
+                  "invalid": [ { "_text": [ "false" ] } ],
+                  "id": [ { "_text": [ "6" ] } ]
+                },
+                {
+                  "Actions": [
+                    {
+                      "SelectInFocus": [ { "_text": [ "true" ] } ],
+                      "EnabledFilters": [
+                        {
+                          "EnabledFiler": [
+                            {
+                              "Enabled": [ { "_attributes": { "fieldcondition": "ItemCode" } } ],
+                              "Filter": [
+                                {
+                                  "_attributes": {
+                                    "type": "Start with characters",
+                                    "value": "\\bNetstick.*",
+                                    "valueToReg": "Netstick"
+                                  }
+                                }
+                              ]
+                            },
+                            {
+                              "Enabled": [ { "_attributes": { "fieldcondition": "ItemCode" } } ],
+                              "Filter": [
+                                {
+                                  "_attributes": {
+                                    "type": "Start with characters",
+                                    "value": "\\bPDA.*",
+                                    "valueToReg": "PDA"
+                                  }
+                                }
+                              ]
+                            },
+                            {
+                              "Enabled": [ { "_attributes": { "fieldcondition": "ItemCode" } } ],
+                              "Filter": [
+                                {
+                                  "_attributes": {
+                                    "value": "\\bTab.*",
+                                    "type": "Start with characters",
+                                    "valueToReg": "Tab"
+                                  }
+                                }
+                              ]
+                            },
+                            {
+                              "Enabled": [ { "_attributes": { "fieldcondition": "ItemCode" } } ],
+                              "Filter": [
+                                {
+                                  "_attributes": {
+                                    "value": "\\bSim_Card.*",
+                                    "type": "Start with characters",
+                                    "valueToReg": "Sim_Card"
+                                  }
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ],
+                  "DataSource": [
+                    {
+                      "_attributes": {
+                        "fieldname": "PropertyStr2",
+                        "keyboard_type": "keyboard: 6",
+                        "tablename": "CurrentInventory"
+                      }
+                    }
+                  ],
+                  "DataTarget": [
+                    {
+                      "_attributes": {
+                        "fieldname": "PropertyStr2",
+                        "tablename": "CurrentInventory"
+                      }
+                    }
+                  ],
+                  "Details": [
+                    {
+                      "_attributes": {
+                        "default": "",
+                        "id": "PropertyStr2",
+                        "itemtype": "SN",
+                        "mandatory": "false",
+                        "type": "Textbox",
+                        "typeview": "TextBox",
+                        "viewonly": "false",
+                        "camera_barcode_scanner_enable": "true",
+                        "zero_value_enable": "false"
+                      }
+                    }
+                  ],
+                  "Titles": [
+                    {
+                      "Title": [
+                        {
+                          "_attributes": {
+                            "en": "Sim Card Number",
+                            "he": "מספר כרטיס סים"
+                          }
+                        }
+                      ]
+                    }
+                  ],
+                  "invalid": [ { "_text": [ "false" ] } ],
+                  "id": [ { "_text": [ "7" ] } ]
+                },
+                {
+                  "Actions": [ {} ],
+                  "DataSource": [
+                    {
+                      "_attributes": {
+                        "fieldname": "PropStr2Code",
+                        "fieldnametoshow": "PropStr2Name",
+                        "keyboard_type": "keyboard: 1",
+                        "tablename": "PropertyStr2List"
+                      }
+                    }
+                  ],
+                  "DataTarget": [
+                    {
+                      "_attributes": {
+                        "fieldname": "PropertyStr1",
+                        "tablename": ""
+                      }
+                    }
+                  ],
+                  "Details": [
+                    {
+                      "_attributes": {
+                        "add_enable": "true",
+                        "clear_enable": "true",
+                        "default": "",
+                        "id": "PropertyStr1",
+                        "itemtype": "SN:Q",
+                        "mandatory": "false",
+                        "type": "Search list",
+                        "typeview": "SearchList",
+                        "viewonly": "false"
+                      }
+                    }
+                  ],
+                  "Titles": [
+                    {
+                      "Title": [
+                        {
+                          "_attributes": {
+                            "en": "ManagerName",
+                            "he": "שם מקבל הציוד"
+                          }
+                        }
+                      ]
+                    }
+                  ],
+                  "invalid": [ { "_text": [ "false" ] } ],
+                  "id": [ { "_text": [ "8" ] } ]
+                },
+                {
+                  "Actions": [ {} ],
+                  "DataSource": [
+                    {
+                      "_attributes": {
+                        "fieldname": "PropStr2Code",
+                        "fieldnametoshow": "PropStr2Name",
+                        "keyboard_type": "keyboard: 1",
+                        "tablename": "PropertyStr2List"
+                      }
+                    }
+                  ],
+                  "DataTarget": [
+                    {
+                      "_attributes": {
+                        "fieldname": "PropertyStr3",
+                        "tablename": ""
+                      }
+                    }
+                  ],
+                  "Details": [
+                    {
+                      "_attributes": {
+                        "add_enable": "true",
+                        "clear_enable": "true",
+                        "default": "",
+                        "id": "PropertyStr3",
+                        "itemtype": "SN:Q",
+                        "mandatory": "false",
+                        "type": "Search list",
+                        "typeview": "SearchList",
+                        "viewonly": "false"
+                      }
+                    }
+                  ],
+                  "Titles": [
+                    {
+                      "Title": [
+                        {
+                          "_attributes": {
+                            "en": "For Customer/Manager",
+                            "he": "עבור לקוח/מנהל"
+                          }
+                        }
+                      ]
+                    }
+                  ],
+                  "invalid": [ { "_text": [ "false" ] } ],
+                  "id": [ { "_text": [ "9" ] } ]
+                },
+                {
+                  "Actions": [ {} ],
+                  "DataSource": [
+                    {
+                      "_attributes": {
+                        "fieldname": "PropStr1Code",
+                        "fieldnametoshow": "PropStr1Name",
+                        "keyboard_type": "keyboard: 1",
+                        "tablename": "PropertyStr1List"
+                      }
+                    }
+                  ],
+                  "DataTarget": [
+                    {
+                      "_attributes": {
+                        "fieldname": "PropertyStr5",
+                        "tablename": ""
+                      }
+                    }
+                  ],
+                  "Details": [
+                    {
+                      "_attributes": {
+                        "add_enable": "true",
+                        "clear_enable": "true",
+                        "default": "תקין",
+                        "id": "PropertyStr5",
+                        "itemtype": "SN:Q",
+                        "mandatory": "true",
+                        "type": "Search list",
+                        "typeview": "SearchList",
+                        "viewonly": "false"
+                      }
+                    }
+                  ],
+                  "Titles": [
+                    {
+                      "Title": [
+                        {
+                          "_attributes": {
+                            "en": "Status",
+                            "he": "מצב מכשיר"
+                          }
+                        }
+                      ]
+                    }
+                  ],
+                  "invalid": [ { "_text": [ "false" ] } ],
+                  "id": [ { "_text": [ "10" ] } ]
+                },
+                {
+                  "Actions": [
+                    {
+                      "EnabledFilters": [ {} ],
+                      "SelectInFocus": [ { "_text": [ "true" ] } ]
+                    }
+                  ],
+                  "DataSource": [
+                    {
+                      "_attributes": {
+                        "fieldname": "PropertyStr6",
+                        "keyboard_type": "keyboard: 1",
+                        "tablename": "CurrentInventory"
+                      }
+                    }
+                  ],
+                  "DataTarget": [
+                    {
+                      "_attributes": {
+                        "fieldname": "PropertyStr6",
+                        "tablename": "CurrentInventory"
+                      }
+                    }
+                  ],
+                  "Details": [
+                    {
+                      "_attributes": {
+                        "default": "",
+                        "id": "PropertyStr6",
+                        "itemtype": "SN:Q",
+                        "mandatory": "false",
+                        "type": "Textbox",
+                        "typeview": "TextBox",
+                        "viewonly": "false",
+                        "camera_barcode_scanner_enable": "False",
+                        "negative_value_enable": "False"
+                      }
+                    }
+                  ],
+                  "Titles": [
+                    {
+                      "Title": [
+                        {
+                          "_attributes": {
+                            "en": "Remarks",
+                            "he": "הערות"
+                          }
+                        }
+                      ]
+                    }
+                  ],
+                  "invalid": [ { "_text": [ "false" ] } ],
+                  "id": [ { "_text": [ "11" ] } ]
+                },
+                {
+                  "Actions": [ {} ],
+                  "DataSource": [
+                    {
+                      "_attributes": {
+                        "fieldname": "PropStr4Code",
+                        "fieldnametoshow": "PropStr4Name",
+                        "keyboard_type": "keyboard: 1",
+                        "tablename": "PropertyStr4List"
+                      }
+                    }
+                  ],
+                  "DataTarget": [
+                    {
+                      "_attributes": {
+                        "fieldname": "PropertyStr7",
+                        "tablename": ""
+                      }
+                    }
+                  ],
+                  "Details": [
+                    {
+                      "_attributes": {
+                        "add_enable": "true",
+                        "clear_enable": "true",
+                        "default": "",
+                        "id": "PropertyStr7",
+                        "itemtype": "SN:Q",
+                        "mandatory": "false",
+                        "type": "Search list",
+                        "typeview": "SearchList",
+                        "viewonly": "false"
+                      }
+                    }
+                  ],
+                  "Titles": [
+                    {
+                      "Title": [
+                        {
+                          "_attributes": {
+                            "en": "Remarks2",
+                            "he": "הערה נוספת"
+                          }
+                        }
+                      ]
+                    }
+                  ],
+                  "invalid": [ { "_text": [ "false" ] } ],
+                  "id": [ { "_text": [ "12" ] } ]
+                },
+                {
+                  "Actions": [ { "SelectInFocus": [ { "_text": [ "false" ] } ] } ],
+                  "DataSource": [
+                    {
+                      "_attributes": {
+                        "fieldname": "PropertyStr9",
+                        "keyboard_type": "keyboard: 1",
+                        "tablename": "CurrentInventory"
+                      }
+                    }
+                  ],
+                  "DataTarget": [
+                    {
+                      "_attributes": {
+                        "fieldname": "PropertyStr9",
+                        "tablename": "CurrentInventory"
+                      }
+                    }
+                  ],
+                  "Details": [
+                    {
+                      "_attributes": {
+                        "default": "",
+                        "id": "PropertyStr9",
+                        "itemtype": "SN",
+                        "mandatory": "false",
+                        "type": "Textbox",
+                        "typeview": "TextBox",
+                        "viewonly": "false",
+                        "camera_barcode_scanner_enable": "False",
+                        "negative_value_enable": "False"
+                      }
+                    }
+                  ],
+                  "Titles": [
+                    {
+                      "Title": [
+                        {
+                          "_attributes": {
+                            "en": "Device History",
+                            "he": "היסטוריית מכשיר"
+                          }
+                        }
+                      ]
+                    }
+                  ],
+                  "invalid": [ { "_text": [ "false" ] } ],
+                  "id": [ { "_text": [ "13" ] } ]
+                },
+                {
+                  "Actions": [ {} ],
+                  "DataSource": [
+                    {
+                      "_attributes": {
+                        "fieldname": "PropertyStr20",
+                        "tablename": "CurrentInventory"
+                      }
+                    }
+                  ],
+                  "DataTarget": [
+                    {
+                      "_attributes": {
+                        "fieldname": "PropertyStr20",
+                        "tablename": "CurrentInventory"
+                      }
+                    }
+                  ],
+                  "Details": [
+                    {
+                      "_attributes": {
+                        "id": "PropertyStr20",
+                        "itemtype": "SN:Q",
+                        "mandatory": "false",
+                        "type": "Image",
+                        "typeview": "Image",
+                        "viewonly": "false"
+                      }
+                    }
+                  ],
+                  "Titles": [
+                    {
+                      "Description": [ { "_attributes": { "en": "" } } ],
+                      "Title": [
+                        {
+                          "_attributes": {
+                            "en": "QQ",
+                            "he": ""
+                          }
+                        }
+                      ]
+                    }
+                  ],
+                  "invalid": [ { "_text": [ "false" ] } ],
+                  "id": [ { "_text": [ "14" ] } ]
+                }
+              ],
+              "KeepAllFieldsOnItemCodeChange": [ { "_text": [ "false" ] } ]
+            }
+          ]
+        }
+      ],
+      "Search": [
+        {
+          "SearchByScannerScreenConfiguration": [
+            {
+              "AddNewInventoryEnabled": [ { "_text": [ "true" ] } ],
+              "CameraBarcodeScannerEnabled": [ { "_text": [ "true" ] } ],
+              "NavigateBackEnabled": [ { "_text": [ "false" ] } ],
+              "SearchByProperties": [
+                {
+                  "SearchByProperty": [
+                    {
+                      "_attributes": { "id": "SerialNumberLocal" },
+                      "Title": [
+                        {
+                          "_attributes": {
+                            "en": "SN local",
+                            "he": "סיראלי חקלאות"
+                          }
+                        }
+                      ],
+                      "id": [ { "_text": [ "1" ] } ]
+                    },
+                    {
+                      "_attributes": { "id": "SerialNumberSupplier" },
+                      "Title": [
+                        {
+                          "_attributes": {
+                            "en": "SN supplier",
+                            "he": "סיראלי יצרן"
+                          }
+                        }
+                      ],
+                      "id": [ { "_text": [ "2" ] } ]
+                    },
+                    {
+                      "_attributes": { "id": "PropertyStr3" },
+                      "id": [ { "_text": [ "3" ] } ]
+                    }
+                  ]
+                }
+              ],
+              "SearchByScannerResultListDisplayProperties": [
+                {
+                  "SearchDisplayProperty": [
+                    {
+                      "_attributes": { "id": "Catalog.ItemName" },
+                      "Title": [
+                        {
+                          "_attributes": {
+                            "en": "Item Name",
+                            "he": "תיאור פריט"
+                          }
+                        }
+                      ],
+                      "invalid": [ { "_text": [ "false" ] } ],
+                      "id": [ { "_text": [ "1" ] } ]
+                    },
+                    {
+                      "_attributes": { "id": "Catalog.ItemCode" },
+                      "Title": [
+                        {
+                          "_attributes": {
+                            "en": "Item Code",
+                            "he": "קוד פריט"
+                          }
+                        }
+                      ],
+                      "id": [ { "_text": [ "2" ] } ],
+                      "invalid": [ { "_text": [ "false" ] } ]
+                    },
+                    {
+                      "_attributes": { "id": "SerialNumberLocal" },
+                      "Title": [
+                        {
+                          "_attributes": {
+                            "en": "SN local",
+                            "he": "סיראלי מקומי"
+                          }
+                        }
+                      ],
+                      "id": [ { "_text": [ "3" ] } ],
+                      "invalid": [ { "_text": [ "false" ] } ]
+                    },
+                    {
+                      "_attributes": {
+                        "id": "PropertyStr3",
+                        "he": "שייך ל"
+                      },
+                      "id": [ { "_text": [ "4" ] } ],
+                      "Title": [
+                        {
+                          "_attributes": {
+                            "en": "For Customer",
+                            "he": ""
+                          }
+                        }
+                      ],
+                      "invalid": [ { "_text": [ "false" ] } ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ],
+          "SearchInCatalogScreenConfiguration": [
+            {
+              "AddNewItemIntoCatalogEnabled": [ { "_text": [ "true" ] } ],
+              "CameraBarcodeScannerEnabled": [ { "_text": [ "true" ] } ],
+              "SearchInCatalogResultListsDisplayProperties": [
+                {
+                  "SearchInCatalogByItemCodeResultListDisplayProperties": [
+                    {
+                      "SearchDisplayProperty": [
+                        {
+                          "_attributes": { "id": "ItemName" },
+                          "Title": [
+                            {
+                              "_attributes": {
+                                "en": "Item Name",
+                                "he": "תיאור פריט"
+                              }
+                            }
+                          ],
+                          "invalid": [ { "_text": [ "false" ] } ],
+                          "id": [ { "_text": [ "1" ] } ]
+                        },
+                        {
+                          "_attributes": { "id": "ItemCode" },
+                          "Title": [
+                            {
+                              "_attributes": {
+                                "en": "Item Code",
+                                "he": "קוד פריט"
+                              }
+                            }
+                          ],
+                          "invalid": [ { "_text": [ "false" ] } ],
+                          "id": [ { "_text": [ "2" ] } ]
+                        }
+                      ]
+                    }
+                  ],
+                  "SearchInCatalogByItemNameResultListDisplayProperties": [
+                    {
+                      "SearchDisplayProperty": [
+                        {
+                          "_attributes": { "id": "ItemName" },
+                          "Title": [
+                            {
+                              "_attributes": {
+                                "en": "Item Name",
+                                "he": "תיאור פריט"
+                              }
+                            }
+                          ],
+                          "invalid": [ { "_text": [ "false" ] } ],
+                          "id": [ { "_text": [ "1" ] } ]
+                        },
+                        {
+                          "_attributes": { "id": "ItemCode" },
+                          "Title": [
+                            {
+                              "_attributes": {
+                                "en": "Item Code",
+                                "he": "קוד פריט"
+                              }
+                            }
+                          ],
+                          "invalid": [ { "_text": [ "false" ] } ],
+                          "id": [ { "_text": [ "2" ] } ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ],
+          "SearchInLocationScreenConfiguration": [
+            {
+              "CameraBarcodeScannerEnabled": [ { "_text": [ "true" ] } ],
+              "SearchInLocationResultListsDisplayProperties": [
+                {
+                  "SearchInLocationByItemSerialResultListDisplayProperties": [
+                    {
+                      "SearchDisplayProperty": [
+                        {
+                          "_attributes": { "id": "Catalog.ItemName" },
+                          "Title": [
+                            {
+                              "_attributes": {
+                                "en": "Item Name",
+                                "he": "תיאור פריט"
+                              }
+                            }
+                          ],
+                          "invalid": [ { "_text": [ "false" ] } ],
+                          "id": [ { "_text": [ "1" ] } ]
+                        },
+                        {
+                          "_attributes": { "id": "Catalog.ItemCode" },
+                          "Title": [
+                            {
+                              "_attributes": {
+                                "en": "Item Code",
+                                "he": "קוד פריט"
+                              }
+                            }
+                          ],
+                          "invalid": [ { "_text": [ "false" ] } ],
+                          "id": [ { "_text": [ "2" ] } ]
+                        },
+                        {
+                          "_attributes": { "id": "SerialNumberLocal" },
+                          "Title": [
+                            {
+                              "_attributes": {
+                                "en": "SN local",
+                                "he": "סריאלי מקומי"
+                              }
+                            }
+                          ],
+                          "invalid": [ { "_text": [ "false" ] } ],
+                          "id": [ { "_text": [ "3" ] } ]
+                        },
+                        {
+                          "_attributes": {
+                            "id": "PropertyStr3",
+                            "he": "שם עובד"
+                          },
+                          "Title": [
+                            {
+                              "_attributes": {
+                                "en": "Employee Name",
+                                "he": ""
+                              }
+                            }
+                          ],
+                          "invalid": [ { "_text": [ "false" ] } ],
+                          "id": [ { "_text": [ "4" ] } ]
+                        }
+                      ]
+                    }
+                  ],
+                  "SearchInLocationByItemCodeResultListDisplayProperties": [
+                    {
+                      "SearchDisplayProperty": [
+                        {
+                          "_attributes": { "id": "Catalog.ItemName" },
+                          "Title": [
+                            {
+                              "_attributes": {
+                                "en": "Item Name",
+                                "he": "תיאור פריט"
+                              }
+                            }
+                          ],
+                          "invalid": [ { "_text": [ "false" ] } ],
+                          "id": [ { "_text": [ "1" ] } ]
+                        },
+                        {
+                          "_attributes": { "id": "Catalog.ItemCode" },
+                          "Title": [
+                            {
+                              "_attributes": {
+                                "en": "Item Code",
+                                "he": "קוד פריט"
+                              }
+                            }
+                          ],
+                          "invalid": [ { "_text": [ "false" ] } ],
+                          "id": [ { "_text": [ "2" ] } ]
+                        },
+                        {
+                          "_attributes": { "id": "SerialNumberLocal" },
+                          "Title": [
+                            {
+                              "_attributes": {
+                                "en": "SN local",
+                                "he": "סריאלי מקומי"
+                              }
+                            }
+                          ],
+                          "invalid": [ { "_text": [ "false" ] } ],
+                          "id": [ { "_text": [ "3" ] } ]
+                        },
+                        {
+                          "_attributes": {
+                            "id": "PropertyStr3",
+                            "he": "שם עובד"
+                          },
+                          "Title": [
+                            {
+                              "_attributes": {
+                                "en": "Employee Name",
+                                "he": ""
+                              }
+                            }
+                          ],
+                          "invalid": [ { "_text": [ "false" ] } ],
+                          "id": [ { "_text": [ "4" ] } ]
+                        }
+                      ]
+                    }
+                  ],
+                  "SearchInLocationByItemNameResultListDisplayProperties": [
+                    {
+                      "SearchDisplayProperty": [
+                        {
+                          "_attributes": { "id": "Catalog.ItemName" },
+                          "Title": [
+                            {
+                              "_attributes": {
+                                "en": "Item Name",
+                                "he": "תיאור פריט"
+                              }
+                            }
+                          ],
+                          "invalid": [ { "_text": [ "false" ] } ],
+                          "id": [ { "_text": [ "1" ] } ]
+                        },
+                        {
+                          "_attributes": { "id": "Catalog.ItemCode" },
+                          "Title": [
+                            {
+                              "_attributes": {
+                                "en": "Item Code",
+                                "he": "קוד פריט"
+                              }
+                            }
+                          ],
+                          "invalid": [ { "_text": [ "false" ] } ],
+                          "id": [ { "_text": [ "2" ] } ]
+                        },
+                        {
+                          "_attributes": { "id": "SerialNumberLocal" },
+                          "Title": [
+                            {
+                              "_attributes": {
+                                "en": "SN local",
+                                "he": "סריאלי מקומי"
+                              }
+                            }
+                          ],
+                          "invalid": [ { "_text": [ "false" ] } ],
+                          "id": [ { "_text": [ "3" ] } ]
+                        },
+                        {
+                          "_attributes": {
+                            "id": "PropertyStr3",
+                            "he": "שם עובד"
+                          },
+                          "Title": [
+                            {
+                              "_attributes": {
+                                "en": "Employee Name",
+                                "he": ""
+                              }
+                            }
+                          ],
+                          "invalid": [ { "_text": [ "false" ] } ],
+                          "id": [ { "_text": [ "4" ] } ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "AddNewItemIntoCatalogEnabled": [ { "_text": [ "true" ] } ]
+            }
+          ],
+          "IgnoreChar": [ {} ]
+        }
+      ],
+      "ScreensConfiguration": [
+        {
+          "AddNewLocationScreen": [
+            {
+              "ScreenEnabled": [ { "_text": [ "true" ] } ],
+              "ScreenEnabledOffline": [ { "_text": [ "false" ] } ]
+            }
+          ],
+          "ItemCodeSummaryScreen": [ { "ScreenEnabled": [ { "_text": [ "true" ] } ] } ],
+          "MoveInventoriesScreen": [
+            {
+              "InventoryMoveSearchProperty": [
+                {
+                  "_attributes": { "id": "SerialNumberLocal" },
+                  "Title": [
+                    {
+                      "_attributes": {
+                        "en": "SNLocal",
+                        "he": "סיראלי מקומי"
+                      }
+                    }
+                  ]
+                }
+              ],
+              "ScreenEnabled": [ { "_text": [ "true" ] } ]
+            }
+          ],
+          "AddQInventoryItemsInFastWayScreen": [
+            {
+              "CameraBarcodeScannerEnabled": [ { "_text": [ "true" ] } ],
+              "ScreenEnabled": [ { "_text": [ "true" ] } ]
+            }
+          ],
+          "AddSNInventoryItemsInFastWayScreen": [
+            {
+              "CameraBarcodeScannerEnabled": [ { "_text": [ "false" ] } ],
+              "DefaultValues": [
+                {
+                  "DefaultItemCode": [ { "_text": [ "PDA_HT682" ] } ],
+                  "DefaultQuantity": [ { "_text": [ "1" ] } ]
+                }
+              ],
+              "ScreenEnabled": [ { "_text": [ "true" ] } ]
+            }
+          ],
+          "WarehouseScreenRFID": [
+            {
+              "ScreenEnabled": [ { "_text": [ "false" ] } ],
+              "WarehouseScreenRFIDConnectionBeforeOpenRequired": [ { "_text": [ "false" ] } ]
+            }
+          ],
+          "AssertInventoryScreen": [
+            {
+              "InventoryWizard": [ { "_text": [ "true" ] } ],
+              "CameraBarcodeScannerEnabled": [ { "_text": [ "false" ] } ]
+            }
+          ]
+        }
+      ],
+      "InventoryImage": [
+        {
+          "InventoryImageEnabled": [ { "_text": [ "false" ] } ],
+          "ImageQuality": [ { "_text": [ "80" ] } ],
+          "InventoryImagePropertyId": [ {} ]
+        }
+      ],
+      "PrinterSettings": [
+        {
+          "ZebraPrinter": [
+            {
+              "PrintingFormats": [
+                {
+                  "PrintingFormat": [
+                    {
+                      "Format": [ { "_text": [ "\n                        ^fx for ZQ510 03/10/17 TERMI\n\n                        ^xa\n                        ^cW7,e:davidbd\n                        ^ci0\n                        ^lh20,20\n                        ^pw560\n                        ^fo50,50 ^a0b,35,30 ^FDVAR1^fs\n                        ^fo50,010 ^fb700,1,,l ^a7b,35,35 ^FDVAR2^fs\n                        ^fo150,315 ^a0b,30,30 ^FDVAR3^fs\n                        ^fo100,000 ^fb750,1,,c ^a7b,45,40 ^FDVAR4^fs\n                        ^by2\n                        ^fo190,100 ^BCb,170,n ^FDVAR5^fs\n                        ^fo380,000 ^fb750,1,,c ^a0b,40,40 ^FDVAR5^fs\n                        ^fo460,120 ^a0b,40,40 ^FDVAR6^fs\n                        ^fo460,480 ^a0b,40,40 ^FDVAR7^fs\n                        ^xz\n                    " ] } ],
+                      "FieldsMapping": [
+                        {
+                          "FieldMapping": [
+                            {
+                              "_attributes": {
+                                "name": "VAR1",
+                                "dateFormat": "dd-MM-yyyy",
+                                "inventoryPropertyId": "SpecialField.CurrentDate"
+                              }
+                            },
+                            {
+                              "_attributes": {
+                                "name": "VAR2",
+                                "inventoryPropertyId": "SpecialField.UserName",
+                                "reverseValue": "true"
+                              }
+                            },
+                            {
+                              "_attributes": {
+                                "name": "VAR3",
+                                "inventoryPropertyId": "Catalog.ItemCode"
+                              }
+                            },
+                            {
+                              "_attributes": {
+                                "name": "VAR4",
+                                "inventoryPropertyId": "Catalog.ItemName",
+                                "reverseValue": "true"
+                              }
+                            },
+                            {
+                              "_attributes": {
+                                "name": "VAR5",
+                                "inventoryPropertyId": "PropertyStr14"
+                              }
+                            },
+                            {
+                              "_attributes": {
+                                "name": "VAR6",
+                                "inventoryPropertyId": "LocationCode"
+                              }
+                            },
+                            {
+                              "_attributes": {
+                                "name": "VAR7",
+                                "inventoryPropertyId": "Quantity"
+                              }
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "RFID": [
+        {
+          "QCodeType": [ { "_text": [ "0" ] } ],
+          "RFIDCommands": [
+            {
+              "RFIDCommand": [
+                {
+                  "_attributes": {
+                    "command": "READ HEX(2:0,12),STR(3:0,16) REPORT=EVENT",
+                    "type": "rfid_read"
+                  }
+                },
+                {
+                  "_attributes": {
+                    "command": "READ STOP",
+                    "type": "rfid_read_stop"
+                  }
+                },
+                {
+                  "_attributes": {
+                    "command": "WR STR(3:0,16)=%s WHERE TAGID=%s",
+                    "type": "rfid_write"
+                  }
+                },
+                {
+                  "_attributes": {
+                    "command": "ATTRIBUTE FIELDSTRENGTH=27dB",
+                    "type": "rfid_adjust_reader_strength"
+                  }
+                },
+                {
+                  "_attributes": {
+                    "command": "FACDFLT",
+                    "type": "rfid_reset_to_default"
+                  }
+                }
+              ]
+            }
+          ],
+          "RFIDTagWritten": [ { "_text": [ "PropertyStr4" ] } ],
+          "SNCodeType": [ { "_text": [ "1" ] } ]
+        }
+      ],
+      "FastStockInventoryItemsConfiguration": [
+        {
+          "DefaultAutomaticQuantity": [ { "_text": [ "1" ] } ],
+          "EditFormSettings": [
+            {
+              "Field": [
+                {
+                  "DataSource": [
+                    {
+                      "_attributes": {
+                        "fieldname": "ItemCode",
+                        "keyboard_type": "keyboard: 1",
+                        "tablename": "CurrentInventory"
+                      }
+                    }
+                  ],
+                  "DataTarget": [
+                    {
+                      "_attributes": {
+                        "fieldname": "ItemCode",
+                        "tablename": "CurrentInventory"
+                      }
+                    }
+                  ],
+                  "Details": [
+                    {
+                      "_attributes": {
+                        "default": "",
+                        "id": "ItemCode",
+                        "itemtype": "SN:Q",
+                        "mandatory": "True",
+                        "type": "Textbox",
+                        "typeview": "TextBox",
+                        "viewonly": "True",
+                        "negative_value_enable": "False"
+                      }
+                    }
+                  ],
+                  "Titles": [
+                    {
+                      "Title": [
+                        {
+                          "_attributes": {
+                            "en": "Item Code",
+                            "he": "קוד פריט"
+                          }
+                        }
+                      ],
+                      "Description": [ { "_attributes": { "en": "Item Code" } } ]
+                    }
+                  ],
+                  "invalid": [ { "_text": [ "true" ] } ],
+                  "id": [ { "_text": [ "1" ] } ]
+                },
+                {
+                  "DataSource": [
+                    {
+                      "_attributes": {
+                        "fieldname": "ItemCode",
+                        "keyboard_type": "keyboard: 1",
+                        "tablename": "Catalog",
+                        "fieldnametoshow": "ItemName"
+                      }
+                    }
+                  ],
+                  "DataTarget": [
+                    {
+                      "_attributes": {
+                        "fieldname": "ItemCode",
+                        "tablename": "CurrentInventory"
+                      }
+                    }
+                  ],
+                  "Details": [
+                    {
+                      "_attributes": {
+                        "default": "",
+                        "id": "ItemName",
+                        "itemtype": "SN:Q",
+                        "mandatory": "True",
+                        "type": "Textbox",
+                        "typeview": "TextBox",
+                        "viewonly": "True",
+                        "negative_value_enable": "False"
+                      }
+                    }
+                  ],
+                  "Titles": [
+                    {
+                      "Title": [
+                        {
+                          "_attributes": {
+                            "en": "Item Name",
+                            "he": "תיאור פריט"
+                          }
+                        }
+                      ],
+                      "Description": [ { "_attributes": { "en": "Item Name" } } ]
+                    }
+                  ],
+                  "invalid": [ { "_text": [ "true" ] } ],
+                  "id": [ { "_text": [ "2" ] } ]
+                },
+                {
+                  "Actions": [
+                    {
+                      "Validations": [
+                        {
+                          "Validation": [
+                            {
+                              "_attributes": {
+                                "en": "Please enter Quantity",
+                                "reg": "^[1-9]\\d*$"
+                              }
+                            }
+                          ]
+                        }
+                      ],
+                      "SelectInFocus": [ { "_text": [ "true" ] } ]
+                    }
+                  ],
+                  "DataSource": [
+                    {
+                      "_attributes": {
+                        "fieldname": "Quantity",
+                        "keyboard_type": "keyboard: 3",
+                        "tablename": "CurrentInventory"
+                      }
+                    }
+                  ],
+                  "DataTarget": [
+                    {
+                      "_attributes": {
+                        "fieldname": "Quantity",
+                        "tablename": "CurrentInventory"
+                      }
+                    }
+                  ],
+                  "Details": [
+                    {
+                      "_attributes": {
+                        "default": "1",
+                        "id": "Quantity",
+                        "itemtype": "SN:Q",
+                        "mandatory": "True",
+                        "type": "Textbox",
+                        "typeview": "TextBox",
+                        "viewonly": "False",
+                        "negative_value_enable": "False"
+                      }
+                    }
+                  ],
+                  "Titles": [
+                    {
+                      "Title": [
+                        {
+                          "_attributes": {
+                            "en": "Quantity",
+                            "he": "כמות"
+                          }
+                        }
+                      ],
+                      "Description": [ { "_attributes": { "en": "Quantity" } } ]
+                    }
+                  ],
+                  "invalid": [ { "_text": [ "true" ] } ],
+                  "id": [ { "_text": [ "3" ] } ]
+                },
+                {
+                  "Actions": [
+                    {
+                      "AutoGenerateCode": [ { "_text": [ "false" ] } ],
+                      "Validations": [
+                        {
+                          "Validation": [
+                            {
+                              "_attributes": {
+                                "en": "Please enter Serial number local",
+                                "reg": "(.{0,250}$)"
+                              }
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ],
+                  "DataSource": [
+                    {
+                      "_attributes": {
+                        "fieldname": "SerialNumberLocal",
+                        "keyboard_type": "keyboard: 1",
+                        "tablename": "CurrentInventory"
+                      }
+                    }
+                  ],
+                  "DataTarget": [
+                    {
+                      "_attributes": {
+                        "fieldname": "SerialNumberLocal",
+                        "tablename": "CurrentInventory"
+                      }
+                    }
+                  ],
+                  "Details": [
+                    {
+                      "_attributes": {
+                        "default": "",
+                        "id": "SerialNumberLocal",
+                        "itemtype": "SN",
+                        "mandatory": "True",
+                        "type": "Textbox",
+                        "typeview": "TextBox",
+                        "viewonly": "False",
+                        "add_enable": "false",
+                        "negative_value_enable": "False"
+                      }
+                    }
+                  ],
+                  "Titles": [
+                    {
+                      "Title": [
+                        {
+                          "_attributes": {
+                            "en": "Serial number local",
+                            "he": "סריאלי קשת"
+                          }
+                        }
+                      ],
+                      "Description": [ { "_attributes": { "en": "Serial number local" } } ]
+                    }
+                  ],
+                  "invalid": [ { "_text": [ "true" ] } ],
+                  "id": [ { "_text": [ "4" ] } ]
+                }
+              ]
+            }
+          ],
+          "AddDefaultQuantityMode": [ { "_text": [ "Auto" ] } ],
+          "InsertNotExistInCatalogItems": [ { "_text": [ "false" ] } ],
+          "InsertDetailsForNotExistInCatalogItems": [ { "_text": [ "false" ] } ],
+          "CaseSensitiveItemCode": [ { "_text": [ "true" ] } ],
+          "CameraBarcodeScannerStockLocation": [ { "_text": [ "false" ] } ],
+          "CameraBarcodeScannerStockInventory": [ { "_text": [ "false" ] } ]
+        }
+      ],
+      "BarcodeManipulations": [ {} ],
+      "Version": [ { "_text": [ "1" ] } ],
+      "Customer": [
+        {
+          "_attributes": {
+            "name": "",
+            "code": ""
+          }
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,43 @@
+﻿@page "/claims"
+@inherits ClaimsBase
+@attribute [Authorize(Policy = UserPolicy.IsAdmin)]
+
+<h4>@Title</h4>
+
+@if (_viewModel.ClaimList == null) {
+    <p><em>Loading...</em></p>
+}
+else {
+
+<div class="scrollme">
+    @*<div class="container" width="100%">*@
+        <table class="table table-responsive">
+            <thead>
+                <tr>
+                    <th>Subject</th>
+                    <th>Issuer</th>
+                    <th>Type</th>
+                    <th>Value</th>
+                    <th>HeaderValue [WebApi]</th>
+                    <th>DBSettings [WebApi]</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var claim in _viewModel.ClaimList) {
+                    <tr>
+                        <td>@claim.Name</td>
+                        <td>@claim.Issuer</td>
+                        <td>@claim.ClaimType</td>
+                        <td>@claim.Value</td>
+                        <td>@claim.HeaderValue</td>
+                        <td>@claim.DBSettingsValue</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+    }
+
+
+
+

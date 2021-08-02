@@ -1,0 +1,121 @@
+﻿@page "/about"
+@inherits AboutBase
+
+
+<h4>@LocalizationResources.Menu_About</h4>
+
+<p>COUNT4U.SERVICE produced BOS Dimex Next Line</p>
+@*<a target="_blank" class="font-weight-bold" href="https://www.dimex.co.il">https://www.dimex.co.il</a>
+    <br />
+    <h4>@LocalizationResources.Menu_Contact</h4>
+
+    <address>
+        בנין דרייב אין סנטר, פריימן 20<br />
+        ראשון לציון<br />
+        <abbr title="Phone">טלפון:</abbr>
+        03-9542000
+    </address>
+
+    <address>
+        <strong>Support:</strong> <a href="mailto:support@dimex.co.il">support@dimex.co.il</a><br />
+        <strong>Marketing:</strong> <a href="mailto:sales@dimex.co.il">sales@dimex.co.il</a>
+    </address>*@
+
+@*<div class="card-body">
+    <div class="form-group">
+        <label for="userInput">User:</label>
+        <input id="userInput" @bind="userInput" />
+    </div>*@
+<div class="row">
+    <div class="col">
+        <label class="control-label">User:</label>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col">
+        <input id="userInput" @bind="_userInput" />
+    </div>
+    @*<div class="col">
+        <button class="btn btn-outline-info" @onclick="LogUsername">Ok</button>
+    </div>*@
+</div>
+
+@*<div class="form-group">
+        <label for="messageInput">Message:</label>
+        <input id="messageInput" @bind="messageInput" />
+    </div>*@
+
+<hr />
+
+<div class="row">
+    <div class="col">
+        <label class="control-label">Message:</label>
+    </div>
+</div>
+<div class="row">
+    <div class="col">
+        <input id="messageInput" @bind="messageInput" />
+    </div>
+</div>
+
+<hr />
+
+<button class="btn btn-info" @onclick="Send" disabled="@(!IsConnected)">Send Message</button>
+<button class="btn btn-outline-info" @onclick="Clear">Clear</button>
+
+<hr />
+
+<ul id="messagesList">
+    @foreach (var message in _messages)
+    {
+        <li>@message</li>
+    }
+</ul>
+
+@code {
+    //[CascadingParameter]
+    //   private Task<AuthenticationState> authenticationStateTask { get; set; }
+
+    //   private async Task LogUsername()
+    //   {
+    //       var authState = await authenticationStateTask;
+    //       var user = authState.User;
+
+    //       if (user.Identity.IsAuthenticated)
+    //       {
+    //           Console.WriteLine($"{user.Identity.Name} is authenticated.");
+    //           _userInput  =user.Identity.Name;
+    //       }
+    //       else
+    //       {
+    //           Console.WriteLine("The user is NOT authenticated.");
+    //       }
+    //   }
+    //HubConnection hubConnection;
+    //List<string> messages = new List<string>();
+    //string userInput;
+    //string messageInput;
+
+    //protected override async Task OnInitializedAsync()
+    //{
+    //    hubConnection = new HubConnectionBuilder()
+    //        .WithUrl(NavigationManager.ToAbsoluteUri("/chatHub"))
+    //        .Build();
+
+    //    hubConnection.On<string, string>(SignalRHubFunction.ReceiveMessage, (user, message) => {
+    //        var encodedMsg = user + " says " + message;
+    //        messages.Add(encodedMsg);
+    //        StateHasChanged();
+    //    });
+
+    //    await hubConnection.StartAsync();
+    //}
+
+    //Task Send() => hubConnection.SendAsync(SignalRClientRunFunctionOnHub.SendMessage, userInput, messageInput);
+
+    //public bool IsConnected => hubConnection.State == HubConnectionState.Connected;
+}
+
+
+

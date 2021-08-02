@@ -1,0 +1,54 @@
+﻿@page "/SignalRTrace"
+@inherits SignalRTraceBase
+<h4>@LocalizationResources.Menu_Trace</h4>
+
+@*<div class="row">
+        <div class="col">
+            <label class="control-label">User: </label>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col">
+            <input id="userInput" @bind="userInput" />
+        </div>
+    </div>
+
+    <hr />
+
+    <div class="row">
+        <div class="col">
+            <label class="control-label">Message:</label>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <input id="messageInput" @bind="messageInput" />
+        </div>
+    </div>
+
+    <hr />*@
+
+@*<button @onclick="Send" disabled="@(!IsConnected)">Send Message</button>*@
+
+<hr />
+
+<button class="btn btn-outline-info" @onclick="Clear">Clear</button>
+<hr />
+
+@*<ul id="messagesList">
+    @foreach (var message in Messages)
+    {
+        <li>@message</li>
+    }
+</ul>*@
+
+<ul>
+    @for (int i = Messages.Count - 1; i >= 0; i--)
+    {
+        <li>@Messages[i]</li>
+    }
+</ul>
+
+
+

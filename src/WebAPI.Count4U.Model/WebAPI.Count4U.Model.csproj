@@ -1,0 +1,72 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+	  <RuntimeIdentifier>win-x64</RuntimeIdentifier>
+	  <!--<LangVersion>8.0</LangVersion>-->
+	  <!--<PublishSingleFile>true</PublishSingleFile>-->
+	  <!--<PublishReadyToRun>true</PublishReadyToRun>-->
+	  <GenerateDocumentationFile>true</GenerateDocumentationFile>
+	  <NoWarn>$(NoWarn);1591</NoWarn>
+	  <UserSecretsId>b1f0f5a2-c062-4b1d-9337-f52b2bd03890</UserSecretsId>
+	  <!--<IncludeOpenAPIAnalyzers>true</IncludeOpenAPIAnalyzers>-->
+  </PropertyGroup>
+
+  <ItemGroup>
+	  <PackageReference Include="Microsoft.AspNetCore.Hosting.WindowsServices" Version="3.1.9" />
+	  <PackageReference Include="Microsoft.AspNetCore.StaticFiles" Version="2.2.0" />
+	  <PackageReference Include="Microsoft.Bcl.AsyncInterfaces" Version="1.1.1" />
+	  <PackageReference Include="Microsoft.Extensions.Hosting" Version="3.1.9" />
+	  <PackageReference Include="Microsoft.NETCore.Targets" Version="3.1.0" />
+	  <PackageReference Include="Swashbuckle.AspNetCore" Version="5.6.3" />
+	  <PackageReference Include="Ben.BlockingDetector" Version="0.0.3" />
+	  <PackageReference Include="CoreX.Extensions.Http" Version="0.2.0" />
+	  <PackageReference Include="Microsoft.AspNetCore.SignalR.Client" Version="3.1.9" />
+	  
+	  <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="3.1.9" />
+	  <PackageReference Include="Microsoft.Extensions.Configuration" Version="3.1.9" />
+
+	  <PackageReference Include="Microsoft.Extensions.Hosting.Abstractions" Version="3.1.9" />
+    <PackageReference Include="Microsoft.Extensions.Http" Version="3.1.9" />
+    <PackageReference Include="MSTest.TestFramework" Version="2.1.1" />
+    <PackageReference Include="System.Text.Encoding.CodePages" Version="4.7.1" />
+    <PackageReference Include="System.Text.Encoding.Extensions" Version="4.3.0" />
+    <PackageReference Include="System.Text.Json" Version="4.7.2" />
+    <!--<PackageReference Include="Newtonsoft.Json" Version="12.0.3-beta1" />-->
+    <PackageReference Include="Unity" Version="5.11.1" />
+    <PackageReference Include="Unity.Abstractions" Version="5.11.1" />
+    <PackageReference Include="Unity.Container" Version="5.11.1" />
+    <PackageReference Include="Unity.Microsoft.DependencyInjection" Version="5.10.2" />
+    <PackageReference Include="Unity.ServiceLocation" Version="5.11.1" />
+	  <PackageReference Include="Microsoft.Extensions.Logging" Version="3.1.9" />
+	  <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="3.1.9" />
+	  <PackageReference Include="Microsoft.Extensions.Logging.Configuration" Version="3.1.9" />
+	  <PackageReference Include="Microsoft.Extensions.Logging.Console" Version="3.1.9" />
+	  <PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="3.1.9" />
+
+
+  </ItemGroup>
+
+  <ItemGroup>
+	  <ProjectReference Include="..\Count4U.Client.Shared\Count4U.Client.Shared.csproj" />
+	  <ProjectReference Include="..\Count4U.Model.Common\Count4U.Model.Common.csproj" />
+	  <ProjectReference Include="..\Count4U.Model.ExportImport\Count4U.Model.ExportImport.csproj" />
+	  <ProjectReference Include="..\Count4U.Service.Shared\Count4U.Service.Shared.csproj" />
+	  <ProjectReference Include="..\Monitor.Model.ServiceContract\Monitor.Model.ServiceContract.csproj" />
+	  <ProjectReference Include="..\Monitor.Service.Shared\Monitor.Service.Shared.csproj" />
+	  <!--<ProjectReference Include="..\Monitor.Service.Shared\Monitor.Service.Shared.csproj" />-->
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="install.bat">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="uninstall.bat">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Middleware\Db3Context\" />
+  </ItemGroup>
+</Project>

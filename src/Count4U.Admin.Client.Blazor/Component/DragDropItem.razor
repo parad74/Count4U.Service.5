@@ -1,0 +1,37 @@
+﻿@namespace Count4U.Client.Shared.Component
+@using Monitor.Service.Shared
+
+<div class="row" style="border: 0px solid @BorderColor; padding: 0">
+
+    @*<span class="ml-3 oi oi-sun"></span>*@
+    <div class="col-md-2"><h6> <span class="badge badge-secondary" style="background-color: darkgray;   color: black; margin-top: 10px; margin-left: 5px; margin-right:5px"> @Item.Value</span></h6></div>
+
+    @*<span class="badge badge-success"> @Item.Value</span>*@
+    @*<div class="col-md-2">
+            <button @onclick="@(()=> OnRemoveClick.InvokeAsync(Item))" style="width: 21px;
+            max-height: 21px;
+            align-content: center;
+            vertical-align: central;
+            border-color: white;
+            padding: 0px;
+            margin: 0;" class="btn btn-outline-dark btn-sm">
+                <span class="oi oi-circle-x" style="max-height: 10px; padding: 0; margin: 1px"></span>
+            </button>
+        </div>*@
+</div>
+
+
+@code { [Parameter]
+    public ValueItem Item { get; set; }
+
+    [Parameter]
+    public EventCallback<ValueItem> OnRemoveClick { get; set; }
+
+    public string BorderColor
+    {
+        get
+        {
+            if (Item.CanDrag) return "gold";
+            return "black";
+        }
+    } }

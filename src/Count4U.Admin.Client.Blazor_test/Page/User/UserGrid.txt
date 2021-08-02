@@ -1,0 +1,73 @@
+﻿@page "/LocationsGrid"
+@namespace Count4U.Service.Client.Page
+@inherits UserGridBase
+
+
+<AuthorizeView Policy="@UserPolicy.IsAdmin">
+</AuthorizeView>
+
+<AuthorizeView Policy="@UserPolicy.IsOwner">
+
+</AuthorizeView>
+
+<AuthorizeView Policy="@UserPolicy.IsUser">
+
+
+    <hr />
+    @if (_locations == null)
+    {
+        <p><em>Loading...</em></p>
+    }
+    else
+    {
+        <h2>No templates</h2>
+        <PagedDataList Data=@_locations>
+        </PagedDataList>
+
+
+      <hr />
+        <h2>ItemTemplate only</h2>
+        <PagedDataList Data=@_locations Prev="Prev111" Next="Nex!!!" ItemsPerPage="10">
+            <ItemTemplate Context="location">
+                @*<li @key=@location>
+                   @location.Code @location.Name, @location.BackgroundColor
+                </li>*@
+                <div @key=@location>
+                    <div class="row">
+                        <div class="col-2">@location.Code</div>
+                        <div class="col-6">@location.Name</div>
+                        <div class="col-4">@location.BackgroundColor</div>
+                    </div>
+               </div>
+            </ItemTemplate>
+        </PagedDataList>
+
+        <hr />
+
+        <h2>ListTemplate and ItemTemplate</h2>
+        <PagedDataList Data=@_locations>
+            <ListTemplate Context="listOfLocation">
+                <table border=1 cellpadding=4>
+                    <thead>
+                        <tr>
+                            <th>Code</th>
+                            <th>Name</th>
+                            <th>Color</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @listOfLocation
+                    </tbody>
+                </table>
+            </ListTemplate>
+            <ItemTemplate Context="location">
+                <tr @key=@location>
+                    <td>@location.Code</td>
+                    <td>@location.Name</td>
+                    <td>@location.BackgroundColor</td>
+                </tr>
+            </ItemTemplate>
+        </PagedDataList>
+    }
+
+</AuthorizeView>

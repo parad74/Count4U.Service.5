@@ -1,0 +1,25 @@
+﻿@inject Toolbelt.Blazor.I18nText.I18nText I18nText
+
+<div class="alert alert-secondary mt-4" role="alert">
+    <span class="oi oi-pencil mr-2" aria-hidden="true"></span>
+    <strong>@Title</strong>
+
+    <span class="text-nowrap">
+        @*Please take our*@
+        @Resource.Lable_SurveyPrompt.Format(SurveyUrl).AsMarkdownToHtml()
+        @*<a target="_blank" class="font-weight-bold" href="https://www.dimex.co.il/contact.aspx">https://www.dimex.co.il/contact</a>*@
+    </span>
+    and tell us what you think.
+</div>
+
+@code {
+    GetResources Resource = new GetResources();
+    readonly string SurveyUrl = "https://www.dimex.co.il/contact";
+    // Demonstrates how a parent component can supply parameters
+    [Parameter]
+    public string Title { get; set; }
+    protected override async Task OnInitializedAsync()
+    {
+        Resource = await I18nText.GetTextTableAsync<GetResources>(this);
+    }
+}

@@ -1,0 +1,10 @@
+﻿<publishData>
+   <publishProfile 
+   publishUrl="https://dimex99-001-site2.etempurl.com:8172/msdeploy.axd?site=dimex99-001-site2" 
+   msdeploySite="dimex99-001-site2" 
+   destinationAppUrl="http://dimex99-001-site2.etempurl.com/" 
+   profileName="Default Settings" 
+   publishMethod="MSDeploy" userName="ifc\dimex99-001" 
+   AllowUntrustedCertificate="True"
+   /> 
+</publishData>

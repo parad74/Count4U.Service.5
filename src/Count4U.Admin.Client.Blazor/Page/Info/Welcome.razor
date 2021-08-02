@@ -1,0 +1,58 @@
+﻿@page "/welcome"
+@inject IAuthorizationService AuthorizationService
+
+@inherits WelcomeBase
+
+<h3>COUNT4U.SERVICE</h3>
+
+Welcome to your new app.
+
+<SurveyPrompt Title="@Title1" />
+
+@*<Count4U.Service.Client.Component.Component1 />*@
+
+@*<AuthorizeView Policy="@UserPolicy.IsUser">
+        <p>You can only see this if you satisfy the IsUser policy.</p>
+    </AuthorizeView>
+
+    <AuthorizeView Policy="@UserPolicy.IsAdmin">
+        <p>You can only see this if you satisfy the IsAdmin policy.</p>
+    </AuthorizeView>*@
+
+@*<button @onclick="@DoSomething">Do something important</button>
+    @functions {
+        [CascadingParameter] Task<AuthenticationState> authenticationStateTask { get; set; }
+
+        async Task DoSomething()
+        {
+            var user = (await authenticationStateTask).User;
+
+            if (user.Identity.IsAuthenticated)
+            {
+                // Perform some action only available to authenticated (logged-in) users
+            }
+
+            if (user.IsInRole("admin"))
+            {
+                // Perform some action only available to users in the 'admin' role
+            }
+
+            if ((await AuthorizationService.AuthorizeAsync(user, "content-editor")).Succeeded)
+            {
+                // Perform some action only available to users satifying the 'content-editor' policy
+            }
+        }
+    }*@
+
+
+@*<environment include="Development">
+    <div>&lt;environment include="Development"&gt;</div>
+</environment>
+<environment exclude="Development">
+    <div>&lt;environment exclude="Development"&gt;</div>
+</environment>
+<environment include="Staging,Development,Staging_2">
+    <div>
+        &lt;environment include="Staging,Development,Staging_2"&gt;
+    </div>
+</environment>*@

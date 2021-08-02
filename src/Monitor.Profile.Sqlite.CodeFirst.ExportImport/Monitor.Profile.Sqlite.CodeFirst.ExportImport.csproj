@@ -1,0 +1,51 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+
+	<PropertyGroup>
+ 		<TargetFramework>net5.0</TargetFramework>
+		<GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+		<BlazorWebAssemblyEnableLinking>false</BlazorWebAssemblyEnableLinking>
+		<RootNamespace>Monitor.Sqlite.CodeFirst</RootNamespace>
+ 	</PropertyGroup>
+
+	
+	<ItemGroup>
+		<PackageReference Include="EntityFramework" Version="6.4.4" />
+		<PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="5.0.0" />
+		<PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="5.0.0" />
+		<PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="5.0.0">
+		  <PrivateAssets>all</PrivateAssets>
+		  <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+		</PackageReference>
+		<PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="5.0.0">
+		  <PrivateAssets>all</PrivateAssets>
+		  <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+		</PackageReference>
+		<PackageReference Include="Microsoft.Extensions.Logging" Version="5.0.0" />
+		<PackageReference Include="Microsoft.Windows.Compatibility" Version="5.0.0" />
+		<PackageReference Include="Unity" Version="5.11.1" />
+		<PackageReference Include="Unity.Abstractions" Version="5.11.1" />
+		<PackageReference Include="Unity.Container" Version="5.11.1" />
+		<PackageReference Include="Unity.Microsoft.DependencyInjection" Version="5.10.2" />
+		<PackageReference Include="Unity.ServiceLocation" Version="5.11.1" />
+
+	</ItemGroup>
+	<ItemGroup>
+		<ProjectReference Include="..\Count4U.Model.ServiceContract\Count4U.Model.ServiceContract.csproj" />
+		<ProjectReference Include="..\Service.Model.EF.SelectParam\Service.Model.EF.SelectParam.csproj" />
+		<ProjectReference Include="..\Monitor.Service.Shared\Monitor.Service.Shared.csproj" />
+	</ItemGroup>
+	<ItemGroup>
+			<Reference Include="Microsoft.Practices.Prism">
+		  <HintPath>..\Lib\Microsoft.Practices.Prism.dll</HintPath>
+		</Reference>
+		<Reference Include="Microsoft.Practices.Prism.UnityExtensions">
+			<HintPath>..\Lib\Microsoft.Practices.Prism.UnityExtensions.dll</HintPath>
+		</Reference>
+
+	</ItemGroup>
+
+
+</Project>
+
+

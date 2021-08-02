@@ -1,0 +1,98 @@
+﻿@page "/LoginComponent"
+@inherits LoginComponentBase
+
+
+@if (LocalizationResources == null)
+{
+    <p><em>Loading1...</em></p>
+}
+else if (_loginModel == null)
+{
+    <p><em>Loading2...</em></p>
+}
+else
+{
+
+    <div class="card" style="border:none">
+        <div class="card-body" style="border:none">
+            <h4>@LocalizationResources.Menu_Login</h4>
+            @*<h5 class="card-title">@LocalizationResources.Login_Please_enter_your_details</h5>*@
+        <EditForm Model="@_loginModel" OnValidSubmit="@LoginAsync">
+            <DataAnnotationsValidator />
+            <ValidationSummary />
+
+            <div class="form-group">
+                <label for="email">@LocalizationResources.Login_Email_address</label>
+                <InputText id="email" class="form-control" @bind-Value="@_loginModel.Email" direction="rtl" />
+                <ValidationMessage For="@(() => _loginModel.Email)" />
+            </div>
+            <div class="form-group">
+                <label for="password">@LocalizationResources.Login_Password</label>
+                <InputText id="password" class="form-control" @bind-Value="@_loginModel.Password" direction="rtl" />
+                <ValidationMessage For="@(() => _loginModel.Password)" />
+            </div>
+
+            <a href="/resetpassword">Forgot Password</a>
+            <p />
+
+            <div class="row">
+                <div class="col-6">
+                    <button type="submit" class="btn btn btn-success">@LocalizationResources.Login_Submit</button>
+                    <button class="btn btn-outline-success" @onclick="@NavigateToRegister">@LocalizationResources.Login_Register</button>
+                </div>
+                <div class="col-6">
+                    <div class="d-flex flex-row-reverse">
+                        @if (Ping == true)
+                        {
+                            <span class="badge badge-success">@StorageAuthenticationServer</span>
+                        }
+                        else
+                        {
+                            <span class="badge badge-secondary">@StorageAuthenticationServer</span>
+                            <i class="icon-spinner icon-spin icon-large"></i>
+                        }
+                    </div>
+                </div>
+            </div>
+
+
+            @if (this._loginResult != null)
+            {
+                @if (this._loginResult.Successful == SuccessfulEnum.NotSuccessful)
+                {
+                    <div class="alert alert-danger" role="alert">
+                        <p>@this._loginResult.Error</p>
+                    </div>
+                }
+            }
+        </EditForm>
+
+            <br />
+          
+            <div class="d-flex flex-row-reverse">
+                @if (Ping == false)
+                {
+                    @if (_urls2 == null)
+                    {
+                        @*<p><i class="icon-spinner icon-spin icon-large"></i></p>*@
+                    }
+                    else
+                    {
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <button class="btn btn-outline-secondary" type="button" @onclick="@AuthenticationServerSet">Set Authentication Service</button>
+                            </div>
+                            <select class="custom-select" id="select-urls2" @bind="@StorageAuthenticationServer">
+                                @foreach (var url in _urls2)
+                                {
+                                    <option value=@url>@url</option>
+                                }
+                            </select>
+                        </div>
+                    }
+                }
+            </div>
+        </div>
+    </div>
+
+}

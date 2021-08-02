@@ -1,0 +1,26 @@
+﻿@if (Show)
+{
+<div class="dialog-container">
+    <div class="dialog">
+        @ChildContent
+    </div>
+</div>}
+
+@code { [Parameter] public RenderFragment ChildContent { get; set; }
+    [Parameter] public bool Show { get; set; } }
+
+@*// how use
+    //https://github.com/dotnet-presentations/blazor-workshop/blob/master/docs/08-templated-components.md
+    <TemplatedDialog Show="OrderState.ShowingConfigureDialog">
+        <ConfigurePizzaDialog Pizza="OrderState.ConfiguringPizza"
+                              OnCancel="OrderState.CancelConfigurePizzaDialog"
+                              OnConfirm="OrderState.ConfirmConfigurePizzaDialog" />
+    </TemplatedDialog>*@
+
+  @*async Task RemovePizza(Pizza configuredPizza)
+    {
+        if (await JS.Confirm($"Remove {configuredPizza.Special.Name} pizza from the order?"))
+        {
+            OrderState.RemoveConfiguredPizza(configuredPizza);
+        }
+    }*@

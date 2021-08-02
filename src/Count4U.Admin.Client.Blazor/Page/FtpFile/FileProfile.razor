@@ -1,0 +1,467 @@
+﻿@page "/fileprofile"
+@using System.Xml.Serialization;
+@using Newtonsoft.Json;
+@using System.Dynamic;
+@using Newtonsoft.Json.Converters;
+
+@inject IJSRuntime jsRuntime
+
+@inherits FileProfileBase
+<h4>Profile [XML]</h4>
+<div class="col-2">
+    <button class="btn btn-outline-info" type="button" @onclick="@(() => XmlToObjectProfile(inTitle))">XmlToObjectProfile</button>
+</div>
+@*<p>@Configuration["message"]</p>*@
+
+@*<div>
+        <MonacoEditor @ref="_editor" Id="sample-code-editor-123" ConstructionOptions="EditorConstructionOptions" OnDidInit="EditorOnDidInit" OnContextMenu="OnContextMenu" />
+    </div>*@
+
+<div class="col-auto">
+    @*<button class="btn btn-outline-info" type="button" @onclick="@(() => OnButtonClick("myInput"))" disabled="@(!Ping)">Select Files</button>*@
+    <InputFile OnChange="OnInputFileChange" id="input-file" class="btn btn-outline-success  btn-sm" />
+</div>
+
+<br />
+<div>
+    <span id="exception-message">@exceptionMessage</span>
+</div>
+
+
+@if (isLoading)
+{
+    <p>Loading...</p>
+    <br />
+}
+else
+{
+    <div @ref="refXml">Text during render</div>
+    <button class="btn btn-outline-info" type="button" @onclick="@(() => InitObjectAsync())">Init</button>
+
+    <EditForm Model="@_customerObject" OnValidSubmit="SaveObjectAsync">
+        <DataAnnotationsValidator />
+        <ValidationSummary />
+
+        <div class="form-group row">
+            <label class="control-label col-md-2">Customer Code</label>
+            <label class="control-label col-md-4">@_customerObject.code </label>
+        </div>
+
+        <div class="form-group row">
+            <label class="control-label col-md-2">Customer Name</label>
+            <div class="col-md-10">
+                <input class="form-control" @bind="_customerObject.name" />
+            </div>
+        </div>
+
+
+
+        @*<div class="form-group row">
+                <label class="control-label col-md-2">Branch Code</label>
+                <label class="control-label col-md-10">@_profileJsonObject.InventoryProcessInformation.Branch.Code</label>
+            </div>
+            <div class="form-group row">
+                <label class="control-label col-md-2">Branch Name</label>
+                <div class="col-md-10">
+                    <input class="form-control" @bind="_profileJsonObject.InventoryProcessInformation.Branch.Name" />
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label class="control-label col-md-2">Inventor Code</label>
+                <label class="control-label col-md-10">@_profileJsonObject.InventoryProcessInformation.Inventory.Code</label>
+            </div>
+            <div class="form-group row">
+                <label class="control-label col-md-2">Inventor Date</label>
+                <label class="control-label col-md-10">@_profileJsonObject.InventoryProcessInformation.Inventory.CreatedDate</label>
+            </div>*@
+
+
+        <div class="form-group">
+            <button type="submit" class="btn btn-outline-success  btn-sm">Save</button>
+            @*<button class="btn btn-light" @onclick="Cancel">Cancel</button>*@
+        </div>
+    </EditForm>
+
+    @foreach (var (file, content) in loadedFiles)
+    {
+        <p id="file-@(file.Name)">
+            @*<strong>Name:</strong> <span id="file-name">@(file.Name)</span><br />*@
+            @*<strong>Last modified:</strong> <span id="file-last-modified">@(file.LastModified.ToString())</span><br />
+                <strong>Size (bytes):</strong> <span id="file-size">@(file.Size)</span><br />
+                <strong>Content type:</strong> <span id="file-content-type">@(file.ContentType)</span><br />*@
+            @*<span id="file-content">@content</span><br />*@
+            <br />
+            @*@ValueToSet=@content;*@
+            @*@SetTextValue(content);*@
+
+            @*<MonacoEditor @ref="_editor" Id="sample-code-editor-123" ConstructionOptions="EditorConstructionOptions" @bind-Value="@content" />*@
+            <div class="col-12">
+                <MonacoEditorXml @ref="_xmlEditor" Id="monacoEditorXml" Value="@content" CssClass="editor" />
+            </div>
+            <div class=row>
+                <div class="col-2">
+                    <button class="btn btn-outline-info" type="button" @onclick="@(() => XmlToObjectProfileViaJosn(content))">To Object Via Josn</button>
+                </div>
+                <div class="col-2">
+                    <button class="btn btn-outline-info" type="button" @onclick="@(() => XmlToObjectProfile(content))">To Object via Xml</button>
+                </div>
+
+                <div class="col-2">
+                    <button class="btn btn-outline-info" type="button" @onclick="@(() => OnButtonClick(content))">To Josn</button>
+                </div>
+
+                <div class="col-2">
+                    <button class="btn btn-outline-info" type="button" @onclick="@(() => RootToXml(content))">Root To Xml</button>
+                </div>
+
+                <div class="col-2">
+                    <button class="btn btn-outline-danger" type="button" @onclick="@(() => OnClearButtonClick())">Clear Josn</button>
+                </div>
+            </div>
+            <div class="col-12">
+                <MonacoEditorJosn @ref="_josnEditor" Id="monacoEditorJosn" Value="@_josnText" CssClass="editor" />
+            </div>
+
+            <div class="editorContent">
+                <MonacoDiffEditorXml @ref="_xmlDiffEditor"
+                                     Id="monacoDiffEditorXml"
+                                     OriginalValue="@content"
+                                     ModifiedValue="@outTitle"
+                                     CssClass="editor" />
+            </div>
+        </p>
+        <br />
+
+    }
+}
+
+
+@code {
+    private ElementReference refXml;
+
+    private MonacoEditorXml _xmlEditor { get; set; }
+    private MonacoEditorJosn _josnEditor { get; set; }
+    private MonacoDiffEditorXml _xmlDiffEditor { get; set; }
+    System.Xml.XmlDocument xmlDocument = new System.Xml.XmlDocument();
+    private string _josnText { get; set; }
+
+    private Count4U.Service.Format.Json.Profile myDeserializedClass { get; set; }
+
+    Dictionary<IBrowserFile, string> loadedFiles = new Dictionary<IBrowserFile, string>();
+
+    bool isLoading;
+    long maxFileSize = 105000;
+    int maxAllowedFiles = 1;
+    string exceptionMessage;
+
+    IList<string> imageDataUrls = new List<string>();
+
+    async Task OnInputFileChange(InputFileChangeEventArgs e)
+    {
+        //   var imageFiles = e.GetMultipleFiles();
+        isLoading = true;
+        loadedFiles.Clear();
+        exceptionMessage = string.Empty;
+
+        try
+        {
+            foreach (var file in e.GetMultipleFiles(maxAllowedFiles))
+            {
+                Console.WriteLine("file.Name : " + file.Name);
+                StateHasChanged();
+
+                using var reader = new StreamReader(file.OpenReadStream(maxFileSize));
+
+                loadedFiles.Add(file, await reader.ReadToEndAsync());
+            }
+        }
+        catch (Exception ex)
+        {
+            exceptionMessage = ex.Message;
+        }
+
+        isLoading = false;
+    }
+
+    private string XmlToJosn(string xmlText)
+    {
+        string jsonText = "";
+        Console.WriteLine("XmlToJosn [" + xmlText.Length + "]");
+        try
+        {
+            xmlDocument.LoadXml(xmlText);
+            Console.WriteLine("XmlToJosn 2");
+            jsonText = Newtonsoft.Json.JsonConvert.SerializeXmlNode(xmlDocument);
+            Console.WriteLine("XmlToJosn 3");
+            Console.WriteLine(jsonText);
+        }
+        catch (Exception exp) { Console.WriteLine("XmlToJosn Exception [" + exp.Message + exp.InnerException + exp.StackTrace + "]"); };
+        return jsonText;
+    }
+
+    private void XmlToObjectProfileViaJosn(string xmlText)
+    {
+        Console.WriteLine("XmlToObjectProfileViaJosn [" + xmlText.Length + "]");
+
+        try
+        {
+            string jsonText = XmlToJosn(xmlText);
+            myDeserializedClass = Newtonsoft.Json.JsonConvert.DeserializeObject<Count4U.Service.Format.Json.Profile>(jsonText);
+
+            Console.WriteLine(myDeserializedClass);
+            //Console.WriteLine("xml :" + myDeserializedClass.Xml);
+            Console.WriteLine("Customer1 :" + myDeserializedClass.InventoryProcessInformation.Customer.code + myDeserializedClass.InventoryProcessInformation.Customer.name);
+       //     Console.WriteLine("Customer :" + myDeserializedClass.Customer.code + myDeserializedClass.Customer.name);
+        }
+        catch (Exception exp) { Console.WriteLine("XmlToObjectProfileViaJosn Exception [" + exp.Message + "]"); };
+        return;
+    }
+
+    private void RootToXml(string xmlText)
+    {
+        string ret = "";
+        string jsonText = XmlToJosn(xmlText);
+        myDeserializedClass = Newtonsoft.Json.JsonConvert.DeserializeObject<Count4U.Service.Format.Json.Profile>(jsonText);
+
+        Console.WriteLine(myDeserializedClass);
+
+        XmlSerializer xmlSerializer = new XmlSerializer(typeof(Count4U.Service.Format.Json.Profile));
+        using (StringWriter textWriter = new StringWriter())
+        {
+            xmlSerializer.Serialize(textWriter, myDeserializedClass);
+            ret = textWriter.ToString();
+            Console.WriteLine("RootToXml 1");
+            Console.WriteLine(ret);
+        }
+        //return ret;
+    }
+
+    private Count4U.Service.Format.Json.Profile testobject { get; set; }
+    private string XmlToObjectProfile(string xmlText)
+    {
+        outTitle = "";
+        Console.WriteLine("XmlToObjectProfile [" + xmlText.Length + "]");
+        try
+        {
+            Console.WriteLine("DeSerialize Object  11");
+            XmlSerializer serializer = new XmlSerializer(typeof(Count4U.Service.Format.Json.Profile));
+            Console.WriteLine("DeSerialize Object  12");
+            using (StringReader reader = new StringReader(xmlText))
+            {
+                Console.WriteLine("DeSerialize Object  13");
+                testobject = (Count4U.Service.Format.Json.Profile)serializer.Deserialize(reader);
+                Console.WriteLine("DeSerialize Object  14");
+                Console.WriteLine(testobject);
+                Console.WriteLine("DeSerialize Object  1");
+                //Console.WriteLine("Inventorylistdefaultuiconfiguration :" + testobject.ShowInventoryImageIndicator.ToString());
+
+            }
+
+            using (StringWriter textWriter = new StringWriter())
+            {
+                serializer.Serialize(textWriter, testobject);
+                outTitle = textWriter.ToString();
+                Console.WriteLine("Serialize Object  2");
+                Console.WriteLine(outTitle);
+            }
+        }
+        catch (Exception exp) { Console.WriteLine("XmlToObjectProfile Exception [" + exp.Message + "]"); };
+        return outTitle;
+    }
+
+
+    public void OnButtonClick(string xmlText)
+    {
+        _josnText = XmlToJosn(xmlText);
+        StateHasChanged();
+    }
+
+
+    public void OnClearButtonClick()
+    {
+        _josnText = "";
+        StateHasChanged();
+    }
+
+    //  private MonacoEditor _editor { get; set; }
+    //  private string ValueToSet { get; set; }
+    //  private string _textInEditor { get; set; }
+
+    //private StandaloneEditorConstructionOptions EditorConstructionOptions(MonacoEditor editor)
+    //{
+    //    return new StandaloneEditorConstructionOptions
+    //    {
+    //        Language = "xml",
+    //        GlyphMargin = true,
+    //        Value = ValueToSet
+    //        //            Value = @"<?xml version='1.0'?> < doc >
+    //        //< assembly >
+    //        //< name > ErikEJ.SqlCe40 </ name >
+    //        //</ assembly >
+    //        //< members >
+    //        //< member name = 'P:ErikEJ.SqlCeScripting.Generator.GeneratedScript' >
+    //        //< summary >
+    //        //Gets the generated script.
+    //        //</ summary >
+    //        //< value > The generated script.</ value >
+    //        //</ member >
+    //        //</ members >
+    //        //</ doc >
+    //        //"
+    //    };
+    //}
+
+    //private async Task EditorOnDidInit(MonacoEditorBase editor)
+    //{
+    //    await _editor.AddCommand((int)KeyMode.CtrlCmd | (int)KeyCode.KEY_H, (editor, keyCode) =>
+    //    {
+    //        Console.WriteLine("Ctrl+H : Initial editor command is triggered.");
+    //    });
+
+    //    var newDecorations = new ModelDeltaDecoration[]
+    //    {
+    //        new ModelDeltaDecoration
+    //        {
+    //            Range = new BlazorMonaco.Bridge.Range(3,1,3,1),
+    //            Options = new ModelDecorationOptions
+    //            {
+    //                IsWholeLine = true,
+    //                ClassName = "decorationContentClass",
+    //                GlyphMarginClassName = "decorationGlyphMarginClass"
+    //            }
+    //        }
+    //            };
+
+    //    decorationIds = await _editor.DeltaDecorations(null, newDecorations);
+    //    // You can now use 'decorationIds' to change or remove the decorations
+    //}
+
+    //private string[] decorationIds;
+
+    //private void OnContextMenu(EditorMouseEvent eventArg)
+    //{
+    //    Console.WriteLine("OnContextMenu : " + System.Text.Json.JsonSerializer.Serialize(eventArg));
+    //}
+
+    //private async Task ChangeTheme(ChangeEventArgs e)
+    //{
+    //    Console.WriteLine($"setting theme to: {e.Value.ToString()}");
+    //    await MonacoEditor.SetTheme(e.Value.ToString());
+    //}
+
+    //private async Task SetValue()
+    //{
+    //    Console.WriteLine($"setting value to: {ValueToSet}");
+    //    await _editor.SetValue(ValueToSet);
+    //}
+
+    //private async Task SetTextValue(string text)
+    //{
+    //    Console.WriteLine($"Set Text Value:");
+    //    await _editor.SetValue(text);
+    //}
+
+    //private async Task GetValue()
+    //{
+    //    var val = await _editor.GetValue();
+    //    Console.WriteLine($"value is: {val}");
+    //}
+
+    //private async Task AddCommand()
+    //{
+    //    await _editor.AddCommand((int)KeyMode.CtrlCmd | (int)KeyCode.Enter, (editor, keyCode) =>
+    //    {
+    //        Console.WriteLine("Ctrl+Enter : Editor command is triggered.");
+    //    });
+    //}
+
+    //private async Task AddAction()
+    //{
+    //    await _editor.AddAction("testAction", "Test Action", new int[] { (int)KeyMode.CtrlCmd | (int)KeyCode.KEY_D, (int)KeyMode.CtrlCmd | (int)KeyCode.KEY_B }, null, null, "navigation", 1.5, (editor, keyCodes) =>
+    //    {
+    //        Console.WriteLine("Ctrl+D : Editor action is triggered.");
+    //    });
+    //}
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        Console.Write(inTitle);
+        Console.WriteLine();
+        if (firstRender)
+        {
+            //	outTitle = await jsRuntime.InvokeAsync<string>("BlazorUniversity.profileModel", inTitle);
+            var josnObject = await jsRuntime.InvokeAsync<object>("BlazorUniversity.setDataJsObjectFromXml", inTitle);
+
+            //System.Text.Json.JsonElement customer = await jsRuntime.InvokeAsync<System.Text.Json.JsonElement>("BlazorUniversity.findInProfile0", "Customer");
+            //dynamic config = JsonConvert.DeserializeObject<ExpandoObject>(customer.ToString(), new ExpandoObjectConverter());
+            //_customerObject.Name = config._attributes.name;
+            //_customerObject.Code = config._attributes.code;
+        }
+    }
+
+    public async Task InitObjectAsync()
+    {
+        //!! Convertor https://www.jerriepelser.com/blog/deserialize-different-json-object-same-class/
+        //!! Queue https://www.jerriepelser.com/blog/communicate-status-background-job-signalr/
+        System.Text.Json.JsonElement customer = await jsRuntime.InvokeAsync<System.Text.Json.JsonElement>("BlazorUniversity.findInProfile0", "Customer");
+        System.Text.Json.JsonElement profile = await jsRuntime.InvokeAsync<System.Text.Json.JsonElement>("BlazorUniversity.findProfile");
+
+
+        dynamic config = JsonConvert.DeserializeObject<ExpandoObject>(customer.ToString(), new ExpandoObjectConverter());
+        _customerObject.name = config._attributes.name;
+        _customerObject.code = config._attributes.code;
+        try
+        {
+            string configString = JsonConvert.SerializeObject(config, new ExpandoObjectConverter());
+            outTitle = configString;
+            Console.WriteLine("outTitle :" + outTitle);
+        }
+        catch (Exception exp) { Console.WriteLine("Error outTitle :" + exp.Message); }
+
+        //{ "Customer":[{ "_attributes":{ "name":"NextLine","code":"900"} }],"Branch":[{ "_attributes":{ "name":"","code":"900-002"} }],"Inventory":[{ "_attributes":{ "code":"634584ed-9a1d-4aa6-91b1-76cbc5981981","created_date":"2020/1/23"} }]}
+
+        try
+        {
+            Console.WriteLine("Profile :" + profile);
+            dynamic configProfile = JsonConvert.DeserializeObject<ExpandoObject>(profile.ToString(), new ExpandoObjectConverter());
+            IDictionary<string, object> dictionary_object = (IDictionary<string, object>)configProfile;
+
+            //            Profile: { "InventoryProcessInformation":[{ "Customer":[{ "_attributes":{ "name":"NextLine","code":"900"} }],"Branch":[{ "_attributes":{ "name":"","code":"900-002"} }],"Inventory":[{ "_attributes":{ "code":"634584ed-9a1d-4aa6-91b1-76cbc5981981","created_date":"2020/1/23"} }]}],
+            //"BarcodeManipulations":[{ }],
+            //"Version":[{ "_text":[" 1 "]}],
+            //"Customer":[{ "_attributes":{ "name":"NextLine1","code":"9001"} }]}
+
+            Console.WriteLine("configProfile :" + configProfile);
+            Console.WriteLine(@"configProfile.Customer.attributes.name :" + configProfile.Customer[0]._attributes.name);
+            Console.WriteLine(@"configProfile.Customer.attributes.code :" + configProfile.Customer[0]._attributes.code);
+            Console.WriteLine(@"configProfile.Version.text :" + configProfile.Version[0]._text[0]);
+            Console.WriteLine(@"configProfile.ScannerType.text :" + configProfile.ScannerType[0]._text[0]);
+            Console.WriteLine(@"configProfile.AddNewInventoryEnabled :" + configProfile.LocationInventoryListScreenConfiguration[0].AddNewInventoryEnabled[0]._text[0]);
+            Console.WriteLine(@"configProfile.TemplateInventoriesEnabled :" + configProfile.LocationInventoryListScreenConfiguration[0].TemplateInventoriesEnabled[0]._text[0]);
+            Console.WriteLine(@"configProfile.SignatureToVerifyClosureOfLocationRequired :" + configProfile.LocationInventoryListScreenConfiguration[0].SignatureToVerifyClosureOfLocationRequired[0]._text[0]);
+
+            // LocationInventoryListScreenConfiguration
+            string configProfileString = JsonConvert.SerializeObject(config, new ExpandoObjectConverter());
+            outTitle = configProfileString;
+            Console.WriteLine("outTitle configProfileString:" + configProfileString);
+        }
+        catch (Exception exp) { Console.WriteLine("Error outTitle :" + exp.Message); }
+    }
+
+    public async Task SaveObjectAsync()
+    {
+        await jsRuntime.InvokeVoidAsync("BlazorUniversity.updateCustomer", new object[] { refXml, _customerObject.name, _customerObject.code });
+    }
+
+}
+
+@*public ExpandoObject CreateDynamicCustomer(string Name)
+    {
+      dynamic cust = new ExpandoObject();
+      cust.FullName = Name;
+      cust.ChangeName = (Action<string>)((string newName) =>
+                {
+                    cust.FullName = newName;
+                });
+      return cust;
+    }*@

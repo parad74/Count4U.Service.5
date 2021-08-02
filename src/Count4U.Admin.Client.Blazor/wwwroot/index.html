@@ -1,0 +1,66 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>COUNT4U.ADMIN</title>
+    <base href="/" />
+    <link href="css/bootstrap/bootstrap.min.css" rel="stylesheet" />
+    <link href="css/site.css" rel="stylesheet" />
+    <link href="css/monacoeditorapp.css" rel="stylesheet" />
+    <link href="css/profile.css" rel="stylesheet" />
+    <link href="css/dragdrop.css" rel="stylesheet" />
+    <link href="css/wait-styles.css" rel="stylesheet" />
+
+    <link href="lib/monaco-editor/min/vs/editor/editor.main.css" rel="stylesheet" />
+    <!--<link href="Count4U.Admin.Client.Blazor.styles.css" rel="stylesheet" />-->
+    <link rel="shortcut icon" href="favicon/1/favicon.ico">
+    <style>
+
+        #loading-bar .bar {
+            background: aliceblue;
+            height: 3px !important;
+        }
+
+        #loading-bar .peg {
+            background: aliceblue;
+            height: 3px !important;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+
+        <div class="sk-cube-grid">
+            <div class="sk-cube sk-cube1"></div>
+            <div class="sk-cube sk-cube2"></div>
+            <div class="sk-cube sk-cube3"></div>
+            <div class="sk-cube sk-cube4"></div>
+            <div class="sk-cube sk-cube5"></div>
+            <div class="sk-cube sk-cube6"></div>
+            <div class="sk-cube sk-cube7"></div>
+            <div class="sk-cube sk-cube8"></div>
+            <div class="sk-cube sk-cube9"></div>
+        </div>
+    </div>
+    <div id="blazor-error-ui">
+        An unhandled error has occurred.
+        <a href="" class="reload">Reload</a>
+        <a class="dismiss">🗙</a>
+    </div>
+
+    <script src="lib/monaco-editor/min/vs/loader.js"></script>
+    <script>require.config({ paths: { 'vs': 'lib/monaco-editor/min/vs' } });</script>
+    <script src="lib/monaco-editor/min/vs/editor/editor.main.js"></script>
+    <script src="jsInterop.js"></script>
+    <script src="xml-js/sax.js"></script>
+    <script src="xml-js/xml-js.js"></script>
+    <script src="angular/angular.js"></script>
+    <script src="xml-js/profileModel.js"></script>
+    <script src="_framework/blazor.webassembly.js"></script>
+
+</body>
+</html>
+
+<!--<link rel="shortcut icon" href="favicon.ico">
+<link rel="icon" type="image/gif" href="animated_favicon1.gif">-->

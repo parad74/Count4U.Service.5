@@ -1,0 +1,78 @@
+@namespace Count4U.Client.Shared.Component
+<AuthorizeView>
+    <Authorized>
+
+        @if (ViewModel == null)
+        {
+            <p><em>Loading...</em></p>
+        }
+        else
+        {
+            <div class="row">
+                <div class="col">
+                    <label class="control-label"><strong>Data Server Address</strong></label>
+                </div>
+                <div class="col">
+                    <label class="control-label">@ViewModel.DataServerAddress</label>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col">
+                    <label class="control-label"><strong>Process</strong></label>
+                </div>
+                <div class="col">
+                    <label class="control-label">@ViewModel.AccessKey</label>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col">
+                    <label class="control-label"><strong>Customer</strong></label>
+                </div>
+                <div class="col">
+                    <label class="control-label">@ViewModel.CustomerCode</label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <label class="control-label"><strong>Branch</strong></label>
+                </div>
+                <div class="col">
+                    <label class="control-label">@ViewModel.BranchCode</label>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col">
+                    <label class="control-label"><strong>Inventor</strong></label>
+                </div>
+                <div class="col">
+                    <label class="control-label">@ViewModel.InventorCode</label>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col">
+                    <label class="control-label"><strong>DB Path</strong></label>
+                </div>
+                <div class="col">
+                    <label class="control-label">@ViewModel.DBPath</label>
+                </div>
+            </div>
+        }
+
+
+    </Authorized>
+    <Authorizing>
+    </Authorizing>
+    <NotAuthorized>
+    </NotAuthorized>
+</AuthorizeView>
+
+@code{
+
+    [Parameter]
+    public IProfileModel ViewModel { get; set; }
+      
+}

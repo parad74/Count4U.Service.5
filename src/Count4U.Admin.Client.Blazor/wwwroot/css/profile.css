@@ -1,0 +1,44 @@
+
+/*.radio-group-profile {
+	border: 1px solid #2fe06a;
+	display: inline-block;
+	border-radius: 4px;
+	width: auto;
+}
+
+	.radio-group-profile input[type=radio] {
+		position: absolute;
+		visibility: hidden;
+		display: none;
+	}*/
+
+/*	.radio-group-profile label {
+		font-family: 'Roboto', sans-serif;
+		display: inline-block;
+		cursor: pointer;
+		font-weight: normal;
+		padding: 5px 30px;
+		margin: 0;
+		float: left;
+		line-height: 20px;
+		font-size: 14px;
+	}*/
+
+	/*	.radio-group-profile input[type=radio]:checked {
+			background: #2fe06a;
+			color: #FFFFFF;
+			font-weight: bold;
+		}
+
+	.radio-group-profile input[type=radio] {
+		background: #FFFFFF;
+		color: #2fe06a;
+	}*/
+
+
+
+/*	.radio-group-profile:hover {
+		border: 1px solid #2fe06a;
+	}*/
+
+	

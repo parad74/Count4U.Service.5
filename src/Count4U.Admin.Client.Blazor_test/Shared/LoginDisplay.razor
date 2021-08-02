@@ -1,0 +1,22 @@
+<CascadingAuthenticationState>
+    <AuthorizeView>
+        <Authorized>
+            @context.User.Identity.Name
+            <span style="padding: 0px 20px;">&nbsp;</span>
+            <a href="Profile">@LocalizationResources.Menu_Profile</a>
+            <a href="LogOut">@LocalizationResources.Menu_Logout</a>
+        </Authorized>
+        <Authorizing>
+            Wait...
+        </Authorizing>
+        <NotAuthorized>
+            <a href="Register">@LocalizationResources.Menu_Register</a>
+            <a href="">@LocalizationResources.Menu_Login</a>
+        </NotAuthorized>
+    </AuthorizeView>
+</CascadingAuthenticationState>
+
+@code {
+    [Parameter]
+    public GetResources LocalizationResources { get; set; }
+}

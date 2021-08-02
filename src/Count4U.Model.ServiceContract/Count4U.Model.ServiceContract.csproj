@@ -1,0 +1,45 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Razor">
+
+	<PropertyGroup>
+		<TargetFramework>net5.0</TargetFramework>
+		<OutputType>Library</OutputType>
+		<BlazorWebAssemblyEnableLinking>false</BlazorWebAssemblyEnableLinking>
+		<AnalysisLevel>5.0</AnalysisLevel>
+	</PropertyGroup>
+	
+	<ItemGroup>
+	<PackageReference Include="Microsoft.AspNetCore.Components" Version="5.0.0" />
+	<PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="5.0.0" />
+	</ItemGroup>
+	
+	<ItemGroup>
+		<ProjectReference Include="..\Count4U.Model.Common\Count4U.Model.Common.csproj" />
+		<ProjectReference Include="..\Count4U.Service.Common\Count4U.Service.Common.csproj" />
+		<ProjectReference Include="..\Monitor.Service.Shared\Monitor.Service.Shared.csproj" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<Folder Include="Audit\StatusAuditConfig\" />
+		<Folder Include="Audit\StatusInventor\" />
+		<Folder Include="Count4Mobile\PropertyDecorator\" />
+		<Folder Include="Count4U\AlterTable\" />
+		<Folder Include="Count4U\Barcode\" />
+		<Folder Include="Count4U\BitStatus\" />
+		<Folder Include="Count4U\CatalogConfig\" />
+		<Folder Include="Count4U\Device\" />
+		<Folder Include="Count4U\InputType\" />
+		<Folder Include="Count4U\Log\" />
+		<Folder Include="Count4U\Utils\" />
+		<Folder Include="Count4U\Report\" />
+		<Folder Include="Count4U\ResulteValue\" />
+		<Folder Include="Count4U\Section\" />
+		<Folder Include="Count4U\StatusDocHeader\" />
+		<Folder Include="Count4U\StatusInventorConfig\" />
+		<Folder Include="Count4U\StatusInventProduct\" />
+		<Folder Include="Count4U\StatusIturGroup\" />
+		<Folder Include="Count4U\StatusItur\" />
+		<Folder Include="Count4U\Type\" />
+		<Folder Include="Constant\" />
+		<Folder Include="SelectionParams\" />
+	</ItemGroup>
+</Project>

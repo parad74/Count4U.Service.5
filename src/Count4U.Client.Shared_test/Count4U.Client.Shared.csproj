@@ -1,0 +1,68 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+    <OutputType>Library</OutputType>
+	  <!--<BlazorWebAssemblyEnableLinking>false</BlazorWebAssemblyEnableLinking>-->
+     <RazorLangVersion>3.0</RazorLangVersion>
+  </PropertyGroup>
+
+	<PropertyGroup>
+		<AssemblyName>Count4U.Client.Shared</AssemblyName>
+		<RootNamespace>Count4U.Client.Shared</RootNamespace>
+		<ApplicationIcon />
+		<StartupObject />
+	</PropertyGroup>
+
+	<ItemGroup>
+	  <Compile Remove="bin\**" />
+	  <Content Remove="bin\**" />
+	  <EmbeddedResource Remove="bin\**" />
+	  <None Remove="bin\**" />
+	</ItemGroup>
+
+	<!--PrivateAssets="all"-->
+	<ItemGroup>
+	  <!--<PackageReference Include="Blazored.LocalStorage" Version="3.0.0" />
+    <PackageReference Include="Blazored.SessionStorage" Version="1.0.12" />-->
+    <!--<PackageReference Include="MailKit" Version="2.7.0" />-->
+		<PackageReference Include="Microsoft.AspNetCore.SignalR.Client" Version="5.0.0" />
+		<!--<PackageReference Include="Microsoft.AspNetCore.Blazor.HttpClient" Version="3.2.0-preview3.20168.3" />-->
+		<PackageReference Include="System.Net.Http.Json" Version="5.0.0" />
+		<PackageReference Include="System.Text.Encoding.CodePages" Version="5.0.0" />
+		<PackageReference Include="System.Text.Encoding.Extensions" Version="4.3.0" />
+		<PackageReference Include="System.Text.Json" Version="5.0.0" />
+
+		<PackageReference Include="Microsoft.AspNetCore.Components" Version="5.0.0" />
+	  <PackageReference Include="Microsoft.AspNetCore.Components.Authorization" Version="5.0.0" />
+	  <!--<PackageReference Include="Microsoft.AspNetCore.Components.Browser" Version="3.0.0-preview7.19365.7" />-->
+	  <PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="5.0.0" />
+	  <PackageReference Include="Microsoft.AspNetCore.Http.Abstractions" Version="2.2.0" />
+	  <!--<PackageReference Include="Microsoft.AspNetCore.Mvc.Core" Version="2.2.5" />-->
+	  <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="5.0.0" />
+
+
+  </ItemGroup>
+
+  <ItemGroup>
+	  <ProjectReference Include="..\Count4U.Service.Common\Count4U.Service.Common.csproj" />
+	  <ProjectReference Include="..\Count4U.Service.Shared\Count4U.Service.Shared.csproj" />
+	  <ProjectReference Include="..\Monitor.Service.Shared\Monitor.Service.Shared.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Component\" />
+    <Folder Include="Properties\" />
+    <Folder Include="Service\FileIO\" />
+    <Folder Include="wwwroot\" />
+  </ItemGroup>
+
+	<!-- Note: this is not necessary since preview 6, since the framework now has a built-in mechanism for obtaining static content from referenced packages/projects. -->
+	<Target Name="CopyStaticAssets" BeforeTargets="CoreCompile">
+		<ItemGroup>
+			<_FilesToCopy Include="..\Count4U.Service.Core.Server\wwwroot\**" />
+		</ItemGroup>
+		<Copy SourceFiles="@(_FilesToCopy)" DestinationFolder="wwwroot\%(RecursiveDir)" />
+	</Target>
+	
+</Project>

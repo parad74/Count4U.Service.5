@@ -1,0 +1,104 @@
+﻿@page "/branchprofile"
+@namespace Count4U.Admin.Client.Page
+@using Monitor.Service.Shared
+@inherits BranchProfileBase
+<h3>BranchProfile</h3>
+
+<style type="text/css">
+    .fieldflexList {
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-start;
+    }
+</style>
+
+
+
+<div class="bg-success">You can set an item limit on a dropzone.</div>
+
+<hr />
+
+<div class="bg-light">First Dropzone:</div>
+
+@*<Dropzone Items="MyFirstList" MaxItems="2" TItem="ValueItem">
+        <div class="mt-2" style="border: 2px solid blue">
+            @context.Value
+        </div>
+    </Dropzone>*@
+@*<Dropzone CopyItem="(item)=> { return new TodoItem() {Titel = item.Titel}; }" Items="MyThirdList" TItem="TodoItem" OnItemDrop="@((i)=>lastdropped = i)">
+        <div style="border: 2px solid black">
+            @context.Titel
+        </div>
+    </Dropzone>*@
+
+<Dropzone CopyItem="(item)=> { return new ValueItem() { Key = item.Key, Value = item.Value, CanDrag = true };  }"
+          Items="MyFirstList" Context="list1" MaxItems="1" TItem="ValueItem"
+          OnItemDrop="@((i)=>lastRejected = i)"
+          AllowsDrag='(d)=>d.CanDrag == true' InstantReplace="true">
+    <DragDropItem Item="@list1" @key=@list1 OnRemoveClick="(item)=>MyFirstList.Remove(item)"></DragDropItem>
+</Dropzone>
+
+<hr />
+
+<div class="bg-light">Second Dropzone: (max items 1)</div>
+
+
+
+<Dropzone CopyItem="(item)=> { return new ValueItem() {Key = item.Key, Value = item.Value,  CanDrag = true  }; }"
+          Items="MySecondList"
+          MaxItems="1"
+          TItem="ValueItem"
+          Context="list2"
+          OnItemDrop="@((i)=>lastRejected = i)"
+          AllowsDrag='(d)=>d.CanDrag == true'
+          InstantReplace="true">
+    <DragDropItem Item="@list2" OnRemoveClick="(item)=>MySecondList.Remove(item)"></DragDropItem>
+</Dropzone>
+@*<Dropzone Items="MySecondList" MaxItems="2" TItem="ValueItem" OnItemDrop="@((i)=>lastRejected = i)" AllowsDrag='(d)=>d.Key == d.Key' InstantReplace="false">
+        <div style="border: 2px solid black">
+            @context.Value
+        </div>
+    </Dropzone>*@
+
+<div class="bg-light">Source Dropzone</div>
+
+@*<Dropzone Class="flex-container" Items="FieldList" ItemWrapperClass="flex-item" TItem="ValueItem" OnItemDrop="@((i)=>lastRejected = i)" AllowsDrag='(d)=>d.CanDrag == true'>
+            <DragDropSourceItem Item="@context" ></DragDropSourceItem>
+    </Dropzone>*@
+
+<Dropzone Class="fieldflexList" Items="FieldList" ItemWrapperClass="flex-item" TItem="ValueItem" AllowsDrag='(d)=>d.CanDrag == true' OnItemDrop="@((i)=>RefreshList(i))">
+    <h5 style="padding-left : 12px"><span class="badge badge-secondary" style="background-color:darkseagreen; color:black"> @context.Value</span></h5>
+</Dropzone>
+
+
+@*<div class="row">
+        <Dropzone Items="Items">
+            <div class="col-1"> <span class="badge badge-info"> @context</span></div>
+        </Dropzone>
+
+    </div>
+
+    <div class="fieldflexList">
+        <Dropzone Class="fieldflexList" Items="Items" ItemWrapperClass="flex-item">
+            <div class="col-1"> <span class="badge badge-info"> @context</span></div>
+        </Dropzone>
+
+    </div>*@
+<hr />
+
+@if (lastRejected != null)
+{
+    <div class="mt-1 bg-warning">Last Rejected: @lastRejected.Value</div>
+}
+
+
+
+@code {
+    private ValueItem lastRejected { get; set; }
+    public List<string> Items = new List<string>()
+{
+        "1", "2", "3", "4", "5", "6"
+    };
+
+}
+

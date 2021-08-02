@@ -1,0 +1,93 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+	  <!--<RuntimeIdentifier>win-x64</RuntimeIdentifier>-->
+	  <!--<PublishSingleFile>true</PublishSingleFile>-->
+	  <!--<LangVersion>8</LangVersion>-->
+	  <GenerateDocumentationFile>true</GenerateDocumentationFile>
+	  <NoWarn>$(NoWarn);1591</NoWarn>
+  </PropertyGroup>
+
+	<PropertyGroup>
+		<AssemblyName>Count4U.Service.WebAPI.Authentication</AssemblyName>
+		<RootNamespace>Count4U.Service.WebAPI.Authentication</RootNamespace>
+		<DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
+		<DockerfileContext>..\..</DockerfileContext>
+		<DockerComposeProjectPath>..\..\docker-compose.dcproj</DockerComposeProjectPath>
+		<UserSecretsId>c7afa8b1-011a-4481-bc2d-0a72f6d1bd3c</UserSecretsId>
+	</PropertyGroup>
+	
+	<ItemGroup>
+		<Compile Remove="ClientSources\**" />
+		<Content Remove="ClientSources\**" />
+		<None Include="ClientSources\**" CopyToPublishDirectory="Always" />
+	</ItemGroup>
+
+
+	<ItemGroup>
+		<!--<PackageReference Include="MailKit" Version="2.7.0" />-->
+		<PackageReference Include="Microsoft.AspNetCore.Hosting.WindowsServices" Version="5.0.0" />
+		<PackageReference Include="Microsoft.AspNetCore.StaticFiles" Version="2.2.0" />
+		<PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="5.0.0">
+		  <PrivateAssets>all</PrivateAssets>
+		  <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+		</PackageReference>
+		<PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.10.8" />
+		<PackageReference Include="Swashbuckle.AspNetCore" Version="5.6.3" />
+		<PackageReference Include="Ben.BlockingDetector" Version="0.0.3" />
+	  <PackageReference Include="CoreX.Extensions.Http" Version="0.2.0" />
+	  <PackageReference Include="Microsoft.AspNetCore.Authorization.Policy" Version="2.2.0" />
+	<PackageReference Include="Microsoft.AspNetCore.Components.Authorization" Version="5.0.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="5.0.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="5.0.0" />
+
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="5.0.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="5.0.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="5.0.0" />
+	  <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="5.0.0" />
+	  <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="5.0.0" />
+   
+
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="5.0.0">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+
+    <PackageReference Include="Microsoft.Extensions.Configuration" Version="5.0.0" />
+
+    <PackageReference Include="Microsoft.Extensions.Options.ConfigurationExtensions" Version="5.0.0" />
+	  
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="5.0.0" />
+
+		<PackageReference Include="Microsoft.Extensions.Logging" Version="5.0.0" />
+		<PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="5.0.0" />
+		<PackageReference Include="Microsoft.Extensions.Logging.Configuration" Version="5.0.0" />
+		<PackageReference Include="Microsoft.Extensions.Logging.Console" Version="5.0.0" />
+		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="5.0.0" />
+		<!--<PackageReference Include="Unity" Version="5.11.1" />
+		<PackageReference Include="Unity.Abstractions" Version="5.11.1" />
+		<PackageReference Include="Unity.Container" Version="5.11.1" />
+		<PackageReference Include="Unity.Microsoft.DependencyInjection" Version="5.10.2" />
+		<PackageReference Include="Unity.ServiceLocation" Version="5.11.1" />-->
+	</ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+    <Folder Include="Data\Test\" />
+    <Folder Include="Migrations\" />
+    <Folder Include="wwwroot\js\" />
+  </ItemGroup>
+	<ItemGroup>
+		<Content Include="App_Data\*.*">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+	</ItemGroup>
+	<ItemGroup>
+	  <None Remove="Dockerfile" />
+	</ItemGroup>
+	<ItemGroup>
+	  <ProjectReference Include="..\..\..\Count4U.Service\src\Count4U.Service.Common\Count4U.Service.Common.csproj" />
+	  <ProjectReference Include="..\..\..\Count4U.Service\src\Monitor.Service.Shared\Monitor.Service.Shared.csproj" />
+	</ItemGroup>
+</Project>
