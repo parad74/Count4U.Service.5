@@ -5,14 +5,16 @@
 @if (string.IsNullOrWhiteSpace(LocalizationResources.Login_Register) == true)
 {
     <p><em>Loading...</em></p>
+    
 }
- else if( string.IsNullOrWhiteSpace(_authenticationWebapiUrl) == true)
- {
+else if (string.IsNullOrWhiteSpace(_authenticationWebapiUrl) == true)
+{
     <p><em>Loading...</em></p>
+   
 }
 else
 {
-<LoginComponent LocalizationResources="@LocalizationResources"></LoginComponent>
+    <LoginComponent LocalizationResources="@LocalizationResources"></LoginComponent>
 }
 
 

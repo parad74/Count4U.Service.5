@@ -46,6 +46,12 @@
 		public const string signalRHubUrls = @"signalRHubUrls";
 		public const string authToken = @"authToken";
 		public const string isImporting = @"isImporting";
+
+		public const string onPageCustomerNumber = @"onPageCustomerNumber";
+		public const string onPageInventorNumber = @"onPageInventorNumber";
+		public const string filterCustomer = @"filterCustomer";
+		public const string filterInventor = @"filterInventor";
+
 	}
 
 	public static class WebApiAuthenticationClaim

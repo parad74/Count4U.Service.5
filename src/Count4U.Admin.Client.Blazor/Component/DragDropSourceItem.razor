@@ -1,10 +1,7 @@
-﻿@namespace Count4U.Client.Shared.Component
+﻿@namespace Count4U.Admin.Client.Blazor.Component
 @using Monitor.Service.Shared
 
-   <span class="badge badge-info"> @Item.Value</span>
+<span class="badge badge-info"> @Item.Value</span>
 
-@code {
-    [Parameter]
-    public ValueItem Item { get; set; }
-
-  }
+@code { [Parameter]
+            public ValueItem Item { get; set; } }

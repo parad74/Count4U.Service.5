@@ -1,113 +1,167 @@
-﻿@namespace Count4U.Client.Shared.Component
+﻿@namespace Count4U.Admin.Client.Blazor.Component
 @typeparam TItem
+    <style type="text/css">
+        .select_border_radius {
+            /*          border: 1px solid #0b960f;*/
+            border-radius: .1rem;
+            height: 32px;
+            
+        }
+        .padding_icon_top {
+            padding-top: 4px;
+        }
+        .width_group {
+            width: 200px;
+        }
 
+    </style>
 
     <div class="paged-data-list">
-        
-         @if (LastPageIndex > 1)
-            {
-            <div class="paged-data-list_header">
-                <button type="button" disabled=@(!CanGoToPreviousPage) @onclick="GoToPreviousPageAsync">@Prev</button>
-                <button type="button" disabled=@(!CanGoToNextPage) @onclick="GoToNextPageAsync">@Next</button>
-                <span># @(Page + 1)</span>
-             </div>
-            }
-            
+
         <div class="paged-data-list_body">
             @ListTemplate(
-            @:@{ foreach (TItem item in CurrentPage)
-                         {
-    @ItemTemplate(item) } }
-            )
+                                    @:@{ foreach (TItem item in CurrentPage)
+                                                 {
+                                            @ItemTemplate(item) } }
+                                    )
         </div>
         @*<div class="paged-data-list_footer">
-            @CheckedData.Count() Item(s)
-        </div>*@
+                @CheckedData.Count() Item(s)
+            </div>*@
+
+    <div class="row">
+        <div class="width_group">
+        @if (LastPageIndex > 1)
+        {
+            <div class="paged-data-list_header input-group">
+                &nbsp;&nbsp;&nbsp;&nbsp;
+                <button class="btn btn-outline-secondary btn-sm select_border_radius shadow-none input-group-prepend" disabled=@(!CanGoToPreviousPage) @onclick="GoToPreviousPageAsync"><i class="fa fa-angle-left  padding_icon_top"></i>&nbsp; @Prev </button>
+                <label class="p-sm-1 bg-secondary text-white">&nbsp;# @(Page + 1)&nbsp;</label>
+                <button class="btn btn-outline-secondary btn-sm select_border_radius shadow-none input-group-append" disabled=@(!CanGoToNextPage) @onclick="GoToNextPageAsync">@Next &nbsp;<i class="fa fa-angle-right padding_icon_top"></i></button>
+                &nbsp;
+            </div>
+        }
+        </div>
+        <div class="width_group">
+            <div class="col"></div>
+            <div class="form-row px-4">
+                <div class="col"></div>
+                <div class="col-auto">
+                    <span> Per Page</span>
+                </div>
+                <div class="col-auto">
+                    <select class="form-control form-control-sm" @onchange="GoItemsPerPageChangeAsync">
+                        <option value="2" selected="@(ItemsPerPage == 2)">2</option>
+                        <option value="5" selected="@(ItemsPerPage == 5)">5</option>
+                        <option value="10" selected="@(ItemsPerPage == 10)">10</option>
+                        <option value="15" selected="@(ItemsPerPage == 15)">15</option>
+                        <option value="25" selected="@(ItemsPerPage == 25)">25</option>
+                        <option value="50" selected="@(ItemsPerPage == 50)">50</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+    </div>
     </div>
 
-@code
+
+    @code
 {
-    [Parameter]
-    public string Prev { get; set; }
 
-    [Parameter]
-    public string Next { get; set; }
+        [Parameter]
+        public string Prev { get; set; }
 
-    [Parameter]
-    public int Page { get; set; }
+        [Parameter]
+        public string Next { get; set; }
 
-    [Parameter]
-    public EventCallback<int> PageChanged { get; set; }
+        [Parameter]
+        public int Page { get; set; }
 
-    [Parameter]
-    public int ItemsPerPage { get; set; }
+        [Parameter]
+        public EventCallback<int> PageChanged { get; set; }
 
-    [Parameter]
-    public IEnumerable<TItem> Data { get; set; }
+        [Parameter]
+        public int ItemsPerPage { get; set; }
 
-    [Parameter]
-    public RenderFragment<TItem> ItemTemplate { get; set; }
+        [Parameter]
+        public IEnumerable<TItem> Data { get; set; }
 
-    [Parameter]
-    public RenderFragment<RenderFragment> ListTemplate { get; set; }
+        [Parameter]
+        public RenderFragment<TItem> ItemTemplate { get; set; }
 
-    public bool CanGoToPreviousPage => Page > 0;
-    public bool CanGoToNextPage => Page < LastPageIndex;
+        [Parameter]
+        public RenderFragment<RenderFragment> ListTemplate { get; set; }
 
-    private IEnumerable<TItem> CheckedData => Data ?? Array.Empty<TItem>();
-    private int LastPageIndex => CheckedData.Count() / ItemsPerPage;
+        public bool CanGoToPreviousPage => Page > 0;
+        public bool CanGoToNextPage => Page < LastPageIndex;
 
-    private IEnumerable<TItem> CurrentPage =>
-        CheckedData.Skip(Page * ItemsPerPage).Take(ItemsPerPage);
+        private IEnumerable<TItem> CheckedData => Data ?? Array.Empty<TItem>();
+        private int LastPageIndex => CheckedData.Count() / ItemsPerPage;
 
-    protected override void OnParametersSet()
-    {
-        if (string.IsNullOrWhiteSpace(Prev) == true)
-            Prev = "Prev";
-        if (string.IsNullOrWhiteSpace(Next) == true)
-            Next = "Next";
+        private IEnumerable<TItem> CurrentPage =>
+            CheckedData.Skip(Page * ItemsPerPage).Take(ItemsPerPage);
 
-        if (ItemsPerPage < 1)
-            ItemsPerPage = 5;
-
-        if (Page < 0)
-            Page = 0;
-
-        if (Page > LastPageIndex)
-            Page = LastPageIndex;
-
-        if (ItemTemplate == null)
+        protected override void OnParametersSet()
         {
-            ItemTemplate = (item) =>@:@{
-                            <li @key=item>@item.ToString()</li>}
-                    ;
-                }
+            if (string.IsNullOrWhiteSpace(Prev) == true)
+                Prev = "Prev";
+            if (string.IsNullOrWhiteSpace(Next) == true)
+                Next = "Next";
 
-                if (ListTemplate == null)
+            if (ItemsPerPage < 1)
+                ItemsPerPage = 5;
+
+            if (Page < 0)
+                Page = 0;
+
+            if (Page > LastPageIndex)
+                Page = LastPageIndex;
+
+            if (ItemTemplate == null)
+            {
+                ItemTemplate = (item) =>@:@{
+            <li @key=item>@item.ToString()</li>}
+                ;
+            }
+
+            if (ListTemplate == null)
+            {
+                ListTemplate = _ => @:@{
+            <ul>
+                @foreach (TItem item in CurrentPage)
                 {
-                    ListTemplate = _ => @:@{
-                            <ul>
-                                @foreach (TItem item in CurrentPage)
-                                {
                     @ItemTemplate(item)}
-                            </ul> }
-                    ;
-                  }
-              }
+            </ul> }
+                ;
+            }
+        }
 
-              public Task GoToPreviousPageAsync()
-              {
-                  if (!CanGoToPreviousPage)
-                      throw new InvalidOperationException();
-                  Page--;
-                  return PageChanged.InvokeAsync(Page);
-              }
+        public Task GoToPreviousPageAsync()
+        {
+            if (!CanGoToPreviousPage)
+                throw new InvalidOperationException();
+            Page--;
+            return PageChanged.InvokeAsync(Page);
+        }
 
-              public Task GoToNextPageAsync()
-              {
-                  if (!CanGoToNextPage)
-                      throw new InvalidOperationException();
-                  Page++;
-                  return PageChanged.InvokeAsync(Page);
-              }
-}
+        [Parameter]
+        public EventCallback<ChangeEventArgs> OnRemoveClick { get; set; }
+
+        public Task GoToNextPageAsync()
+        {
+            if (!CanGoToNextPage)
+                throw new InvalidOperationException();
+            Page++;
+            return PageChanged.InvokeAsync(Page);
+        }
+
+
+        public Task GoItemsPerPageChangeAsync(ChangeEventArgs args)
+        {
+            Console.WriteLine($"OnChangePageNumber: {args.Value}");
+            //ItemsPerPage = args.Value as string;
+
+            Console.WriteLine($"GoItemsPerPageChangeAsync: {args.Value as string}");
+            return OnRemoveClick.InvokeAsync(args);
+        }
+    }

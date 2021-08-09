@@ -2,66 +2,135 @@
 @namespace Count4U.Admin.Client.Page
 @inherits CustomerProfileGridBase
 @attribute [Authorize(Policy = UserPolicy.IsProfile)]
-
-<AuthorizeView Policy="@UserPolicy.IsProfile">
-
-
-    @if (_profileFiles == null)
-    {
-        <p><em>Loading...</em></p>
+<style type="text/css">
+    .fa_custom {
+        color: #0b960f
     }
-    else
-    {
-        @if (IsSearching)
-        {
-            <button class="btn btn-primary float-right search disabled" disabled><span class='fa-left fas fa-sync-alt spinning'></span>Searching...</button>
-        }
-        else
-        {
-            <button class="btn btn-primary btn-outline-primary float-right search" @onclick="@(()=>OnSearchAsync())">Search</button>
-        }
 
-        <PagedDataList Data=@_profileFiles Prev="Prev" Next="Next" ItemsPerPage="10">
-            <ListTemplate Context="listOfCustomer">
-                <h6 class="bg-success p-1 text-white">Customer with Branches</h6>
-                <table class="table table-bordered table-sm">
-                    @*<thead>
-                            <tr>
-                                <th scope="col">Id</th>
-                                <th scope="col">Name</th>
-                                <th scope="col">Users</th>
-                                <th scope="col">Edit</th>
-                            </tr>
-                        </thead>*@
-                    <tbody>
-                        @listOfCustomer
-                    </tbody>
-                </table>
-            </ListTemplate>
-            <ItemTemplate Context="customer">
-                <tr @key=@customer>
-                    @*<td>@role.RoleID</td>*@
-                    <td style="padding-left: 30px;padding-right: 30px;width:132px">@customer.CustomerCode</td>
-                    <td>@customer.ToString()</td>
-                    @*<td>
-                            <ul class="nav flex-column">
-                                @foreach (var user in role.Members)
-                                    {
-                                    <li @key=@user.UserID>
-                                        @user.Email
-                                    </li>
-                                    }
-                            </ul>
-                        </td>*@
-                    @*<td style="align-content:center;padding-left: 30px;padding-right: 30px">*@
-                    <td style="padding-left: 30px;padding-right: 30px;width:152px">
-                        <button class="btn btn-outline-success  btn-sm" style="width:90px" @onclick="@(()=>NavigateToBranches(customer.CustomerCode))">
-                            <span>Branches</span>
-                        </button>
-                    </td>
+    .select_border_color {
+        /*    border: 1px solid #0b960f;*/
+        border-radius: .1rem;
+    }
+</style>
+
+
+@if (_profileFiles == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    @if (this._filterResult != null)
+    {
+        @if (this._filterResult.Successful == SuccessfulEnum.NotSuccessful)
+        {
+            <div class="d-flex flex-row-reverse">
+                <span class="badge badge-danger float-right">@this._filterResult.Error</span>
+            </div>
+            <div></div>
+        }
+    }
+    <div class="row">
+        <div class="col-2"></div>
+        <div class="col-8">
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    @if (IsSearching)
+                    {
+                        <button class="btn btn-outline-dark btn-sm searchicon disabled" disabled><i class="fa fa-eraser fa-lg"></i></button>
+                    }
+                    else
+                    {
+                        <button @onclick="OnClearAsync" class="btn btn-outline-dark btn-sm searchicon" data-toggle="tooltip" data-placement="bottom" title="Clear Customer Filter"><i class="fa fa-eraser fa-lg"></i></button>
+                    }
+                </div>
+                <input id="filterInput" placeholder="filter is empty" @bind="_filterCustomerModel.Code" />
+                <div class="input-group-append">
+                    @if (IsSearching)
+                    {
+                        <button class="btn btn-success btn-sm  search disabled" disabled><span class="fa fa-spinner fa-spin fa-lg fa-fw"></span>Waiting ...</button>
+                    }
+                    else
+                    {
+                        <button @onclick="OnSearchAsync" class="btn btn-outline-success btn-sm search" data-toggle="tooltip" data-placement="bottom" title="Set Customer Filter"><i class="fa fa-filter fa-lg  fa_custom"></i>&nbsp; &nbsp;Filter</button>
+
+                    }
+                    &nbsp;  &nbsp;
+                </div>
+                <div class="input-group-append">
+                    <select class="form-control form-control-sm select_border_color" id="select-customer-param" @bind="@_filterCustomerModel.SelectedParam">
+                        @foreach (var sparam in _filterCustomerModel.FilterSelectParamDictionary)
+                        {
+                            <option value=@sparam.Key>@sparam.Value</option>
+                        }
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-2"></div>
+    </div>
+
+
+
+    <PagedDataList Data=@_profileFiles Prev="Prev" Next="Next" ItemsPerPage=@OnPageNumber 
+                   OnRemoveClick="OnChangePageNumber">
+        <ListTemplate Context="listOfCustomer">
+
+            <h6 class="bg-success p-1 text-white">Customer with Branches</h6>
+            <table class="table table-bordered table-sm">
+                @*<thead>
+                <tr>
+                    <th scope="col">Id</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Users</th>
+                    <th scope="col">Edit</th>
                 </tr>
-            </ItemTemplate>
-        </PagedDataList>
-    }
+            </thead>*@
+                <tbody>
+                    @listOfCustomer
+                </tbody>
+            </table>
+        </ListTemplate>
+        <ItemTemplate Context="customer">
+            <tr @key=@customer>
+                @*<td>@role.RoleID</td>*@
+                <td style="padding-left: 30px;padding-right: 30px;width:132px">@customer.CustomerCode</td>
+                <td>@customer.ToString()</td>
+                @*<td>
+                        <ul class="nav flex-column">
+                            @foreach (var user in role.Members)
+                                {
+                                <li @key=@user.UserID>
+                                    @user.Email
+                                </li>
+                                }
+                        </ul>
+                    </td>*@
+                @*<td style="align-content:center;padding-left: 30px;padding-right: 30px">*@
+                <td style="padding-left: 30px;padding-right: 30px;width:152px">
+                    <button class="btn btn-outline-success  btn-sm" style="width:90px" @onclick="@(()=>NavigateToBranches(customer.CustomerCode))">
+                        <span>Branches</span>
+                    </button>
+                </td>
+            </tr>
+        </ItemTemplate>
+    </PagedDataList>
 
-</AuthorizeView>
+    @*<div class="form-row align-items-center text-muted px-4">
+        <div class="col"></div>
+        <div class="col-auto">
+            <span> Per Page</span>
+        </div>
+        <div class="col-auto">
+            <select class="form-control form-control-sm" @onchange="OnChangePageNumber">
+                <option value="5" selected="@(OnPageNumber== 5)">5</option>
+                <option value="10" selected="@(OnPageNumber== 10)">10</option>
+                <option value="15" selected="@(OnPageNumber == 15)">15</option>
+                <option value="25" selected="@(OnPageNumber==25)">25</option>
+                <option value="50" selected="@(OnPageNumber ==50)">50</option>
+            </select>
+        </div>
+    </div>*@
+}
+
