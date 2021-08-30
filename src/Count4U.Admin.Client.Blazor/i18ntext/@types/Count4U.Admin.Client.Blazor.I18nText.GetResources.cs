@@ -1819,6 +1819,9 @@ namespace Count4U.Admin.Client.Blazor.I18nText
         /// <summary>"טלפון"</summary>
         public string Property_Customer_Phone;
 
+        /// <summary>"Database"</summary>
+        public string Property_Database;
+
         /// <summary>"קוד משפחה"</summary>
         public string Property_Family_Code;
 
@@ -1833,6 +1836,9 @@ namespace Count4U.Admin.Client.Blazor.I18nText
 
         /// <summary>"קוד לקוח"</summary>
         public string Property_Inventor_CustomerCode;
+
+        /// <summary>"Customer Name"</summary>
+        public string Property_Inventor_CustomerContextName;
 
         /// <summary>"תיאור"</summary>
         public string Property_Inventor_Description;
@@ -1906,6 +1912,12 @@ namespace Count4U.Admin.Client.Blazor.I18nText
         /// <summary>"שם"</summary>
         public string Property_Location_Name;
 
+        /// <summary>"Manage Profile"</summary>
+        public string Property_Manage_Profile;
+
+        /// <summary>"Permissions*"</summary>
+        public string Property_Permissions;
+
         /// <summary>"מחיר קנייה"</summary>
         public string Property_PriceType_PriceBuy;
 
@@ -1948,6 +1960,9 @@ namespace Count4U.Admin.Client.Blazor.I18nText
         /// <summary>"שם"</summary>
         public string Property_Supplier_Name;
 
+        /// <summary>"Use Android"</summary>
+        public string Property_Use_Android;
+
         /// <summary>"Already a Member"</summary>
         public string Register_Already_a_Member;
 
@@ -1962,6 +1977,12 @@ namespace Count4U.Admin.Client.Blazor.I18nText
 
         /// <summary>"Create a User Account"</summary>
         public string Register_Create_User_Account;
+
+        /// <summary>"Customer Code from Count4U"</summary>
+        public string Register_customer_code_from_Count4U;
+
+        /// <summary>"Customer Name will be use as lable for Customer"</summary>
+        public string Register_customer_name_use_as_lable_for_customer;
 
         /// <summary>"email"</summary>
         public string Register_email;
@@ -1986,6 +2007,9 @@ namespace Count4U.Admin.Client.Blazor.I18nText
 
         /// <summary>"נרשם בהצלחה"</summary>
         public string Register_Registered_Successfuly;
+
+        /// <summary>"User"</summary>
+        public string Register_User;
 
         /// <summary>"AuditConfigDetaile"</summary>
         public string Report_Menu_Caption_AuditConfig_AuditConfigDetaile;

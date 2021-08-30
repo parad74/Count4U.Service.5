@@ -61,7 +61,7 @@
 		<PackageReference Include="Microsoft.Extensions.Logging.Configuration" Version="5.0.0" />
 		<PackageReference Include="Microsoft.Extensions.Logging.Console" Version="5.0.0" />
 		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="5.0.0" />
-		<PackageReference Include="Toolbelt.Blazor.I18nText" Version="9.3.0" />
+		<PackageReference Include="Toolbelt.Blazor.I18nText" Version="9.4.1" />
 		<PackageReference Include="Microsoft.AspNetCore.Authorization.Policy" Version="2.2.0" />
 		<PackageReference Include="Toolbelt.Blazor.LoadingBar" Version="12.1.0" />
 	</ItemGroup>
@@ -82,6 +82,7 @@
 	
 	<ItemGroup>
 		<Folder Include="bin\Debug\net5.0\dist\_content\" />
+		<Folder Include="i18ntext\%40types\" />
 		<Folder Include="Page\C4U\" />
 		<Folder Include="wwwroot\favicon\1\" />
 	</ItemGroup>

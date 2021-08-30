@@ -85,8 +85,8 @@ namespace Count4U.Admin.Client.Page
 			{
 				try
 				{
-					this._loginModel.Email = @"manager@profile.ftp";
-					this._loginModel.Password = "123456";
+					//this._loginModel.Email = @"manager@profile.ftp";
+					//this._loginModel.Password = "123456";
 					this._loginResult = await this._authService.LoginAsync(this._loginModel);
 					if (this._loginResult != null)
 					{
@@ -128,8 +128,8 @@ namespace Count4U.Admin.Client.Page
 			this.Ping = false;
 			this.PingMonitor = false;
 			this.PingSignalRHub	 = false;
-			this._loginModel.Email = @"manager@profile.ftp";
-			this._loginModel.Password = "123456";
+			//this._loginModel.Email = @"manager@profile.ftp";
+			//this._loginModel.Password = "123456";
 			try
 			{
 				if (this._localStorage != null)

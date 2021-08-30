@@ -3,7 +3,17 @@
 @inherits UserGridBase
 @attribute [Authorize(Policy = UserPolicy.IsAdmin)]
 
-    <AuthorizeView Policy="@UserPolicy.IsAdmin">
+
+    <style type="text/css">
+        .fa_custom {
+            color: #0b960f
+        }
+
+        .select_border_color {
+            /*    border: 1px solid #0b960f;*/
+            border-radius: .1rem;
+        }
+    </style>
 
         @if (_users == null)
         {
@@ -14,20 +24,28 @@
 
             <PagedDataList Data=@_users Prev="Prev" Next="Next" ItemsPerPage="10">
                 <ListTemplate Context="listOfUser">
-                    <h6 class="bg-success p-1 text-white">Users</h6>
-                    <table class="table table-bordered table-sm">
-                        @*<thead>
-                            <tr>
-                                <th scope="col">Id</th>
-                                <th scope="col">Name</th>
-                                <th scope="col">Users</th>
-                                <th scope="col">Edit</th>
-                            </tr>
-                        </thead>*@
-                        <tbody>
-                            @listOfUser
-                        </tbody>
-                    </table>
+                    <div class="bg-success d-flex justify-content-between mb-2">
+                        <div class="bg-success p-1 text-white"> &nbsp; Users  &nbsp;</div>
+                           <div class="bg-success" style="padding-left: 30px;padding-right: 30px;width:132px">
+                            <button class="btn btn-success text-white select_border_color btn-sm" style="width:70px" @onclick="@(()=>UserAdd())">
+                                <i class="fa fa-plus"></i>&nbsp; &nbsp;<span>Add</span>
+                            </button>
+                        </div> 
+                        </div>
+                        @*<h6 class="bg-success p-1 text-white">Users</h6>*@
+                        <table class="table table-bordered table-sm">
+                            @*<thead>
+                    <tr>
+                        <th scope="col">Id</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Users</th>
+                        <th scope="col">Edit</th>
+                    </tr>
+                </thead>*@
+                            <tbody>
+                                @listOfUser
+                            </tbody>
+                        </table>
                 </ListTemplate>
                 <ItemTemplate Context="user">
                     <tr @key=@user>
@@ -60,9 +78,4 @@
             </PagedDataList>
         }
 
-    <div>
-       <button class="btn btn-outline-success  btn-sm" style="width:70px" @onclick="@(()=>UserAdd())">
-            <span>Add</span>
-        </button>
-    </div>
-    </AuthorizeView>
+ 

@@ -5,4 +5,28 @@
 .btn:focus {
 	box-shadow: none
 }
+.form-control::-webkit-input-placeholder {
+	color: #b8cdc9;
+	font-size: 0.8rem !important;
+}
+
+.form-control:-moz-placeholder {
+	color: #b8cdc9;
+	font-size: 0.8rem !important;
+}
+
+.form-control::-moz-placeholder {
+	color: #b8cdc9;
+	font-size: 0.8rem !important;
+}
+
+.form-control::placeholder {
+	color: #b8cdc9;
+	font-size: 0.8rem !important;
+}
+
+.form-control:-ms-input-placeholder {
+	color: #b8cdc9;
+	font-size: 0.8rem !important;
+}
 /*box-shadow: 0 0 0 0.2rem rgba(40, 167, 69, 0.25);*/

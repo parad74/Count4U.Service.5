@@ -200,6 +200,11 @@
 	width: 7rem;
 }
 
+#filterinput {
+	width: 9rem;
+}
+
+
 .btn.searchicon {
 	width: 2.7rem;
 	height: 2rem;

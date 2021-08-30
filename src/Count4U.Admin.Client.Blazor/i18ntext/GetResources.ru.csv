@@ -2281,8 +2281,8 @@ Login_Password,Password
 Login_Submit,Submit
 Login_Register,Register
 Register_Please_enter_your_details,Please enter your details
-Register_Email_address,Email address
-Register_Password,Password
+Register_Email_address,Email*
+Register_Password,Password*
 Register_Confirm_Password,Confirm Password
 Register_Registered_Successfuly,Registered Successfuly
 Register_Cant_register,Can't register
@@ -2328,3 +2328,11 @@ Change_Password,Change Password
 Old_Password,Old Password
 New_Password,New Password
 Confirm_Password,Confirm Password
+Property_Inventor_CustomerContextName,Customer Name
+Register_customer_code_from_Count4U,Customer Code from Count4U
+Register_customer_name_use_as_lable_for_customer,Customer Name will be use as lable for Customer
+Property_Use_Android,Use Android
+Property_Manage_Profile,Manage Profile
+Property_Database,Database
+Register_User,User
+Property_Permissions, Permissions*

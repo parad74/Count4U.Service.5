@@ -31,10 +31,11 @@ else
         }
     }
 <div class="row">
-    <div class="col-2"></div>
-    <div class="col-8">
-        <div class="input-group mb-3">
+    <div class="col-3"> </div>
+    <div class="d-flex flex-row-reverse">
+        <div class="input-group mb-3  float-right">
             <div class="input-group-prepend">
+                &nbsp;  &nbsp;
                 @if (IsSearching)
                 {
                     <button class="btn btn-outline-dark btn-sm searchicon disabled" disabled><i class="fa fa-eraser fa-lg"></i></button>
@@ -44,7 +45,7 @@ else
                     <button @onclick="OnClearAsync" class="btn btn-outline-dark btn-sm searchicon" data-toggle="tooltip" data-placement="bottom" title="Clear Customer Filter"><i class="fa fa-eraser fa-lg"></i></button>
                 }
             </div>
-            <input id="filterInput" placeholder="filter is empty" @bind="_filterInventorModel.InventorCode" />
+            <input id="filterinput" placeholder="filter is empty" @bind="_filterInventorModel.InventorCode" />
             <div class="input-group-append">
                 @if (IsSearching)
                 {
@@ -66,23 +67,32 @@ else
             </div>
         </div>
     </div>
-   
+
     <div class="col-2"></div>
 </div>
 
     <PagedDataList Data=@_profileFiles Prev="Prev" Next="Next" ItemsPerPage=@OnPageNumber  
-                   OnRemoveClick="OnChangePageNumber">
+                   OnChangePageClick="OnChangePageNumber">
         <ListTemplate Context="listOfInventor">
-            <h6 class="bg-success p-1 text-white">Inventor with Profile</h6>
+            @*<h6 class="bg-success p-1 text-white">Inventor with Profile</h6>*@
+            <div class="bg-success d-flex justify-content-between mb-2">
+                <div class="bg-success p-1 text-white"> &nbsp; Inventor with Profile &nbsp;</div>
+                @*<div class="bg-success" style="padding-left: 30px;padding-right: 30px;width:132px">
+                <button class="btn btn-success text-white select_border_color btn-sm" style="width:70px" @onclick="@(()=>AddCustomer())">
+                    <i class="fa fa-plus"></i>&nbsp; &nbsp;<span>Add</span>
+                </button>
+            </div>*@
+            </div>
+
             <table class="table table-bordered table-sm">
                 @*<thead>
-                        <tr>
-                            <th scope="col">Id</th>
-                            <th scope="col">Name</th>
-                            <th scope="col">Users</th>
-                            <th scope="col">Edit</th>
-                        </tr>
-                    </thead>*@
+                <tr>
+                    <th scope="col">Id</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Users</th>
+                    <th scope="col">Edit</th>
+                </tr>
+            </thead>*@
                 <tbody>
                     @listOfInventor
                 </tbody>

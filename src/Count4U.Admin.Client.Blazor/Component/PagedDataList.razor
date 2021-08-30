@@ -20,48 +20,58 @@
 
         <div class="paged-data-list_body">
             @ListTemplate(
-                                    @:@{ foreach (TItem item in CurrentPage)
-                                                 {
-                                            @ItemTemplate(item) } }
-                                    )
+                                            @:@{ foreach (TItem item in CurrentPage)
+                                                     {
+                                                    @ItemTemplate(item) } }
+                                            )
         </div>
         @*<div class="paged-data-list_footer">
-                @CheckedData.Count() Item(s)
-            </div>*@
+            @CheckedData.Count() Item(s)
+        </div>*@
 
-    <div class="row">
-        <div class="width_group">
-        @if (LastPageIndex > 1)
-        {
-            <div class="paged-data-list_header input-group">
-                &nbsp;&nbsp;&nbsp;&nbsp;
-                <button class="btn btn-outline-secondary btn-sm select_border_radius shadow-none input-group-prepend" disabled=@(!CanGoToPreviousPage) @onclick="GoToPreviousPageAsync"><i class="fa fa-angle-left  padding_icon_top"></i>&nbsp; @Prev </button>
-                <label class="p-sm-1 bg-secondary text-white">&nbsp;# @(Page + 1)&nbsp;</label>
-                <button class="btn btn-outline-secondary btn-sm select_border_radius shadow-none input-group-append" disabled=@(!CanGoToNextPage) @onclick="GoToNextPageAsync">@Next &nbsp;<i class="fa fa-angle-right padding_icon_top"></i></button>
-                &nbsp;
+
+    @*<div class="d-flex flex-row-reverse">
+                <div >
+                    <button class="btn btn-outline-dark  btn-sm" style="margin-left: 30px; margin-right: 30px; width:90px" @onclick="AddObjectAsync">
+                        <span>Add</span>
+                    </button>
+                </div>
+    </div>*@
+
+
+        <div class="row d-flex justify-content-between">
+            <div class="width_group">
+                @if (LastPageIndex > 1)
+                {
+                    <div class="paged-data-list_header input-group">
+                        &nbsp;&nbsp;&nbsp;&nbsp;
+                        <button class="btn btn-outline-secondary btn-sm select_border_radius shadow-none input-group-prepend" disabled=@(!CanGoToPreviousPage) @onclick="GoToPreviousPageAsync"><i class="fa fa-angle-left  padding_icon_top"></i>&nbsp; @Prev </button>
+                        <label class="p-1 bg-secondary text-white">&nbsp;# @(Page + 1)&nbsp;</label>
+                        <button class="btn btn-outline-secondary btn-sm select_border_radius shadow-none input-group-append" disabled=@(!CanGoToNextPage) @onclick="GoToNextPageAsync">@Next &nbsp;<i class="fa fa-angle-right padding_icon_top"></i></button>
+                        &nbsp;
+                    </div>
+                }
             </div>
-        }
-        </div>
-        <div class="width_group">
-            <div class="col"></div>
-            <div class="form-row px-4">
+            <div class="width_group">
                 <div class="col"></div>
-                <div class="col-auto">
-                    <span> Per Page</span>
-                </div>
-                <div class="col-auto">
-                    <select class="form-control form-control-sm" @onchange="GoItemsPerPageChangeAsync">
-                        <option value="2" selected="@(ItemsPerPage == 2)">2</option>
-                        <option value="5" selected="@(ItemsPerPage == 5)">5</option>
-                        <option value="10" selected="@(ItemsPerPage == 10)">10</option>
-                        <option value="15" selected="@(ItemsPerPage == 15)">15</option>
-                        <option value="25" selected="@(ItemsPerPage == 25)">25</option>
-                        <option value="50" selected="@(ItemsPerPage == 50)">50</option>
-                    </select>
+                <div class="form-row px-3">
+                    <div class="col"></div>
+                    <div class="col-auto">
+                        <span> Per Page</span>
+                    </div>
+                    <div class="col-auto">
+                        <select class="form-control form-control-sm" @onchange="GoItemsPerPageChangeAsync">
+                            <option value="2" selected="@(ItemsPerPage == 2)">2</option>
+                            <option value="5" selected="@(ItemsPerPage == 5)">5</option>
+                            <option value="10" selected="@(ItemsPerPage == 10)">10</option>
+                            <option value="15" selected="@(ItemsPerPage == 15)">15</option>
+                            <option value="25" selected="@(ItemsPerPage == 25)">25</option>
+                            <option value="50" selected="@(ItemsPerPage == 50)">50</option>
+                        </select>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
     </div>
 
 
@@ -133,35 +143,46 @@
                     @ItemTemplate(item)}
             </ul> }
                 ;
-            }
-        }
+                        }
+                    }
 
-        public Task GoToPreviousPageAsync()
-        {
-            if (!CanGoToPreviousPage)
-                throw new InvalidOperationException();
-            Page--;
-            return PageChanged.InvokeAsync(Page);
-        }
+                    public Task GoToPreviousPageAsync()
+                    {
+                        if (!CanGoToPreviousPage)
+                            throw new InvalidOperationException();
+                        Page--;
+                        return PageChanged.InvokeAsync(Page);
+                    }
 
-        [Parameter]
-        public EventCallback<ChangeEventArgs> OnRemoveClick { get; set; }
+                    [Parameter]
+                    public EventCallback<ChangeEventArgs> OnChangePageClick { get; set; }  
 
-        public Task GoToNextPageAsync()
-        {
-            if (!CanGoToNextPage)
-                throw new InvalidOperationException();
-            Page++;
-            return PageChanged.InvokeAsync(Page);
-        }
+                    [Parameter]
+                    public EventCallback OnAddObjectClick { get; set; } //все работает, можно копировать, только убрана функция из компанента ?? пока
+
+                    
+
+                    public Task GoToNextPageAsync()
+                    {
+                        if (!CanGoToNextPage)
+                            throw new InvalidOperationException();
+                        Page++;
+                        return PageChanged.InvokeAsync(Page);
+                    }
 
 
-        public Task GoItemsPerPageChangeAsync(ChangeEventArgs args)
-        {
-            Console.WriteLine($"OnChangePageNumber: {args.Value}");
-            //ItemsPerPage = args.Value as string;
+                    public Task GoItemsPerPageChangeAsync(ChangeEventArgs args)
+                    {
+                        Console.WriteLine($"OnChangePageNumber: {args.Value}");
+                        //ItemsPerPage = args.Value as string;
 
-            Console.WriteLine($"GoItemsPerPageChangeAsync: {args.Value as string}");
-            return OnRemoveClick.InvokeAsync(args);
-        }
+                        Console.WriteLine($"GoItemsPerPageChangeAsync: {args.Value as string}");
+                        return OnChangePageClick.InvokeAsync(args);
+                    }
+
+                    public Task AddObjectAsync()
+                    {
+                        Console.WriteLine($"OnAddObjectClick");
+                        return OnAddObjectClick.InvokeAsync();
+                    }
     }

@@ -180,6 +180,12 @@ namespace Count4U.Admin.Client.Blazor.Page
 			this._navigationManager.NavigateTo("branchgrid/" + customerCode);
 		}
 
+		public async Task AddCustomer()
+		{
+			Console.WriteLine($"Client.CustomerProfileGridBase.AddCustomer() : customerprofile");
+			this._navigationManager.NavigateTo("customerprofile");
+		}
+
 
 		protected override async Task OnInitializedAsync()
 		{

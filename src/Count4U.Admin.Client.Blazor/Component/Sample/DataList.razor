@@ -1,4 +1,4 @@
-﻿@typeparam TItem
+﻿@*@typeparam TItem
 <ul>
     @foreach (TItem item in Data ?? Array.Empty<TItem>())
     {
@@ -12,7 +12,7 @@
     [Parameter]
     public RenderFragment<TItem> ChildContent { get; set; }
 
-}
+}*@
 
 @*//how use
         //private IEnumerable<Person> PeopleList;

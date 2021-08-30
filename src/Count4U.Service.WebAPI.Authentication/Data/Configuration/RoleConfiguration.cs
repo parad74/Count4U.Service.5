@@ -16,11 +16,12 @@ namespace Count4U.Service.Core.Server.Data
         private const string ContextRoleId = "9e8f096e-c230-4917-b412-f0a5e403c499";
         private const string WorkerRoleId = "a87b2288-7534-458d-b4f6-4831239f8570";
         private const string ProfileRoleId = "38539cf9-77e9-4129-b6a6-9cfbbf3c64ac";
+    //    private const string FtpRoleId = "c7491aa8-ec8a-4d39-abe9-329c67f5e1c1";
 
         public void Configure(EntityTypeBuilder<IdentityRole> builder)
         {
 
-            builder.HasData(new IdentityRole { Id = OwnerRoleId, Name = "Owner", NormalizedName = "OWNER" });
+            builder.HasData(new IdentityRole { Id = OwnerRoleId, Name = "Owner", NormalizedName = "OWNER" });        //Database
             builder.HasData(new IdentityRole { Id = UserRoleId, Name = "User", NormalizedName = "USER"});
             builder.HasData(new IdentityRole { Id = AdminRoleId, Name = "Admin", NormalizedName = "ADMIN"});  //users and roles
             builder.HasData(new IdentityRole { Id = ManagerRoleId, Name = "Manager", NormalizedName = "MANAGER" }); //For all profiles, process, customers params
@@ -28,6 +29,7 @@ namespace Count4U.Service.Core.Server.Data
             builder.HasData(new IdentityRole { Id = ContextRoleId, Name = "Context", NormalizedName = "CONTEXT"});   //profile view
             builder.HasData(new IdentityRole { Id = WorkerRoleId, Name = "Worker", NormalizedName = "WORKER"});      //Inventor in field
             builder.HasData(new IdentityRole { Id = ProfileRoleId, Name = "Profile", NormalizedName = "PROFILE" });      //my Profile Edit
+           
 
         }
     }

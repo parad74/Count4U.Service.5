@@ -227,3 +227,11 @@ Change_Password,Change Password
 Old_Password,Old Password
 New_Password,New Password
 Confirm_Password,Confirm Password
+Property_Inventor_CustomerContextName,Customer Name
+Register_customer_code_from_Count4U,Customer Code from Count4U
+Register_customer_name_use_as_lable_for_customer,Customer Name will be use as lable for Customer
+Property_Use_Android,Use Android
+Property_Manage_Profile,Manage Profile
+Property_Database,Database
+Register_User,User
+Property_Permissions, Permissions*

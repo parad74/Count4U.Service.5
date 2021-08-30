@@ -43,10 +43,19 @@ namespace Count4U.Admin.Client.Page
 		{
 			Console.WriteLine();
 			Console.WriteLine($"Client.RegisterBase.RegistrationAsync() : start");
+			this._registerResult = null;
 
+			if (this._registerModel.ConfirmPassword != this._registerModel.Password)
+			{
+				this._registerResult = new RegisterResult();
+				this._registerResult.Successful = SuccessfulEnum.NotSuccessful;
+				this._registerResult.Error = "Password not equal ConfirmPassword";
+				Console.WriteLine($"Client.RegisterBase.RegistrationAsync() : ConfirmPassword <> Password");
+				return;
+			}
 			//this._showErrors = null;
 			//this._showSuccessful = null;
-			this._registerResult = null;
+
 
 			if (this._authService == null)
 			{

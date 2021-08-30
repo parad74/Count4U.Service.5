@@ -19,5 +19,23 @@ namespace Monitor.Service.Model
 		[Display(Name = "Confirm password")]
 		[Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
 		public string ConfirmPassword { get; set; }
+
+		[Display(Name = "Customer Code")]
+		public string CustomerCode { get; set; }
+
+
+		[Display(Name = "User Description")]
+		public string UserDescription { get; set; }
+
+
+		[Display(Name = "Use Android")]
+		public bool IsWorker { get; set; }
+
+		[Display(Name = "Manage Profile")]
+		public bool IsManager { get; set; }
+
+		[Display(Name = "Database")]
+		public bool IsOwner { get; set; }
+
 	}
 }

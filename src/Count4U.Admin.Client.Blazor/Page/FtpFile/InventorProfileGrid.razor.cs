@@ -189,8 +189,8 @@ namespace Count4U.Admin.Client.Blazor.Page
 		{
 			this._navigationManager.NavigateTo("inventorprofilefileshow/" + code);
 		}
-		
 
+				
 
 		//public async Task NavigateToBranches(string branchCode)
 		//{

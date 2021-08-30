@@ -51,11 +51,23 @@ namespace Count4U.Admin.Client.Page
 		public string PingServer { get; set; }
 		public IndexBase()
 		{
-			string register = LocalizationResources.Login_Register;
+			//string register = LocalizationResources.Login_Register;
 		}
 
 		protected override async Task OnInitializedAsync()
 		{
+			try
+			{
+				this.LocalizationResources = await this.I18nText.GetTextTableAsync<GetResources>(this);
+				this.TextSubmit = LocalizationResources.Login_Submit;
+				this.TextRegister = LocalizationResources.Login_Register;
+			}
+			catch (Exception ecx)
+			{
+				Console.WriteLine("Client.IndexBase.OnAfterRenderAsync() I18nText Init Exception : ");
+				Console.WriteLine(ecx.Message);
+			}
+
 			//await _claimService.InitWebAPISettings();
 			this._authenticationWebapiUrl = "";
 			this._monitorWebapiUrl = "";
@@ -182,9 +194,7 @@ namespace Count4U.Admin.Client.Page
 					}
 				}
 
-				this.LocalizationResources = await this.I18nText.GetTextTableAsync<GetResources>(this);
-				this.TextSubmit = LocalizationResources.Login_Submit;
-				this.TextRegister = LocalizationResources.Login_Register;
+			
 			}
 			catch (Exception ecx)
 			{

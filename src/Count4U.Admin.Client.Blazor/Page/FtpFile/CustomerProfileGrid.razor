@@ -31,10 +31,11 @@ else
         }
     }
     <div class="row">
-        <div class="col-2"></div>
-        <div class="col-8">
-            <div class="input-group mb-3">
+        <div class="col-3"> </div>
+        <div class="d-flex flex-row-reverse">
+            <div class="input-group mb-3  float-right">
                 <div class="input-group-prepend">
+                    &nbsp;  &nbsp;
                     @if (IsSearching)
                     {
                         <button class="btn btn-outline-dark btn-sm searchicon disabled" disabled><i class="fa fa-eraser fa-lg"></i></button>
@@ -44,7 +45,7 @@ else
                         <button @onclick="OnClearAsync" class="btn btn-outline-dark btn-sm searchicon" data-toggle="tooltip" data-placement="bottom" title="Clear Customer Filter"><i class="fa fa-eraser fa-lg"></i></button>
                     }
                 </div>
-                <input id="filterInput" placeholder="filter is empty" @bind="_filterCustomerModel.Code" />
+                <input id="filterinput" placeholder="filter is empty" @bind="_filterCustomerModel.Code" />
                 <div class="input-group-append">
                     @if (IsSearching)
                     {
@@ -68,16 +69,26 @@ else
             </div>
         </div>
 
-        <div class="col-2"></div>
+        @*<div class="col-2"></div>*@
     </div>
 
 
-
-    <PagedDataList Data=@_profileFiles Prev="Prev" Next="Next" ItemsPerPage=@OnPageNumber 
-                   OnRemoveClick="OnChangePageNumber">
+    @*OnAddObjectClick="AddCustomer"*@
+    <PagedDataList Data=@_profileFiles Prev="Prev" Next="Next" ItemsPerPage=@OnPageNumber
+                   OnChangePageClick="OnChangePageNumber">
         <ListTemplate Context="listOfCustomer">
 
-            <h6 class="bg-success p-1 text-white">Customer with Branches</h6>
+            @*<h6 class="bg-success p-1 text-white">Customer with Branches</h6>*@
+
+            <div class="bg-success d-flex justify-content-between mb-2">
+                <div class="bg-success p-1 text-white"> &nbsp;Customer with Branches &nbsp;</div>
+                <div class="bg-success" style="padding-left: 30px;padding-right: 30px;width:132px">
+                    <button class="btn btn-success text-white select_border_color btn-sm" style="width:70px" @onclick="@(()=>AddCustomer())">
+                        <i class="fa fa-plus"></i>&nbsp; &nbsp;<span>Add</span>
+                    </button>
+                </div>
+            </div>
+
             <table class="table table-bordered table-sm">
                 @*<thead>
                 <tr>
@@ -118,19 +129,19 @@ else
     </PagedDataList>
 
     @*<div class="form-row align-items-center text-muted px-4">
-        <div class="col"></div>
-        <div class="col-auto">
-            <span> Per Page</span>
-        </div>
-        <div class="col-auto">
-            <select class="form-control form-control-sm" @onchange="OnChangePageNumber">
-                <option value="5" selected="@(OnPageNumber== 5)">5</option>
-                <option value="10" selected="@(OnPageNumber== 10)">10</option>
-                <option value="15" selected="@(OnPageNumber == 15)">15</option>
-                <option value="25" selected="@(OnPageNumber==25)">25</option>
-                <option value="50" selected="@(OnPageNumber ==50)">50</option>
-            </select>
-        </div>
-    </div>*@
+            <div class="col"></div>
+            <div class="col-auto">
+                <span> Per Page</span>
+            </div>
+            <div class="col-auto">
+                <select class="form-control form-control-sm" @onchange="OnChangePageNumber">
+                    <option value="5" selected="@(OnPageNumber== 5)">5</option>
+                    <option value="10" selected="@(OnPageNumber== 10)">10</option>
+                    <option value="15" selected="@(OnPageNumber == 15)">15</option>
+                    <option value="25" selected="@(OnPageNumber==25)">25</option>
+                    <option value="50" selected="@(OnPageNumber ==50)">50</option>
+                </select>
+            </div>
+        </div>*@
 }
 
