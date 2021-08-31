@@ -84,8 +84,9 @@
 		public const string GetUsers = @"api/admin/getusers";
 		public const string GetUserWithPassword = @"api/admin/getuserwithpassword";
 		public const string ForgotPassword = @"api/admin/fogotpassword";
-		
-		
+		public const string GetUser = @"api/admin/getuser";
+
+
 	}
 
 	public static class WebApiAuthenticationLogin

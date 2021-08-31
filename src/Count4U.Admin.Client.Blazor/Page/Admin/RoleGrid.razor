@@ -10,6 +10,10 @@
     {
         <p><em>Loading...</em></p>
     }
+    else if (LocalizationResources == null)
+    {
+        <p><em>Loading...</em></p>
+    }
     else
     {
 
@@ -21,22 +25,22 @@
                 <div class="bg-success d-flex justify-content-between mb-2">
                     <div class="bg-success p-1 text-white">Roles with Users</div>
                     @*<div class="bg-success" style="padding-left: 30px;padding-right: 30px;width:132px">
-                        <button class="btn btn-success text-white select_border_color btn-sm" style="width:70px" @onclick="@(()=>AddCustomer())">
-                            <i class="fa fa-plus"></i>&nbsp; &nbsp;<span>Add</span>
-                        </button>
-                    </div>*@
+                            <button class="btn btn-success text-white select_border_color btn-sm" style="width:70px" @onclick="@(()=>AddCustomer())">
+                                <i class="fa fa-plus"></i>&nbsp; &nbsp;<span>Add</span>
+                            </button>
+                        </div>*@
                 </div>
 
 
                 <table class="table table-bordered table-sm">
                     @*<thead>
-                <tr>
-                    <th scope="col">Id</th>
-                    <th scope="col">Name</th>
-                    <th scope="col">Users</th>
-                    <th scope="col">Edit</th>
-                </tr>
-            </thead>*@
+                            <tr>
+                                <th scope="col">Id</th>
+                                <th scope="col">Name</th>
+                                <th scope="col">Users</th>
+                                <th scope="col">Edit</th>
+                            </tr>
+                        </thead>*@
                     <tbody>
                         @listOfRole
                     </tbody>

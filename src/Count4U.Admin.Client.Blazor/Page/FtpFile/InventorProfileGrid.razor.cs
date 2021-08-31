@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Blazored.LocalStorage;
 using Blazored.SessionStorage;
+using Count4U.Admin.Client.Blazor.I18nText;
 using Count4U.Model.Count4U;
 using Count4U.Model.SelectionParams;
 using Count4U.Service.Shared;
@@ -27,6 +28,11 @@ namespace Count4U.Admin.Client.Blazor.Page
 		public string PingServer { get; set; }
 		public string SessionStorageMode { get; set; }
 		public int OnPageNumber { get; set; }
+
+		protected GetResources LocalizationResources;
+
+		[Inject]
+		protected Toolbelt.Blazor.I18nText.I18nText I18nText { get; set; }
 
 		[Inject]
 		protected ISessionStorageService _sessionStorage { get; set; }
@@ -204,6 +210,7 @@ namespace Count4U.Admin.Client.Blazor.Page
 			Console.WriteLine($"Client.InventorProfileGridBase.OnInitializedAsync() : start");
 			try
 			{
+				this.LocalizationResources = await this.I18nText.GetTextTableAsync<GetResources>(this);
 				await this.GetProfileFiles();
 				Console.WriteLine($"Client.InventorProfileGridBase.OnInitializedAsync() : GetAuthenticationUrls");
 				if (this._localStorage != null)

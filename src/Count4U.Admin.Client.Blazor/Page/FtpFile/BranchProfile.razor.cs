@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Count4U.Admin.Client.Blazor.I18nText;
 using Microsoft.AspNetCore.Components;
 using Monitor.Service.Shared;
 
@@ -14,6 +15,10 @@ namespace Count4U.Admin.Client.Blazor.Page
         public List<ValueItem> FieldList { get; set; }
 
         public List<ValueItem> SourceList { get; set; }
+        public GetResources LocalizationResources { get; set; }
+
+        [Inject]
+        protected Toolbelt.Blazor.I18nText.I18nText I18nText { get; set; }
 
         public BranchProfileBase()
         {
@@ -45,6 +50,26 @@ namespace Count4U.Admin.Client.Blazor.Page
         {
             FieldList.Remove(item);
             StateHasChanged();
+        }
+
+        protected override async Task OnInitializedAsync()
+        {
+            Console.WriteLine();
+            Console.WriteLine($"Client.BranchProfileBase.OnInitializedAsync() : start");
+            try
+            {
+                this.LocalizationResources = await this.I18nText.GetTextTableAsync<GetResources>(this);
+                if (this.LocalizationResources == null)
+                {
+                    Console.WriteLine($"Client.BranchProfileBase.OnInitializedAsync() : LocalizationResources is null");
+                }
+            }
+            catch (Exception ecx)
+            {
+                Console.WriteLine("Client.BranchProfileBase.OnInitializedAsync() Exception : ");
+                Console.WriteLine(ecx.Message);
+            }
+            Console.WriteLine($"Client.BranchProfileBase.OnInitializedAsync() : end");
         }
 
         //public List<ValueItem> FieldList

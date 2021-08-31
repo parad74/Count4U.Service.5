@@ -9,6 +9,7 @@ using Blazored.LocalStorage;
 using Blazored.SessionStorage;
 using BlazorMonacoJosn;
 using BlazorMonacoXml;
+using Count4U.Admin.Client.Blazor.I18nText;
 using Count4U.Model.Count4U;
 using Count4U.Service.Shared;
 using Microsoft.AspNetCore.Components;
@@ -36,6 +37,11 @@ namespace Count4U.Admin.Client.Blazor.Page
         public bool _isXmlEmpty { get; set; }
 
         private Count4U.Service.Format.Json.Profile myDeserializedClass { get; set; }
+
+        protected GetResources LocalizationResources;
+
+        [Inject]
+        protected Toolbelt.Blazor.I18nText.I18nText I18nText { get; set; }
 
         [Inject]
         protected ISessionStorageService _sessionStorage { get; set; }
@@ -228,6 +234,7 @@ namespace Count4U.Admin.Client.Blazor.Page
             Console.WriteLine($"Client.InventorProfileFileShowBase.OnInitializedAsync() : start");
             try
             {
+                this.LocalizationResources = await this.I18nText.GetTextTableAsync<GetResources>(this);
                 await this.GetProfileFile();
                 Console.WriteLine($"Client.InventorProfileFileShowBase.OnInitializedAsync() : GetAuthenticationUrls");
             }

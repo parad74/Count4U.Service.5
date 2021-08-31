@@ -209,7 +209,63 @@ namespace Count4U.Service.WebAPI.Authentication.Controllers
             return result;
         }
 
-         [HttpPost(WebApiAuthenticationAdmin.GetUserWithPassword)]
+
+        [HttpPost(WebApiAuthenticationAdmin.GetUser)]
+        public async Task<UserViewModel> GetUser([FromBody] UserViewModel userViewModel)
+        {
+            if (userViewModel == null)
+            {
+                return new UserViewModel { Successful = SuccessfulEnum.NotSuccessful, Error = "userViewModel is null " };
+            }
+
+            ApplicationUser user = null;
+            if (string.IsNullOrWhiteSpace(userViewModel.UserID) == false)
+            {
+                user = await _userManager.FindByIdAsync(userViewModel.UserID);           //try by ID first
+            }
+
+            if (user == null)
+            {
+                if (string.IsNullOrWhiteSpace(userViewModel.Email) == false)
+                {
+                    user = await _userManager.FindByEmailAsync(userViewModel.Email);
+                }
+            }
+
+            if (user == null)
+            {
+                return new UserViewModel { Successful = SuccessfulEnum.NotSuccessful, Error = "User not find " };
+            }
+
+
+            //var result = await _userManager.ChangePasswordAsync(user, changePasswordModel.OldPassword, changePasswordModel.NewPassword);
+            //if (result.Succeeded == false)
+            //{
+            //    var errors = result.Errors.Select(x => x.Description);
+            //    var error = string.Join(" .", errors);
+            //    return new ChangePasswordResult { Successful = SuccessfulEnum.NotSuccessful, Error = error };
+            //}
+
+            //await _signInManager.SignInAsync(user, isPersistent: false);
+            //_logger.LogInformation("User changed their password successfully.");
+            //return new ChangePasswordResult { Successful = SuccessfulEnum.Successful };
+
+
+           UserViewModel result = new UserViewModel();
+            result.UserID = user.Id;
+            result.Email = user.Email;
+            result.CustomerCode = user.CustomerCode;
+            result.Description = user.FistName;
+            result.Error = "";
+            result.Message = "";
+            result.Successful = SuccessfulEnum.Successful;
+
+            return result;
+        }
+
+
+   
+        [HttpPost(WebApiAuthenticationAdmin.GetUserWithPassword)]
         public async Task<UserWithPasswordModel> GetUserWithPassword([FromBody] UserWithPasswordModel userWithPasswordModel)
         {
 

@@ -29,13 +29,32 @@ namespace Monitor.Service.Model
 
 
 		[Display(Name = "Use Android")]
-		public bool IsWorker { get; set; }
+		public bool IsWorker { get; set; } = true;
 
 		[Display(Name = "Manage Profile")]
 		public bool IsManager { get; set; }
 
 		[Display(Name = "Database")]
 		public bool IsOwner { get; set; }
+
+		public string UserID { get; set; }
+
+
+		public RegisterModel(UserViewModel userViewModel)
+		{
+			if (userViewModel != null)
+			{
+				this.UserID = userViewModel.UserID;
+				this.Email = userViewModel.Email;
+				this.CustomerCode = userViewModel.CustomerCode;
+				this.UserDescription = userViewModel.Description;
+			}
+		}
+
+		public RegisterModel()
+		{
+			
+		}
 
 	}
 }

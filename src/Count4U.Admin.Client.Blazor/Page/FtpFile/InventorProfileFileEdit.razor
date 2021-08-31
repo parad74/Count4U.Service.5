@@ -41,490 +41,494 @@
         {
             <p><em>Loading ...</em></p>
         }
+        else if (LocalizationResources == null)
+        {
+            <p><em>Loading...</em></p>
+        }
         else
         {
             @*<EditForm EditContext="ProfileContext" OnValidSubmit="SaveObjectAsync">*@
 
-<EditForm Model="@_profileDomainObject" OnValidSubmit="SaveObjectAsync">
+            <EditForm Model="@_profileDomainObject" OnValidSubmit="SaveObjectAsync">
 
-    <DataAnnotationsValidator />
-    <ValidationSummary />
+                <DataAnnotationsValidator />
+                <ValidationSummary />
 
-    <div class="form-group row">
-        <label class="control-label col-md-2">Customer Code</label>
-        <label class="control-label col-md-4">@_profileDomainObject.InventoryProcessInformation.Customer.code </label>
-    </div>
+                <div class="form-group row">
+                    <label class="control-label col-md-2">Customer Code</label>
+                    <label class="control-label col-md-4">@_profileDomainObject.InventoryProcessInformation.Customer.code </label>
+                </div>
 
-    <div class="form-group row">
-        <label class="control-label col-md-2">Customer Name</label>
-        <div class="col-md-10">
-            <input class="form-control" @bind="_profileDomainObject.InventoryProcessInformation.Customer.name" />
-        </div>
-    </div>
+                <div class="form-group row">
+                    <label class="control-label col-md-2">Customer Name</label>
+                    <div class="col-md-10">
+                        <input class="form-control" @bind="_profileDomainObject.InventoryProcessInformation.Customer.name" />
+                    </div>
+                </div>
 
-    <div class="form-group row">
-        <label class="control-label col-md-2">Branch Code</label>
-        <label class="control-label col-md-4">@_profileDomainObject.InventoryProcessInformation.Branch.code </label>
-    </div>
+                <div class="form-group row">
+                    <label class="control-label col-md-2">Branch Code</label>
+                    <label class="control-label col-md-4">@_profileDomainObject.InventoryProcessInformation.Branch.code </label>
+                </div>
 
-    <div class="form-group row">
-        <label class="control-label col-md-2">Branch Name</label>
-        <div class="col-md-10">
-            <input class="form-control" @bind="_profileDomainObject.InventoryProcessInformation.Branch.name" />
-        </div>
-    </div>
+                <div class="form-group row">
+                    <label class="control-label col-md-2">Branch Name</label>
+                    <div class="col-md-10">
+                        <input class="form-control" @bind="_profileDomainObject.InventoryProcessInformation.Branch.name" />
+                    </div>
+                </div>
 
-    <div class="form-group row">
-        <label class="control-label col-md-2">Inventory Code</label>
-        <label class="control-label col-md-4">@_profileDomainObject.InventoryProcessInformation.Inventory.code </label>
-    </div>
+                <div class="form-group row">
+                    <label class="control-label col-md-2">Inventory Code</label>
+                    <label class="control-label col-md-4">@_profileDomainObject.InventoryProcessInformation.Inventory.code </label>
+                </div>
 
-    <div class="form-group row">
-        <label class="control-label col-md-2">Inventory Data</label>
-        <label class="control-label col-md-4">@_profileDomainObject.InventoryProcessInformation.Inventory.created_date </label>
-    </div>
+                <div class="form-group row">
+                    <label class="control-label col-md-2">Inventory Data</label>
+                    <label class="control-label col-md-4">@_profileDomainObject.InventoryProcessInformation.Inventory.created_date </label>
+                </div>
 
-    @*//< div class="radio-group-profile">
-                 //         <input id="rfid" ng-model="$ctrl.scannerType._text" type="radio" value="RFID"><label for="rfid">RFID</label>
-                 //         <input id="barcode" ng-model="$ctrl.scannerType._text" type="radio" value="Barcode"><label for="barcode">Barcode</label>
-                 //
-        // </div>*@
+                @*//< div class="radio-group-profile">
+                             //         <input id="rfid" ng-model="$ctrl.scannerType._text" type="radio" value="RFID"><label for="rfid">RFID</label>
+                             //         <input id="barcode" ng-model="$ctrl.scannerType._text" type="radio" value="Barcode"><label for="barcode">Barcode</label>
+                             //
+                    // </div>*@
 
-    @*<InputRadioGroup @bind-Value="_profileDomainObject.ScannerType">
-            <div class="form-group row">
-                <label class="control-label col-md-2">Scanner Type</label>
-                <InputRadio id="rfid" Value="ScannerTypeEnum.RFID.ToString()" style="text-align: center" />
-                <label class="control-label col-md-1" for="rfid">@ScannerTypeEnum.RFID.ToString()</label>
+                @*<InputRadioGroup @bind-Value="_profileDomainObject.ScannerType">
+                        <div class="form-group row">
+                            <label class="control-label col-md-2">Scanner Type</label>
+                            <InputRadio id="rfid" Value="ScannerTypeEnum.RFID.ToString()" style="text-align: center" />
+                            <label class="control-label col-md-1" for="rfid">@ScannerTypeEnum.RFID.ToString()</label>
 
-                <InputRadio id="barcode" Value="ScannerTypeEnum.Barcode.ToString()" style="text-align: center" />
-                <label class="control-label col-md-1" for="barcode">@ScannerTypeEnum.Barcode.ToString()</label>
+                            <InputRadio id="barcode" Value="ScannerTypeEnum.Barcode.ToString()" style="text-align: center" />
+                            <label class="control-label col-md-1" for="barcode">@ScannerTypeEnum.Barcode.ToString()</label>
 
-            </div>
-        </InputRadioGroup>*@
-
-    <InputRadioGroup @bind-Value="_profileDomainObject.ScannerType">
-        <div class="form-group row">
-            <label class="control-label col-md-2">Scanner Type</label>
-            <div style="padding-left : 16px">
-                <InputRadio id="rfid" Value="ScannerTypeEnum.RFID.ToString()" />
-            </div>
-            <label class="control-label col-md-1" for="rfid">@ScannerTypeEnum.RFID.ToString()</label>
-            <div>
-                <InputRadio id="barcode" Value="ScannerTypeEnum.Barcode.ToString()" />
-            </div>
-            <label class="control-label col-md-1" for="barcode">@ScannerTypeEnum.Barcode.ToString()</label>
-        </div>
-    </InputRadioGroup>
-
-    @*<label>
-            Engineering Approval:
-            <InputCheckbox @bind-Value="starship.IsValidatedDesign" />
-        </label>*@
-
-    @*<div class="col-xs-12">
-            <div class="row">
-                <profile-boolean class="col-xs-3" name="Add new inventory" object="$ctrl.locationInventory['AddNewInventoryEnabled'][0]"></profile-boolean>
-                <profile-boolean on-validate="$ctrl.validateTemplateInventoryTable()" class="col-xs-3" name="Template inventories" object="$ctrl.locationInventory['TemplateInventoriesEnabled'][0]"></profile-boolean>
-                <profile-boolean class="col-xs-3" name="Signature" object="$ctrl.locationInventory['SignatureToVerifyClosureOfLocationRequired'][0]"></profile-boolean>
-            </div>
-        </div>*@
-    <div class="form-group row">
-        <label class="control-label col-md-2">Screen Configuration</label>
-        <div style="padding-left : 16px">
-            <InputCheckbox @bind-Value="_profileDomainObject.LocationInventoryListScreenConfiguration.AddNewInventoryEnabled" id="addnew" />
-        </div>
-        <label class="control-label  col-md-2" for="addnew">Add new inventory</label>
-        <div>
-            <InputCheckbox @bind-Value="_profileDomainObject.LocationInventoryListScreenConfiguration.TemplateInventoriesEnabled" id="template" />
-        </div>
-        <label class="control-label  col-md-2" for="template">Template inventories</label>
-        <div>
-            <InputCheckbox @bind-Value="_profileDomainObject.LocationInventoryListScreenConfiguration.SignatureToVerifyClosureOfLocationRequired" id="signature" />
-        </div>
-        <label class="control-label col-md-2" for="signature">Signature</label>
-    </div>
-
-
-
-    <div class="form-group row">
-        <label class="control-label col-md-2">Default UI Configuration</label>
-        <div class="col-md-10">
-            <PagedDataList Data="InventoryitemdisplaypropertyList" Prev="Prev" Next="Next" ItemsPerPage="100">
-                <ListTemplate Context="listOfUIConfiguration">
-
-                    @*<div class="bg-success d-flex justify-content-between mb-2">
-                        <div class="bg-success p-1 text-white">Branche with Inventories</div>
-                        <div class="bg-success" style="padding-left: 30px;padding-right: 30px;width:132px">
-                <button class="btn btn-success text-white select_border_color btn-sm" style="width:70px" @onclick="@(()=>AddCustomer())">
-                    <i class="fa fa-plus"></i>&nbsp; &nbsp;<span>Add</span>
-                </button>
-            </div>
-                    </div>*@
-                    @*<h6 class="bg-success p-1 text-white">Default UI Configuration</h6>*@
-                    <table class="table table-bordered table-sm">
-                        <thead>
-                            <tr>
-                                <th scope="col" style="padding-left: 30px;padding-right: 20px;">#</th>
-                                <th scope="col" style="padding-left: 20px;padding-right: 20px;">Data link</th>
-                                <th scope="col" style="padding-left: 20px;padding-right: 20px;">Item type</th>
-                                <th scope="col" style="padding-left: 20px;padding-right: 20px;">Title En</th>
-                                <th scope="col" style="padding-left: 20px;padding-right: 20px;">Title He</th>
-                                <th scope="col" style="padding-left: 20px;padding-right: 20px;"></th>
-                                <th scope="col" style="padding-left: 20px;padding-right: 20px;"></th>
-                                <th scope="col" style="padding-left: 20px;padding-right: 20px;"></th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @listOfUIConfiguration
-                        </tbody>
-                    </table>
-                </ListTemplate>
-                <ItemTemplate Context="itemUI">
-                    <tr @key=@itemUI>
-                        @*<td>@role.RoleID</td>*@
-                        <td style="padding-left: 30px;padding-right: 10px;width:20px">@itemUI.index</td>
-                        <td style="padding-left: 10px;padding-right: 10px;width:120px">
-                            <select class="custom-select" @bind="@itemUI.id">
-                                @foreach (var url in FieldList2)
-                                        {
-                                    <option value=@url.Key>@url.Value</option>
-                                        }
-                            </select>
-                        </td>
-                        @*<td style="padding-left: 30px;padding-right: 30px;width:120px">@itemUI.itemtype</td>*@
-                        <td style="padding-left: 10px;padding-right: 10px;width:120px">
-                            <select class="custom-select" @bind="@itemUI.itemtype">
-                                @foreach (var url in ItemType)
-                                        {
-                                    <option value=@url.Key>@url.Value</option>
-                                        }
-                            </select>
-                        </td>
-                        <td style="padding-left: 10px;padding-right: 10px;width:120px">
-                            <input class="form-control" @bind="itemUI.Title.en" />
-                        </td>
-                        <td style="padding-left: 10px; padding-right: 10px; width: 120px ; text-align: right;  direction: rtl;">
-                            <input class="form-control" @bind="itemUI.Title.he" />
-                        </td>
-
-                        @if (itemUI.index > 0)
-                                {
-                            <td style="padding-left: 10px;padding-right: 10px;width:100px">
-                                <button class="btn btn-outline-danger  btn-sm" style="width:90px" @onclick="@(() => DeleteItem(itemUI))">
-                                    <span>Delete</span>
-                                </button>
-                            </td>
-
-                            <td style="padding-left: 10px;padding-right: 10px;width:50px">
-                                @if (itemUI.index > 1)
-                                        {
-                                    <button class="btn btn-outline-secondary  btn-sm" style="width:60px" @onclick="@(() => Up(itemUI))">
-                                        <span>Up</span>
-                                    </button>
-                                        }
-                            </td>
-
-                            @if (itemUI.index < InventoryitemdisplaypropertyList?.Count - 1)
-                                    {
-                                <td style="padding-left: 10px;padding-right: 10px;width:70px">
-                                    <button class="btn btn-outline-secondary  btn-sm" style="width:60px" @onclick="@(() => Down(itemUI))">
-                                        <span>Down</span>
-                                    </button>
-                                </td>
-                                    }
-                                    else
-                                    {
-                                <td style="padding-left: 10px;padding-right: 10px;width:70px">
-                                </td>
-                                    }
-                                }
-                                else
-                                {
-                            <td style="padding-left: 10px;padding-right: 10px;width:100px">
-                                <div>
-                                    <button class="btn btn-outline-success  btn-sm" style="width:90px" @onclick="@(() => AddNewItem(itemUI))">
-                                        <span>Add</span>
-                                    </button>
-                                </div>
-                            </td>
-                            <td style="padding-left: 10px;padding-right: 10px;width:50px">
-                            </td>
-                            <td style="padding-left: 10px;padding-right: 10px;width:50px">
-                            </td>
-                                }
-                    </tr>
-                    @*<td>
-                            <ul class="nav flex-column">
-                                @foreach(var user in role.Members)
-                        {
-                                    < li @key = @user.UserID >
-                                         @user.Email
-                                     </ li >
-                                    }
-                            </ul>
-                        </td>*@
-                    @*<td style = "align-content:center;padding-left: 30px;padding-right: 30px" > *@
-                    @*<td style = "padding-left: 30px;padding-right: 30px;width:152px" >
-                            < button class="btn btn-outline-success  btn-sm" style="width:90px" @onclick="@(()=>ProfileFileEdit(inventor.InventorCode))">
-                                <span>Edit Profile</span>
-                            </button>
-                        </td>
-                        <td style = "padding-left: 30px;padding-right: 30px;width:152px" >
-                            < button class="btn btn-outline-success  btn-sm" style="width:90px" @onclick="@(()=>ProfileFileShow(inventor.InventorCode))">
-                                <span>Show File</span>
-                            </button>
-                        </td>*@
-
-                </ItemTemplate>
-            </PagedDataList>
-        </div>
-    </div>
-
-    @*======================*@
-
-    <div class="form-group row">
-        <label class="control-label col-md-2">Database Settings</label>
-    </div>
-    <div class="form-group row">
-        <label class="control-label col-md-2">UID Key</label>
-        <div class="col-md-10">
-            <div class="row" style="padding-left : 16px">
-                <Dropzone Class="fielditem50" CopyItem="(item)=> { return new ValueItem() { Key = item.Key, Value = item.Value, CanDrag = true };  }"
-                          Items="UIDKey1" MaxItems="1" TItem="ValueItem" Context="UIDKey1Item"
-                          AllowsDrag='(d)=>d.CanDrag == true' InstantReplace="true">
-                    <DragDropItem Item="@UIDKey1Item" @key=@UIDKey1Item
-                                  OnRemoveClick="(item)=>UIDKey1.Remove(item)"></DragDropItem>
-                </Dropzone>
-
-                <label style="margin-top: 5px; margin-left: 5px; margin-right:5px">|</label>
-                <Dropzone Class="fielditem50" CopyItem="(item)=> { return new ValueItem() { Key = item.Key, Value = item.Value, CanDrag = true };  }"
-                          Items="UIDKey2" MaxItems="1" TItem="ValueItem" Context="UIDKey2Item"
-                          AllowsDrag='(d)=>d.CanDrag == true' InstantReplace="true">
-                    <DragDropItem Item="@UIDKey2Item" @key=@UIDKey2Item
-                                  OnRemoveClick="(item)=>UIDKey2.Remove(item)"></DragDropItem>
-                </Dropzone>
-                <label style="margin-top: 5px; margin-left: 5px; margin-right:5px">|</label>
-                <Dropzone Class="fielditem50" CopyItem="(item)=> { return new ValueItem() { Key = item.Key, Value = item.Value, CanDrag = true };  }"
-                          Items="UIDKey3" MaxItems="1" TItem="ValueItem" Context="UIDKey3Item"
-                          AllowsDrag='(d)=>d.CanDrag == true' InstantReplace="true">
-                    <DragDropItem Item="@UIDKey3Item"
-                                  @key=@UIDKey3Item OnRemoveClick="(item)=>UIDKey3.Remove(item)"></DragDropItem>
-                </Dropzone>
-                <label style="margin-top: 5px; margin-left: 5px; margin-right:5px">|</label>
-                <Dropzone Class="fielditem50" CopyItem="(item)=> { return new ValueItem() { Key = item.Key, Value = item.Value, CanDrag = true };  }"
-                          Items="UIDKey4" MaxItems="1" TItem="ValueItem" Context="UIDKey4Item"
-                          AllowsDrag='(d)=>d.CanDrag == true' InstantReplace="true">
-                    <DragDropItem Item="@UIDKey4Item" @key=@UIDKey4Item
-                                  OnRemoveClick="(item)=>UIDKey4.Remove(item)"></DragDropItem>
-                </Dropzone>
-
-            </div>
-        </div>
-    </div>
-
-    @*<div class="col-md-1" style="background-color:blue;">Span 3</div>*@ @*!!!*@
-    <div class="form-group row">
-        <label class="control-label col-md-2">Device Id</label>
-        <div class="col-md-10">
-            <Dropzone Class="fielditem50" CopyItem="(item)=> { return new ValueItem() { Key = item.Key, Value = item.Value, CanDrag = true };  }"
-                      Items="CurrentInventoryDeviceIdProperty" MaxItems="1" TItem="ValueItem" Context="CurrentInventoryDeviceIdPropertyItem"
-                      AllowsDrag='(d)=>d.CanDrag == true' InstantReplace="true">
-                <DragDropItem Item="@CurrentInventoryDeviceIdPropertyItem" @key=@CurrentInventoryDeviceIdPropertyItem
-                              OnRemoveClick="(item)=>CurrentInventoryDeviceIdProperty.Remove(item)"></DragDropItem>
-            </Dropzone>
-        </div>
-    </div>
-
-    <div class="form-group row">
-        <label class="control-label col-md-2">User Name</label>
-        <div class="col-md-10">
-            <Dropzone Class="fielditem50" CopyItem="(item)=> { return new ValueItem() { Key = item.Key, Value = item.Value, CanDrag = true };  }"
-                      Items="CurrentInventoryUserNameProperty" MaxItems="1" TItem="ValueItem" Context="CurrentInventoryUserNamePropertyItem"
-                      AllowsDrag='(d)=>d.CanDrag == true' InstantReplace="true">
-                <DragDropItem Item="@CurrentInventoryUserNamePropertyItem" @key=@CurrentInventoryUserNamePropertyItem
-                              OnRemoveClick="(item)=>CurrentInventoryUserNameProperty.Remove(item)"></DragDropItem>
-            </Dropzone>
-        </div>
-    </div>
-    <div class="form-group row">
-        <label class="control-label col-md-2">Device Name</label>
-        <div class="col-md-10">
-            <Dropzone Class="fielditem50" CopyItem="(item)=> { return new ValueItem() { Key = item.Key, Value = item.Value, CanDrag = true };  }"
-                      Items="CurrentInventoryDeviceNameProperty" MaxItems="1" TItem="ValueItem" Context="CurrentInventoryDeviceNamePropertyItem"
-                      AllowsDrag='(d)=>d.CanDrag == true' InstantReplace="true">
-                <DragDropItem Item="@CurrentInventoryDeviceNamePropertyItem" @key=@CurrentInventoryDeviceNamePropertyItem
-                              OnRemoveClick="(item)=>CurrentInventoryDeviceNameProperty.Remove(item)"></DragDropItem>
-            </Dropzone>
-        </div>
-    </div>
-    <div class="form-group row">
-        <label class="control-label col-md-2"></label>
-        <div style="padding-left : 16px">
-            <InputCheckbox @bind-Value="_profileDomainObject.DatabaseSettings.ClearInventoryDataAfterUpload" id="clearInvetor" />
-        </div>
-        <label class="control-label  col-md-4" for="clearInvetor">Clear Inventory Data after upload</label>
-    </div>
-
-
-    @*<div class="col-md-1" style="background-color:red;">Span 5</div>*@
-
-    @*</div>
-
-
-        <div class="form-group row">*@
-    @*<label class="control-label col-md-2">Device Name Property</label>*@
-
-
-
-
-    <div class="form-group row">
-        <label class="control-label col-md-2">Allowed Values</label>
-        <div class="col-md-10">
-            <Dropzone Class="flexlistcontainer" ItemWrapperClass="flex-item"
-                      Items="FieldList"
-                      TItem="ValueItem"
-                      Context="fieldlistContext"
-                      AllowsDrag='(d)=>d.CanDrag == true'
-                      OnItemDrop="@((i)=>RefreshList(i))">
-
-                <h6 style="padding-right : 8px"><span class="badge badge-secondary" style="background-color:darkseagreen; color:black"> @fieldlistContext.Value</span></h6>
-            </Dropzone>
-        </div>
-    </div>
-
-
-    @*@foreach (var opinion in opinions)
-            {
-        <div class="form-check">
-            <InputRadio class="form-check-input" id="@opinion.id" Value="@opinion.id" />
-            <label class="form-check-label" for="@opinion.id">@opinion.label</label>
-        </div>
-            }*@
-
-
-
-    @*<div class="form-group row">
-            <label class="control-label col-md-2">Branch Code</label>
-            <label class="control-label col-md-10">@_profileObject.InventoryProcessInformation.Branch.code</label>
-        </div>
-        <div class="form-group row">
-            <label class="control-label col-md-2">Branch Name</label>
-            <div class="col-md-10">
-                <input class="form-control" @bind="_profileObject.InventoryProcessInformation.Branch.name" />
-            </div>
-        </div>
-
-        <div class="form-group row">
-            <label class="control-label col-md-2">Inventor Code</label>
-            <label class="control-label col-md-10">@_profileObject.InventoryProcessInformation.Inventory.code</label>
-        </div>
-        <div class="form-group row">
-            <label class="control-label col-md-2">Inventor Date</label>
-            <label class="control-label col-md-10">@_profileObject.InventoryProcessInformation.Inventory.created_date</label>
-        </div>*@
-
-    @*======= RFID  ==========*@
-    <div class="form-group row">
-        <label class="control-label col-md-2">RFID Q code type (one character)</label>
-        <div class="col-md-10">
-            <input class="form-control" @bind="_profileDomainObject.RFID.QCodeType" />
-        </div>
-    </div>
-    <div class="form-group row">
-        <label class="control-label col-md-2">RFID SN code type (one character)</label>
-        <div class="col-md-10">
-            <input class="form-control" @bind="_profileDomainObject.RFID.SNCodeType" />
-        </div>
-    </div>
-    <div class="form-group row">
-        <label class="control-label col-md-2">RFID type written</label>
-        <div class="col-md-10">
-            <select class="custom-select" @bind="@_profileDomainObject.RFID.RFIDTagWritten">
-                @foreach (var url in FieldList3)
-                {
-                    <option value=@url.Key>@url.Value</option>
-                }
-            </select>
-        </div>
-    </div>
-    <div class="form-group row">
-        <label class="control-label col-md-2">RFID Commands</label>
-        <div class="col-md-10">
-            <PagedDataList Data=@_profileDomainObject.RFID.RFIDCommands.RFIDCommand Prev="Prev" Next="Next" ItemsPerPage="100">
-                <ListTemplate Context="listOfCommand">
-                    <table class="table table-bordered table-sm">
-                        @*<thead>
-                                <tr>
-                                    <th scope="col">Command</th>
-                                    <th scope="col">Type</th>
-                                </tr>
-                            </thead>*@
-                        <tbody>
-                            @listOfCommand
-                        </tbody>
-                    </table>
-                </ListTemplate>
-                <ItemTemplate Context="rfidcommand">
-                    <tr @key=@rfidcommand>
-                        <td style="padding-left: 10px; padding-right: 10px; width: 70px">
-                            @rfidcommand.type
-                        </td>
-                        <td style="padding-left: 10px; padding-right: 10px">
-                            <input class="form-control" @bind="rfidcommand.command" />
-                        </td>
-                    </tr>
-                </ItemTemplate>
-            </PagedDataList>
-        </div>
-    </div>
-    <div class="row">
-        <div class="form-group">
-            <button type="submit" class="btn btn-outline-success  btn-sm">Save to ftp</button>
-
-            @*<button class="btn btn-light" @onclick="Cancel">Cancel</button>*@
-        </div>
-        <div class="col-md-3">
-            @if (_profileFileService.RunUpdateFtpAndDbProfiles != null)
-            {
-                @foreach (var command in _profileFileService.RunUpdateFtpAndDbProfiles)
-                {
-                    <div class="row" style="padding-top:3px">
-                        <div class="col-auto">
-                            @if (command.Successful == SuccessfulEnum.Waiting)
-                            {
-                                @*<WaitCursor2 />*@
-                                <i class="icon-spinner icon-spin icon-large"></i>
-                            }
-                            else if (command.Successful == SuccessfulEnum.Successful)
-                            {
-                                @*<span class="badge badge-success">&#10003;</span>*@
-                                <span class="badge badge-success"> <i class="icon-ok"></i></span>
-                            }
-                            else if (command.Successful == SuccessfulEnum.NotSuccessful)
-                            {
-                                <span class="badge badge-danger"><i class="icon-frown"></i></span>
-                            }
-                            else if (command.Successful == SuccessfulEnum.NotStart)
-                            {
-                                <span class="badge badge-danger"><i class="icon-beer"></i></span>
-                            }
-                            else if (command.Successful == SuccessfulEnum.Error)
-                            {
-                                <span class="badge badge-danger"><i class="icon-eye-open"></i></span>
-                            }
                         </div>
-                        <div class="col-auto">
-                            <span class="badge badge-light">@command.Step.GetDisplayDescription()</span>
+                    </InputRadioGroup>*@
+
+                <InputRadioGroup @bind-Value="_profileDomainObject.ScannerType">
+                    <div class="form-group row">
+                        <label class="control-label col-md-2">Scanner Type</label>
+                        <div style="padding-left : 16px">
+                            <InputRadio id="rfid" Value="ScannerTypeEnum.RFID.ToString()" />
+                        </div>
+                        <label class="control-label col-md-1" for="rfid">@ScannerTypeEnum.RFID.ToString()</label>
+                        <div>
+                            <InputRadio id="barcode" Value="ScannerTypeEnum.Barcode.ToString()" />
+                        </div>
+                        <label class="control-label col-md-1" for="barcode">@ScannerTypeEnum.Barcode.ToString()</label>
+                    </div>
+                </InputRadioGroup>
+
+                @*<label>
+                        Engineering Approval:
+                        <InputCheckbox @bind-Value="starship.IsValidatedDesign" />
+                    </label>*@
+
+                @*<div class="col-xs-12">
+                        <div class="row">
+                            <profile-boolean class="col-xs-3" name="Add new inventory" object="$ctrl.locationInventory['AddNewInventoryEnabled'][0]"></profile-boolean>
+                            <profile-boolean on-validate="$ctrl.validateTemplateInventoryTable()" class="col-xs-3" name="Template inventories" object="$ctrl.locationInventory['TemplateInventoriesEnabled'][0]"></profile-boolean>
+                            <profile-boolean class="col-xs-3" name="Signature" object="$ctrl.locationInventory['SignatureToVerifyClosureOfLocationRequired'][0]"></profile-boolean>
+                        </div>
+                    </div>*@
+                <div class="form-group row">
+                    <label class="control-label col-md-2">Screen Configuration</label>
+                    <div style="padding-left : 16px">
+                        <InputCheckbox @bind-Value="_profileDomainObject.LocationInventoryListScreenConfiguration.AddNewInventoryEnabled" id="addnew" />
+                    </div>
+                    <label class="control-label  col-md-2" for="addnew">Add new inventory</label>
+                    <div>
+                        <InputCheckbox @bind-Value="_profileDomainObject.LocationInventoryListScreenConfiguration.TemplateInventoriesEnabled" id="template" />
+                    </div>
+                    <label class="control-label  col-md-2" for="template">Template inventories</label>
+                    <div>
+                        <InputCheckbox @bind-Value="_profileDomainObject.LocationInventoryListScreenConfiguration.SignatureToVerifyClosureOfLocationRequired" id="signature" />
+                    </div>
+                    <label class="control-label col-md-2" for="signature">Signature</label>
+                </div>
+
+
+
+                <div class="form-group row">
+                    <label class="control-label col-md-2">Default UI Configuration</label>
+                    <div class="col-md-10">
+                        <PagedDataList Data="InventoryitemdisplaypropertyList" Prev="Prev" Next="Next" ItemsPerPage="100">
+                            <ListTemplate Context="listOfUIConfiguration">
+
+                                @*<div class="bg-success d-flex justify-content-between mb-2">
+                                                <div class="bg-success p-1 text-white">Branche with Inventories</div>
+                                                <div class="bg-success" style="padding-left: 30px;padding-right: 30px;width:132px">
+                                        <button class="btn btn-success text-white select_border_color btn-sm" style="width:70px" @onclick="@(()=>AddCustomer())">
+                                            <i class="fa fa-plus"></i>&nbsp; &nbsp;<span>Add</span>
+                                        </button>
+                                    </div>
+                                            </div>*@
+                                @*<h6 class="bg-success p-1 text-white">Default UI Configuration</h6>*@
+                                <table class="table table-bordered table-sm">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col" style="padding-left: 30px;padding-right: 20px;">#</th>
+                                            <th scope="col" style="padding-left: 20px;padding-right: 20px;">Data link</th>
+                                            <th scope="col" style="padding-left: 20px;padding-right: 20px;">Item type</th>
+                                            <th scope="col" style="padding-left: 20px;padding-right: 20px;">Title En</th>
+                                            <th scope="col" style="padding-left: 20px;padding-right: 20px;">Title He</th>
+                                            <th scope="col" style="padding-left: 20px;padding-right: 20px;"></th>
+                                            <th scope="col" style="padding-left: 20px;padding-right: 20px;"></th>
+                                            <th scope="col" style="padding-left: 20px;padding-right: 20px;"></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @listOfUIConfiguration
+                                    </tbody>
+                                </table>
+                            </ListTemplate>
+                            <ItemTemplate Context="itemUI">
+                                <tr @key=@itemUI>
+                                    @*<td>@role.RoleID</td>*@
+                                    <td style="padding-left: 30px;padding-right: 10px;width:20px">@itemUI.index</td>
+                                    <td style="padding-left: 10px;padding-right: 10px;width:120px">
+                                        <select class="custom-select" @bind="@itemUI.id">
+                                            @foreach (var url in FieldList2)
+                                                    {
+                                                <option value=@url.Key>@url.Value</option>
+                                                    }
+                                        </select>
+                                    </td>
+                                    @*<td style="padding-left: 30px;padding-right: 30px;width:120px">@itemUI.itemtype</td>*@
+                                    <td style="padding-left: 10px;padding-right: 10px;width:120px">
+                                        <select class="custom-select" @bind="@itemUI.itemtype">
+                                            @foreach (var url in ItemType)
+                                                    {
+                                                <option value=@url.Key>@url.Value</option>
+                                                    }
+                                        </select>
+                                    </td>
+                                    <td style="padding-left: 10px;padding-right: 10px;width:120px">
+                                        <input class="form-control" @bind="itemUI.Title.en" />
+                                    </td>
+                                    <td style="padding-left: 10px; padding-right: 10px; width: 120px ; text-align: right;  direction: rtl;">
+                                        <input class="form-control" @bind="itemUI.Title.he" />
+                                    </td>
+
+                                    @if (itemUI.index > 0)
+                                            {
+                                        <td style="padding-left: 10px;padding-right: 10px;width:100px">
+                                            <button class="btn btn-outline-danger  btn-sm" style="width:90px" @onclick="@(() => DeleteItem(itemUI))">
+                                                <span>Delete</span>
+                                            </button>
+                                        </td>
+
+                                        <td style="padding-left: 10px;padding-right: 10px;width:50px">
+                                            @if (itemUI.index > 1)
+                                                    {
+                                                <button class="btn btn-outline-secondary  btn-sm" style="width:60px" @onclick="@(() => Up(itemUI))">
+                                                    <span>Up</span>
+                                                </button>
+                                                    }
+                                        </td>
+
+                                        @if (itemUI.index < InventoryitemdisplaypropertyList?.Count - 1)
+                                                {
+                                            <td style="padding-left: 10px;padding-right: 10px;width:70px">
+                                                <button class="btn btn-outline-secondary  btn-sm" style="width:60px" @onclick="@(() => Down(itemUI))">
+                                                    <span>Down</span>
+                                                </button>
+                                            </td>
+                                                }
+                                                else
+                                                {
+                                            <td style="padding-left: 10px;padding-right: 10px;width:70px">
+                                            </td>
+                                                }
+                                            }
+                                            else
+                                            {
+                                        <td style="padding-left: 10px;padding-right: 10px;width:100px">
+                                            <div>
+                                                <button class="btn btn-outline-success  btn-sm" style="width:90px" @onclick="@(() => AddNewItem(itemUI))">
+                                                    <span>Add</span>
+                                                </button>
+                                            </div>
+                                        </td>
+                                        <td style="padding-left: 10px;padding-right: 10px;width:50px">
+                                        </td>
+                                        <td style="padding-left: 10px;padding-right: 10px;width:50px">
+                                        </td>
+                                            }
+                                </tr>
+                                @*<td>
+                                        <ul class="nav flex-column">
+                                            @foreach(var user in role.Members)
+                                    {
+                                                < li @key = @user.UserID >
+                                                     @user.Email
+                                                 </ li >
+                                                }
+                                        </ul>
+                                    </td>*@
+                                @*<td style = "align-content:center;padding-left: 30px;padding-right: 30px" > *@
+                                @*<td style = "padding-left: 30px;padding-right: 30px;width:152px" >
+                                        < button class="btn btn-outline-success  btn-sm" style="width:90px" @onclick="@(()=>ProfileFileEdit(inventor.InventorCode))">
+                                            <span>Edit Profile</span>
+                                        </button>
+                                    </td>
+                                    <td style = "padding-left: 30px;padding-right: 30px;width:152px" >
+                                        < button class="btn btn-outline-success  btn-sm" style="width:90px" @onclick="@(()=>ProfileFileShow(inventor.InventorCode))">
+                                            <span>Show File</span>
+                                        </button>
+                                    </td>*@
+
+                            </ItemTemplate>
+                        </PagedDataList>
+                    </div>
+                </div>
+
+                @*======================*@
+
+                <div class="form-group row">
+                    <label class="control-label col-md-2">Database Settings</label>
+                </div>
+                <div class="form-group row">
+                    <label class="control-label col-md-2">UID Key</label>
+                    <div class="col-md-10">
+                        <div class="row" style="padding-left : 16px">
+                            <Dropzone Class="fielditem50" CopyItem="(item)=> { return new ValueItem() { Key = item.Key, Value = item.Value, CanDrag = true };  }"
+                                      Items="UIDKey1" MaxItems="1" TItem="ValueItem" Context="UIDKey1Item"
+                                      AllowsDrag='(d)=>d.CanDrag == true' InstantReplace="true">
+                                <DragDropItem Item="@UIDKey1Item" @key=@UIDKey1Item
+                                              OnRemoveClick="(item)=>UIDKey1.Remove(item)"></DragDropItem>
+                            </Dropzone>
+
+                            <label style="margin-top: 5px; margin-left: 5px; margin-right:5px">|</label>
+                            <Dropzone Class="fielditem50" CopyItem="(item)=> { return new ValueItem() { Key = item.Key, Value = item.Value, CanDrag = true };  }"
+                                      Items="UIDKey2" MaxItems="1" TItem="ValueItem" Context="UIDKey2Item"
+                                      AllowsDrag='(d)=>d.CanDrag == true' InstantReplace="true">
+                                <DragDropItem Item="@UIDKey2Item" @key=@UIDKey2Item
+                                              OnRemoveClick="(item)=>UIDKey2.Remove(item)"></DragDropItem>
+                            </Dropzone>
+                            <label style="margin-top: 5px; margin-left: 5px; margin-right:5px">|</label>
+                            <Dropzone Class="fielditem50" CopyItem="(item)=> { return new ValueItem() { Key = item.Key, Value = item.Value, CanDrag = true };  }"
+                                      Items="UIDKey3" MaxItems="1" TItem="ValueItem" Context="UIDKey3Item"
+                                      AllowsDrag='(d)=>d.CanDrag == true' InstantReplace="true">
+                                <DragDropItem Item="@UIDKey3Item"
+                                              @key=@UIDKey3Item OnRemoveClick="(item)=>UIDKey3.Remove(item)"></DragDropItem>
+                            </Dropzone>
+                            <label style="margin-top: 5px; margin-left: 5px; margin-right:5px">|</label>
+                            <Dropzone Class="fielditem50" CopyItem="(item)=> { return new ValueItem() { Key = item.Key, Value = item.Value, CanDrag = true };  }"
+                                      Items="UIDKey4" MaxItems="1" TItem="ValueItem" Context="UIDKey4Item"
+                                      AllowsDrag='(d)=>d.CanDrag == true' InstantReplace="true">
+                                <DragDropItem Item="@UIDKey4Item" @key=@UIDKey4Item
+                                              OnRemoveClick="(item)=>UIDKey4.Remove(item)"></DragDropItem>
+                            </Dropzone>
+
                         </div>
                     </div>
-                }
-            }
-        </div>
+                </div>
 
-    </div>
+                @*<div class="col-md-1" style="background-color:blue;">Span 3</div>*@ @*!!!*@
+                <div class="form-group row">
+                    <label class="control-label col-md-2">Device Id</label>
+                    <div class="col-md-10">
+                        <Dropzone Class="fielditem50" CopyItem="(item)=> { return new ValueItem() { Key = item.Key, Value = item.Value, CanDrag = true };  }"
+                                  Items="CurrentInventoryDeviceIdProperty" MaxItems="1" TItem="ValueItem" Context="CurrentInventoryDeviceIdPropertyItem"
+                                  AllowsDrag='(d)=>d.CanDrag == true' InstantReplace="true">
+                            <DragDropItem Item="@CurrentInventoryDeviceIdPropertyItem" @key=@CurrentInventoryDeviceIdPropertyItem
+                                          OnRemoveClick="(item)=>CurrentInventoryDeviceIdProperty.Remove(item)"></DragDropItem>
+                        </Dropzone>
+                    </div>
+                </div>
 
-</EditForm>
-    }
+                <div class="form-group row">
+                    <label class="control-label col-md-2">User Name</label>
+                    <div class="col-md-10">
+                        <Dropzone Class="fielditem50" CopyItem="(item)=> { return new ValueItem() { Key = item.Key, Value = item.Value, CanDrag = true };  }"
+                                  Items="CurrentInventoryUserNameProperty" MaxItems="1" TItem="ValueItem" Context="CurrentInventoryUserNamePropertyItem"
+                                  AllowsDrag='(d)=>d.CanDrag == true' InstantReplace="true">
+                            <DragDropItem Item="@CurrentInventoryUserNamePropertyItem" @key=@CurrentInventoryUserNamePropertyItem
+                                          OnRemoveClick="(item)=>CurrentInventoryUserNameProperty.Remove(item)"></DragDropItem>
+                        </Dropzone>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="control-label col-md-2">Device Name</label>
+                    <div class="col-md-10">
+                        <Dropzone Class="fielditem50" CopyItem="(item)=> { return new ValueItem() { Key = item.Key, Value = item.Value, CanDrag = true };  }"
+                                  Items="CurrentInventoryDeviceNameProperty" MaxItems="1" TItem="ValueItem" Context="CurrentInventoryDeviceNamePropertyItem"
+                                  AllowsDrag='(d)=>d.CanDrag == true' InstantReplace="true">
+                            <DragDropItem Item="@CurrentInventoryDeviceNamePropertyItem" @key=@CurrentInventoryDeviceNamePropertyItem
+                                          OnRemoveClick="(item)=>CurrentInventoryDeviceNameProperty.Remove(item)"></DragDropItem>
+                        </Dropzone>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="control-label col-md-2"></label>
+                    <div style="padding-left : 16px">
+                        <InputCheckbox @bind-Value="_profileDomainObject.DatabaseSettings.ClearInventoryDataAfterUpload" id="clearInvetor" />
+                    </div>
+                    <label class="control-label  col-md-4" for="clearInvetor">Clear Inventory Data after upload</label>
+                </div>
+
+
+                @*<div class="col-md-1" style="background-color:red;">Span 5</div>*@
+
+                @*</div>
+
+
+                    <div class="form-group row">*@
+                @*<label class="control-label col-md-2">Device Name Property</label>*@
+
+
+
+
+                <div class="form-group row">
+                    <label class="control-label col-md-2">Allowed Values</label>
+                    <div class="col-md-10">
+                        <Dropzone Class="flexlistcontainer" ItemWrapperClass="flex-item"
+                                  Items="FieldList"
+                                  TItem="ValueItem"
+                                  Context="fieldlistContext"
+                                  AllowsDrag='(d)=>d.CanDrag == true'
+                                  OnItemDrop="@((i)=>RefreshList(i))">
+
+                            <h6 style="padding-right : 8px"><span class="badge badge-secondary" style="background-color:darkseagreen; color:black"> @fieldlistContext.Value</span></h6>
+                        </Dropzone>
+                    </div>
+                </div>
+
+
+                @*@foreach (var opinion in opinions)
+                        {
+                    <div class="form-check">
+                        <InputRadio class="form-check-input" id="@opinion.id" Value="@opinion.id" />
+                        <label class="form-check-label" for="@opinion.id">@opinion.label</label>
+                    </div>
+                        }*@
+
+
+
+                @*<div class="form-group row">
+                        <label class="control-label col-md-2">Branch Code</label>
+                        <label class="control-label col-md-10">@_profileObject.InventoryProcessInformation.Branch.code</label>
+                    </div>
+                    <div class="form-group row">
+                        <label class="control-label col-md-2">Branch Name</label>
+                        <div class="col-md-10">
+                            <input class="form-control" @bind="_profileObject.InventoryProcessInformation.Branch.name" />
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <label class="control-label col-md-2">Inventor Code</label>
+                        <label class="control-label col-md-10">@_profileObject.InventoryProcessInformation.Inventory.code</label>
+                    </div>
+                    <div class="form-group row">
+                        <label class="control-label col-md-2">Inventor Date</label>
+                        <label class="control-label col-md-10">@_profileObject.InventoryProcessInformation.Inventory.created_date</label>
+                    </div>*@
+
+                @*======= RFID  ==========*@
+                <div class="form-group row">
+                    <label class="control-label col-md-2">RFID Q code type (one character)</label>
+                    <div class="col-md-10">
+                        <input class="form-control" @bind="_profileDomainObject.RFID.QCodeType" />
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="control-label col-md-2">RFID SN code type (one character)</label>
+                    <div class="col-md-10">
+                        <input class="form-control" @bind="_profileDomainObject.RFID.SNCodeType" />
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="control-label col-md-2">RFID type written</label>
+                    <div class="col-md-10">
+                        <select class="custom-select" @bind="@_profileDomainObject.RFID.RFIDTagWritten">
+                            @foreach (var url in FieldList3)
+                            {
+                                <option value=@url.Key>@url.Value</option>
+                            }
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="control-label col-md-2">RFID Commands</label>
+                    <div class="col-md-10">
+                        <PagedDataList Data=@_profileDomainObject.RFID.RFIDCommands.RFIDCommand Prev="Prev" Next="Next" ItemsPerPage="100">
+                            <ListTemplate Context="listOfCommand">
+                                <table class="table table-bordered table-sm">
+                                    @*<thead>
+                                            <tr>
+                                                <th scope="col">Command</th>
+                                                <th scope="col">Type</th>
+                                            </tr>
+                                        </thead>*@
+                                    <tbody>
+                                        @listOfCommand
+                                    </tbody>
+                                </table>
+                            </ListTemplate>
+                            <ItemTemplate Context="rfidcommand">
+                                <tr @key=@rfidcommand>
+                                    <td style="padding-left: 10px; padding-right: 10px; width: 70px">
+                                        @rfidcommand.type
+                                    </td>
+                                    <td style="padding-left: 10px; padding-right: 10px">
+                                        <input class="form-control" @bind="rfidcommand.command" />
+                                    </td>
+                                </tr>
+                            </ItemTemplate>
+                        </PagedDataList>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-outline-success  btn-sm">Save to ftp</button>
+
+                        @*<button class="btn btn-light" @onclick="Cancel">Cancel</button>*@
+                    </div>
+                    <div class="col-md-3">
+                        @if (_profileFileService.RunUpdateFtpAndDbProfiles != null)
+                        {
+                            @foreach (var command in _profileFileService.RunUpdateFtpAndDbProfiles)
+                            {
+                                <div class="row" style="padding-top:3px">
+                                    <div class="col-auto">
+                                        @if (command.Successful == SuccessfulEnum.Waiting)
+                                        {
+                                            @*<WaitCursor2 />*@
+                                            <i class="icon-spinner icon-spin icon-large"></i>
+                                        }
+                                        else if (command.Successful == SuccessfulEnum.Successful)
+                                        {
+                                            @*<span class="badge badge-success">&#10003;</span>*@
+                                            <span class="badge badge-success"> <i class="icon-ok"></i></span>
+                                        }
+                                        else if (command.Successful == SuccessfulEnum.NotSuccessful)
+                                        {
+                                            <span class="badge badge-danger"><i class="icon-frown"></i></span>
+                                        }
+                                        else if (command.Successful == SuccessfulEnum.NotStart)
+                                        {
+                                            <span class="badge badge-danger"><i class="icon-beer"></i></span>
+                                        }
+                                        else if (command.Successful == SuccessfulEnum.Error)
+                                        {
+                                            <span class="badge badge-danger"><i class="icon-eye-open"></i></span>
+                                        }
+                                    </div>
+                                    <div class="col-auto">
+                                        <span class="badge badge-light">@command.Step.GetDisplayDescription()</span>
+                                    </div>
+                                </div>
+                            }
+                        }
+                    </div>
+
+                </div>
+
+            </EditForm>
+        }
 
 
     }
@@ -540,5 +544,5 @@
                              ModifiedValue="@_modifiedProfileXml"
                              CssClass="editor" />
     </div>
-    </div>
+</div>
 

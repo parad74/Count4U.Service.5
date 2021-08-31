@@ -1,6 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.Collections.Generic;
 using System.Linq;
+using System;
 
 namespace Monitor.Service.Model
 {
@@ -22,12 +23,5 @@ namespace Monitor.Service.Model
         public override string ToString() => string.Join(" ",this.Members.Select(x=>x.Email).ToList());
     }
 
-    public class UserViewModel
-    {
-        public string UserID { get; set; }
-        public string Email { get; set; }
-        public bool ToAdd { get; set; } = false;
-        public bool ToDelete { get; set; } = false;
-
-    }
+  
 }

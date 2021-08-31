@@ -3,18 +3,22 @@
 @namespace Count4U.Admin.Client.Page
 @inherits InventorProfileGridBase
 @attribute [Authorize(Policy = UserPolicy.IsProfile)]
-    <style type="text/css">
-        .fa_custom {
-            color: #0b960f
-        }
+<style type="text/css">
+    .fa_custom {
+        color: #0b960f
+    }
 
-        .select_border_color {
-  /*          border: 1px solid #0b960f;*/
-            border-radius: .1rem;
-        }
-    </style>
+    .select_border_color {
+        /*          border: 1px solid #0b960f;*/
+        border-radius: .1rem;
+    }
+</style>
 
 @if (_profileFiles == null)
+{
+    <p><em>Loading...</em></p>
+}
+else if (LocalizationResources == null)
 {
     <p><em>Loading...</em></p>
 }
@@ -30,69 +34,69 @@ else
             <div></div>
         }
     }
-<div class="row">
-    <div class="col-3"> </div>
-    <div class="d-flex flex-row-reverse">
-        <div class="input-group mb-3  float-right">
-            <div class="input-group-prepend">
-                &nbsp;  &nbsp;
-                @if (IsSearching)
-                {
-                    <button class="btn btn-outline-dark btn-sm searchicon disabled" disabled><i class="fa fa-eraser fa-lg"></i></button>
-                }
-                else
-                {
-                    <button @onclick="OnClearAsync" class="btn btn-outline-dark btn-sm searchicon" data-toggle="tooltip" data-placement="bottom" title="Clear Customer Filter"><i class="fa fa-eraser fa-lg"></i></button>
-                }
-            </div>
-            <input id="filterinput" placeholder="filter is empty" @bind="_filterInventorModel.InventorCode" />
-            <div class="input-group-append">
-                @if (IsSearching)
-                {
-                    <button class="btn btn-success btn-sm  search disabled" disabled><span class="fa fa-spinner fa-spin fa-lg fa-fw"></span>Waiting ...</button>
-                }
-                else
-                {
-                    <button @onclick="OnSearchAsync" class="btn btn-outline-success btn-sm search" data-toggle="tooltip" data-placement="bottom" title="Set Customer Filter"><i class="fa fa-filter fa-lg  fa_custom"></i>&nbsp; &nbsp;Filter</button>
-                }
-                &nbsp;  &nbsp;
-            </div>
-            <div class="input-group-append">
-                <select class="form-control form-control-sm select_border_color" @bind="@_filterInventorModel.SelectedParam">
-                    @foreach (var sparam in _filterInventorModel.FilterSelectParamDictionary)
+    <div class="row">
+        <div class="col-3"> </div>
+        <div class="d-flex flex-row-reverse">
+            <div class="input-group mb-3  float-right">
+                <div class="input-group-prepend">
+                    &nbsp;  &nbsp;
+                    @if (IsSearching)
                     {
-                        <option value=@sparam.Key>@sparam.Value</option>
+                        <button class="btn btn-outline-dark btn-sm searchicon disabled" disabled><i class="fa fa-eraser fa-lg"></i></button>
                     }
-                </select>
+                    else
+                    {
+                        <button @onclick="OnClearAsync" class="btn btn-outline-dark btn-sm searchicon" data-toggle="tooltip" data-placement="bottom" title="Clear Customer Filter"><i class="fa fa-eraser fa-lg"></i></button>
+                    }
+                </div>
+                <input id="filterinput" placeholder="filter is empty" @bind="_filterInventorModel.InventorCode" />
+                <div class="input-group-append">
+                    @if (IsSearching)
+                    {
+                        <button class="btn btn-success btn-sm  search disabled" disabled><span class="fa fa-spinner fa-spin fa-lg fa-fw"></span>Waiting ...</button>
+                    }
+                    else
+                    {
+                        <button @onclick="OnSearchAsync" class="btn btn-outline-success btn-sm search" data-toggle="tooltip" data-placement="bottom" title="Set Customer Filter"><i class="fa fa-filter fa-lg  fa_custom"></i>&nbsp; &nbsp;Filter</button>
+                    }
+                    &nbsp;  &nbsp;
+                </div>
+                <div class="input-group-append">
+                    <select class="form-control form-control-sm select_border_color" @bind="@_filterInventorModel.SelectedParam">
+                        @foreach (var sparam in _filterInventorModel.FilterSelectParamDictionary)
+                        {
+                            <option value=@sparam.Key>@sparam.Value</option>
+                        }
+                    </select>
+                </div>
             </div>
         </div>
+
+        <div class="col-2"></div>
     </div>
 
-    <div class="col-2"></div>
-</div>
-
-    <PagedDataList Data=@_profileFiles Prev="Prev" Next="Next" ItemsPerPage=@OnPageNumber  
+    <PagedDataList Data=@_profileFiles Prev="Prev" Next="Next" ItemsPerPage=@OnPageNumber
                    OnChangePageClick="OnChangePageNumber">
         <ListTemplate Context="listOfInventor">
             @*<h6 class="bg-success p-1 text-white">Inventor with Profile</h6>*@
             <div class="bg-success d-flex justify-content-between mb-2">
                 <div class="bg-success p-1 text-white"> &nbsp; Inventor with Profile &nbsp;</div>
                 @*<div class="bg-success" style="padding-left: 30px;padding-right: 30px;width:132px">
-                <button class="btn btn-success text-white select_border_color btn-sm" style="width:70px" @onclick="@(()=>AddCustomer())">
-                    <i class="fa fa-plus"></i>&nbsp; &nbsp;<span>Add</span>
-                </button>
-            </div>*@
+                        <button class="btn btn-success text-white select_border_color btn-sm" style="width:70px" @onclick="@(()=>AddCustomer())">
+                            <i class="fa fa-plus"></i>&nbsp; &nbsp;<span>Add</span>
+                        </button>
+                    </div>*@
             </div>
 
             <table class="table table-bordered table-sm">
                 @*<thead>
-                <tr>
-                    <th scope="col">Id</th>
-                    <th scope="col">Name</th>
-                    <th scope="col">Users</th>
-                    <th scope="col">Edit</th>
-                </tr>
-            </thead>*@
+                        <tr>
+                            <th scope="col">Id</th>
+                            <th scope="col">Name</th>
+                            <th scope="col">Users</th>
+                            <th scope="col">Edit</th>
+                        </tr>
+                    </thead>*@
                 <tbody>
                     @listOfInventor
                 </tbody>
@@ -132,7 +136,7 @@ else
     </PagedDataList>
 
 
-  
+
 }
 
 

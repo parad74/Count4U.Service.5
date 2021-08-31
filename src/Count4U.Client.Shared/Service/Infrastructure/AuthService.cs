@@ -24,6 +24,7 @@ namespace Count4U.Service.Shared
 		Task<ProfileResult> ProfileAsync(ProfileModel profileModel);
 		Task<ProfileResult> UpdateProfileAsync(ProfileModel profileModel);
 		Task<ForgotPasswordResult> ForgotPassword(ForgotPasswordModel forgotPasswordModel);
+		Task<UserViewModel> GetUser(UserViewModel userViewModel);
 	}
 
 	public class AuthService : IAuthService
@@ -330,7 +331,60 @@ namespace Count4U.Service.Shared
 			}
 		}
 
-		
+
+		public async Task<UserViewModel> GetUser(UserViewModel userViewModel)
+		{
+			Console.WriteLine($"Client.AuthService.GetUser() : start");
+			if (userViewModel == null)
+			{
+				Console.WriteLine($"Client.AuthService.GetUser() : in userViewModel is null");
+				var error = new UserViewModel { Successful = SuccessfulEnum.NotSuccessful, Error = @"userViewModel is null" };
+				Console.WriteLine($"Client.AuthService.GetUser() : end1");
+				return error;
+			}
+
+			try
+			{
+				string authenticationWebapiUrl = await this._localStorage.GetItemAsync<string>(SessionStorageKey.authenticationWebapiUrl);
+				if (string.IsNullOrWhiteSpace(authenticationWebapiUrl) == true)
+				{
+					Console.WriteLine($"Client.AuthService.GetUser() : ERROR Authentication Server Url is Empty. Can't get user from Server");
+					//var error = new LoginResult { Successful = false, Error = $"Authentication Server Url is Empty. Can't get user from Server.  [ Authentication Server Address { authenticationWebapiUrl} ]" };
+					var error = new UserViewModel { Successful = SuccessfulEnum.NotSuccessful, Error = @"Authentication Server Url is Empty. Can't get user from Server" };
+					Console.WriteLine($"Client.AuthService.GetUser() : end");
+					return error;
+				}
+				string request = Opetarion.UrlCombine(authenticationWebapiUrl, WebApiAuthenticationAdmin.GetUser);
+				Console.WriteLine($"Client.AuthService.GetUser() : request {request}");
+				//var result = await this._httpClient.PostJsonAsync<LoginResult>(request, loginModel);                //   "api/admin/getuser"
+				HttpResponseMessage response = await this._httpClient.PostAsJsonAsync<UserViewModel>(request, userViewModel);
+				UserViewModel result = await response.Content.ReadFromJsonAsync<UserViewModel>();
+
+				if (result == null)
+				{
+					Console.WriteLine($"Client.AuthService.GetUser() : Can't login to Server");
+					//var error = new LoginResult { Successful = false, Error = "Can't login to Server" };
+					var error = new UserViewModel { Successful = SuccessfulEnum.NotSuccessful, Error = @"Can't login to Server" };
+					Console.WriteLine($"Client.AuthService.GetUser() : end2");
+					return error;
+				}
+				else
+				{
+					Console.WriteLine($"Client.AuthService.GetUser() : end");
+					return result;
+
+				}
+
+			}
+			catch (Exception ecx) when (LogError(ecx))
+			{
+				Console.WriteLine("Client.AuthService.GetUser() Exception : ");
+				Console.WriteLine(ecx.Message);
+				var error = new UserViewModel { Successful = SuccessfulEnum.NotSuccessful, Error = ecx.Message };
+				Console.WriteLine($"Client.AuthService.GetUser() : end with Exception");
+				return error;
+			}
+		}
 
 		public async Task<ForgotPasswordResult> ForgotPassword(ForgotPasswordModel forgotPasswordModel)
 		{

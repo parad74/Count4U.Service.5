@@ -4,10 +4,16 @@
 
 <h4>@LocalizationResources.Menu_Profile</h4>
 
-@if (_profileModel == null) {
+@if (_profileModel == null)
+{
     <p><em>Loading...</em></p>
 }
-else {
+else if (LocalizationResources == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
     <div class="card">
         <div class="card-body">
             @*<h5 class="card-title">@LocalizationResources.Profile_Please_enter_your_details</h5>*@
@@ -24,9 +30,9 @@ else {
                     @if (this._updateProfileResult.Successful == SuccessfulEnum.NotSuccessful)
                     {
                         <div class="alert alert-danger" role="alert">
-                                <p>@this._updateProfileResult.Error</p>
+                            <p>@this._updateProfileResult.Error</p>
                         </div>
-                     }
+                    }
                 }
                 @*@bind="@_profileModel.DataServerAddress"*@
                 @*<button class="btn btn-outline-info btn-sm" @onclick=@UrlClicked><span class="oi oi-loop-circular" /></button>*@
@@ -34,7 +40,8 @@ else {
                     <label for="dataserveraddress">@LocalizationResources.Profile_Data_Server_Address</label>
                     <select class="form-control" aria-describedby="serverAddresslHelp" @bind="@_profileModel.DataServerAddress" @oninput=@UrlOnInput required>
                         <option value=""></option>
-                        @foreach (var url in _urls) {
+                        @foreach (var url in _urls)
+                        {
                             <option value="@url">
                                 @url
                             </option>
@@ -42,14 +49,17 @@ else {
                     </select>
                     <small id="serverAddresslHelp" class="form-text text-muted">@LocalizationResources.Profile_serverAddresslHelp</small>
                 </div>
-                @if (_showSuccessfulUrl == true) {
+                @if (_showSuccessfulUrl == true)
+                {
                     <div class="alert alert-info" role="alert">
                         <p>@LocalizationResources.Profile_Server_open_Successfuly</p>
                     </div>
                 }
-                @if (_showErrorsUrl == true) {
+                @if (_showErrorsUrl == true)
+                {
                     <div class="alert alert-danger" role="alert">
-                        @foreach (var error in _errors) {
+                        @foreach (var error in _errors)
+                        {
                             <p>@error</p>
                         }
                     </div>
@@ -67,7 +77,8 @@ else {
                     <label for="accesskey">@LocalizationResources.Profile_Process_Code</label>
                     <select class="form-control" aria-describedby="processCodeHelp" @bind="@_profileModel.AccessKey" @oninput=@ProcessCodeOnInput>
                         <option value=""></option>
-                        @foreach (var processeCode in _processeCodes) {
+                        @foreach (var processeCode in _processeCodes)
+                        {
                             <option value="@processeCode">
                                 @processeCode
                             </option>
@@ -86,7 +97,8 @@ else {
                     <label for="accesskey">@LocalizationResources.Property_Inventor_CustomerCode</label>
                     <select class="form-control" aria-describedby="customerCodeHelp" @bind="@_profileModel.CustomerCode" @oninput=@CustomerCodeOnInput>
                         <option value=""></option>
-                        @foreach (var customerCode in _customerCodes) {
+                        @foreach (var customerCode in _customerCodes)
+                        {
                             <option value="@customerCode">
                                 @customerCode
                             </option>
@@ -104,7 +116,8 @@ else {
                     <label for="accesskey">@LocalizationResources.Property_Inventor_BranchCode</label>
                     <select class="form-control" aria-describedby="branchCodeHelp" @bind="@_profileModel.BranchCode" @oninput=@BranchCodeOnInput>
                         <option value=""></option>
-                        @foreach (var branchCode in _branchCodes) {
+                        @foreach (var branchCode in _branchCodes)
+                        {
                             <option value="@branchCode">
                                 @branchCode
                             </option>
@@ -122,7 +135,8 @@ else {
                     <label for="accesskey">@LocalizationResources.Property_Inventor_InventorCode</label>
                     <select class="form-control" aria-describedby="inventorCodeHelp" @bind="@_profileModel.InventorCode" @oninput=@InventorCodeOnInput>
                         <option value=""></option>
-                        @foreach (var inventorCode in _inventorCodes) {
+                        @foreach (var inventorCode in _inventorCodes)
+                        {
                             <option value="@inventorCode">
                                 @inventorCode
                             </option>
@@ -141,9 +155,11 @@ else {
                     <InputText id="dbPath" class="form-control" placeholder="DB Path" @bind-Value="@_profileModel.DBPath" disabled />
                 </div>
 
-                @if (_showErrorsPathDB == true) {
+                @if (_showErrorsPathDB == true)
+                {
                     <div class="alert alert-danger" role="alert">
-                        @foreach (var error in _errorsPathDB) {
+                        @foreach (var error in _errorsPathDB)
+                        {
                             <p>@error</p>
                         }
                     </div>

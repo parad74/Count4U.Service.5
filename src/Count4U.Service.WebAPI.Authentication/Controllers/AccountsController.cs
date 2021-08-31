@@ -80,6 +80,10 @@ namespace Count4U.Service.WebAPI.Authentication.Controllers
 
 			// Add all new users to the User role
 			await _userManager.AddToRoleAsync(newUser, "User");
+			if 	(model.IsOwner == true) await _userManager.AddToRoleAsync(newUser, "Owner");
+			if (model.IsWorker == true) await _userManager.AddToRoleAsync(newUser, "Worker");
+			if (model.IsManager == true) await _userManager.AddToRoleAsync(newUser, "Manager");
+
 
 			// Add new users whose email starts with 'admin' to the Admin role
 			//		builder.Entity<IdentityRole>().HasData(new IdentityRole { Name = "Owner", NormalizedName = "OWNER", Id = Guid.NewGuid().ToString(), ConcurrencyStamp = Guid.NewGuid().ToString() });
@@ -91,7 +95,7 @@ namespace Count4U.Service.WebAPI.Authentication.Controllers
 			//builder.Entity<IdentityRole>().HasData(new IdentityRole { Name = "Worker", NormalizedName = "WORKER", Id = Guid.NewGuid().ToString(), ConcurrencyStamp = Guid.NewGuid().ToString() });	   //Inventor in field
 			//builder.Entity<IdentityRole>().HasData(new IdentityRole { Name = "Profile", NormalizedName = "PROFILE", Id = Guid.NewGuid().ToString(), ConcurrencyStamp = Guid.NewGuid().ToString() });	  //my Profile Edit
 
-				//test 
+			//test 
 			if (newUser.Email.StartsWith("parad74@mail.ru") )
 			{
 				await _userManager.AddToRoleAsync(newUser, "Owner");

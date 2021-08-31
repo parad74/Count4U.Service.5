@@ -18,7 +18,7 @@ namespace Count4U.Admin.Client.Page
         public string userID { get; set; }
 		protected ChangePasswordModel _changePasswordModel { get; set; }
 		protected ChangePasswordResult _changePasswordResult { get; set; }
-		protected GetResources LocalizationResources;
+	  	protected GetResources LocalizationResources { get; set; }
 
 
 		[Inject]

@@ -4,62 +4,66 @@
 @attribute [Authorize(Policy = UserPolicy.IsProfile)]
 
 
-    @if (_profileFiles == null)
-    {
-        <p><em>Loading...</em></p>
-    }
-    else
-    {
-        <PagedDataList Data=@_profileFiles Prev="Prev" Next="Next" ItemsPerPage="10">
-            <ListTemplate Context="listOfBranch">
-                @*<h6 class="bg-success p-1 text-white">Branche with Inventories</h6>*@
+@if (_profileFiles == null)
+{
+    <p><em>Loading...</em></p>
+}
+else if (LocalizationResources == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <PagedDataList Data=@_profileFiles Prev="Prev" Next="Next" ItemsPerPage="10">
+        <ListTemplate Context="listOfBranch">
+            @*<h6 class="bg-success p-1 text-white">Branche with Inventories</h6>*@
 
-                <div class="bg-success d-flex justify-content-between mb-2">
-                    <div class="bg-success p-1 text-white"> &nbsp;Branche with Inventories &nbsp;</div>
-                    @*<div class="bg-success" style="padding-left: 30px;padding-right: 30px;width:132px">
-                <button class="btn btn-success text-white select_border_color btn-sm" style="width:70px" @onclick="@(()=>AddCustomer())">
-                    <i class="fa fa-plus"></i>&nbsp; &nbsp;<span>Add</span>
-                </button>
-            </div>*@
-                </div>
-
-                <table class="table table-bordered table-sm">
-                    @*<thead>
-                <tr>
-                    <th scope="col">Id</th>
-                    <th scope="col">Name</th>
-                    <th scope="col">Users</th>
-                    <th scope="col">Edit</th>
-                </tr>
-            </thead>*@
-                    <tbody>
-                        @listOfBranch
-                    </tbody>
-                </table>
-            </ListTemplate>
-            <ItemTemplate Context="branch">
-                <tr @key=@branch>
-                    @*<td>@role.RoleID</td>*@
-                     <td style="padding-left: 30px;padding-right: 30px;width:132px">@branch.BranchCode</td>
-                    <td>@branch.ToString()</td>
-                    @*<td>
-            <ul class="nav flex-column">
-                @foreach (var user in role.Members)
-                    {
-                    <li @key=@user.UserID>
-                        @user.Email
-                    </li>
-                    }
-            </ul>
-        </td>*@
-                    @*<td style="align-content:center;padding-left: 30px;padding-right: 30px">*@
-                    <td style="padding-left: 30px;padding-right: 30px;width:152px">
-                        <button class="btn btn-outline-success  btn-sm" style="width:90px" @onclick="@(()=>NavigateToInventories(branch.BranchCode))">
-                            <span>Inventories</span>
+            <div class="bg-success d-flex justify-content-between mb-2">
+                <div class="bg-success p-1 text-white"> &nbsp;Branche with Inventories &nbsp;</div>
+                @*<div class="bg-success" style="padding-left: 30px;padding-right: 30px;width:132px">
+                        <button class="btn btn-success text-white select_border_color btn-sm" style="width:70px" @onclick="@(()=>AddCustomer())">
+                            <i class="fa fa-plus"></i>&nbsp; &nbsp;<span>Add</span>
                         </button>
-                    </td>
-                </tr>
-            </ItemTemplate>
-        </PagedDataList>
-    }
+                    </div>*@
+            </div>
+
+            <table class="table table-bordered table-sm">
+                @*<thead>
+                        <tr>
+                            <th scope="col">Id</th>
+                            <th scope="col">Name</th>
+                            <th scope="col">Users</th>
+                            <th scope="col">Edit</th>
+                        </tr>
+                    </thead>*@
+                <tbody>
+                    @listOfBranch
+                </tbody>
+            </table>
+        </ListTemplate>
+        <ItemTemplate Context="branch">
+            <tr @key=@branch>
+                @*<td>@role.RoleID</td>*@
+                <td style="padding-left: 30px;padding-right: 30px;width:132px">@branch.BranchCode</td>
+                <td>@branch.ToString()</td>
+                @*<td>
+                        <ul class="nav flex-column">
+                            @foreach (var user in role.Members)
+                                {
+                                <li @key=@user.UserID>
+                                    @user.Email
+                                </li>
+                                }
+                        </ul>
+                    </td>*@
+                @*<td style="align-content:center;padding-left: 30px;padding-right: 30px">*@
+                <td style="padding-left: 30px;padding-right: 30px;width:152px">
+                    <button class="btn btn-outline-success  btn-sm" style="width:90px" @onclick="@(()=>NavigateToInventories(branch.BranchCode))">
+                        <span>Inventories</span>
+                    </button>
+                </td>
+            </tr>
+        </ItemTemplate>
+    </PagedDataList>
+}
 

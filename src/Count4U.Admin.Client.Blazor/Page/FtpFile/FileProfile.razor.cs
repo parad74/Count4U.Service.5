@@ -11,6 +11,7 @@ using Microsoft.JSInterop;
 using Newtonsoft.Json;
 using System.Dynamic;
 using Newtonsoft.Json.Converters;
+using Count4U.Admin.Client.Blazor.I18nText;
 
 namespace Count4U.Admin.Client.Blazor.Page.FtpFile
 {
@@ -20,6 +21,12 @@ namespace Count4U.Admin.Client.Blazor.Page.FtpFile
 		public IConfiguration Configuration { get; set; }
 		[Inject]
 		public HttpClient Http { get; set; }
+
+        [Inject]
+        protected Toolbelt.Blazor.I18nText.I18nText I18nText { get; set; }
+
+        protected GetResources LocalizationResources { get; set; }
+
 
         public Count4U.Service.Format.Json.Customer _customerObject { get; set; }
         public Count4U.Service.Format.Json.Profile _profileObject { get; set; }

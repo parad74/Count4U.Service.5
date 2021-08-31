@@ -1,4 +1,5 @@
 @page "/useradd"
+@page "/useradd/{userID}"
 @inherits UserAddBase
 @attribute [Authorize(Policy = UserPolicy.IsAdmin)]
 
@@ -9,15 +10,19 @@
 {
     <p><em>Loading...</em></p>
 }
+else if (LocalizationResources == null)
+{
+    <p><em>Loading...</em></p>
+}
 else
 {
-<div class="bg-success d-flex justify-content-between mb-2">
-    <div class="bg-success p-1 text-white"> &nbsp;@LocalizationResources.Register_User &nbsp;</div>
-    <div class="bg-success p-1">
-        @*<i class="fa fa-pencil text-white"></i>*@
-        &nbsp;<span class="oi oi-pencil text-white" aria-hidden="true"></span> &nbsp;
+    <div class="bg-success d-flex justify-content-between mb-2">
+        <div class="bg-success p-1 text-white"> &nbsp;@LocalizationResources.Register_User &nbsp;</div>
+        <div class="bg-success p-1">
+            @*<i class="fa fa-pencil text-white"></i>*@
+            &nbsp;<span class="oi oi-pencil text-white" aria-hidden="true"></span> &nbsp;
+        </div>
     </div>
-</div>
     <div class="card" style="border:none">
         <div class="card-body" style="border:none">
             @*<h4>@LocalizationResources.Register_User</h4>*@
@@ -35,29 +40,30 @@ else
                     <InputText id="email" class="form-control" @bind-Value="@_registerModel.Email"
                                placeholder="@LocalizationResources.Register_Email_will_be_use_as_login_for_your_account" />
                     <ValidationMessage For="@(() => _registerModel.Email)" />
-                    @*<small id="emailHelp" class="form-text text-muted">@LocalizationResources.Register_Email_will_be_use_as_login_for_your_account</small>*@
                 </div>
 
                 <div class="form-group">
                     <label for="password">@LocalizationResources.Register_Password</label>
-                    <InputText id="password" class="form-control" @bind-Value="@_registerModel.Password"
-                               aria-describedby="passwordHelp" />
+                    <InputText id="password" class="form-control" @bind-Value="@_registerModel.Password" />
                     <ValidationMessage For="@(() => _registerModel.Password)" />
-                    @*<small id="passwordHelp" class="form-text text-muted">@LocalizationResources.Register_Password_for_your_account</small>*@
-
                 </div>
+
                 <div class="form-group">
-                    <label for="email">@LocalizationResources.Property_Inventor_CustomerCode</label>
-                    <InputText id="email" class="form-control" @bind-Value="@_registerModel.CustomerCode"
-                               aria-describedby="emailHelp" placeholder=@LocalizationResources.Register_customer_code_from_Count4U />
+                    <label for="passwordConfirm">@LocalizationResources.Register_Confirm_Password</label>
+                    <InputText id="passwordConfirm" class="form-control" @bind-Value="@_registerModel.ConfirmPassword" />
+                    <ValidationMessage For="@(() => _registerModel.ConfirmPassword)" />
+                </div>
+
+                <div class="form-group">
+                    <label for="customerCode">@LocalizationResources.Property_Inventor_CustomerCode</label>
+                    <InputText id="customerCode" class="form-control" @bind-Value="@_registerModel.CustomerCode"
+                               placeholder=@LocalizationResources.Register_customer_code_from_Count4U />
                     <ValidationMessage For="@(() => _registerModel.CustomerCode)" />
-                    @*<small id="emailHelp" class="form-text text-muted">@LocalizationResources.Register_customer_code_from_Count4U</small>*@
                 </div>
 
                 <div class="form-group">
-                    <label for="email">@LocalizationResources.Property_Inventor_Description</label>
-                    <InputText id="email" class="form-control" @bind-Value="@_registerModel.UserDescription"
-                               aria-describedby="emailHelp" />
+                    <label for="description">@LocalizationResources.Property_Inventor_Description</label>
+                    <InputText id="description" class="form-control" @bind-Value="@_registerModel.UserDescription" />
                     <ValidationMessage For="@(() => _registerModel.CustomerCode)" />
                 </div>
 
@@ -81,33 +87,33 @@ else
                 </div>
                 <div class="p-2">
                 </div>
-                    @*<div class="form-group">
-            <label for="email">@LocalizationResources.Property_Inventor_CustomerContextName</label>
-            <InputText id="email" class="form-control" @bind-Value="@_registerModel.CustomerContextName"
-                       aria-describedby="emailHelp" />
-            <ValidationMessage For="@(() => _registerModel.CustomerContextName)" />
-            <small id="emailHelp" class="form-text text-muted">@LocalizationResources.Register_customer_name_use_as_lable_for_customer</small>
-        </div>*@
+                @*<div class="form-group">
+                        <label for="email">@LocalizationResources.Property_Inventor_CustomerContextName</label>
+                        <InputText id="email" class="form-control" @bind-Value="@_registerModel.CustomerContextName"
+                                   aria-describedby="emailHelp" />
+                        <ValidationMessage For="@(() => _registerModel.CustomerContextName)" />
+                        <small id="emailHelp" class="form-text text-muted">@LocalizationResources.Register_customer_name_use_as_lable_for_customer</small>
+                    </div>*@
 
-                    <button type="submit" class="btn btn btn-success">Submit</button>
-                    @if (this._registerResult != null)
+                <button type="submit" class="btn btn btn-success">Submit</button>
+                @if (this._registerResult != null)
+                {
+                    @if (this._registerResult.Successful == SuccessfulEnum.Successful)
                     {
-                        @if (this._registerResult.Successful == SuccessfulEnum.Successful)
-                        {
-                            <div class="alert alert-success" role="alert">
-                                <p>@LocalizationResources.Register_Registered_Successfuly</p>
-                            </div>
-                        }
-
-                        @if (this._registerResult.Successful == SuccessfulEnum.NotSuccessful)
-                        {
-                            <div class="alert alert-danger" role="alert">
-                                <p>@LocalizationResources.Register_Cant_register</p>
-                                <p>@this._registerResult.Error</p>
-                            </div>
-                        }
+                        <div class="alert alert-success" role="alert">
+                            <p>@LocalizationResources.Register_Registered_Successfuly</p>
+                        </div>
                     }
-</EditForm>
+
+                    @if (this._registerResult.Successful == SuccessfulEnum.NotSuccessful)
+                    {
+                        <div class="alert alert-danger" role="alert">
+                            <p>@LocalizationResources.Register_Cant_register</p>
+                            <p>@this._registerResult.Error</p>
+                        </div>
+                    }
+                }
+            </EditForm>
         </div>
     </div>
 }

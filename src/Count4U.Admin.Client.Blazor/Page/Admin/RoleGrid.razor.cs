@@ -5,6 +5,7 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using Blazored.LocalStorage;
 using Blazored.SessionStorage;
+using Count4U.Admin.Client.Blazor.I18nText;
 //using Count4U.Model.Count4U;
 using Count4U.Service.Shared;
 using Microsoft.AspNetCore.Components;
@@ -22,6 +23,8 @@ namespace Count4U.Admin.Client.Page
 		public string PingServer { get; set; }
 		public string SessionStorageMode { get; set; }
 		public string SessionAuthenticationServer { get; set; }
+
+		public GetResources LocalizationResources { get; set; }
 
 
 		[Inject]
@@ -41,6 +44,9 @@ namespace Count4U.Admin.Client.Page
 
 		[Inject]
 		protected IAdminService _adminService { get; set; }
+
+		[Inject]
+		protected Toolbelt.Blazor.I18nText.I18nText I18nText { get; set; }
 
 		//[Inject]
 		//protected HttpClient Http { get; set; }
@@ -99,6 +105,8 @@ namespace Count4U.Admin.Client.Page
 			Console.WriteLine($"Client.RoleGridBase.OnInitializedAsync() : start");
 			try
 			{
+				this.LocalizationResources = await this.I18nText.GetTextTableAsync<GetResources>(this);
+
 				string tokenFromStorage = await this._sessionStorage.GetItemAsync<string>(SessionStorageKey.authToken);
 				Console.WriteLine($"Client.RoleGridBase.OnInitializedAsync() : got Token");
 				this._profileModel = this._jwtService.GetProfileModelFromStoragedToken(tokenFromStorage);

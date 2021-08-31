@@ -13,7 +13,7 @@ using Monitor.Service.Model;
 using Monitor.Service.Shared;
 using Monitor.Service.Urls;
 using Count4U.Admin.Client.Blazor.Component;
-
+using Count4U.Admin.Client.Blazor.I18nText;
 
 namespace Count4U.Admin.Client.Blazor.Page
 {
@@ -40,6 +40,11 @@ namespace Count4U.Admin.Client.Blazor.Page
 
 		[Inject]
 		protected IProfileFileService _profileFileService { get; set; }
+
+		[Inject]
+		protected Toolbelt.Blazor.I18nText.I18nText I18nText { get; set; }
+
+		protected GetResources LocalizationResources { get; set; }
 
 		protected bool IsSearching { get; set; }
 
@@ -193,7 +198,7 @@ namespace Count4U.Admin.Client.Blazor.Page
 			Console.WriteLine($"Client.CustomerProfileGridBase.OnInitializedAsync() : start");
 			try
 			{
-   		
+				this.LocalizationResources = await this.I18nText.GetTextTableAsync<GetResources>(this);
 				Console.WriteLine($"Client.CustomerProfileGridBase.OnInitializedAsync() : GetAuthenticationUrls");
 				if (this._localStorage != null)
 				{

@@ -18,6 +18,10 @@
 {
     <p><em>Loading...</em></p>
 }
+else if (LocalizationResources == null)
+{
+    <p><em>Loading...</em></p>
+}
 else
 {
     @if (this._filterResult != null)
@@ -91,13 +95,13 @@ else
 
             <table class="table table-bordered table-sm">
                 @*<thead>
-                <tr>
-                    <th scope="col">Id</th>
-                    <th scope="col">Name</th>
-                    <th scope="col">Users</th>
-                    <th scope="col">Edit</th>
-                </tr>
-            </thead>*@
+                        <tr>
+                            <th scope="col">Id</th>
+                            <th scope="col">Name</th>
+                            <th scope="col">Users</th>
+                            <th scope="col">Edit</th>
+                        </tr>
+                    </thead>*@
                 <tbody>
                     @listOfCustomer
                 </tbody>
