@@ -23,5 +23,5 @@ namespace Monitor.Service.Model
         public override string ToString() => string.Join(" ",this.Members.Select(x=>x.Email).ToList());
     }
 
-  
-}
+
+   }

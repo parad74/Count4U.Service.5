@@ -10,8 +10,8 @@ namespace Count4U.Admin.Client.Page
 {
 	public class UserAddBase : ComponentBase
 	{
-		[Parameter]
-		public string userID { get; set; }
+		//[Parameter]
+		//public string userID { get; set; }
 		protected RegisterModel _registerModel { get; set; }
  	
 
@@ -39,12 +39,17 @@ namespace Count4U.Admin.Client.Page
 		[Inject]
 		protected Toolbelt.Blazor.I18nText.I18nText I18nText { get; set; }
 
+	
+
 		public UserAddBase()
 		{
 			this._registerModel = new RegisterModel();
+
 			//this._errors = new List<string>();
 		}
 
+
+	
 		protected async Task RegistrationAsync()
 		{
 			Console.WriteLine();
@@ -90,45 +95,10 @@ namespace Count4U.Admin.Client.Page
 			}
 		}
 
+
 		public async Task GetRegisterModel()
 		{
-
-			if (string.IsNullOrWhiteSpace(userID) == false)
-			{
-				Console.WriteLine($"Client.UserAddBase.GetRegisterModel() userID = {userID}");
-				if (this._authService == null)
-				{
-					Console.WriteLine($"Client.UserGridBase.UserDelete() : _authService is null");
-				}
-				else
-				{
-					try
-					{
-						UserViewModel user = await this._authService.GetUser(new UserViewModel() { UserID = userID });
-						if (user.Successful == SuccessfulEnum.Successful)
-						{
-							this._registerModel = new RegisterModel(user);
-						}
-						else
-						{
-							this._registerModel = new RegisterModel();
-						}
-					}
-					catch (Exception ecx)
-					{
-						Console.WriteLine("Client.UserGridBase.UserDelete() Exception : ");
-						Console.WriteLine(ecx.Message);
-					}
-					Console.WriteLine($"Client.UserGridBase.UserDelete() : end");
-					//this.StateHasChanged();
-				}
-
-			}
-			else 
-			{
-				this._registerModel = new RegisterModel();
-			}
-
+  			this._registerModel = new RegisterModel();
 		}
 
 	

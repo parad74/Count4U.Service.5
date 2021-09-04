@@ -67,7 +67,7 @@ namespace Count4U.Service.WebAPI.Authentication.Controllers
 				return new RegisterResult { Successful = SuccessfulEnum.NotSuccessful , Error = "User with the same e-mail there is " };
  			}
 
-			var newUser = new ApplicationUser { UserName = model.Email, Email = model.Email };
+			var newUser = new ApplicationUser { UserName = model.Email, Email = model.Email,  CustomerCode = model.CustomerCode, FistName = model.UserDescription};
 
 			IdentityResult result = await _userManager.CreateAsync(newUser, model.Password);
 
@@ -180,7 +180,7 @@ namespace Count4U.Service.WebAPI.Authentication.Controllers
 			}
 		//	ApplicationUser user = await _userManager.FindByEmailAsync(User.Identity.Name);
 			ApplicationUser user = await _userManager.FindByIdAsync(profileModel.ID);
-			if (user != null)
+			if (user == null)
 			{
 				return new ProfileResult { Successful = SuccessfulEnum.NotSuccessful , Error = "Can't get user from db "  };
 			}
@@ -204,6 +204,57 @@ namespace Count4U.Service.WebAPI.Authentication.Controllers
 			}
 
 			return new ProfileResult { Successful = SuccessfulEnum.Successful  };
+		}
+
+
+
+		[Authorize]
+		[HttpPost(WebApiAuthenticationAccounts.UpdateUser)]
+		public async Task<UserResult> UpdateUserAsync([FromBody] UserViewModel userViewModel)
+		{
+			if (userViewModel == null)
+			{
+				return new UserResult { Successful = SuccessfulEnum.NotSuccessful, Error = " UserViewModel is null " };
+			}
+
+			if (string.IsNullOrWhiteSpace(userViewModel.UserID))
+			{
+				return new UserResult { Successful = SuccessfulEnum.NotSuccessful, Error = "User ID is empty " };
+			}
+			//	ApplicationUser user = await _userManager.FindByEmailAsync(User.Identity.Name);
+			ApplicationUser user = await _userManager.FindByIdAsync(userViewModel.UserID);
+			if (user == null)
+			{
+				if (string.IsNullOrWhiteSpace(userViewModel.Email) == false)
+				{
+					user = await _userManager.FindByEmailAsync(userViewModel.Email);
+				}
+			}
+
+			if (user == null)
+			{
+				return new UserResult { Successful = SuccessfulEnum.NotSuccessful, Error = "Can't get user from db " };
+			}
+
+			user.CustomerCode = userViewModel.CustomerCode != null ? userViewModel.CustomerCode : "";
+			user.FistName = userViewModel.Description != null ? userViewModel.Description : "";
+
+			var result = await _userManager.UpdateAsync(user);
+
+			if (result.Succeeded == false)
+			{
+				var errors = result.Errors.Select(x => x.Description);
+				var error = string.Join(" .", errors);
+				return new UserResult { Successful = SuccessfulEnum.NotSuccessful, Error = error };
+			}
+
+			await _userManager.RemoveFromRolesAsync(user, userViewModel.InRoles);
+			if (userViewModel.IsOwner == true) await _userManager.AddToRoleAsync(user, "Owner");
+			if (userViewModel.IsWorker == true) await _userManager.AddToRoleAsync(user, "Worker");
+			if (userViewModel.IsManager == true) await _userManager.AddToRoleAsync(user, "Manager");
+
+
+			return new UserResult { Successful = SuccessfulEnum.Successful };
 		}
 
 		[Authorize]

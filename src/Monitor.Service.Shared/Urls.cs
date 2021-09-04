@@ -66,6 +66,7 @@
 	public static class WebApiAuthenticationAccounts
 	{
 		public const string PostProfile = @"api/accounts/profile";
+		public const string UpdateUser = @"api/accounts/updateuser";
 		public const string GetCurrentUserProfile = @"api/accounts/getcurrentuserprofile";
 		public const string PostRegister = @"api/accounts/register";
 		public const string PostUpdateprofile = @"api/accounts/updateprofile";
@@ -79,6 +80,7 @@
 		public const string Delete = @"api/admin/delete";
 		public const string PostChangePassword = @"api/admin/changepassword";
 		public const string RoleWithUsers = @"api/admin/rolewithusers";
+		public const string UserWithRoles = @"api/admin/userwithroles";
 		public const string UpdateUsersInRole = @"api/admin/updateusersinrole";
 		public const string GetRoles = @"api/admin/getroles";
 		public const string GetUsers = @"api/admin/getusers";

@@ -32,10 +32,10 @@ namespace Monitor.Service.Model
 		public bool IsWorker { get; set; } = true;
 
 		[Display(Name = "Manage Profile")]
-		public bool IsManager { get; set; }
+		public bool IsManager { get; set; } = false;
 
 		[Display(Name = "Database")]
-		public bool IsOwner { get; set; }
+		public bool IsOwner { get; set; } = false;
 
 		public string UserID { get; set; }
 
@@ -48,12 +48,20 @@ namespace Monitor.Service.Model
 				this.Email = userViewModel.Email;
 				this.CustomerCode = userViewModel.CustomerCode;
 				this.UserDescription = userViewModel.Description;
+				IsOwner = false;
+				IsWorker = false;
+				IsManager = false;
+				foreach (string role in userViewModel.InRoles)
+				{
+					if (role == "Owner") IsOwner = true;
+					else if (role == "Worker") IsWorker = true;
+					else if (role == "Manager") IsManager = true;
+				}
 			}
 		}
 
 		public RegisterModel()
 		{
-			
 		}
 
 	}

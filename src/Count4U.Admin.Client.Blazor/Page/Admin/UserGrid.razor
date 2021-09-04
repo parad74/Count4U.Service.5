@@ -73,13 +73,13 @@ else
             </button>
         </td>*@
                 <td style="padding-left: 30px;padding-right: 30px;width:152px">
-                    <button class="btn btn-outline-success  btn-sm" style="width:90px" @onclick="@(()=>UserEdit(user.UserID))">
+                    <button class="btn btn-outline-success  btn-sm" style="width:90px" @onclick="@(()=>UserEdit(user.Email))">
                         <span>Edit</span>
                     </button>
                 </td>
 
                 <td style="padding-left: 30px;padding-right: 30px;width:132px">
-                    <button class="btn btn-outline-danger  btn-sm" style="width:70px" @onclick="@(()=>UserDelete(user.UserID))">
+                    <button class="btn btn-outline-danger  btn-sm" style="width:70px" @onclick="@(()=>UserDelete(user.Email))">
                         <span>Delete</span>
                     </button>
                 </td>

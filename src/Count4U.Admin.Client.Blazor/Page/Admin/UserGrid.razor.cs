@@ -93,7 +93,7 @@ namespace Count4U.Admin.Client.Page
 
 	   //https://blazor-university.com/javascript-interop/calling-javascript-from-dotnet/ - dialog
 	   //https://chrissainty.com/using-javascript-interop-in-razor-components-and-blazor/ JS
-		public async Task UserDelete(string userId)
+		public async Task UserDelete(string Email)
 		{
 			Console.WriteLine();
 			Console.WriteLine($"Client.UserGridBase.UserDelete() : start");
@@ -106,7 +106,7 @@ namespace Count4U.Admin.Client.Page
 			{
 				try
 				{
-					var result = await this._adminService.Delete(new DeleteModel() { ApplicationUserID = userId });
+					var result = await this._adminService.Delete(new DeleteModel() { Email = Email });
 					this._users = await this._adminService.GetUsers();
 				}
 				catch (Exception ecx)
@@ -119,7 +119,7 @@ namespace Count4U.Admin.Client.Page
 			}
 		}
 
-		public async Task UserEdit(string userId)
+		public async Task UserEdit(string email)
 		{
 			Console.WriteLine();
 			Console.WriteLine($"Client.UserGridBase.UserEdit() : start");
@@ -132,7 +132,7 @@ namespace Count4U.Admin.Client.Page
 			{
 				try
 				{
-					this._navigationManager.NavigateTo("/useradd/" + userId);
+					this._navigationManager.NavigateTo("/useredit/" + email);
 				}
 				catch (Exception ecx)
 				{

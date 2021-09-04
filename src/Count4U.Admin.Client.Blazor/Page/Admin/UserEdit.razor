@@ -1,11 +1,11 @@
-@page "/useradd"
-@inherits UserAddBase
+﻿@page "/useredit/{email}"
+@inherits UserEditBase
 @attribute [Authorize(Policy = UserPolicy.IsAdmin)]
 
 <style>
 </style>
 
-@if (_registerModel == null)
+@if (_userViewModel == null)
 {
     <p><em>Loading...</em></p>
 }
@@ -16,7 +16,7 @@ else if (LocalizationResources == null)
 else
 {
     <div class="bg-success d-flex justify-content-between mb-2">
-        <div class="bg-success p-1 text-white"> &nbsp;@LocalizationResources.Register_User &nbsp;</div>
+        <div class="bg-success p-1 text-white"> &nbsp;@LocalizationResources.Register_User &nbsp; @email</div>
         <div class="bg-success p-1">
             @*<i class="fa fa-pencil text-white"></i>*@
             &nbsp;<span class="oi oi-pencil text-white" aria-hidden="true"></span> &nbsp;
@@ -30,38 +30,22 @@ else
                 <a href="" style="color:green">@LocalizationResources.Register_Already_a_Member</a>
                 <p></p>*@
 
-            <EditForm Model="@_registerModel" OnValidSubmit="@RegistrationAsync">
+            <EditForm Model="@_userViewModel" OnValidSubmit="@UpdateAsync">
                 <DataAnnotationsValidator />
                 <ValidationSummary />
 
-                <div class="form-group">
-                    <label for="email">@LocalizationResources.Register_Email_address</label>
-                    <InputText id="email" class="form-control" @bind-Value="@_registerModel.Email"
-                               placeholder="@LocalizationResources.Register_Email_will_be_use_as_login_for_your_account" />
-                    <ValidationMessage For="@(() => _registerModel.Email)" />
-                </div>
-                <div class="form-group">
-                    <label for="password">@LocalizationResources.Register_Password</label>
-                    <InputText id="password" class="form-control" @bind-Value="@_registerModel.Password" />
-                    <ValidationMessage For="@(() => _registerModel.Password)" />
-                </div>
-
-                <div class="form-group">
-                    <label for="passwordConfirm">@LocalizationResources.Register_Confirm_Password</label>
-                    <InputText id="passwordConfirm" class="form-control" @bind-Value="@_registerModel.ConfirmPassword" />
-                    <ValidationMessage For="@(() => _registerModel.ConfirmPassword)" />
-                </div>
+                  
                 <div class="form-group">
                     <label for="customerCode">@LocalizationResources.Property_Inventor_CustomerCode</label>
-                    <InputText id="customerCode" class="form-control" @bind-Value="@_registerModel.CustomerCode"
+                    <InputText id="customerCode" class="form-control" @bind-Value="@_userViewModel.CustomerCode"
                                placeholder=@LocalizationResources.Register_customer_code_from_Count4U />
-                    <ValidationMessage For="@(() => _registerModel.CustomerCode)" />
+                    <ValidationMessage For="@(() => _userViewModel.CustomerCode)" />
                 </div>
 
                 <div class="form-group">
                     <label for="description">@LocalizationResources.Property_Inventor_Description</label>
-                    <InputText id="description" class="form-control" @bind-Value="@_registerModel.UserDescription" />
-                    <ValidationMessage For="@(() => _registerModel.CustomerCode)" />
+                    <InputText id="description" class="form-control" @bind-Value="@_userViewModel.Description" />
+                    <ValidationMessage For="@(() => _userViewModel.CustomerCode)" />
                 </div>
 
                 <div class="form-group p-0 m-0">
@@ -69,17 +53,17 @@ else
                 </div>
 
                 <div class="form-group p-0 m-0">
-                    &nbsp; &nbsp; <InputCheckbox @bind-Value="@_registerModel.IsWorker" id="isworker" />
+                    &nbsp; &nbsp; <InputCheckbox @bind-Value="@_userViewModel.IsWorker" id="isworker" />
                     &nbsp; &nbsp; <label for="isworker" class="align-top">@LocalizationResources.Property_Use_Android</label>
                 </div>
 
                 <div class="form-group p-0 m-0">
-                    &nbsp; &nbsp; <InputCheckbox @bind-Value="@_registerModel.IsManager" id="ismanager" />
+                    &nbsp; &nbsp; <InputCheckbox @bind-Value="@_userViewModel.IsManager" id="ismanager" />
                     &nbsp; &nbsp; <label for="ismanager">@LocalizationResources.Property_Manage_Profile</label>
                 </div>
 
                 <div class="form-group p-0 m-0">
-                    &nbsp; &nbsp; <InputCheckbox @bind-Value="@_registerModel.IsOwner" id="isowner" />
+                    &nbsp; &nbsp; <InputCheckbox @bind-Value="@_userViewModel.IsOwner" id="isowner" />
                     &nbsp; &nbsp; <label for="isowner">@LocalizationResources.Property_Database</label>
                 </div>
                 <div class="p-2">

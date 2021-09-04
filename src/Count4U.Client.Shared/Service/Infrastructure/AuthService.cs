@@ -25,6 +25,8 @@ namespace Count4U.Service.Shared
 		Task<ProfileResult> UpdateProfileAsync(ProfileModel profileModel);
 		Task<ForgotPasswordResult> ForgotPassword(ForgotPasswordModel forgotPasswordModel);
 		Task<UserViewModel> GetUser(UserViewModel userViewModel);
+
+		Task<UserResult> UpdateUserAsync(UserViewModel userViewModel);
 	}
 
 	public class AuthService : IAuthService
@@ -159,6 +161,49 @@ namespace Count4U.Service.Shared
 				// var error = new RegisterResult { Successful = false, Error = ecx.Message };
 				var error = new ProfileResult { Successful = SuccessfulEnum.NotSuccessful, Error = ecx.Message };
 				Console.WriteLine($"Client.AuthService.Profile() : end with Exception");
+				return error;
+			}
+		}
+
+
+		public async Task<UserResult> UpdateUserAsync(UserViewModel userViewModel)
+		{
+			Console.WriteLine($"Client.AuthService.UpdateUserAsync() : start");
+			if (userViewModel == null)
+			{
+				Console.WriteLine($"Client.AuthService.UpdateUserAsync() : in userViewModel is null");
+				//var error = new RegisterResult { Successful = false, Error = "profileModel is null"  };
+				var error = new UserResult { Successful = SuccessfulEnum.NotSuccessful, Error = "in userViewModel is null" };
+				return error;
+			}
+			try
+			{
+				string authenticationWebapiUrl = await this._localStorage.GetItemAsync<string>(SessionStorageKey.authenticationWebapiUrl);
+				if (string.IsNullOrWhiteSpace(authenticationWebapiUrl) == true)
+				{
+					Console.WriteLine($"Client.AuthService.UpdateUserAsync() : ERROR Authentication Server Url is Empty. Can't get user from Server");
+					//var error = new RegisterResult { Successful = false, Error = "Authentication Server Url is Empty. Can't get user from Server" };
+					var error = new UserResult { Successful = SuccessfulEnum.NotSuccessful, Error = "Authentication Server Url is Empty. Can't get user from Server" };
+					Console.WriteLine($"Client.AuthService.UpdateUserAsync() : end");
+					return error;
+				}
+				string request = Opetarion.UrlCombine(authenticationWebapiUrl, WebApiAuthenticationAccounts.UpdateUser);
+				Console.WriteLine($"Client.AuthService.UpdateUserAsync() : request {request}");
+				//	var result = await this._httpClient.PostJsonAsync<ProfileResult>(request, profileModel);   // "api/accounts/profile"
+
+				HttpResponseMessage response = await this._httpClient.PostAsJsonAsync<UserViewModel>(request, userViewModel);
+				UserResult result = await response.Content.ReadFromJsonAsync<UserResult>();
+
+				Console.WriteLine($"Client.AuthService.UpdateUserAsync() : end");
+				return result;
+			}
+			catch (Exception ecx) when (LogError(ecx))
+			{
+				Console.WriteLine("Client.AuthService.UpdateUserAsync() Exception : ");
+				Console.WriteLine(ecx.Message);
+				// var error = new RegisterResult { Successful = false, Error = ecx.Message };
+				var error = new UserResult { Successful = SuccessfulEnum.NotSuccessful, Error = ecx.Message };
+				Console.WriteLine($"Client.AuthService.UpdateUserAsync() : end with Exception");
 				return error;
 			}
 		}

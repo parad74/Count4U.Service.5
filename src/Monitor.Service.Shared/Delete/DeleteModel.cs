@@ -6,5 +6,7 @@ namespace Monitor.Service.Model
 	{
 		[Display(Name = "ApplicationUserID")]
 		public string ApplicationUserID { get; set; }
+
+		public string Email { get; set; }
 	}
 }

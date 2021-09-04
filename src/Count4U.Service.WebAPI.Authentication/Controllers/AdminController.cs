@@ -68,18 +68,26 @@ namespace Count4U.Service.WebAPI.Authentication.Controllers
                 return new DeleteResult { Successful = SuccessfulEnum.NotSuccessful, Error = " DeleteModel is null " };
             }
 
-            if (string.IsNullOrWhiteSpace(deleteModel.ApplicationUserID))
+             ApplicationUser user = null;
+            if (string.IsNullOrWhiteSpace(deleteModel.ApplicationUserID) == false)
             {
-                return new DeleteResult { Successful = SuccessfulEnum.NotSuccessful, Error = "User ID is empty " };
+                user = await _userManager.FindByIdAsync(deleteModel.ApplicationUserID);           //try by ID first
             }
 
-            ApplicationUser user = await _userManager.FindByIdAsync(deleteModel.ApplicationUserID);
             if (user == null)
             {
-                return new DeleteResult { Successful = SuccessfulEnum.NotSuccessful, Error = "Can't get user from db " };
+                if (string.IsNullOrWhiteSpace(deleteModel.Email) == false)
+                {
+                    user = await _userManager.FindByEmailAsync(deleteModel.Email);
+                }
             }
 
-            IdentityResult result = await _userManager.DeleteAsync(user);
+			if (user == null)
+			{
+				return new DeleteResult { Successful = SuccessfulEnum.NotSuccessful, Error = "Can't get user from db " };
+			}
+
+			IdentityResult result = await _userManager.DeleteAsync(user);
             if (result.Succeeded == false)
             {
                 var errors = result.Errors.Select(x => x.Description);
@@ -254,12 +262,22 @@ namespace Count4U.Service.WebAPI.Authentication.Controllers
            UserViewModel result = new UserViewModel();
             result.UserID = user.Id;
             result.Email = user.Email;
-            result.CustomerCode = user.CustomerCode;
-            result.Description = user.FistName;
+            result.CustomerCode = user.CustomerCode != null ? user.CustomerCode : "";
+            result.Description = user.FistName != null ? user.FistName : "";
             result.Error = "";
             result.Message = "";
             result.Successful = SuccessfulEnum.Successful;
-
+            
+            var roles = await _signInManager.UserManager.GetRolesAsync(user);
+            result.InRoles = new List<string>();
+            //роли пользователя
+            foreach (string role in roles)
+            {
+                result.InRoles.Add(role);
+                if (role == "Owner") result.IsOwner = true;
+                else if (role == "Worker") result.IsWorker = true;
+                else if (role == "Manager") result.IsManager = true;
+            }
             return result;
         }
 
@@ -361,6 +379,15 @@ namespace Count4U.Service.WebAPI.Authentication.Controllers
             }
             return result;
         }
+
+
+        //[HttpPost(WebApiAuthenticationAdmin.UserWithRoles)]
+        //public async Task<UserViewModel> UserWithRoles([FromBody] ApplicationUser user)
+        //{
+
+        //    IList<string> rolseIst = await _userManager.GetRolesAsync(user);
+ 
+        //}
 
 
         [HttpPost(WebApiAuthenticationAdmin.UpdateUsersInRole)]
