@@ -107,7 +107,8 @@ namespace Count4U.Admin.Client.Blazor.Page
 				try
 				{
 					Console.WriteLine($"Client.InventorProfileGridBase.GetProfileFiles() 1");
-					this._profileFiles = await this._profileFileService.GetInventorProfileFiles(@"http://localhost:12389");
+					//this._profileFiles = await this._profileFileService.GetInventorProfileFiles(@"http://localhost:12389");
+					this._profileFiles = await this._profileFileService.GetProfileFilesWithSelectParam(selectParams, @"http://localhost:12389");
 					Console.WriteLine($"Client.InventorProfileGridBase.GetProfileFiles() 2");
 					//foreach (var profileFile in this._profileFiles)
 					//{
@@ -142,31 +143,90 @@ namespace Count4U.Admin.Client.Blazor.Page
 			this._filterResult = new FilterResult();
 			try
 			{
-				if (string.IsNullOrWhiteSpace(_filterInventorModel.InventorCode) == false)
-				{
-					await this._localStorage.SetItemAsync(SessionStorageKey.filterCustomer, _filterInventorModel.InventorCode);
+				Console.WriteLine($"Client.InventorProfileGridBase.OnSearchAsync() 1 FilterValue: {this._filterInventorModel.FilterValue} start1");
+				Console.WriteLine($"Client.InventorProfileGridBase.OnSearchAsync() 2 FilterSelectByField: {this._filterInventorModel.FilterSelectByField} start2");
 
-					SelectParams sp = new SelectParams();
-					sp.FilterParams.Add("InventorCode",
+				if (string.IsNullOrWhiteSpace(_filterInventorModel.FilterValue) == false)
+				{
+					await this._localStorage.SetItemAsync(SessionStorageKey.filterInventor, _filterInventorModel.FilterSelectByField);
+
+					//if (this._filterInventorModel.FilterSelectByField == FilterInventorSelectParam.All)
+					//{
+					//	_filterInventorModel.FilterValue = "";
+					//	await this._localStorage.SetItemAsync(SessionStorageKey.filterInventor, "");
+					//	await GetProfileFiles();
+					//}
+					//else
+					if (this._filterInventorModel.FilterSelectByField == FilterInventorSelectParam.CustomerCode)
+					{
+						Console.WriteLine($"Client.InventorProfileGridBase.OnSearchAsync() 3 FilterSelectByField: {this._filterInventorModel.FilterSelectByField} start3");
+
+						SelectParams sp = new SelectParams();
+						sp.FilterParams.Add(FilterInventorSelectParam.CustomerCode,
+													new FilterParam()
+													{
+														Operator = FilterOperator.Contains,
+														Value = _filterInventorModel.FilterValue
+													});
+
+						sp.FilterParams.Add("DomainObject",
 												new FilterParam()
 												{
-													Operator = FilterOperator.Contains,
-													Value = _filterInventorModel.InventorCode
+													Operator = FilterOperator.Equal,
+													Value = "Inventor"
 												});
+						await GetProfileFiles(sp);
+					}
+					else if (this._filterInventorModel.FilterSelectByField == FilterInventorSelectParam.BranchCode)
+					{
+						Console.WriteLine($"Client.InventorProfileGridBase.OnSearchAsync() 4 FilterSelectByField: {this._filterInventorModel.FilterSelectByField} start4");
+						SelectParams sp = new SelectParams();
+						sp.FilterParams.Add(FilterInventorSelectParam.BranchCode,
+													new FilterParam()
+													{
+														Operator = FilterOperator.Contains,
+														Value = _filterInventorModel.FilterValue
+													});
 
-					sp.FilterParams.Add("DomainObject",
-											new FilterParam()
-											{
-												Operator = FilterOperator.Equal,
-												Value = "Inventor"
-											});
+						sp.FilterParams.Add("DomainObject",
+												new FilterParam()
+												{
+													Operator = FilterOperator.Equal,
+													Value = "Inventor"
+												});
+						await GetProfileFiles(sp);
+					}
+					else if (this._filterInventorModel.FilterSelectByField == FilterInventorSelectParam.InventorCode)
+					{
+						SelectParams sp = new SelectParams();
+						sp.FilterParams.Add(FilterInventorSelectParam.InventorCode,
+													new FilterParam()
+													{
+														Operator = FilterOperator.Contains,
+														Value = _filterInventorModel.FilterValue
+													});
 
-					await GetProfileFiles(sp);
+						sp.FilterParams.Add("DomainObject",
+												new FilterParam()
+												{
+													Operator = FilterOperator.Equal,
+													Value = "Inventor"
+												});
+						await GetProfileFiles(sp);
+					}
+					else
+					{
+						Console.WriteLine($"Client.InventorProfileGridBase.OnSearchAsync() 5 FilterSelectByField: {this._filterInventorModel.FilterSelectByField} start5");
+						await GetProfileFiles();
+					}
+
 					this._filterResult.Successful = SuccessfulEnum.Successful;
 				}
 				else
 				{
 					await this._localStorage.SetItemAsync(SessionStorageKey.filterInventor, "");
+					Console.WriteLine($"Client.InventorProfileGridBase.OnSearchAsync() 5 FilterSelectByField: {this._filterInventorModel.FilterSelectByField} start6");
+
 					await GetProfileFiles();
 					this._filterResult.Successful = SuccessfulEnum.Successful;
 				}
@@ -182,7 +242,8 @@ namespace Count4U.Admin.Client.Blazor.Page
 
 		public async Task OnClearAsync()
 		{
-			_filterInventorModel.Clear();
+			this._filterInventorModel.Clear();
+			await this._localStorage.SetItemAsync(SessionStorageKey.filterInventor, "");
 			await OnSearchAsync();
 		}
 
@@ -226,6 +287,10 @@ namespace Count4U.Admin.Client.Blazor.Page
 					}
 					catch { }
 					Console.WriteLine($"Client.InventorProfileGridBase.OnInitializedAsync() : GetonPageNumber {this.OnPageNumber}");
+
+
+					this._filterInventorModel.FilterSelectByField = await this._localStorage.GetItemAsync<string>(SessionStorageKey.filterInventor);
+					await this.OnSearchAsync();
 				}
 			}
 			catch (Exception exc)

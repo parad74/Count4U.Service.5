@@ -49,8 +49,11 @@
 
 		public const string onPageCustomerNumber = @"onPageCustomerNumber";
 		public const string onPageInventorNumber = @"onPageInventorNumber";
+		public const string onPageUserNumber = @"onPageUserNumber";
+
 		public const string filterCustomer = @"filterCustomer";
 		public const string filterInventor = @"filterInventor";
+		public const string filterUser = @"filterInventor";
 
 	}
 
@@ -84,6 +87,9 @@
 		public const string UpdateUsersInRole = @"api/admin/updateusersinrole";
 		public const string GetRoles = @"api/admin/getroles";
 		public const string GetUsers = @"api/admin/getusers";
+		public const string GetUsersWithSelectCustomerCode = @"api/admin/getuserswithselectcustomecode";
+		public const string GetUsersWithSelectEmail = @"api/admin/getuserswithselectemail";
+		
 		public const string GetUserWithPassword = @"api/admin/getuserwithpassword";
 		public const string ForgotPassword = @"api/admin/fogotpassword";
 		public const string GetUser = @"api/admin/getuser";

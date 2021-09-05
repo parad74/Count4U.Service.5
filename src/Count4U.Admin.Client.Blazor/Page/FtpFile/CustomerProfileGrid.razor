@@ -49,7 +49,7 @@ else
                         <button @onclick="OnClearAsync" class="btn btn-outline-dark btn-sm searchicon" data-toggle="tooltip" data-placement="bottom" title="Clear Customer Filter"><i class="fa fa-eraser fa-lg"></i></button>
                     }
                 </div>
-                <input id="filterinput" placeholder="filter is empty" @bind="_filterCustomerModel.Code" />
+                <input id="filterinput" placeholder="filter is empty" @bind="_filterCustomerModel.FilterValue" />
                 <div class="input-group-append">
                     @if (IsSearching)
                     {
@@ -63,7 +63,7 @@ else
                     &nbsp;  &nbsp;
                 </div>
                 <div class="input-group-append">
-                    <select class="form-control form-control-sm select_border_color" id="select-customer-param" @bind="@_filterCustomerModel.SelectedParam">
+                    <select class="form-control form-control-sm select_border_color" id="select-customer-param" @bind="@_filterCustomerModel.FilterSelectByField">
                         @foreach (var sparam in _filterCustomerModel.FilterSelectParamDictionary)
                         {
                             <option value=@sparam.Key>@sparam.Value</option>
@@ -111,17 +111,18 @@ else
             <tr @key=@customer>
                 @*<td>@role.RoleID</td>*@
                 <td style="padding-left: 30px;padding-right: 30px;width:132px">@customer.CustomerCode</td>
+                <td style="padding-left: 30px;padding-right: 30px;width:200px">@customer.CustomerName</td>
                 <td>@customer.ToString()</td>
                 @*<td>
-                        <ul class="nav flex-column">
-                            @foreach (var user in role.Members)
-                                {
-                                <li @key=@user.UserID>
-                                    @user.Email
-                                </li>
-                                }
-                        </ul>
-                    </td>*@
+            <ul class="nav flex-column">
+                @foreach (var user in role.Members)
+                    {
+                    <li @key=@user.UserID>
+                        @user.Email
+                    </li>
+                    }
+            </ul>
+        </td>*@
                 @*<td style="align-content:center;padding-left: 30px;padding-right: 30px">*@
                 <td style="padding-left: 30px;padding-right: 30px;width:152px">
                     <button class="btn btn-outline-success  btn-sm" style="width:90px" @onclick="@(()=>NavigateToBranches(customer.CustomerCode))">

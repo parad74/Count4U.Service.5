@@ -1,10 +1,13 @@
 ﻿using System;
 using System.Net.Http;
 using System.Threading.Tasks;
+using Blazored.LocalStorage;
+using Blazored.SessionStorage;
 using Count4U.Admin.Client.Blazor.I18nText;
 using Count4U.Service.Shared;
 using Microsoft.AspNetCore.Components;
 using Monitor.Service.Model;
+using Monitor.Service.Urls;
 
 namespace Count4U.Admin.Client.Page
 {
@@ -13,16 +16,16 @@ namespace Count4U.Admin.Client.Page
 		[Parameter]
 		public string email { get; set; }
 		protected UserViewModel _userViewModel { get; set; }
-
-
-		//protected bool? _showErrors;
-
 		protected UserResult _registerResult { get; set; }
 
-		//protected bool? _showSuccessful;
-		//protected List<string> _errors { get; set; }
-
 		protected GetResources LocalizationResources { get; set; }
+
+	
+		[Inject]
+		protected ISessionStorageService _sessionStorage { get; set; }
+
+		[Inject]
+		protected ILocalStorageService _localStorage { get; set; }
 
 		[Inject]
 		protected NavigationManager _navigationManager { get; set; }
@@ -154,6 +157,8 @@ namespace Count4U.Admin.Client.Page
 		}
 
 
+	
+
 		protected override async Task OnInitializedAsync()
 		{
 			Console.WriteLine();
@@ -165,6 +170,8 @@ namespace Count4U.Admin.Client.Page
 				{
 					Console.WriteLine($"Client.UserEditBase.OnInitializedAsync() : LocalizationResources is null");
 				}
+
+			
 
 				await GetUserModel();
 			}

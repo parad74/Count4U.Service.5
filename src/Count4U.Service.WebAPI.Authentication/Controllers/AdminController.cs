@@ -12,6 +12,7 @@ using Monitor.Service.Model;
 using Monitor.Service.Urls;
 using System.Collections.Generic;
 using Monitor.Service.Shared;
+using Count4U.Model.SelectionParams;
 
 namespace Count4U.Service.WebAPI.Authentication.Controllers
 {
@@ -206,7 +207,55 @@ namespace Count4U.Service.WebAPI.Authentication.Controllers
                 {
                     if (user != null)
                     {
-                        result.Add(new UserViewModel { UserID = user.Id, Email = user.Email });
+                        result.Add(new UserViewModel { UserID = user.Id, Email = user.Email, Description = user.FistName, CustomerCode = user.CustomerCode });
+                    }
+                }
+            }
+            catch (Exception)
+            {
+                return result;
+            }
+            return result;
+        }
+
+
+        [HttpPost(WebApiAuthenticationAdmin.GetUsersWithSelectCustomerCode)]
+        public async Task<List<UserViewModel>> GetUsersWithSelectCustomerCode([FromBody] string customerCode)
+        {
+
+            List<UserViewModel> result = new List<UserViewModel>();
+            List<ApplicationUser> users = this._userManager.Users.Where(x => x.CustomerCode.ToLower().Contains(customerCode.ToLower())).Select(x => x).ToList();
+            try
+            {
+                foreach (ApplicationUser user in users)
+                {
+                    if (user != null)
+                    {
+                        result.Add(new UserViewModel { UserID = user.Id, Email = user.Email, Description = user.FistName, CustomerCode = user.CustomerCode });
+                    }
+                }
+            }
+            catch (Exception)
+            {
+                return result;
+            }
+            return result;
+        }
+
+
+        [HttpPost(WebApiAuthenticationAdmin.GetUsersWithSelectEmail)]
+        public async Task<List<UserViewModel>> GetUsersWithSelectEmail([FromBody] string email)
+        {
+
+            List<UserViewModel> result = new List<UserViewModel>();
+            List<ApplicationUser> users = this._userManager.Users.Where(x => x.Email.ToLower().Contains(email.ToLower())).Select(x => x).ToList();
+            try
+            {
+                foreach (ApplicationUser user in users)
+                {
+                    if (user != null)
+                    {
+                        result.Add(new UserViewModel { UserID = user.Id, Email = user.Email, Description = user.FistName, CustomerCode = user.CustomerCode });
                     }
                 }
             }
@@ -331,7 +380,7 @@ namespace Count4U.Service.WebAPI.Authentication.Controllers
                             {
                                 if (await _userManager.IsInRoleAsync(user, role.Name))
                                 {
-                                    members.Add(new UserViewModel { UserID = user.Id, Email = user.Email });
+                                    members.Add(new UserViewModel { UserID = user.Id, Email = user.Email, Description = user.FistName, CustomerCode = user.CustomerCode });
                                 }
                             }
                         }
@@ -362,7 +411,7 @@ namespace Count4U.Service.WebAPI.Authentication.Controllers
                 {
                     var list = await _userManager.IsInRoleAsync(user, role.Name)
                         ? members : nonMembers;
-                    list.Add(new UserViewModel { UserID = user.Id, Email = user.Email });
+                    list.Add(new UserViewModel { UserID = user.Id, Email = user.Email, Description = user.FistName, CustomerCode = user.CustomerCode });
                 }
 
                 result = new RoleModel

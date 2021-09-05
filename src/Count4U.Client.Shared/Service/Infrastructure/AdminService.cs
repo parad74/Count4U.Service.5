@@ -11,6 +11,7 @@ using Monitor.Service.Model;
 using Monitor.Service.Urls;
 using System.Text.Json;
 using System.Collections.Generic;
+using Count4U.Model.SelectionParams;
 
 namespace Count4U.Service.Shared
 {
@@ -20,6 +21,8 @@ namespace Count4U.Service.Shared
 		Task<ChangePasswordResult> ChangePasswordAsync(ChangePasswordModel changePasswordModel);
 		Task<DeleteResult> Delete(DeleteModel deleteModel);
 		Task<List<UserViewModel>> GetUsers();
+		Task<List<UserViewModel>> GetUsersWithSelectCustomerCode(string customerCode);
+		Task<List<UserViewModel>> GetUsersWithSelectEmail(string email);
 		Task<List<RoleModel>> GetRoles();
 		Task<RoleModel> RoleWithUsers(string roleId);
 		Task<RoleResult> UpdateUsersInRole(RoleModel roleModel);
@@ -197,10 +200,81 @@ namespace Count4U.Service.Shared
 				return resultEmpty;
 			}
 		}
-     
-        // ==================  Role   ========================
-        //[HttpGet(WebApiAuthenticationAdmin.GetRoles)]
-        //public async Task<List<RoleModel>> GetRoles()
+
+	
+		public async Task<List<UserViewModel>> GetUsersWithSelectCustomerCode(string customerCode)
+		{
+			Console.WriteLine($"Client.AdminService.GetUsersWithSelectCustomerCode() : start");
+			List<UserViewModel> resultEmpty = new List<UserViewModel>();
+			try
+			{
+				string authenticationWebapiUrl = await this._localStorage.GetItemAsync<string>(SessionStorageKey.authenticationWebapiUrl);
+				if (string.IsNullOrWhiteSpace(authenticationWebapiUrl) == true)
+				{
+					Console.WriteLine($"Client.AdminService.GetUsersWithSelectCustomerCode() : ERROR Authentication Server Url is Empty. Can't get user from Server");
+					return resultEmpty;
+				}
+
+				string request = Opetarion.UrlCombine(authenticationWebapiUrl, WebApiAuthenticationAdmin.GetUsersWithSelectCustomerCode);
+				Console.WriteLine($"Client.AdminService.GetUsersWithSelectCustomerCode() : request {request}");             //"api/admin/getuserswithselectparam"
+				HttpResponseMessage response = await this._httpClient.PostAsJsonAsync<string>(request, customerCode);
+				List<UserViewModel> result = await response.Content.ReadFromJsonAsync<List<UserViewModel>>();
+
+
+				if (result == null)
+				{
+					Console.WriteLine($"Client.AdminService.GetUsersWithSelectCustomerCode() : Can't login to Server");
+					return resultEmpty;
+				}
+				return result;
+			}
+			catch (Exception ecx) when (LogError(ecx))
+			{
+				Console.WriteLine("Client.AdminService.GetUsersWithSelectCustomerCode() Exception : ");
+				Console.WriteLine(ecx.Message);
+				Console.WriteLine($"Client.AdminService.GetUsersWithSelectCustomerCode() : end with Exception");
+				return resultEmpty;
+			}
+		}
+
+
+		public async Task<List<UserViewModel>> GetUsersWithSelectEmail(string email)
+		{
+			Console.WriteLine($"Client.AdminService.GetUsersWithSelectEmail() : start");
+			List<UserViewModel> resultEmpty = new List<UserViewModel>();
+			try
+			{
+				string authenticationWebapiUrl = await this._localStorage.GetItemAsync<string>(SessionStorageKey.authenticationWebapiUrl);
+				if (string.IsNullOrWhiteSpace(authenticationWebapiUrl) == true)
+				{
+					Console.WriteLine($"Client.AdminService.GetUsersWithSelectEmail() : ERROR Authentication Server Url is Empty. Can't get user from Server");
+					return resultEmpty;
+				}
+
+				string request = Opetarion.UrlCombine(authenticationWebapiUrl, WebApiAuthenticationAdmin.GetUsersWithSelectEmail);
+				Console.WriteLine($"Client.AdminService.GetUsersWithSelectEmail() : request {request}");             //"api/admin/getuserswithselectparam"
+				HttpResponseMessage response = await this._httpClient.PostAsJsonAsync<string>(request, email);
+				List<UserViewModel> result = await response.Content.ReadFromJsonAsync<List<UserViewModel>>();
+
+
+				if (result == null)
+				{
+					Console.WriteLine($"Client.AdminService.GetUsersWithSelectEmail() : Can't login to Server");
+					return resultEmpty;
+				}
+				return result;
+			}
+			catch (Exception ecx) when (LogError(ecx))
+			{
+				Console.WriteLine("Client.AdminService.GetUsersWithSelectEmail() Exception : ");
+				Console.WriteLine(ecx.Message);
+				Console.WriteLine($"Client.AdminService.GetUsersWithSelectEmail() : end with Exception");
+				return resultEmpty;
+			}
+		}
+		// ==================  Role   ========================
+		//[HttpGet(WebApiAuthenticationAdmin.GetRoles)]
+		//public async Task<List<RoleModel>> GetRoles()
 		public async Task<List<RoleModel>> GetRoles()
 		{
 			Console.WriteLine($"Client.AdminService.GetRoles() : start");

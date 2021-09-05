@@ -63,26 +63,79 @@ namespace Count4U.Admin.Client.Blazor.Page
 			this._filterResult = new FilterResult();
 			try
 			{
-				if (string.IsNullOrWhiteSpace(_filterCustomerModel.Code) == false)
+				Console.WriteLine($"Client.CustomerProfileGridBase.OnSearchAsync() 1 FilterValue: {this._filterCustomerModel.FilterValue} start1");
+				Console.WriteLine($"Client.CustomerProfileGridBase.OnSearchAsync() 2 FilterSelectByField: {this._filterCustomerModel.FilterSelectByField} start2");
+				if (string.IsNullOrWhiteSpace(_filterCustomerModel.FilterValue) == false)
 				{
-					await this._localStorage.SetItemAsync(SessionStorageKey.filterCustomer, _filterCustomerModel.Code);
+					await this._localStorage.SetItemAsync(SessionStorageKey.filterCustomer, _filterCustomerModel.FilterSelectByField);
 
-					SelectParams sp = new SelectParams();
-					sp.FilterParams.Add(FilterCustomerSelectParam.Code,
+					//if (this._filterCustomerModel.FilterSelectByField == FilterCustomerSelectParam.All)
+					//{
+					//	Console.WriteLine($"Client.CustomerProfileGridBase.OnSearchAsync() FilterSelectByField: {this._filterCustomerModel.FilterSelectByField} start3");
+					//	SelectParams sp = new SelectParams();
+					//	sp.FilterParams.Add(FilterCustomerSelectParam.Code,
+					//								new FilterParam()
+					//								{
+					//									Operator = FilterOperator.Contains,
+					//									Value = _filterCustomerModel.FilterValue
+					//								});
+					//	sp.FilterParams.Add(FilterCustomerSelectParam.CustomerName,
+					//							new FilterParam()
+					//							{
+					//								Operator = FilterOperator.Contains,
+					//								Value = _filterCustomerModel.FilterValue
+					//							});
+
+					//	sp.FilterParams.Add("DomainObject",
+					//							new FilterParam()
+					//							{
+					//								Operator = FilterOperator.Equal,
+					//								Value = "Customer"
+					//							});
+					//	await GetProfileFiles(sp);
+					//}
+					//else
+					if (this._filterCustomerModel.FilterSelectByField == FilterCustomerSelectParam.Code)
+					{
+						SelectParams sp = new SelectParams();
+						sp.FilterParams.Add(FilterCustomerSelectParam.Code,
+													new FilterParam()
+													{
+														Operator = FilterOperator.Contains,
+														Value = _filterCustomerModel.FilterValue
+													});
+
+						sp.FilterParams.Add("DomainObject",
 												new FilterParam()
 												{
-													Operator = FilterOperator.Contains,
-													Value = _filterCustomerModel.Code
+													Operator = FilterOperator.Equal,
+													Value = "Customer"
 												});
+						await GetProfileFiles(sp);
+					}
+					else if (this._filterCustomerModel.FilterSelectByField == FilterCustomerSelectParam.CustomerName)
+					{
+						SelectParams sp = new SelectParams();
+						sp.FilterParams.Add(FilterCustomerSelectParam.CustomerName,
+													new FilterParam()
+													{
+														Operator = FilterOperator.Contains,
+														Value = _filterCustomerModel.FilterValue
+													});
 
-					sp.FilterParams.Add("DomainObject",
-											new FilterParam()
-											{
-												Operator = FilterOperator.Equal,
-												Value = "Customer"
-											});
-
-					await GetProfileFiles(sp);
+						sp.FilterParams.Add("DomainObject",
+												new FilterParam()
+												{
+													Operator = FilterOperator.Equal,
+													Value = "Customer"
+												});
+						await GetProfileFiles(sp);
+					}
+					else 
+					{
+						await GetProfileFiles();
+					}
+	
 					this._filterResult.Successful = SuccessfulEnum.Successful;
 				}
 				else
@@ -103,7 +156,9 @@ namespace Count4U.Admin.Client.Blazor.Page
 
 		public async Task OnClearAsync()
 		{
-			_filterCustomerModel.Clear();
+			this._filterCustomerModel.Clear();
+			Console.WriteLine($"Client.CustomerProfileGridBase.Clear() : start");
+			await this._localStorage.SetItemAsync(SessionStorageKey.filterCustomer, "");
 			await OnSearchAsync();
 		}
 
@@ -192,40 +247,7 @@ namespace Count4U.Admin.Client.Blazor.Page
 		}
 
 
-		protected override async Task OnInitializedAsync()
-		{
-			Console.WriteLine();
-			Console.WriteLine($"Client.CustomerProfileGridBase.OnInitializedAsync() : start");
-			try
-			{
-				this.LocalizationResources = await this.I18nText.GetTextTableAsync<GetResources>(this);
-				Console.WriteLine($"Client.CustomerProfileGridBase.OnInitializedAsync() : GetAuthenticationUrls");
-				if (this._localStorage != null)
-				{
-					string perPageString = await this._localStorage.GetItemAsync<string>(SessionStorageKey.onPageCustomerNumber);
-					int perPageInt = 15;
-					this.OnPageNumber = 15;
-					try
-					{
-						bool ret = int.TryParse(perPageString, out perPageInt);
-						Console.WriteLine($"Client.CustomerProfileGridBase.OnInitializedAsync() : try perPageInt to  {perPageInt}");
-						this.OnPageNumber = perPageInt;
-					}
-					catch { }
-					Console.WriteLine($"Client.CustomerProfileGridBase.OnInitializedAsync() : GetonPageNumber {this.OnPageNumber}");
-
-					_filterCustomerModel.Code = await this._localStorage.GetItemAsync<string>(SessionStorageKey.filterCustomer);
-					await this.OnSearchAsync();
-				}
-			
-			}
-			catch (Exception exc)
-			{
-				Console.WriteLine($"Client.CustomerProfileGridBase.OnInitializedAsync() Exception :");
-				Console.WriteLine(exc.Message);
-			}
-			Console.WriteLine($"Client.CustomerProfileGridBase.OnInitializedAsync() : end");
-		}
+	
 
 
 		public async Task OnChangePageNumber(ChangeEventArgs args)
@@ -257,6 +279,42 @@ namespace Count4U.Admin.Client.Blazor.Page
 			{
 				await this._localStorage.SetItemAsync(SessionStorageKey.onPageCustomerNumber, this.OnPageNumber);
 			}
+		}
+
+
+		protected override async Task OnInitializedAsync()
+		{
+			Console.WriteLine();
+			Console.WriteLine($"Client.CustomerProfileGridBase.OnInitializedAsync() : start");
+			try
+			{
+				this.LocalizationResources = await this.I18nText.GetTextTableAsync<GetResources>(this);
+				Console.WriteLine($"Client.CustomerProfileGridBase.OnInitializedAsync() : GetAuthenticationUrls");
+				if (this._localStorage != null)
+				{
+					string perPageString = await this._localStorage.GetItemAsync<string>(SessionStorageKey.onPageCustomerNumber);
+					int perPageInt = 15;
+					this.OnPageNumber = 15;
+					try
+					{
+						bool ret = int.TryParse(perPageString, out perPageInt);
+						Console.WriteLine($"Client.CustomerProfileGridBase.OnInitializedAsync() : try perPageInt to  {perPageInt}");
+						this.OnPageNumber = perPageInt;
+					}
+					catch { }
+					Console.WriteLine($"Client.CustomerProfileGridBase.OnInitializedAsync() : GetonPageNumber {this.OnPageNumber}");
+
+					this._filterCustomerModel.FilterSelectByField = await this._localStorage.GetItemAsync<string>(SessionStorageKey.filterCustomer);
+					await this.OnSearchAsync();
+				}
+
+			}
+			catch (Exception exc)
+			{
+				Console.WriteLine($"Client.CustomerProfileGridBase.OnInitializedAsync() Exception :");
+				Console.WriteLine(exc.Message);
+			}
+			Console.WriteLine($"Client.CustomerProfileGridBase.OnInitializedAsync() : end");
 		}
 	}
 }

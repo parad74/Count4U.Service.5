@@ -49,7 +49,7 @@ else
                         <button @onclick="OnClearAsync" class="btn btn-outline-dark btn-sm searchicon" data-toggle="tooltip" data-placement="bottom" title="Clear Customer Filter"><i class="fa fa-eraser fa-lg"></i></button>
                     }
                 </div>
-                <input id="filterinput" placeholder="filter is empty" @bind="_filterInventorModel.InventorCode" />
+                <input id="filterinput" placeholder="filter is empty" @bind="_filterInventorModel.FilterValue" />
                 <div class="input-group-append">
                     @if (IsSearching)
                     {
@@ -62,7 +62,7 @@ else
                     &nbsp;  &nbsp;
                 </div>
                 <div class="input-group-append">
-                    <select class="form-control form-control-sm select_border_color" @bind="@_filterInventorModel.SelectedParam">
+                    <select class="form-control form-control-sm select_border_color" @bind="@_filterInventorModel.FilterSelectByField">
                         @foreach (var sparam in _filterInventorModel.FilterSelectParamDictionary)
                         {
                             <option value=@sparam.Key>@sparam.Value</option>
