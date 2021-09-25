@@ -1840,6 +1840,9 @@ namespace Count4U.Admin.Client.Blazor.I18nText
         /// <summary>"Customer Name"</summary>
         public string Property_Inventor_CustomerContextName;
 
+        /// <summary>"Customer Name"</summary>
+        public string Property_Inventor_CustomerName;
+
         /// <summary>"תיאור"</summary>
         public string Property_Inventor_Description;
 
@@ -1915,7 +1918,7 @@ namespace Count4U.Admin.Client.Blazor.I18nText
         /// <summary>"Manage Profile"</summary>
         public string Property_Manage_Profile;
 
-        /// <summary>"Permissions*"</summary>
+        /// <summary>"Permissions"</summary>
         public string Property_Permissions;
 
         /// <summary>"מחיר קנייה"</summary>
@@ -1980,6 +1983,9 @@ namespace Count4U.Admin.Client.Blazor.I18nText
 
         /// <summary>"Customer Code from Count4U"</summary>
         public string Register_customer_code_from_Count4U;
+
+        /// <summary>"Сustomer Name for Web"</summary>
+        public string Register_customer_name_for_web;
 
         /// <summary>"Customer Name will be use as lable for Customer"</summary>
         public string Register_customer_name_use_as_lable_for_customer;

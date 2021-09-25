@@ -316,7 +316,8 @@ namespace Count4U.Service.WebAPI.Authentication.Controllers
             result.Error = "";
             result.Message = "";
             result.Successful = SuccessfulEnum.Successful;
-            
+            result.DateCreated = user.DateCreated;
+
             var roles = await _signInManager.UserManager.GetRolesAsync(user);
             result.InRoles = new List<string>();
             //роли пользователя

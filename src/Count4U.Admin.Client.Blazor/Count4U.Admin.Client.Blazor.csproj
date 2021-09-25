@@ -38,7 +38,6 @@
 		<!--<PackageReference Include="Blazor.ContextMenu" Version="1.8.0" />-->
 		<!--<PackageReference Include="Blazored.LocalStorage" Version="3.0.0" />-->
 		<!--<PackageReference Include="Blazored.SessionStorage" Version="1.0.12" />-->
-	
 		<PackageReference Include="blazor-dragdrop" Version="2.2.1" />
 	
 		<PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" Version="5.0.0" />
@@ -69,6 +68,7 @@
 	<ItemGroup>
 		<ProjectReference Include="..\Blazored.LocalStorage\Blazored.LocalStorage.csproj" />
 		<ProjectReference Include="..\Blazored.SessionStorage\Blazored.SessionStorage.csproj" />
+		<ProjectReference Include="..\BlazorInputFile\BlazorInputFile.csproj" />
 		<ProjectReference Include="..\BlazorMonacoJosn\BlazorMonacoJosn.csproj" />
 		<ProjectReference Include="..\BlazorMonacoXml\BlazorMonacoXml.csproj" />
 		<ProjectReference Include="..\Count4U.Client.Shared\Count4U.Client.Shared.csproj" />
@@ -106,6 +106,25 @@
 			<TargetPath>dist\_content\jsInterop.js</TargetPath>
 		</ContentWithTargetPath>
 	</ItemGroup>
+
+	<!--<ItemGroup>
+		<ContentWithTargetPath Include="wwwroot\xml\profile.xml">
+			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+			<TargetPath>xml\profile.xml</TargetPath>
+		</ContentWithTargetPath>
+	</ItemGroup>-->
+	<!--<ItemGroup>
+		<ContentWithTargetPath Include="wwwroot\xml\profile.xml">
+			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+			<TargetPath>dist\_content\xml\profile.xml</TargetPath>
+		</ContentWithTargetPath>
+	</ItemGroup>-->
+	<ItemGroup>
+			<ContentWithTargetPath Include="wwwroot\js\BlazorInputFile\inputfile.js">
+			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+			<TargetPath>dist\_content\js\BlazorInputFile\inputfile.js</TargetPath>
+		</ContentWithTargetPath>
+	</ItemGroup>		
 	<!--<ItemGroup>
 		<ContentWithTargetPath Include="wwwroot\js\Toolbelt.Blazor.LoadingBar\script.js">
 			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
@@ -164,6 +183,7 @@
 		<None Remove="Page\FtpFile\ProfileFileEdit.r.txt" />
 		<None Remove="Page\FtpFile\ProfileFileEdit.txt" />
 		<None Remove="Page\User\UserGrid.txt" />
+		<None Remove="Page\User\UserGrid.txt.txt" />
 	</ItemGroup>
 	<ItemGroup>
 	  <Compile Include="Page\FtpFile\ProfileFileEdit.r.txt" />

@@ -110,6 +110,7 @@ namespace Count4U.Admin.Client.Blazor
 			services.AddScoped<IClaimService, ClaimService>();
 			services.AddScoped<IClaimConvertRepository, ClaimConvertRepository>();
 			services.AddTransient<IProfileFileService, ProfileFileService>();
+			services.AddTransient<IFileDefaultService, FileDefaultService>();
 			//services.AddSingleton<NumberViewModel>();           //test
 			//services.AddSingleton<ToggleViewModel>();             //test
 			//services.AddSingleton<IModel, MainModel>();          //test

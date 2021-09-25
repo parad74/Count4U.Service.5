@@ -28,3 +28,9 @@ namespace Monitor.Sqlite.CodeFirst
 
 	}
 }
+
+//Add-Migration SeedRoles
+//Update-Database
+
+//Add-Migration UserEmail  -Context MonitorSqliteDBContext
+//Update-Database  -Context MonitorSqliteDBContext

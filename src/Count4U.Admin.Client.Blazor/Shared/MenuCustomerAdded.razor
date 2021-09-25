@@ -1,0 +1,28 @@
+﻿<table style="width: 100px; border-left-color: green; border-left-width:4px; border-left-style:dotted">
+    <tbody>
+        <tr>
+            <td>
+                <a href="/customerprofileanduseredit/@customerCode/@email" class="p-2 m-2" style="color:green">Edit</a>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <a href="/usergrid/@customerCode" class="p-2 m-2" style="color:green">Users</a>
+            </td>
+        </tr>
+        @*<tr>
+                <td>
+                    <a href="/rolegrid" class="p-2 m-2" style="color:green">Roles</a>
+                </td>
+            </tr>*@
+
+    </tbody>
+</table>
+@code
+{
+    [Parameter]
+    public string customerCode { get; set; }
+
+    [Parameter]
+    public string email { get; set; }
+}

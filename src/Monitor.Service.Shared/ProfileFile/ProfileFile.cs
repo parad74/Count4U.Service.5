@@ -34,10 +34,12 @@ namespace Monitor.Service.Model
 	{
 		public long ID { get; set; }
 		public string Code { get; set; }
+		public string Name { get; set; }
 		public string ParentCode { get; set; }
 		public string AuditCode { get; set; }
 		public string CustomerCode { get; set; }
 		public string CustomerName { get; set; }
+		public string CustomerDescription { get; set; }
 		public string BranchCode { get; set; }
 		public string BranchName { get; set; }
 		public string InventorCode { get; set; }
@@ -76,12 +78,14 @@ namespace Monitor.Service.Model
 		public ProfileFile()
 		{
 			this.Code = "";
+			this.Name = "";
 			this.ParentCode = "";
 			this.AuditCode = "";
 			this.CustomerCode = "";
 			this.BranchCode = "";
 			this.InventorCode = "";
 			this.CustomerName = "";
+			this.CustomerDescription = "";
 			this.BranchName = "";
 			this.InventorName = "";
 			this.SubFolder = "";
@@ -130,13 +134,15 @@ namespace Monitor.Service.Model
 			if (addToQueueProfileFile != null)
 			{
 
-				this.Code = addToQueueProfileFile.Code; 
+				this.Code = addToQueueProfileFile.Code;
+				this.Name = addToQueueProfileFile.Name;
 				this.ParentCode = addToQueueProfileFile.ParentCode;
 				this.AuditCode = addToQueueProfileFile.AuditCode;
 				this.CustomerCode = addToQueueProfileFile.CustomerCode;
 				this.BranchCode = addToQueueProfileFile.BranchCode;
 				this.InventorCode = addToQueueProfileFile.InventorCode;
 				this.CustomerName = addToQueueProfileFile.CustomerName;
+				this.CustomerDescription = addToQueueProfileFile.CustomerDescription;
 				this.BranchName = addToQueueProfileFile.BranchName;
 				this.InventorName = addToQueueProfileFile.InventorName;
 				this.SubFolder = addToQueueProfileFile.SubFolder;
@@ -160,7 +166,7 @@ namespace Monitor.Service.Model
 				this.AuthenticationAddress = addToQueueProfileFile.AuthenticationAddress;
 				this.MonitorAddress = addToQueueProfileFile.MonitorAddress;
 				this.User = addToQueueProfileFile.User;
-				this.Email = addToQueueProfileFile.Email;
+				this.Email = addToQueueProfileFile.Code + @"@customer.com";//addToQueueProfileFile.Email;
 			}
 			this.OperationIndexCode = operationIndexCode;
 			this.Step = step;
@@ -191,12 +197,12 @@ namespace Monitor.Service.Model
 				return false;
 			if (ReferenceEquals(this, other))
 				return true;
-			return Equals(other.ProfileFileUID, this.ProfileFileUID);
+			return Equals(other.Code, this.Code);
 		}
 
 		public override int GetHashCode()
 		{
-			return (this.ProfileFileUID.ToString() != null ? this.ProfileFileUID.ToString().GetHashCode() : 0);
+			return (this.Code.ToString() != null ? this.Code.ToString().GetHashCode() : 0);
 		}
 
 	}

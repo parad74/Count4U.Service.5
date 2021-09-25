@@ -16,8 +16,8 @@ namespace Monitor.Profile.Sqlite.CodeFirst.ExportImport
 	{
 		Task<ProfileFile[]> AddToQueueUpdateFtpAndDbRun(ProfileFile addToQueueProfileFile);
 		Task<ProfileFile> SaveOrUpdatOnFtp(ProfileFile profileFile, CancellationToken cancellationToken);
-		Task<ProfileFile> GetByInventorCodeFromFtp(ProfileFile profileFile, CancellationToken cancellationToken);
-		Task<ProfileFile> UpdateOrInsertInventorFromFtpToDb(ProfileFile profileFile, CancellationToken cancellationToken);
+		Task<ProfileFile> GetByCodeFromFtp(ProfileFile profileFile, CancellationToken cancellationToken);
+		Task<ProfileFile> UpdateOrInsertObjectFromFtpToDb(ProfileFile profileFile, CancellationToken cancellationToken);
 
 
 	}
@@ -78,8 +78,8 @@ namespace Monitor.Profile.Sqlite.CodeFirst.ExportImport
 			{
 					//new Monitor.Service.Model.ProfileFile(OperationIndexEnum.i_11, ProfiFileStepEnum.AddInQueue, sessionCode, addToQueueProfileFile),
 					new Monitor.Service.Model.ProfileFile(OperationIndexEnum.c_01,  ProfiFileStepEnum.SaveOrUpdatOnFtp,  sessionCode, addToQueueProfileFile),
-					new Monitor.Service.Model.ProfileFile(OperationIndexEnum.c_02, ProfiFileStepEnum.UpdateOrInsertInventorFromFtpToDb, sessionCode, addToQueueProfileFile),
-					new Monitor.Service.Model.ProfileFile(OperationIndexEnum.c_03, ProfiFileStepEnum.GetByInventorCodeFromFtp, sessionCode, addToQueueProfileFile)
+					new Monitor.Service.Model.ProfileFile(OperationIndexEnum.c_02, ProfiFileStepEnum.UpdateOrInsertObjectFromFtpToDb, sessionCode, addToQueueProfileFile),
+					new Monitor.Service.Model.ProfileFile(OperationIndexEnum.c_03, ProfiFileStepEnum.GetByCodeFromFtp, sessionCode, addToQueueProfileFile)
 			};
 
 			//Save in Queue and DB 
@@ -165,14 +165,55 @@ namespace Monitor.Profile.Sqlite.CodeFirst.ExportImport
 		}
 
 		//======================== GetByInventorCodeFromFtp ==================================================
-		[StepProfile(Name = ProfiFileStepEnum.GetByInventorCodeFromFtp)]
-		public async Task<ProfileFile> GetByInventorCodeFromFtp(ProfileFile profileFile, CancellationToken cancellationToken)
+		[StepProfile(Name = ProfiFileStepEnum.GetByCodeFromFtp)]
+		public async Task<ProfileFile> GetByCodeFromFtp(ProfileFile profileFile, CancellationToken cancellationToken)
 		{
 			var result = await Task<ProfileFile>.Factory.StartNew(() =>
 			{
-				return this.GetByInventorCodeFromFtpPrivate(profileFile, cancellationToken);
+				return this.GetByCodeFromFtpPrivate(profileFile, cancellationToken);
 			});
 			return result;
+		}
+
+		//[StepProfile(Name = ProfiFileStepEnum.GetByInventorCodeFromFtp)]
+		//public async Task<ProfileFile> GetByInventorCodeFromFtp(ProfileFile profileFile, CancellationToken cancellationToken)
+		//{
+		//	var result = await Task<ProfileFile>.Factory.StartNew(() =>
+		//	{
+		//		return this.GetByInventorCodeFromFtpPrivate(profileFile, cancellationToken);
+		//	});
+		//	return result;
+		//}
+
+		private ProfileFile GetByCodeFromFtpPrivate(ProfileFile profileFile, CancellationToken cancellationToken)
+		{
+			try
+			{
+				#region validate
+				if (profileFile == null)
+				{
+					return new ProfileFile(SuccessfulEnum.NotSuccessful, CommandResultCodeEnum.ValidateError, CommandErrorCodeEnum.ProfileFileIsNull) { Error = $"ERROR UpdateOrInsertInventorFromFtpToDbPrivate : ProfileFile is null" };
+				}
+				#endregion
+				//ProfileFile profileFile = this._profileFileRepository.GetProfileFileByObjectCode(inProfileFile.Code);
+
+				this._settingsFtpRepository.InitProperty(profileFile);
+				ProfileFile retProfileFile = this._profileFileRepository.InsertInventoriesByCBI(profileFile);
+				if (retProfileFile.Successful == SuccessfulEnum.NotSuccessful) return retProfileFile;
+
+				profileFile.Successful = SuccessfulEnum.Successful;
+				profileFile.ResultCode = CommandResultCodeEnum.Ok;
+				return profileFile;
+			}
+			catch (Exception ecx)
+			{
+				profileFile.Successful = SuccessfulEnum.NotSuccessful;
+				profileFile.ResultCode = CommandResultCodeEnum.Error;
+				profileFile.ErrorCode = CommandErrorCodeEnum.CommandResultWithException;
+				profileFile.Message += " ERROR GetByCodeFromFtpPrivate >> " + ecx.Message;
+				return profileFile;
+			}
+
 		}
 
 		private ProfileFile GetByInventorCodeFromFtpPrivate(ProfileFile profileFile, CancellationToken cancellationToken)
@@ -199,7 +240,7 @@ namespace Monitor.Profile.Sqlite.CodeFirst.ExportImport
 				profileFile.Successful = SuccessfulEnum.NotSuccessful;
 				profileFile.ResultCode = CommandResultCodeEnum.Error;
 				profileFile.ErrorCode = CommandErrorCodeEnum.CommandResultWithException;
-				profileFile.Message += " ERROR UpdateOrInsertInventorFromFtpToDbPrivate >> " + ecx.Message;
+				profileFile.Message += " ERROR GetByInventorCodeFromFtpPrivate >> " + ecx.Message;
 				return profileFile;
 			}
 
@@ -207,14 +248,55 @@ namespace Monitor.Profile.Sqlite.CodeFirst.ExportImport
 
 
 		//======================== UpdateOrInsertInventorFromFtpToDb ==================================================
-		[StepProfile(Name = ProfiFileStepEnum.UpdateOrInsertInventorFromFtpToDb)]
-		public async Task<ProfileFile> UpdateOrInsertInventorFromFtpToDb(ProfileFile profileFile, CancellationToken cancellationToken)
+		[StepProfile(Name = ProfiFileStepEnum.UpdateOrInsertObjectFromFtpToDb)]
+		public async Task<ProfileFile> UpdateOrInsertObjectFromFtpToDb(ProfileFile profileFile, CancellationToken cancellationToken)
 		{
 			var result = await Task<ProfileFile>.Factory.StartNew(() =>
 			{
-				return this.UpdateOrInsertInventorFromFtpToDbPrivate(profileFile, cancellationToken);
+				return this.UpdateOrInsertObjectFromFtpToDbPrivate(profileFile, cancellationToken);
 			});
 			return result;
+		}
+		//[StepProfile(Name = ProfiFileStepEnum.UpdateOrInsertInventorFromFtpToDb)]
+		//public async Task<ProfileFile> UpdateOrInsertInventorFromFtpToDb(ProfileFile profileFile, CancellationToken cancellationToken)
+		//{
+		//	var result = await Task<ProfileFile>.Factory.StartNew(() =>
+		//	{
+		//		return this.UpdateOrInsertInventorFromFtpToDbPrivate(profileFile, cancellationToken);
+		//	});
+		//	return result;
+		//}
+
+
+		private ProfileFile UpdateOrInsertObjectFromFtpToDbPrivate(ProfileFile profileFile, CancellationToken cancellationToken)
+		{
+			try
+			{
+				#region validate
+				if (profileFile == null)
+				{
+					return new ProfileFile(SuccessfulEnum.NotSuccessful, CommandResultCodeEnum.ValidateError, CommandErrorCodeEnum.ProfileFileIsNull) { Error = $"ERROR UpdateOrInsertInventorFromFtpToDbPrivate : ProfileFile is null" };
+				}
+				#endregion
+
+				//ProfileFile profileFile = this._profileFileRepository.GetProfileFileByObjectCode(inProfileFile.Code);
+				this._settingsFtpRepository.InitProperty(profileFile);
+				ProfileFile retProfileFile = this._profileFileRepository.GetProfileFileInventor(profileFile);
+				if (retProfileFile.Successful == SuccessfulEnum.NotSuccessful) return retProfileFile;
+
+				profileFile.Successful = SuccessfulEnum.Successful;
+				profileFile.ResultCode = CommandResultCodeEnum.Ok;
+				return profileFile;
+			}
+			catch (Exception ecx)
+			{
+				profileFile.Successful = SuccessfulEnum.NotSuccessful;
+				profileFile.ResultCode = CommandResultCodeEnum.Error;
+				profileFile.ErrorCode = CommandErrorCodeEnum.CommandResultWithException;
+				profileFile.Message += " ERROR UpdateOrInsertInventorFromFtpToDbPrivate >> " + ecx.Message;
+				return profileFile;
+			}
+
 		}
 
 		private ProfileFile UpdateOrInsertInventorFromFtpToDbPrivate(ProfileFile profileFile, CancellationToken cancellationToken)

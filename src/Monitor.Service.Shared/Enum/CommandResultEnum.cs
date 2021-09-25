@@ -227,10 +227,10 @@ namespace Monitor.Service.Model
 		Clear = 4,
 		[Display(GroupName = "Operatoin", Name = "SaveOrUpdatOnFtp", Description = "Save Or Updat On Ftp", ShortName = "SaveToFtp")]
 		SaveOrUpdatOnFtp = 5,
-		[Display(GroupName = "Operatoin", Name = "UpdateOrInsertInventorFromFtpToDb", Description = "Update Or Insert Inventor From Ftp To Db", ShortName = "UpdateOrInsertInventorFromFtpToDb")]
-		UpdateOrInsertInventorFromFtpToDb = 6,
-		[Display(GroupName = "Operatoin", Name = "GetByInventorCodeFromFtp", Description = "Get By InventorCode From Ftp", ShortName = "GetByInventorCodeFromFtpTo")]
-		GetByInventorCodeFromFtp = 7,
+		[Display(GroupName = "Operatoin", Name = "UpdateOrInsertObjectFromFtpToDb", Description = "Update Or Insert Object From Ftp To Db", ShortName = "UpdateOrInsertInventorFromFtpToDb")]
+		UpdateOrInsertObjectFromFtpToDb = 6,
+		[Display(GroupName = "Operatoin", Name = "GetByCodeFromFtp", Description = "Get By Code From Ftp", ShortName = "GetByCodeFromFtpTo")]
+		GetByCodeFromFtp = 7,
 		[Display(GroupName = "Result", Name = "ReturnResultCountLocation", Description = "Count Locations", ShortName = "Count Locations")]
 		ReturnResultCountLocation = 8,
 		[Display(GroupName = "Result", Name = "ReturnResultCountItur", Description = "Count Iturs", ShortName = "Count Iturs")]

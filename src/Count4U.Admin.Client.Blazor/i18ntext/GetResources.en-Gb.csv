@@ -755,8 +755,8 @@ Login_Password,Password
 Login_Submit,Submit
 Login_Register,Register
 Register_Please_enter_your_details,Please enter your details
-Register_Email_address,Email*
-Register_Password,Password*
+Register_Email_address,Email
+Register_Password,Password
 Register_Confirm_Password,Confirm Password
 Register_Registered_Successfuly,Registered Successfuly
 Register_Cant_register,Can't register
@@ -809,4 +809,6 @@ Property_Use_Android,Use Android
 Property_Manage_Profile,Manage Profile
 Property_Database,Database
 Register_User,User
-Property_Permissions, Permissions*
+Property_Permissions,Permissions
+Property_Inventor_CustomerName,Customer Name
+Register_customer_name_for_web,Сustomer Name for Web

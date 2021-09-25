@@ -426,12 +426,12 @@ a:active {
 	}
 }
 
-@media (min-width: 768px) {
+/*@media (min-width: 768px) {*/
 /*	app {
 		flex-direction: row;
 	}*/
 
-	.page {
+	/*.page {
 		flex-direction: row;
 	}
 
@@ -456,11 +456,11 @@ a:active {
 		display: none;
 	}
 
-	.sidebar .collapse {
+	.sidebar .collapse {*/
 		/* Never collapse the sidebar for wide screens */
-		display: block;
+		/*display: block;
 	}
-}
+}*/
 
 /*.footer::before {
 	content: '';

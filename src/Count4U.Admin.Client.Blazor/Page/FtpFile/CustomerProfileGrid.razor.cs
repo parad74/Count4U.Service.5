@@ -19,9 +19,11 @@ namespace Count4U.Admin.Client.Blazor.Page
 {
 	public class CustomerProfileGridBase : ComponentBase
 	{
+		[Parameter]
+		public string code { get; set; }
 		protected ProfileFiles _profileFiles { get; set; }
-		protected FilterCustomerModel _filterCustomerModel { get; set; }
-  		protected FilterResult _filterResult { get; set; }
+		protected FilterModel _filterCustomerModel { get; set; }
+		protected FilterResult _filterResult { get; set; }
 
  		protected string _code { get; set; } = "";
 		public string PingServer { get; set; }
@@ -51,7 +53,8 @@ namespace Count4U.Admin.Client.Blazor.Page
 		public CustomerProfileGridBase()
 		{
 			this._profileFiles = null;
-			this._filterCustomerModel = new FilterCustomerModel();
+			this._filterCustomerModel = new FilterModel();
+			this._filterCustomerModel.InitCustomerFilter();
 		}
 
 		//https://blog.jonblankenship.com/2018/10/19/adding-a-loading-spinner-to-a-button-with-blazor/
@@ -63,11 +66,13 @@ namespace Count4U.Admin.Client.Blazor.Page
 			this._filterResult = new FilterResult();
 			try
 			{
+			
 				Console.WriteLine($"Client.CustomerProfileGridBase.OnSearchAsync() 1 FilterValue: {this._filterCustomerModel.FilterValue} start1");
 				Console.WriteLine($"Client.CustomerProfileGridBase.OnSearchAsync() 2 FilterSelectByField: {this._filterCustomerModel.FilterSelectByField} start2");
 				if (string.IsNullOrWhiteSpace(_filterCustomerModel.FilterValue) == false)
 				{
 					await this._localStorage.SetItemAsync(SessionStorageKey.filterCustomer, _filterCustomerModel.FilterSelectByField);
+					await this._localStorage.SetItemAsync(SessionStorageKey.filterValueCustomer, _filterCustomerModel.FilterValue);
 
 					//if (this._filterCustomerModel.FilterSelectByField == FilterCustomerSelectParam.All)
 					//{
@@ -140,7 +145,7 @@ namespace Count4U.Admin.Client.Blazor.Page
 				}
 				else
 				{
-					await this._localStorage.SetItemAsync(SessionStorageKey.filterCustomer, "");
+					//await this._localStorage.SetItemAsync(SessionStorageKey.filterCustomer, "");
 					await GetProfileFiles();
 					this._filterResult.Successful = SuccessfulEnum.Successful;
 				}
@@ -159,6 +164,8 @@ namespace Count4U.Admin.Client.Blazor.Page
 			this._filterCustomerModel.Clear();
 			Console.WriteLine($"Client.CustomerProfileGridBase.Clear() : start");
 			await this._localStorage.SetItemAsync(SessionStorageKey.filterCustomer, "");
+			await this._localStorage.SetItemAsync(SessionStorageKey.filterValueCustomer, "");
+			
 			await OnSearchAsync();
 		}
 
@@ -236,14 +243,22 @@ namespace Count4U.Admin.Client.Blazor.Page
 
 		public async Task NavigateToBranches(string customerCode)
 		{
-			/// branchgrid /{customerCode}
+			// branchgrid /{customerCode}
 			this._navigationManager.NavigateTo("branchgrid/" + customerCode);
 		}
 
+		public async Task CustomerEdit(string customerCode, string email)
+		{
+			// "/customerprofileanduseredit/{code}"
+			if (string.IsNullOrWhiteSpace(email) == true) email = customerCode + @"@customer.com";
+			this._navigationManager.NavigateTo("customerprofileanduseredit/" + customerCode + "/" + email);
+		}
+		
+
 		public async Task AddCustomer()
 		{
-			Console.WriteLine($"Client.CustomerProfileGridBase.AddCustomer() : customerprofile");
-			this._navigationManager.NavigateTo("customerprofile");
+			Console.WriteLine($"Client.CustomerProfileGridBase.AddCustomer() : customerprofileanduseradd");
+			this._navigationManager.NavigateTo("customerprofileanduseradd");
 		}
 
 
@@ -286,10 +301,18 @@ namespace Count4U.Admin.Client.Blazor.Page
 		{
 			Console.WriteLine();
 			Console.WriteLine($"Client.CustomerProfileGridBase.OnInitializedAsync() : start");
+
+			if (string.IsNullOrWhiteSpace(code) == false)
+			{
+				this._filterCustomerModel.FilterSelectByField = FilterCustomerSelectParam.Code;
+				this._filterCustomerModel.FilterValue = code;
+				await this._localStorage.SetItemAsync(SessionStorageKey.filterCustomer, _filterCustomerModel.FilterSelectByField);
+				await this._localStorage.SetItemAsync(SessionStorageKey.filterValueCustomer, _filterCustomerModel.FilterValue);
+			}
+
 			try
 			{
 				this.LocalizationResources = await this.I18nText.GetTextTableAsync<GetResources>(this);
-				Console.WriteLine($"Client.CustomerProfileGridBase.OnInitializedAsync() : GetAuthenticationUrls");
 				if (this._localStorage != null)
 				{
 					string perPageString = await this._localStorage.GetItemAsync<string>(SessionStorageKey.onPageCustomerNumber);
@@ -304,8 +327,12 @@ namespace Count4U.Admin.Client.Blazor.Page
 					catch { }
 					Console.WriteLine($"Client.CustomerProfileGridBase.OnInitializedAsync() : GetonPageNumber {this.OnPageNumber}");
 
-					this._filterCustomerModel.FilterSelectByField = await this._localStorage.GetItemAsync<string>(SessionStorageKey.filterCustomer);
+					var filterCustomer = await this._localStorage.GetItemAsync<string>(SessionStorageKey.filterCustomer);
+					this._filterCustomerModel.FilterSelectByField = filterCustomer != null ? filterCustomer : "";
+					var filterValueCustomer = await this._localStorage.GetItemAsync<string>(SessionStorageKey.filterValueCustomer);
+					this._filterCustomerModel.FilterValue = filterValueCustomer != null ? filterValueCustomer : "";
 					await this.OnSearchAsync();
+
 				}
 
 			}
@@ -315,6 +342,47 @@ namespace Count4U.Admin.Client.Blazor.Page
 				Console.WriteLine(exc.Message);
 			}
 			Console.WriteLine($"Client.CustomerProfileGridBase.OnInitializedAsync() : end");
+		}
+
+		protected override async Task OnAfterRenderAsync(bool firstRender)
+		{
+			if (firstRender)
+			{
+
+				Console.WriteLine();
+				Console.WriteLine($"Client.CustomerProfileGridBase.OnAfterRenderAsync() : start");
+				try
+				{
+					Console.WriteLine($"Client.CustomerProfileGridBase.OnAfterRenderAsync() ");
+					//if (this._localStorage != null)
+					//{
+					//	string perPageString = await this._localStorage.GetItemAsync<string>(SessionStorageKey.onPageCustomerNumber);
+					//	int perPageInt = 15;
+					//	this.OnPageNumber = 15;
+					//	try
+					//	{
+					//		bool ret = int.TryParse(perPageString, out perPageInt);
+					//		Console.WriteLine($"Client.CustomerProfileGridBase.OnAfterRenderAsync() : try perPageInt to  {perPageInt}");
+					//		this.OnPageNumber = perPageInt;
+					//	}
+					//	catch { }
+					//	Console.WriteLine($"Client.CustomerProfileGridBase.OnAfterRenderAsync() : GetonPageNumber {this.OnPageNumber}");
+
+					//	this._filterCustomerModel.FilterSelectByField = await this._localStorage.GetItemAsync<string>(SessionStorageKey.filterCustomer);
+					//	this._filterCustomerModel.FilterValue = await this._localStorage.GetItemAsync<string>(SessionStorageKey.filterValueCustomer);
+
+
+						//await this.OnSearchAsync();
+					//}
+
+				}
+				catch (Exception exc)
+				{
+					Console.WriteLine($"Client.CustomerProfileGridBase.OnAfterRenderAsync() Exception :");
+					Console.WriteLine(exc.Message);
+				}
+				Console.WriteLine($"Client.CustomerProfileGridBase.OnAfterRenderAsync() : end");
+			}
 		}
 	}
 }

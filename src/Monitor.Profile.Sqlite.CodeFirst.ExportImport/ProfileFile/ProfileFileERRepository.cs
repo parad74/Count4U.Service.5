@@ -75,7 +75,15 @@ namespace Monitor.Sqlite.CodeFirst
 			ret = entertiList.Select(e => e.CustomerCode).Distinct().ToList();
 			return ret;
 		}
-		
+
+		public List<ProfileFileLite> GetCustomerProfileFileLiteList()
+		{
+			List<ProfileFileLite> ret = new List<ProfileFileLite>();
+			var entertiList = this.GetEntitiesCustomer(_context);
+			ret = entertiList.Where(x=>x.DomainObject == "Customer").Select(e => e.ToProfileFileLiteDomainObject()).Distinct().ToList();
+			return ret;
+		}
+
 		public Monitor.Service.Model.ProfileFiles GetBranchesProfileFiles()
 		{
 			var entertiList = this.GetEntitiesBranch(_context);
@@ -213,12 +221,12 @@ namespace Monitor.Sqlite.CodeFirst
   			return Task.FromResult(true);
         }
 
-		public Monitor.Service.Model.ProfileFile GetProfileFile(long id)
+		public Monitor.Service.Model.ProfileFile GetProfileFile(string profileFileUID)
 		{
-				var entity = this.GetEntitiesById(_context, id);
-				if (entity == null)
+			ProfileFile entity = GetEntitiesByProfileFileUID(_context, profileFileUID);
+			if (entity == null)
 					return null;
-				return entity.ToDomainObject();
+			return entity.ToDomainObject();
 		}
 
 		public Monitor.Service.Model.ProfileFiles GetProfileFilesByParentCode(string parentCode)
@@ -295,9 +303,9 @@ namespace Monitor.Sqlite.CodeFirst
 
 		}
 
-	public Task Delete(long id)
+	public Task DeleteByProfileFileUID(string uid)
 		{
-			var entity = this.GetEntitiesById(_context, id);
+			var entity = this.GetEntitiesByProfileFileUID(_context, uid);
 			if (entity != null)
 			{
 				_context.ProfileFileDatas.Remove(entity);
@@ -307,7 +315,7 @@ namespace Monitor.Sqlite.CodeFirst
 		}
 
 
-		public Task Delete(string objectCode)
+		public Task DeleteByCode(string objectCode)
 		{
 
 			var entity = this.GetEntitiesByCode(_context, objectCode);
@@ -322,12 +330,14 @@ namespace Monitor.Sqlite.CodeFirst
 
 
 
-		public long Insert(Monitor.Service.Model.ProfileFile profileFile)
+		public string Insert(Monitor.Service.Model.ProfileFile profileFile)
 		{
 			if (profileFile == null)
-				return -1;
+				return "";
 			try
 			{
+				DeleteByCode(profileFile.Code);
+
 				var entity = profileFile.ToEntity();
 				_context.ProfileFileDatas.Add(entity);
 				_context.SaveChanges();
@@ -335,9 +345,9 @@ namespace Monitor.Sqlite.CodeFirst
 				//var entity1 = GetEntitiesByCommandResultCode(dc, commandResult.CommandResultCode);
 				var entity1 = GetEntitiesByProfileFileUID(_context, profileFile.ProfileFileUID);
 				if (entity1 == null)
-					return -1;
+					return "";
 				else
-					return entity1.ID;
+					return entity1.ProfileFileUID;
 			}
 
 			catch (DbEntityValidationException e)
@@ -470,6 +480,7 @@ namespace Monitor.Sqlite.CodeFirst
 						profileFile.SubFolder = code;
 						profileFile.CurrentPath = @"Customer\" + profileFile.CustomerCode;
 						profileFile.DomainObject = "Customer";
+						profileFile.Email = code + @"@customer.com";
 
 					//this._settingsFtpRepository.InitProperty(profileFile);
 					//string profileTest = "";
@@ -483,7 +494,7 @@ namespace Monitor.Sqlite.CodeFirst
 
 				foreach (Monitor.Service.Model.ProfileFile profileFile in profileFileList)
 				{
-					Delete(profileFile.Code);
+					DeleteByCode(profileFile.Code);
 				}
 
 				foreach (Monitor.Service.Model.ProfileFile profileFile in profileFileList)
@@ -552,7 +563,7 @@ namespace Monitor.Sqlite.CodeFirst
 
 				foreach (Monitor.Service.Model.ProfileFile profileFile in profileFileList)
 				{
-					Delete(profileFile.Code);
+					DeleteByCode(profileFile.Code);
 
 				}
 				foreach (Monitor.Service.Model.ProfileFile profileFile in profileFileList)
@@ -644,7 +655,7 @@ namespace Monitor.Sqlite.CodeFirst
 
 				foreach (Monitor.Service.Model.ProfileFile profileFile in profileFileList)
 				{
-					Delete(profileFile.Code);
+					DeleteByCode(profileFile.Code);
   				}
 
 				foreach (Monitor.Service.Model.ProfileFile profileFile in profileFileList)
@@ -749,9 +760,9 @@ namespace Monitor.Sqlite.CodeFirst
 					this._settingsFtpRepository.CopyProfileFileFromFtpToMemoryStream(profileFile.CurrentPath, ref profileTest, ref messageCreateFolder);
 					profileFile.ProfileXml = profileTest;
 
-					this.Delete(profileFile.Code);
-					long id = this.Insert(profileFile);
-					Monitor.Service.Model.ProfileFile ret = GetProfileFile(id);
+					this.DeleteByCode(profileFile.Code);
+					string profileFileUID = this.Insert(profileFile);
+					Monitor.Service.Model.ProfileFile ret = GetProfileFile(profileFileUID);
 			}
 
 			catch (DbEntityValidationException e)
@@ -793,6 +804,34 @@ namespace Monitor.Sqlite.CodeFirst
 			}
 
 			return Task.FromResult(true);
+		}
+
+
+		public string InsertOrUpdate(Monitor.Service.Model.ProfileFile profileFile)
+		{
+			if (profileFile == null)
+				return "";
+
+		//	DeleteByCode(profileFile.Code);
+
+			ProfileFile entity = GetEntitiesByProfileFileUID(_context, profileFile.ProfileFileUID);
+			if (entity != null) //update
+			{
+				entity.ApplyChanges(profileFile);
+				_context.SaveChanges();
+				return entity.ProfileFileUID;
+			}
+			else      //insert
+			{
+				entity = profileFile.ToEntity();
+				_context.ProfileFileDatas.Add(entity);
+				_context.SaveChanges();
+				var entity1 = GetEntitiesByProfileFileUID(_context, profileFile.ProfileFileUID);
+				if (entity1 == null)
+					return "";
+				else
+					return entity1.ProfileFileUID;
+			}
 		}
 		#endregion
 

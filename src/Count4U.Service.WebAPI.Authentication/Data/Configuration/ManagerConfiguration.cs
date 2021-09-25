@@ -24,7 +24,7 @@ namespace Count4U.Service.Core.Server.Data
                 EmailConfirmed = true,
                 PhoneNumberConfirmed = true,
                 SecurityStamp = new Guid().ToString("D"),
-
+                DateCreated = DateTime.Now
             };
 
             count4uLocal.PasswordHash = PassGenerate(count4uLocal);

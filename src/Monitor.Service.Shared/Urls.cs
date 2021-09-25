@@ -55,6 +55,9 @@
 		public const string filterInventor = @"filterInventor";
 		public const string filterUser = @"filterInventor";
 
+		public const string filterValueCustomer = @"filterValueCustomer";
+		public const string filterValueInventor = @"filterValueInventor";
+		public const string filterValueUser = @"filterValueUser";
 	}
 
 	public static class WebApiAuthenticationClaim
@@ -161,6 +164,14 @@
 	}
 
 	
+	public static class WebApiFileFetcher
+	{
+		public const string GetDefaultProfileXDocument = @"api/profilewebapi/GetProfileXDocument";
+		public const string GetDefaultProfileFile = @"api/profilewebapi/GetProfileString";
+
+	}
+	
+
 
 	public static class SignalRHubPing
 	{
@@ -350,11 +361,13 @@
 	public static class WebApiProfileFile
 	{
 		public const string SaveOrUpdateProfileFileOnFtp = @"api/webapiprofile/insertorupdatefromftp";
+		public const string SaveOrUpdateProfileFileOnFtpAndDB = @"api/webapiprofile/SaveOrUpdateProfileFileOnFtpAndDB";
+		
 		public const string GetProfileFileFromFtp = @"api/webapiprofile/getprofilefilefromftp";
 		public const string GetProfileFiles = @"api/webapiprofile/getprofiles";
 		public const string GetProfileFilesWithSelectParam = @"api/webapiprofile/getprofileswithselectparam";
 		public const string GetTestDataProfileFiles = @"api/webapiprofile/gettestdataprofiles";
-		public const string GetProfileFileById = @"api/webapiprofile/getprofilefilebyid";
+		public const string GetProfileFileByUID = @"api/webapiprofile/GetProfileFileByUID";
 		public const string GetCustomersProfileFiles = @"api/webapiprofile/getcustomersprofiles";
 		public const string GetBranchesProfileFiles = @"api/webapiprofile/getbranchesprofiles";
 		public const string GetBranchesByCustomerCode = @"api/webapiprofile/getbranchesbycustomercode";
@@ -365,7 +378,7 @@
 		public const string GetProfileFileByObjectCode = @"api/webapiprofile/getprofilebyobjectcode";
 public const string GetProfileFileByInventorCode = @"api/webapiprofile/getprofilebyinventorcode";
 		
-		public const string DeleteById = @"api/webapiprofile/deletebyid";
+		public const string DeleteByUid = @"api/webapiprofile/deletebyid";
 		public const string DeleteAll = @"api/webapiprofile/deleteall";
 		public const string DeleteByCode = @"api/webapiprofile/deletebycode";
 		public const string Insert = @"api/webapiprofile/insert";
@@ -374,6 +387,7 @@ public const string GetProfileFileByInventorCode = @"api/webapiprofile/getprofil
 		public const string Update = @"api/webapiprofile/update";
 		public const string TestGetProfileFileFromFtp = @"api/webapiprofile/TestGetProfileFileFromFtp";
 		public const string SaveProfileFileCustomersFromFtpToDb = @"api/webapiprofile/SaveProfileFileCustomersFromFtpToDb";
+		public const string AddProfileFileCustomersToDb = @"api/webapiprofile/AddProfileFileCustomersToDb";
 		public const string SaveProfileFileBranchesFromFtpToDb = @"api/webapiprofile/SaveProfileFileBranchesFromFtpToDb";
 		public const string SaveProfileFileInventorsFromFtpToDb = @"api/webapiprofile/SaveProfileFileInventorsFromFtpToDb";
 		public const string UpdateOrInsertProfileFileInventorFromFtpToDb = @"api/webapiprofile/UpdateOrInsertProfileFileInventorFromFtpToDb";

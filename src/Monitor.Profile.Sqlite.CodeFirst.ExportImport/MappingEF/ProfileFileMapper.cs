@@ -8,22 +8,41 @@ namespace Monitor.Sqlite.CodeFirst.MappingEF
 		{
 			if (entity == null)
 				return null;
+			string email = "";
+			string name = "";
+			if (entity.DomainObject == "Customer")
+			{
+				email = entity.Code + @"@customer.com";
+				name = entity.CustomerName;
+			}
+			else if (entity.DomainObject == "Branch")
+			{
+				name = entity.BranchName;
+			}
+			else if (entity.DomainObject == "Inventor")
+			{
+				name = entity.InventorName;
+			}
+
 			return new Monitor.Service.Model.ProfileFile()
 			{
 				ID = entity.ID,
 				ProfileFileUID = entity.ProfileFileUID != null ? entity.ProfileFileUID : "",
 				Code = entity.Code != null ? entity.Code : "",
+				Name = name,
 				ParentCode = entity.ParentCode != null ? entity.ParentCode : "",
 				CustomerCode = entity.CustomerCode != null ? entity.CustomerCode : "",
 				BranchCode = entity.BranchCode != null ? entity.BranchCode : "",
 				InventorCode = entity.InventorCode != null ? entity.InventorCode : "",
 				CustomerName = entity.CustomerName != null ? entity.CustomerName : "",
+				CustomerDescription = entity.CustomerDescription != null ? entity.CustomerDescription : "",
 				BranchName = entity.BranchName != null ? entity.BranchName : "",
 				InventorName = entity.InventorName != null ? entity.InventorName : "",
 				SubFolder =  entity.SubFolder != null ? entity.SubFolder : "",
 				InventorDBPath = entity.InventorDBPath != null ? entity.InventorDBPath : "",
-				DomainObject = entity.DomainObject != null ? entity.DomainObject : "",               //пока просто инфа
+				DomainObject = entity.DomainObject != null ? entity.DomainObject : "",               
 				AuditCode = entity.AuditCode != null ? entity.AuditCode : "",    //пока просто инфа
+				Email = email,
 				Successful = (SuccessfulEnum)SuccessfulEnum.NotStart.GetEnumFromInt(entity.Successful),
 				Error = entity.Error != null ? entity.Error : "",
 				Message = entity.Message != null ? entity.Message : "",
@@ -41,23 +60,41 @@ namespace Monitor.Sqlite.CodeFirst.MappingEF
 		{
 			if (entity == null)
 				return null;
+			string email = "";
+			string name = "";
+			if (entity.DomainObject == "Customer")
+			{
+				email = entity.Code + @"@customer.com";
+				name = entity.CustomerName;
+			}
+			else if (entity.DomainObject == "Branch")
+			{
+				name = entity.BranchName;
+			}
+			else if (entity.DomainObject == "Inventor")
+			{
+				name = entity.InventorName;
+			}
 			return new Monitor.Service.Model.ProfileFile()
 			{
 				ID = entity.ID,
 				ProfileFileUID = entity.ProfileFileUID != null ? entity.ProfileFileUID : "",
 				Code = entity.Code != null ? entity.Code : "",
+				Name = name,
 				ParentCode = entity.ParentCode != null ? entity.ParentCode : "",
 				CustomerCode = entity.CustomerCode != null ? entity.CustomerCode : "",
 				BranchCode = entity.BranchCode != null ? entity.BranchCode : "",
 				InventorCode = entity.InventorCode != null ? entity.InventorCode : "",
 				CustomerName = entity.CustomerName != null ? entity.CustomerName : "",
+				CustomerDescription = entity.CustomerDescription != null ? entity.CustomerDescription : "",
 				BranchName = entity.BranchName != null ? entity.BranchName : "",
 				InventorName = entity.InventorName != null ? entity.InventorName : "",
 				SubFolder = entity.SubFolder != null ? entity.SubFolder : "",
 				InventorDBPath = entity.InventorDBPath != null ? entity.InventorDBPath : "",
-				DomainObject = entity.DomainObject != null ? entity.DomainObject : "",               //пока просто инфа
+				DomainObject = entity.DomainObject != null ? entity.DomainObject : "",             
 				AuditCode = entity.AuditCode != null ? entity.AuditCode : "",    //пока просто инфа
-				Successful = (SuccessfulEnum)SuccessfulEnum.NotStart.GetEnumFromInt(entity.Successful),
+				Email = email,
+				Successful = (SuccessfulEnum)SuccessfulEnum.Successful.GetEnumFromInt(entity.Successful),
 				Error = entity.Error != null ? entity.Error : "",
 				Message = entity.Message != null ? entity.Message : "",
 				ValidateDataErrorCode = (CommandErrorCodeEnum)CommandErrorCodeEnum.none.GetEnumFromInt(entity.ValidateDataErrorCode),
@@ -67,26 +104,75 @@ namespace Monitor.Sqlite.CodeFirst.MappingEF
 			};
 		}
 
+
+		public static Monitor.Service.Model.ProfileFileLite ToProfileFileLiteDomainObject(this Monitor.Sqlite.CodeFirst.ProfileFile entity)
+		{
+			if (entity == null)
+				return null;
+			string email = "";
+			string name = "";
+			if (entity.DomainObject == "Customer")
+			{
+				email = entity.Code + @"@customer.com";
+				name = entity.CustomerName;
+			}
+			else if (entity.DomainObject == "Branch")
+			{
+				name = entity.BranchName;
+			}
+			else if (entity.DomainObject == "Inventor")
+			{
+				name = entity.InventorName;
+			}
+			return new Monitor.Service.Model.ProfileFileLite()
+			{
+				Code = entity.Code != null ? entity.Code : "",
+				Name = name,
+				DomainObject = entity.DomainObject != null ? entity.DomainObject : "",
+				Email = email,
+				Successful = (SuccessfulEnum)SuccessfulEnum.Successful.GetEnumFromInt(entity.Successful),
+				Error = entity.Error != null ? entity.Error : "",
+			};
+		}
+
 		public static Monitor.Sqlite.CodeFirst.ProfileFile ToEntity(this Monitor.Service.Model.ProfileFile domainObject)
 		{
 			if (domainObject == null)
 				return null;
+			string email = "";
+			string name = "";
+			if (domainObject.DomainObject == "Customer")
+			{
+				email = domainObject.Code + @"@customer.com";
+				name = domainObject.CustomerName;
+			}
+			else if (domainObject.DomainObject == "Branch")
+			{
+				name = domainObject.BranchName;
+			}
+			else if (domainObject.DomainObject == "Inventor")
+			{
+				name = domainObject.InventorName;
+			}
 			return new Monitor.Sqlite.CodeFirst.ProfileFile()
 			{
 				ID = domainObject.ID,
 				ProfileFileUID = domainObject.ProfileFileUID != null ? domainObject.ProfileFileUID : "",
 				Code = domainObject.Code != null ? domainObject.Code : "",
+				Name = name,
 				ParentCode = domainObject.ParentCode != null ? domainObject.ParentCode : "",
 				CustomerCode = domainObject.CustomerCode != null ? domainObject.CustomerCode : "",
 				BranchCode = domainObject.BranchCode != null ? domainObject.BranchCode : "",
 				InventorCode = domainObject.InventorCode != null ? domainObject.InventorCode : "",
 				CustomerName = domainObject.CustomerName != null ? domainObject.CustomerName : "",
+				CustomerDescription = domainObject.CustomerDescription != null ? domainObject.CustomerDescription : "",
 				BranchName = domainObject.BranchName != null ? domainObject.BranchName : "",
 				InventorName = domainObject.InventorName != null ? domainObject.InventorName : "",
 				SubFolder = domainObject.SubFolder != null ? domainObject.SubFolder : "",
 				InventorDBPath = domainObject.InventorDBPath != null ? domainObject.InventorDBPath : "",
-				DomainObject = domainObject.DomainObject != null ? domainObject.DomainObject : "",               //пока просто инфа
+				DomainObject = domainObject.DomainObject != null ? domainObject.DomainObject : "",               
 				AuditCode = domainObject.AuditCode != null ? domainObject.AuditCode : "",    //пока просто инфа
+				Email = email,    
 				Successful = (int)domainObject.Successful,
 				Error = domainObject.Error != null ? domainObject.Error.CutLength(500) : "",
 				ValidateDataErrorCode = (int)domainObject.ValidateDataErrorCode,
@@ -105,20 +191,38 @@ namespace Monitor.Sqlite.CodeFirst.MappingEF
 		{
 			if (domainObject == null)
 				return;
+			string email = "";
+			string name = "";
+			if (entity.DomainObject == "Customer")
+			{
+				email = entity.Code + @"@customer.com";
+				name = entity.CustomerName;
+			}
+			else if (entity.DomainObject == "Branch")
+			{
+				name = entity.BranchName;
+			}
+			else if (entity.DomainObject == "Inventor")
+			{
+				name = entity.InventorName;
+			}
 			entity.ID = domainObject.ID;
 			entity.ProfileFileUID = domainObject.ProfileFileUID != null ? domainObject.ProfileFileUID : "";
 			entity.Code = domainObject.Code != null ? domainObject.Code : "";
+			entity.Name = name;
 			entity.ParentCode = domainObject.ParentCode != null ? domainObject.ParentCode : "";
 			entity.CustomerCode = domainObject.CustomerCode != null ? domainObject.CustomerCode : "";
 			entity.BranchCode = domainObject.BranchCode != null ? domainObject.BranchCode : "";
 			entity.InventorCode = domainObject.InventorCode != null ? domainObject.InventorCode : "";
 			entity.CustomerName = domainObject.CustomerName != null ? domainObject.CustomerName : "";
+			entity.CustomerDescription = domainObject.CustomerDescription != null ? domainObject.CustomerDescription : "";
 			entity.BranchName = domainObject.BranchName != null ? domainObject.BranchName : "";
 			entity.InventorName = domainObject.InventorName != null ? domainObject.InventorName : "";
 			entity.SubFolder = domainObject.SubFolder != null ? domainObject.SubFolder : "";
 			entity.InventorDBPath = domainObject.InventorDBPath != null ? domainObject.InventorDBPath : "";
-			entity.DomainObject = domainObject.DomainObject != null ? domainObject.DomainObject : "";             //пока просто инфа
+			entity.DomainObject = domainObject.DomainObject != null ? domainObject.DomainObject : "";            
 			entity.AuditCode = domainObject.AuditCode != null ? domainObject.AuditCode : "";  //пока просто инфа
+			entity.Email = email;
 			entity.Successful = (int)domainObject.Successful;
 			entity.Error = domainObject.Error != null ? domainObject.Error.CutLength(500) : "";
 			entity.ValidateDataErrorCode = (int)domainObject.ValidateDataErrorCode;

@@ -21,6 +21,8 @@ namespace Count4U.Service.Core.Server.Data
 		public string BranchCode { get; set; }
 		public string InventorCode { get; set; }
 		public string DBPath { get; set; }
+		public string Description { get; set; }
+		public DateTime DateCreated { get; set; }
 
 	}
 

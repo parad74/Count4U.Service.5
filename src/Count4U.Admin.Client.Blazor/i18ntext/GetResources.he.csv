@@ -234,4 +234,6 @@ Property_Use_Android,Use Android
 Property_Manage_Profile,Manage Profile
 Property_Database,Database
 Register_User,User
-Property_Permissions, Permissions*
+Property_Permissions, Permissions
+Property_Inventor_CustomerName,Customer Name
+Register_customer_name_for_web,Сustomer Name for Web

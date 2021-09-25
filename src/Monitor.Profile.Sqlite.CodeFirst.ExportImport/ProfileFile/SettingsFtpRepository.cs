@@ -176,13 +176,16 @@ namespace Count4U.Model.Common
 				profileFileModel.InventorDBPath);
 		}
 
+	
+
 		private string BuildLongCodesPath(string domainObject, string customerCode = "", string branchCode = "", string inventorDBPath = "")
 		{
 			if (string.IsNullOrWhiteSpace(domainObject) == true) return String.Empty;
 
 			if (domainObject == PropertiesSettings.FolderCustomer)
 			{
-		  		string customerPrat = PropertiesSettings.FolderCustomer.Trim('\\') + @"\" + customerCode;
+				string customerPrat = PropertiesSettings.FolderCustomer.Trim('\\') + @"\" + customerCode;
+				return customerPrat;
 			}
 
 			if (domainObject == PropertiesSettings.FolderBranch)
@@ -198,6 +201,41 @@ namespace Count4U.Model.Common
 				string customerPart = PropertiesSettings.FolderCustomer.Trim('\\') + @"\" + customerCode;
 				string branchPart = PropertiesSettings.FolderBranch.Trim('\\') + @"\" + branchCode;
 				string inventorPart = PropertiesSettings.FolderInventor.Trim('\\') + @"\" + inventorDBPath;
+				return customerPart + @"\" + branchPart + @"\" + inventorPart;
+			}
+
+			return String.Empty;
+		}
+
+
+		private string BuildLongFtpPathWithoutObjectCode(ProfileFile profileFileModel)
+		{
+			return BuildLongCodesPathWithoutObjectCode(profileFileModel.DomainObject, profileFileModel.CustomerCode, profileFileModel.BranchCode,
+				profileFileModel.InventorDBPath);
+		}
+		private string BuildLongCodesPathWithoutObjectCode(string domainObject, string customerCode = "", string branchCode = "", string inventorDBPath = "")
+		{
+			if (string.IsNullOrWhiteSpace(domainObject) == true) return String.Empty;
+
+			if (domainObject == PropertiesSettings.FolderCustomer)
+			{
+				string customerPrat = PropertiesSettings.FolderCustomer.Trim('\\');
+				return customerPrat;
+			}
+
+			if (domainObject == PropertiesSettings.FolderBranch)
+			{
+				string customerPart = PropertiesSettings.FolderCustomer.Trim('\\') + @"\" + customerCode;
+				string branchPart = PropertiesSettings.FolderBranch.Trim('\\');
+				return customerPart + @"\" + branchPart;
+			}
+
+
+			if (domainObject == PropertiesSettings.FolderInventor)
+			{
+				string customerPart = PropertiesSettings.FolderCustomer.Trim('\\') + @"\" + customerCode;
+				string branchPart = PropertiesSettings.FolderBranch.Trim('\\') + @"\" + branchCode;
+				string inventorPart = PropertiesSettings.FolderInventor.Trim('\\') ;
 				return customerPart + @"\" + branchPart + @"\" + inventorPart;
 			}
 
@@ -251,13 +289,16 @@ namespace Count4U.Model.Common
 				//string folderForInventorObject = this.BuildLongFtpPath(profileFileModel).Trim(@"\".ToCharArray()) + @"\Profile";
 				//rootFonderOnFtp = "mINV" 
 				//string ftpFolder = this.CreatePathOnFtp(this.HostRootFolder, folderForInventorObject, ref messageCreateFolder);
-
-				string objectFonderOnFtp = this.HostRootFolder + @"\" + this.BuildLongFtpPath(profileFileModel).Trim(@"\".ToCharArray());
+				string longFtpPath = this.BuildLongFtpPathWithoutObjectCode(profileFileModel);
+				string fonderOnFtp = this.HostRootFolder + @"\" + longFtpPath.Trim(@"\".ToCharArray());
 				if (createPathOnFtp == true)
 				{
-					string ftpFolder = this.CreatePathOnFtp(objectFonderOnFtp, "Profile", ref messageCreateFolder);
+					//string ftpFolder = this.CreatePathOnFtp(objectFonderOnFtp, "Profile", ref messageCreateFolder);
+					string ftpFolder = this.CreatePathOnFtp(fonderOnFtp, $"{profileFileModel.CustomerCode}" + @"\Profile", ref messageCreateFolder);
 				}
 
+				string longFtpPath1 = this.BuildLongFtpPath(profileFileModel);
+				string objectFonderOnFtp = this.HostRootFolder + @"\" + longFtpPath1.Trim(@"\".ToCharArray());
 				this.CopyTextToFtpAsFile(profileFileModel.ProfileXml, objectFonderOnFtp + @"\Profile", fileName);
 				return profileFileModel;
 			}

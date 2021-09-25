@@ -15,6 +15,16 @@
     <Content Remove="app.config" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Remove="profile.xml" />
+    <None Remove="xml\profile.xml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="profile.xml" />
+    <EmbeddedResource Include="xml\profile.xml" />
+  </ItemGroup>
+
 
   <ItemGroup>
 	  <PackageReference Include="Microsoft.AspNetCore.Hosting.WindowsServices" Version="5.0.0" />
@@ -76,6 +86,14 @@
 
   <ItemGroup>
     <Folder Include="Lib\" />
+	  <Folder Include="xml\" />
     <Folder Include="Settings\" />
   </ItemGroup>
+
+	<ItemGroup>
+		<ContentWithTargetPath Include="xml\profile.xml">
+			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+			<TargetPath>xml\profile.xml</TargetPath>
+		</ContentWithTargetPath>
+	</ItemGroup>
 </Project>

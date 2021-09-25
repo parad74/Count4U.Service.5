@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using Count4U.Model.SelectionParams;
+using Monitor.Service.Model;
 
 namespace Monitor.Model.ServiceContract.Interface
 {
@@ -9,7 +10,8 @@ namespace Monitor.Model.ServiceContract.Interface
 		Monitor.Service.Model.ProfileFiles GetProfileFiles();
 		Monitor.Service.Model.ProfileFiles GetTestDataProfileFiles();
 		Monitor.Service.Model.ProfileFiles GetProfileFiles(SelectParams selectParams);
-		Monitor.Service.Model.ProfileFile GetProfileFile(long id);
+		Monitor.Service.Model.ProfileFile GetProfileFile(string profileFileUID);
+		string InsertOrUpdate(Monitor.Service.Model.ProfileFile profileFile);
 
 		Monitor.Service.Model.ProfileFiles GetCustomersProfileFiles();
 
@@ -22,6 +24,8 @@ namespace Monitor.Model.ServiceContract.Interface
 
 
 		List<string> GetCustomerCodeList();
+		List<ProfileFileLite> GetCustomerProfileFileLiteList();
+	
 		List<string> GetBranchCodeList();
 		List<string> GetBranchCodeListForCustomer(string customerCode);
 		List<string> GetInventorCodeList();
@@ -34,10 +38,10 @@ namespace Monitor.Model.ServiceContract.Interface
 		Monitor.Service.Model.ProfileFile GetProfileFileByInventorCode(string objectCode);
 		Monitor.Service.Model.ProfileFile GetProfileFileInventor(Monitor.Service.Model.ProfileFile profileFileModel);
 
-		Task Delete(long id);
+		Task DeleteByProfileFileUID(string uid);
 		Task DeleteAll();
-		Task Delete(string objectCode);
-		long Insert(Monitor.Service.Model.ProfileFile profileFile);
+		Task DeleteByCode(string objectCode);
+		string Insert(Monitor.Service.Model.ProfileFile profileFile);
 		Task InsertArray(Monitor.Service.Model.ProfileFile[] profileFileArray);
 		Task InsertList(Monitor.Service.Model.ProfileFiles profileFileList);
 		Task InsertCustomersBySubFolderList(List<string> customerCodes);

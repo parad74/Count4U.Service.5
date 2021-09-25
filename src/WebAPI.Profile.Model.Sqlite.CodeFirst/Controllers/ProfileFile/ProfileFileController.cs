@@ -131,10 +131,10 @@ namespace WebAPI.Monitor.Sqlite.CodeFirst.Controllers
 
 
 	
-		[HttpPost(WebApiProfileFile.GetProfileFileById)]
-		public ActionResult<ProfileFile> GetProfileFileById([FromBody]long id)
+		[HttpPost(WebApiProfileFile.GetProfileFileByUID)]
+		public ActionResult<ProfileFile> GetProfileFileById([FromBody]string profileFileUID)
 		{
-			ProfileFile profileFile = this._profileFileRepository.GetProfileFile(id);
+			ProfileFile profileFile = this._profileFileRepository.GetProfileFile(profileFileUID);
 			return profileFile;
 		}
 
@@ -162,11 +162,11 @@ namespace WebAPI.Monitor.Sqlite.CodeFirst.Controllers
 
 
 
-		[HttpPost(WebApiProfileFile.DeleteById)]
-		public ActionResult<long> DeleteById([FromBody]long id)
+		[HttpPost(WebApiProfileFile.DeleteByUid)]
+		public ActionResult<string> DeleteByUid([FromBody]string uid)
 		{
-			this._profileFileRepository.Delete(id);
-			return id;
+			this._profileFileRepository.DeleteByProfileFileUID(uid);
+			return uid;
 		}
 
 		[HttpGet(WebApiProfileFile.DeleteAll)]
@@ -179,15 +179,15 @@ namespace WebAPI.Monitor.Sqlite.CodeFirst.Controllers
 		[HttpPost(WebApiProfileFile.DeleteByCode)]
 		public ActionResult<string> DeleteByCode([FromBody] string objectCode)
 		{
-			this._profileFileRepository.Delete(objectCode);
+			this._profileFileRepository.DeleteByCode(objectCode);
 			return objectCode;
 		}
 
 		[HttpPost(WebApiProfileFile.Insert)]
-		public ActionResult<long> Insert([FromBody] ProfileFile profileFile)
+		public ActionResult<string> Insert([FromBody] ProfileFile profileFile)
 		{
-			long id = this._profileFileRepository.Insert(profileFile);
-			return id;
+			string uid = this._profileFileRepository.Insert(profileFile);
+			return uid;
 		}
 
 		[HttpPost(WebApiProfileFile.InsertArray)]
@@ -218,36 +218,74 @@ namespace WebAPI.Monitor.Sqlite.CodeFirst.Controllers
 			{ 
 				this._settingsFtpRepository.InitProperty(profileFile);
 				this._settingsFtpRepository.ProfileFileSendToFtp(profileFile, false);
+				profileFile.Successful = SuccessfulEnum.Successful;
 				return profileFile;
 			}
 			catch (Exception exc)
 			{
 				string message = exc.Message;
+				profileFile.Successful = SuccessfulEnum.NotSuccessful;
+				profileFile.Error = message;
 				return profileFile;
 			}
 		}
 
 		[HttpPost(WebApiProfileFile.GetProfileFileFromFtp)]
-		public ActionResult<ProfileFile> GetProfileFileFromFtp([FromBody] ProfileFile profileFileModel)
+		public ActionResult<ProfileFile> GetProfileFileFromFtp([FromBody] ProfileFile profileFile)
 		{
 			try
 			{
-				this._settingsFtpRepository.InitProperty(profileFileModel);
+				this._settingsFtpRepository.InitProperty(profileFile);
 				string profileTest = "";
 				string messageCreateFolder = "";
-				this._settingsFtpRepository.CopyProfileFileFromFtpToMemoryStream(profileFileModel.CurrentPath, ref profileTest, ref messageCreateFolder);
-				profileFileModel.ProfileXml = profileTest;
-				return profileFileModel;
+				this._settingsFtpRepository.CopyProfileFileFromFtpToMemoryStream(profileFile.CurrentPath, ref profileTest, ref messageCreateFolder);
+				profileFile.ProfileXml = profileTest;
+				profileFile.Successful = SuccessfulEnum.Successful;
+				return profileFile;
 			}
 			catch (Exception exc)
 			{
 				string message = exc.Message;
-				ProfileFile pf = new ProfileFile();
-				pf.Message = message;
-				return pf;
+				profileFile.Successful = SuccessfulEnum.NotSuccessful;
+				profileFile.Error = message;
+				return profileFile;
 			}
 		}
 
+
+		[HttpPost(WebApiProfileFile.SaveOrUpdateProfileFileOnFtpAndDB)]
+		public ActionResult<ProfileFile> SaveOrUpdateProfileFileOnFtpAndDB([FromBody] ProfileFile profileFile)
+		{
+			try
+			{
+				//SaveOrUpdateProfileFileOnFtp
+				this._settingsFtpRepository.InitProperty(profileFile);
+				this._settingsFtpRepository.ProfileFileSendToFtp(profileFile, true);
+
+				 //get profile from ftp
+				this._settingsFtpRepository.InitProperty(profileFile);										 
+				string profileTest = "";
+				string messageCreateFolder = "";
+				this._settingsFtpRepository.CopyProfileFileFromFtpToMemoryStream(profileFile.CurrentPath, ref profileTest, ref messageCreateFolder);
+				profileFile.ProfileXml = profileTest;
+
+				//insert   profile in db
+				string uid = this._profileFileRepository.Insert(profileFile);
+				
+				profileFile.ProfileFileUID = uid;
+				profileFile.Successful = SuccessfulEnum.Successful;
+				return profileFile;
+			}
+			catch (Exception exc)
+			{
+				string message = exc.Message;
+				profileFile.Successful = SuccessfulEnum.NotSuccessful;
+				profileFile.Error = message;
+				return profileFile;
+			}
+		}
+
+		
 
 		[HttpGet(WebApiProfileFile.SaveProfileFileCustomersFromFtpToDb)]
 		public ActionResult<List<string>> SaveProfileFileCustomersFromFtpToDb()
@@ -263,6 +301,27 @@ namespace WebAPI.Monitor.Sqlite.CodeFirst.Controllers
 			{
 				string message = exc.Message;
 				return new List<string>();
+			}
+
+		}
+
+
+		[HttpPost(WebApiProfileFile.AddProfileFileCustomersToDb)]
+		public ActionResult<ProfileFile> AddProfileFileCustomersToDb([FromBody] ProfileFile profileFileModel)
+		{
+			try
+			{
+				//List<string> list = this._settingsFtpRepository.GetSubFolder("mINV", "Customer" );
+				List<string> list = this._settingsFtpRepository.GetCustomerCodeListFromFtp();
+				this._profileFileRepository.InsertCustomersBySubFolderList(list);
+				return profileFileModel;
+			}
+			catch (Exception exc)
+			{
+				string message = exc.Message;
+				ProfileFile pf = new ProfileFile();
+				pf.Message = message;
+				return pf;
 			}
 
 		}
@@ -336,17 +395,17 @@ namespace WebAPI.Monitor.Sqlite.CodeFirst.Controllers
 
 
 		[HttpGet(WebApiProfileFile.GetCustomerListFromDb)]
-		public ActionResult<List<string>> GetCustomerListFromDb()
+		public ActionResult<List<ProfileFileLite>> GetCustomerListFromDb()
 		{
 			try
 			{
-				List<string> list= this._profileFileRepository.GetCustomerCodeList();
+				List<ProfileFileLite> list= this._profileFileRepository.GetCustomerProfileFileLiteList();
 				return list;
 			}
 			catch (Exception exc)
 			{
 				string message = exc.Message;
-				return new List<string>();
+				return new List<ProfileFileLite>();
 			}
 
 		}

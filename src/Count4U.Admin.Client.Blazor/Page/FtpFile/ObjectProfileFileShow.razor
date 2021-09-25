@@ -1,0 +1,36 @@
+﻿@page "/objectprofilefileshow/{objectCode}"
+@namespace Count4U.Admin.Client.Page
+@inherits ObjectProfileFileShowBase
+@attribute [Authorize(Policy = UserPolicy.IsProfile)]
+
+<h6 class="bg-success p-1 text-white">Show Profile</h6>
+
+@if (_profileFile == null)
+{
+    <p><em>Loading...</em></p>
+}
+else if (LocalizationResources == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <div>
+        @if (_isXmlEmpty == false)
+        {
+            <div class="col-12">
+                <MonacoEditorXml @ref="_xmlEditor" Id="monacoEditorXml" Value="@_profileFile.ProfileXml" CssClass="editor" />
+            </div>
+            <br />
+            <p />
+            <div class="col-12">
+                <MonacoEditorJosn @ref="_josnEditor" Id="monacoEditorJosn" Value="@_profileFile.ProfileJosn" CssClass="editor" />
+            </div>
+
+        }
+        else
+        {
+            <div> Profile not found </div>
+        }
+    </div>
+}

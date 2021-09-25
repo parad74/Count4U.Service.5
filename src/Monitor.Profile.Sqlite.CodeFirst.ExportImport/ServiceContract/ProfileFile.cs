@@ -11,10 +11,13 @@ namespace Monitor.Sqlite.CodeFirst
 		[Key]
 		[DatabaseGenerated(DatabaseGeneratedOption.Identity)]
 		public long ID { get; set; }
-		public string Code { get; set; }
+		public string Code { get; set; }            //key
+		public string Name { get; set; }
 		public string ParentCode { get; set; }
 		public string CustomerCode { get; set; }
 		public string CustomerName { get; set; }
+		public string CustomerDescription { get; set; }
+		
 		public string BranchCode { get; set; }
 		public string BranchName { get; set; }
 		public string InventorCode { get; set; }
@@ -22,12 +25,14 @@ namespace Monitor.Sqlite.CodeFirst
 		public string SubFolder { get; set; }
 		public string InventorDBPath { get; set; }
 		public string DomainObject { get; set; }
-		public string AuditCode { get; set; }
+		public string AuditCode { get; set; }			
 		public string CurrentPath { get; set; }
 		public string ProfileXml { get; set; }
 		public string ProfileJosn { get; set; }
 		public string ProfileFileUID { get; set; }
 		public int OperationIndexCode { get; set; }                   //использую для синхронизации UI
+
+		public string Email { get; set; }
 
 		public int ErrorCode { get; set; }
 		public int ValidateDataErrorCode { get; set; }
@@ -43,7 +48,6 @@ namespace Monitor.Sqlite.CodeFirst
 			ProfileFileUID = Guid.NewGuid().ToString();
 			Code = "";
 			ParentCode = "";
-			AuditCode = "";
 			CustomerCode = "";
 			BranchCode = "";
 			InventorCode = "";
@@ -66,8 +70,10 @@ namespace Monitor.Sqlite.CodeFirst
 			CurrentPath = "";
 			ProfileXml = "";
 			ProfileJosn = "";
+			Email = "";
 
-			Successful = 0;
+
+		Successful = 0;
 			Error = "";
 			Message = "";
 			ErrorCode = 0;
@@ -94,12 +100,12 @@ namespace Monitor.Sqlite.CodeFirst
 				return false;
 			if (ReferenceEquals(this, other))
 				return true;
-			return Equals(other.ID, this.ID);
+			return Equals(other.Code, this.Code);
 		}
 
 		public override int GetHashCode()
 		{
-			return (ID.ToString() != null ? ID.ToString().GetHashCode() : 0);
+			return (Code.ToString() != null ? Code.ToString().GetHashCode() : 0);
 		}
 
 	}

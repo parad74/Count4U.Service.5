@@ -21,7 +21,7 @@ namespace Count4U.Admin.Client.Blazor.Page
 		[Parameter]
 		public string branchCode { get; set; }
 		protected ProfileFiles _profileFiles { get; set; }
-		protected FilterInventorModel _filterInventorModel { get; set; }
+		protected FilterModel _filterInventorModel { get; set; }
 		protected FilterResult _filterResult { get; set; }
 		protected bool IsSearching { get; set; }
 		protected string _code { get; set; } = "";
@@ -51,7 +51,8 @@ namespace Count4U.Admin.Client.Blazor.Page
 		{
 			this._profileFiles = null;
 
-			this._filterInventorModel = new FilterInventorModel();
+			this._filterInventorModel = new FilterModel();
+			this._filterInventorModel.InitInventorFilter();
 		}
 
 		protected async Task GetProfileFiles()
@@ -149,7 +150,9 @@ namespace Count4U.Admin.Client.Blazor.Page
 				if (string.IsNullOrWhiteSpace(_filterInventorModel.FilterValue) == false)
 				{
 					await this._localStorage.SetItemAsync(SessionStorageKey.filterInventor, _filterInventorModel.FilterSelectByField);
+					await this._localStorage.SetItemAsync(SessionStorageKey.filterValueInventor, _filterInventorModel.FilterValue);
 
+					
 					//if (this._filterInventorModel.FilterSelectByField == FilterInventorSelectParam.All)
 					//{
 					//	_filterInventorModel.FilterValue = "";
@@ -224,9 +227,7 @@ namespace Count4U.Admin.Client.Blazor.Page
 				}
 				else
 				{
-					await this._localStorage.SetItemAsync(SessionStorageKey.filterInventor, "");
-					Console.WriteLine($"Client.InventorProfileGridBase.OnSearchAsync() 5 FilterSelectByField: {this._filterInventorModel.FilterSelectByField} start6");
-
+					//await this._localStorage.SetItemAsync(SessionStorageKey.filterInventor, "");
 					await GetProfileFiles();
 					this._filterResult.Successful = SuccessfulEnum.Successful;
 				}
@@ -244,17 +245,19 @@ namespace Count4U.Admin.Client.Blazor.Page
 		{
 			this._filterInventorModel.Clear();
 			await this._localStorage.SetItemAsync(SessionStorageKey.filterInventor, "");
+			await this._localStorage.SetItemAsync(SessionStorageKey.filterValueInventor, "");
+			
 			await OnSearchAsync();
 		}
 
 		public async Task ProfileFileEdit(string code)
 		{
-			this._navigationManager.NavigateTo("inventorprofilefileedit/" + code);
+			this._navigationManager.NavigateTo("objectprofilefileedit/" + code);
 		}
 
 		public async Task ProfileFileShow(string code)
 		{
-			this._navigationManager.NavigateTo("inventorprofilefileshow/" + code);
+			this._navigationManager.NavigateTo("objectprofilefileshow/" + code);
 		}
 
 				
@@ -272,7 +275,7 @@ namespace Count4U.Admin.Client.Blazor.Page
 			try
 			{
 				this.LocalizationResources = await this.I18nText.GetTextTableAsync<GetResources>(this);
-				await this.GetProfileFiles();
+
 				Console.WriteLine($"Client.InventorProfileGridBase.OnInitializedAsync() : GetAuthenticationUrls");
 				if (this._localStorage != null)
 				{
@@ -285,23 +288,72 @@ namespace Count4U.Admin.Client.Blazor.Page
 						Console.WriteLine($"Client.InventorProfileGridBase.OnInitializedAsync() : try perPageInt to  {perPageInt}");
 						this.OnPageNumber = perPageInt;
 					}
-					catch { }
+					catch (Exception exc)
+					{
+						Console.WriteLine($"Client.InventorProfileGridBase.OnInitializedAsync() Exception1 :");
+						Console.WriteLine(exc.Message);
+					}
 					Console.WriteLine($"Client.InventorProfileGridBase.OnInitializedAsync() : GetonPageNumber {this.OnPageNumber}");
 
 
-					this._filterInventorModel.FilterSelectByField = await this._localStorage.GetItemAsync<string>(SessionStorageKey.filterInventor);
+					//if (this._filterInventorModel == null) this._filterInventorModel = new FilterInventorModel();
+
+					var filterInventor = await this._localStorage.GetItemAsync<string>(SessionStorageKey.filterInventor);
+					this._filterInventorModel.FilterSelectByField = filterInventor != null ? filterInventor : "";
+					var filterValueInventor = await this._localStorage.GetItemAsync<string>(SessionStorageKey.filterValueInventor);
+					this._filterInventorModel.FilterValue = filterValueInventor != null ? filterValueInventor : "";
+
 					await this.OnSearchAsync();
+	
 				}
 			}
 			catch (Exception exc)
 			{
-				Console.WriteLine($"Client.InventorProfileGridBase.OnInitializedAsync() Exception :");
+				Console.WriteLine($"Client.InventorProfileGridBase.OnInitializedAsync() Exception2 :");
 				Console.WriteLine(exc.Message);
 			}
 			Console.WriteLine($"Client.InventorProfileGridBase.OnInitializedAsync() : end");
 		}
 
+		protected override async Task OnAfterRenderAsync(bool firstRender)
+		{
+			if (firstRender)
+			{
+				Console.WriteLine();
+				Console.WriteLine($"Client.InventorProfileGridBase.OnAfterRenderAsync() : start");
+				try
+				{
+					//Console.WriteLine($"Client.InventorProfileGridBase.OnAfterRenderAsync() : GetAuthenticationUrls");
+					//if (this._localStorage != null)
+					//{
+					//	string perPageString = await this._localStorage.GetItemAsync<string>(SessionStorageKey.onPageInventorNumber);
+					//	int perPageInt = 15;
+					//	this.OnPageNumber = 15;
+					//	try
+					//	{
+					//		bool ret = int.TryParse(perPageString, out perPageInt);
+					//		Console.WriteLine($"Client.InventorProfileGridBase.OnAfterRenderAsync() : try perPageInt to  {perPageInt}");
+					//		this.OnPageNumber = perPageInt;
+					//	}
+					//	catch { }
+					//	Console.WriteLine($"Client.InventorProfileGridBase.OnAfterRenderAsync() : GetonPageNumber {this.OnPageNumber}");
 
+
+
+					//	this._filterInventorModel.FilterSelectByField = await this._localStorage.GetItemAsync<string>(SessionStorageKey.filterInventor);
+					//	this._filterInventorModel.FilterValue = await this._localStorage.GetItemAsync<string>(SessionStorageKey.filterValueInventor);
+
+						//await this.OnSearchAsync();
+					//}
+				}
+				catch (Exception exc)
+				{
+					Console.WriteLine($"Client.InventorProfileGridBase.OnAfterRenderAsync() Exception :");
+					Console.WriteLine(exc.Message);
+				}
+				Console.WriteLine($"Client.InventorProfileGridBase.OnAfterRenderAsync() : end");
+			}
+		}
 		public async Task OnChangePageNumber(ChangeEventArgs args)
 		{
 			Console.WriteLine($"OnChangePageNumber: {args.Value}");

@@ -8,13 +8,17 @@
         color: #0b960f
     }
 
+    .fa_custom_white {
+        color: #ffffff
+    }
+
     .select_border_color {
         /*          border: 1px solid #0b960f;*/
         border-radius: .1rem;
     }
 </style>
 
-@if (_profileFiles == null)
+@if (_filterInventorModel == null)
 {
     <p><em>Loading...</em></p>
 }
@@ -34,47 +38,22 @@ else
             <div></div>
         }
     }
-    <div class="row">
-        <div class="col-3"> </div>
-        <div class="d-flex flex-row-reverse">
-            <div class="input-group mb-3  float-right">
-                <div class="input-group-prepend">
-                    &nbsp;  &nbsp;
-                    @if (IsSearching)
-                    {
-                        <button class="btn btn-outline-dark btn-sm searchicon disabled" disabled><i class="fa fa-eraser fa-lg"></i></button>
-                    }
-                    else
-                    {
-                        <button @onclick="OnClearAsync" class="btn btn-outline-dark btn-sm searchicon" data-toggle="tooltip" data-placement="bottom" title="Clear Customer Filter"><i class="fa fa-eraser fa-lg"></i></button>
-                    }
-                </div>
-                <input id="filterinput" placeholder="filter is empty" @bind="_filterInventorModel.FilterValue" />
-                <div class="input-group-append">
-                    @if (IsSearching)
-                    {
-                        <button class="btn btn-success btn-sm  search disabled" disabled><span class="fa fa-spinner fa-spin fa-lg fa-fw"></span>Waiting ...</button>
-                    }
-                    else
-                    {
-                        <button @onclick="OnSearchAsync" class="btn btn-outline-success btn-sm search" data-toggle="tooltip" data-placement="bottom" title="Set Customer Filter"><i class="fa fa-filter fa-lg  fa_custom"></i>&nbsp; &nbsp;Filter</button>
-                    }
-                    &nbsp;  &nbsp;
-                </div>
-                <div class="input-group-append">
-                    <select class="form-control form-control-sm select_border_color" @bind="@_filterInventorModel.FilterSelectByField">
-                        @foreach (var sparam in _filterInventorModel.FilterSelectParamDictionary)
-                        {
-                            <option value=@sparam.Key>@sparam.Value</option>
-                        }
-                    </select>
-                </div>
-            </div>
-        </div>
+    <FilterForGrid FilterModel="@_filterInventorModel" IsSearching="@IsSearching"
+                   WaitingTitle="Waiting ..." FilterTitle="Filter"
+                   OnClearClick="OnClearAsync" OnSearchClick="OnSearchAsync"></FilterForGrid>
+}
 
-        <div class="col-2"></div>
-    </div>
 
+@if (_profileFiles == null)
+{
+    <p><em>Loading...</em></p>
+}
+else if (LocalizationResources == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
     <PagedDataList Data=@_profileFiles Prev="Prev" Next="Next" ItemsPerPage=@OnPageNumber
                    OnChangePageClick="OnChangePageNumber">
         <ListTemplate Context="listOfInventor">

@@ -3,7 +3,7 @@
     "windowsAuthentication": false,
     "anonymousAuthentication": true,
     "iisExpress": {
-      "applicationUrl": "http://localhost:21029/",
+      "applicationUrl": "http://localhost:21020/",
       "sslPort": 0
     }
   },
@@ -19,11 +19,11 @@
     "Count4U.Admin.Server": {
       "commandName": "Project",
       "launchBrowser": true,
-    //  "inspectUri": "{wsProtocol}://{url.hostname}:{url.port}/_framework/debug/ws-proxy?browser={browserInspectUri}",
+      //  "inspectUri": "{wsProtocol}://{url.hostname}:{url.port}/_framework/debug/ws-proxy?browser={browserInspectUri}",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       },
-      "applicationUrl": "http://localhost:21029/"
+      "applicationUrl": "http://localhost:21020/"
     }
   }
 }

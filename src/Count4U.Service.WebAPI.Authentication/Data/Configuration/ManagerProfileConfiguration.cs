@@ -14,15 +14,16 @@ namespace Count4U.Service.Core.Server.Data
             var count4uLocal = new ApplicationUser
             {
                 Id = managerProfileId,
-                UserName = "manager@profile.ftp",
-                NormalizedUserName = "MANAGER@PROFILE.FTP",
-                Email = "manager@profile.ftp",
-                NormalizedEmail = "MANAGER@PROFILE.FTP",
+                UserName = "manager@test.com",
+                NormalizedUserName = "MANAGER@TEST.COM",
+                Email = "manager@test.com",
+                NormalizedEmail = "MANAGER@TEST.COM",
                 PhoneNumber = "XXXXXXXXXXXXX",
                 DataServerAddress = @"http://localhost:12389",
                 EmailConfirmed = true,
                 PhoneNumberConfirmed = true,
                 SecurityStamp = new Guid().ToString("D"),
+                DateCreated = DateTime.Now
          };
 
             count4uLocal.PasswordHash = PassGenerate(count4uLocal);

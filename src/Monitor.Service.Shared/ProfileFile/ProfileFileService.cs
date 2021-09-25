@@ -16,7 +16,7 @@ namespace Monitor.Service.Shared
 		ProfileFile[] RunUpdateDbProfiles { get; set; }
 		Task<ProfileFiles> GetProfileFiles(string dataServerAddressUrl);
 		Task<ProfileFiles> GetProfileFilesWithSelectParam(SelectParams selectParams, string dataServerAddressUrl);
-		Task<ProfileFile> GetProfileFileById(long id, string dataServerAddressUrl);
+		Task<ProfileFile> GetProfileFileByUid(string uid, string dataServerAddressUrl);
 		Task<ProfileFile> GetProfileFileByCode(string code, string dataServerAddressUrl);
 		
 		Task<ProfileFiles> GetProfilesFilesByParentCode(string parentCode, string dataServerAddressUrl);
@@ -30,18 +30,20 @@ namespace Monitor.Service.Shared
 		Task<List<string>> SaveCustomersFromFtpToDb(string dataServerAddressUrl);
 		Task<List<string>> SaveBranchesFromFtpToDb(ProfileFile profileFile, string dataServerAddressUrl);
 		Task<List<string>> SaveInventorsFromFtpToDb(ProfileFile profileFile, string dataServerAddressUrl);
-		Task<List<string>> GetCustomerCodeListFromDb(string dataServerAddressUrl);
+		Task<List<ProfileFileLite>> GetCustomerCodeListFromDb(string dataServerAddressUrl);
 		Task<List<string>> GetBranchCodeListFromDb(ProfileFile profileFile, string dataServerAddressUrl);
 		Task<List<string>> GetInventorCodeListFromDb(ProfileFile profileFile, string dataServerAddressUrl);
-		Task<long> DeleteById(long id, string dataServerAddressUrl);
+		Task<string> DeleteByUid(string uid, string dataServerAddressUrl);
 		Task<string> DeleteByCode(string code, string dataServerAddressUrl);
 		Task<string> DeleteAll(string dataServerAddressUrl);
-		Task<long> Insert(ProfileFile profileFile, string dataServerAddressUrl);
+		Task<string> Insert(ProfileFile profileFile, string dataServerAddressUrl);
 		Task<ProfileFile> Update(ProfileFile profileFile, string dataServerAddressUrl);
 
 		Task<ProfileFile> SaveOrUpdateProfileFileOnFtp(ProfileFile profileFile, string dataServerAddressUrl);
 		Task<ProfileFile> UpdateOrInsertProfileFileInventorFromFtpToDb(ProfileFile profileFile, string dataServerAddressUrl);
 		Task<ProfileFile> GetProfileFileByInventorCode(string inventorCode, string dataServerAddressUrl);
+
+		Task<ProfileFile> SaveOrUpdateProfileFileOnFtpAndDB(ProfileFile profileFile, string dataServerAddressUrl);
 
 		Task<ProfileFile[]> AddToQueueUpdateFtpAndDbRun(ProfileFile profileFile, string dataServerAddressUrl);
 	}
@@ -171,13 +173,13 @@ namespace Monitor.Service.Shared
 			return result;
 		}
 
-		public async Task<List<string>> GetCustomerCodeListFromDb(string dataServerAddressUrl)
+		public async Task<List<ProfileFileLite>> GetCustomerCodeListFromDb(string dataServerAddressUrl)
 		{
 			if (string.IsNullOrWhiteSpace(dataServerAddressUrl) == true)
 				return null;
 			string request = Opetarion.UrlCombine(dataServerAddressUrl, WebApiProfileFile.GetCustomerListFromDb);
 			Console.WriteLine($"ProfileFileService.GetCustomerListFromFtp : request {request}");
-			var result = await this._httpClient.GetFromJsonAsync<List<string>>(request);
+			var result = await this._httpClient.GetFromJsonAsync<List<ProfileFileLite>>(request);
 			return result;
 		}
 
@@ -211,12 +213,12 @@ namespace Monitor.Service.Shared
 			return result;
 		}
 
-		public async Task<ProfileFile> GetProfileFileById(long id, string dataServerAddressUrl)
+		public async Task<ProfileFile> GetProfileFileByUid(string uid, string dataServerAddressUrl)
 		{
 			if (string.IsNullOrWhiteSpace(dataServerAddressUrl) == true)
 				return null;
-			string request = Opetarion.UrlCombine(dataServerAddressUrl, WebApiProfileFile.GetProfileFileById);
-			HttpResponseMessage response = await this._httpClient.PostAsJsonAsync<long>(request, id);
+			string request = Opetarion.UrlCombine(dataServerAddressUrl, WebApiProfileFile.GetProfileFileByUID);
+			HttpResponseMessage response = await this._httpClient.PostAsJsonAsync<string>(request, uid);
 			ProfileFile result = await response.Content.ReadFromJsonAsync<ProfileFile>();
 			return result;
 		}
@@ -254,14 +256,14 @@ namespace Monitor.Service.Shared
 			return result;
 		}
 
-		public async Task<long> DeleteById(long id, string dataServerAddressUrl)
+		public async Task<string> DeleteByUid(string uid, string dataServerAddressUrl)
 		{
 			if (string.IsNullOrWhiteSpace(dataServerAddressUrl) == true)
-				return -1;
-			string request = Opetarion.UrlCombine(dataServerAddressUrl, Urls.WebApiProfileFile.DeleteById);
+				return "";
+			string request = Opetarion.UrlCombine(dataServerAddressUrl, Urls.WebApiProfileFile.DeleteByUid);
 			//	long result = await this._httpClient.PostJsonAsync<long>(request, id);
-			HttpResponseMessage response = await this._httpClient.PostAsJsonAsync<long>(request, id);
-			long result = await response.Content.ReadFromJsonAsync<long>();
+			HttpResponseMessage response = await this._httpClient.PostAsJsonAsync<string>(request, uid);
+			string result = await response.Content.ReadFromJsonAsync<string>();
 			return result;
 		}
 
@@ -284,13 +286,13 @@ namespace Monitor.Service.Shared
 			return result;
 		}
 
-		public async Task<long> Insert(ProfileFile profileFile, string dataServerAddressUrl)
+		public async Task<string> Insert(ProfileFile profileFile, string dataServerAddressUrl)
 		{
 			if (string.IsNullOrWhiteSpace(dataServerAddressUrl) == true)
-				return -1;
+				return "";
 			string request = Opetarion.UrlCombine(dataServerAddressUrl, WebApiProfileFile.Insert);
 			HttpResponseMessage response = await this._httpClient.PostAsJsonAsync<ProfileFile>(request, profileFile);
-			long result = await response.Content.ReadFromJsonAsync<long>();
+			string result = await response.Content.ReadFromJsonAsync<string>();
 			return result;
 		}
 
@@ -344,7 +346,19 @@ namespace Monitor.Service.Shared
 			return result;
 		}
 
+
+
 		
+
+		public async Task<ProfileFile> SaveOrUpdateProfileFileOnFtpAndDB(ProfileFile profileFile, string dataServerAddressUrl)
+		{
+			if (string.IsNullOrWhiteSpace(dataServerAddressUrl) == true)
+				return null;
+			string request = Opetarion.UrlCombine(dataServerAddressUrl, WebApiProfileFile.SaveOrUpdateProfileFileOnFtpAndDB);
+			HttpResponseMessage response = await this._httpClient.PostAsJsonAsync<ProfileFile>(request, profileFile);
+			ProfileFile result = await response.Content.ReadFromJsonAsync<ProfileFile>();
+			return result;
+		}
 	}
 }
 

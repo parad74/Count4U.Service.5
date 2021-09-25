@@ -1,0 +1,62 @@
+﻿<table style="width: 100px; border-left-color: green; border-left-width:4px; border-left-style:dotted">
+    <tbody>
+        <tr>
+            <td>
+                <a href="/customerprofile" class="isDisabled p-2 m-2" style="color:green">Profile</a>
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+@if (IsShowCustomer)
+{
+
+    <table style="width: 100px; border-left-color: green; border-left-width:4px; border-left-style:dotted">
+        <tbody>
+            <tr>
+                <td>
+                    <a href="" class="isDisabled p-2 m-2" style="color:green">Customers</a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+}
+@if (IsShowUsers)
+{
+
+    <table style="width: 100px; border-left-color: green; border-left-width:4px; border-left-style:dotted">
+        <tbody>
+            <tr>
+                <td>
+                    <a href="" class="isDisabled p-2 m-2" style="color:green">Users</a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+}
+
+
+
+@*<tr>
+        <td>
+            <a href="/rolegrid" class="p-2 m-2" style="color:green">Roles</a>
+        </td>
+    </tr>*@
+
+        @*</tbody>
+    </table>*@
+
+
+@code{
+    [Parameter]
+    public bool IsShowCustomer { get; set; } = true;
+
+    //[Parameter]
+    //public bool IsShowRole { get; set; } = true;
+
+    [Parameter]
+    public bool IsShowUsers { get; set; } = true;
+}
+
+

@@ -67,7 +67,11 @@ namespace Count4U.Service.WebAPI.Authentication.Controllers
 				return new RegisterResult { Successful = SuccessfulEnum.NotSuccessful , Error = "User with the same e-mail there is " };
  			}
 
-			var newUser = new ApplicationUser { UserName = model.Email, Email = model.Email,  CustomerCode = model.CustomerCode, FistName = model.UserDescription};
+			var newUser = new ApplicationUser { UserName = model.Email, Email = model.Email,  
+				CustomerCode = model.UserCustomerCode, 
+				FistName = model.UserDescription,
+				DateCreated = DateTime.Now
+			};
 
 			IdentityResult result = await _userManager.CreateAsync(newUser, model.Password);
 

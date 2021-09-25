@@ -1,0 +1,78 @@
+﻿<table style="width: 100px; border-left-color: green; border-left-width:4px; border-left-style:dotted">
+    <tbody>
+        <tr>
+            <td>
+                <a href="/objectprofilefileedit/@customerCode" class="p-2 m-2" style="color:green">Profile</a>
+                
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+<table style="width: 100px; border-left-color: green; border-left-width:4px; border-left-style:dotted">
+    <tbody>
+        <tr>
+            <td>
+                <a href="/objectprofilefileshow/@customerCode" class="p-2 m-2" style="color:green">Check</a>
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+
+@if (IsShowCustomer)
+{
+    <table style="width: 100px; border-left-color: green; border-left-width:4px; border-left-style:dotted">
+        <tbody>
+            <tr>
+                <td>
+                    <a href="/customergrid/@customerCode" class="p-2 m-2" style="color:green">Customers</a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+}
+@if (IsShowUsers)
+{
+    <table style="width: 100px; border-left-color: green; border-left-width:4px; border-left-style:dotted">
+        <tbody>
+            <tr>
+                <td>
+                    <a href="/usergrid/@customerCode" class="p-2 m-2" style="color:green">Users</a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+}
+
+
+
+
+@*<tr>
+        <td>
+            <a href="/rolegrid" class="p-2 m-2" style="color:green">Roles</a>
+        </td>
+    </tr>*@
+
+@*</tbody>
+    </table>*@
+
+
+@code{
+    [Parameter]
+    public string email { get; set; }
+
+    [Parameter]
+    public string customerCode { get; set; }
+
+    [Parameter]
+    public bool IsShowCustomer { get; set; } = true;
+
+    //[Parameter]
+    //public bool IsShowRole { get; set; } = true;
+
+    [Parameter]
+    public bool IsShowUsers { get; set; } = true;
+
+
+}

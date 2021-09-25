@@ -17,7 +17,7 @@ namespace Count4U.Admin.Server
 
 		public static IWebHost BuildWebHost(string[] args) =>
 			WebHost.CreateDefaultBuilder(args)
-											  .UseUrls(@"http://localhost:21029")
+											  .UseUrls(@"http://localhost:21020")
 		  .UseStartup<StartupAdminServer>()
 		   .Build();
 

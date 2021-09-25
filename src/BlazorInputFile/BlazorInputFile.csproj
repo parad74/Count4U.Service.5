@@ -1,0 +1,21 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Razor">
+
+  <PropertyGroup>
+    <TargetFrameworks>net5.0</TargetFrameworks>
+    <RazorLangVersion>3.0</RazorLangVersion>
+    <LangVersion>preview</LangVersion>
+    <!--<PackageVersion>0.1.0-preview-00002</PackageVersion>
+    <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>-->
+  </PropertyGroup>
+	<PropertyGroup>
+		<BlazorWebAssemblyEnableLinking>false</BlazorWebAssemblyEnableLinking>
+	</PropertyGroup>
+	<ItemGroup>
+		<PackageReference Include="Microsoft.AspNetCore.Components" Version="5.0.0" />
+		<PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="5.0.0" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<Folder Include="wwwroot\" />
+	</ItemGroup>
+</Project>

@@ -92,22 +92,29 @@ namespace Monitor.Profile.Sqlite.CodeFirst.ExportImport
 
 								 break;
 						 }
-					 case ProfiFileStepEnum.UpdateOrInsertInventorFromFtpToDb:
+					 case ProfiFileStepEnum.UpdateOrInsertObjectFromFtpToDb:
 						 {
 								 this._hubCommandSignalRRepository.SendNotifyFromWebAPIAsync($" Step Start [{ProfileFileArray[i].Step}] with result [{ProfileFileArray[i].Successful.ToString()}]");
-								 ProfileFileArray[i] = this._profileHandler.UpdateOrInsertInventorFromFtpToDb(ProfileFileArray[i], cancellationToken).Result;
+								 ProfileFileArray[i] = this._profileHandler.UpdateOrInsertObjectFromFtpToDb(ProfileFileArray[i], cancellationToken).Result;
 								 this._hubCommandSignalRRepository.SendNotifyFromWebAPIAsync($" Step End [{ProfileFileArray[i].Step}] with result [{ProfileFileArray[i].Successful.ToString()}]");
 								 break;
 						 }
-					 case ProfiFileStepEnum.GetByInventorCodeFromFtp:
-						 {
+					 //case ProfiFileStepEnum.GetByCodeFromFtp:
+						// {
+						//		 this._hubCommandSignalRRepository.SendNotifyFromWebAPIAsync($" Step Start [{ProfileFileArray[i].Step}] with result [{ProfileFileArray[i].Successful.ToString()}]");
+						//		 ProfileFileArray[i] = this._profileHandler.GetByInventorCodeFromFtp(ProfileFileArray[i], cancellationToken).Result;
+						//		 this._hubCommandSignalRRepository.SendNotifyFromWebAPIAsync($" Step End [{ProfileFileArray[i].Step}] with result [{ProfileFileArray[i].Successful.ToString()}]");
+						//		 break;
+						// }
+					case ProfiFileStepEnum.GetByCodeFromFtp:
+							 {
 								 this._hubCommandSignalRRepository.SendNotifyFromWebAPIAsync($" Step Start [{ProfileFileArray[i].Step}] with result [{ProfileFileArray[i].Successful.ToString()}]");
-								 ProfileFileArray[i] = this._profileHandler.GetByInventorCodeFromFtp(ProfileFileArray[i], cancellationToken).Result;
+								 ProfileFileArray[i] = this._profileHandler.GetByCodeFromFtp(ProfileFileArray[i], cancellationToken).Result;
 								 this._hubCommandSignalRRepository.SendNotifyFromWebAPIAsync($" Step End [{ProfileFileArray[i].Step}] with result [{ProfileFileArray[i].Successful.ToString()}]");
 								 break;
-						 }
-				
-					 default:
+							 }
+
+						 default:
 						 {
 								ProfileFileArray[i].Successful = SuccessfulEnum.NotSuccessful;
 								ProfileFileArray[i].ResultCode = CommandResultCodeEnum.Unknown;

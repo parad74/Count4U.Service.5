@@ -55,6 +55,7 @@ namespace Count4U.Service.Shared
 
 		public async Task<RegisterResult> RegisterAsync(RegisterModel registerModel)
 		{
+			Console.WriteLine($"registerModel start _authService.RegisterAsync {registerModel.Email} {registerModel.Password}");
 			//!!! НЕ убирать 
 			//Console.WriteLine($"Client.AuthService.Register() : start");
 			//var authenticationWebApiUrls = await this._webAPISettingsService.GetAuthenticationWebApiUrls("AuthService");
@@ -106,6 +107,7 @@ namespace Count4U.Service.Shared
 
 																											 //HttpResponseMessage response = await Http.PostAsJsonAsync <WeatherForecast>("", new WeatherForecast());
 																											 //WeatherForecast ret =  await response.Content.ReadFromJsonAsync<WeatherForecast>();
+				Console.WriteLine($"registerModel 2 _authService.RegisterAsync {registerModel.Email} {registerModel.Password}");
 
 				HttpResponseMessage response = await this._httpClient.PostAsJsonAsync<RegisterModel>(request, registerModel);
 				RegisterResult result = await response.Content.ReadFromJsonAsync<RegisterResult>();
@@ -114,7 +116,7 @@ namespace Count4U.Service.Shared
 			}
 			catch (Exception ecx) when (LogError(ecx))
 			{
-				Console.WriteLine("Client.AuthService.Register() Exception : ");
+				Console.WriteLine($"Client.AuthService.Register() Exception :  {ecx.Message}");
 				//	var error = new RegisterResult { Successful = false, Error = ecx.Message };
 				var error = new RegisterResult { Successful = SuccessfulEnum.NotSuccessful, Error = ecx.Message };
 				Console.WriteLine($"Client.AuthService.Register() : end with Exception");

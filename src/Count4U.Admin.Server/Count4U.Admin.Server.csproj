@@ -60,6 +60,7 @@
   <ItemGroup>
     <Folder Include="Settings\" />
     <Folder Include="wwwroot\js\" />
+	  <Folder Include="wwwroot\xml" />
   </ItemGroup>
 
 </Project>

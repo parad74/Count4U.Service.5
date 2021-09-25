@@ -19,6 +19,7 @@ namespace Monitor.Service.Model
        // public override string ToString() => string.Join(" ", this.InRoles.Select(x => x.RoleName).ToList());
         public string Error { get; set; }
         public string Message { get; set; }
+        public DateTime DateCreated { get; set; } = DateTime.Now;
         public SuccessfulEnum Successful { get; set; }
 
         [Display(Name = "Use Android")]
