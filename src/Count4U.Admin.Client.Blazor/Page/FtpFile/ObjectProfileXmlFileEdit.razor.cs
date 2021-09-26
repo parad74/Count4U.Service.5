@@ -17,11 +17,11 @@ using Microsoft.AspNetCore.SignalR.Client;
 using Count4U.Admin.Client.Blazor.I18nText;
 using Monitor.Service.Urls;
 using Count4U.Service.Shared;
-using Count4U.Service.Format;
+using Count4U.Model.Common;
 
-namespace Count4U.Admin.Client.Blazor.Page
+namespace Count4U.Admin.Client.Page
 {
-	public class ObjectProfileFileEditBase : ComponentBase
+    public class ObjectProfileXmlFileEditBase : ComponentBase
     {
         [Parameter]
         public string objectCode { get; set; }
@@ -97,7 +97,7 @@ namespace Count4U.Admin.Client.Blazor.Page
 
 
 
-        public ObjectProfileFileEditBase()
+        public ObjectProfileXmlFileEditBase()
         {
             this._profileXmlFile = null;        //file Xml from ftp
             this._isXmlEmpty = true;
@@ -105,7 +105,7 @@ namespace Count4U.Admin.Client.Blazor.Page
             this._modifiedProfileXml = "";
             this._profileDomainObject = null;
             this._profileEntety = new System.Text.Json.JsonElement();
-     
+
 
             UIDKey1 = new List<ValueItem>();
             UIDKey2 = new List<ValueItem>();
@@ -113,7 +113,7 @@ namespace Count4U.Admin.Client.Blazor.Page
             UIDKey4 = new List<ValueItem>();
 
             InventoryitemdisplaypropertyList = new List<InventoryItemDisplayProperty>();
-          //  InventoryitemdisplaypropertyListMaxIndex = 0;
+            //  InventoryitemdisplaypropertyListMaxIndex = 0;
 
             CurrentInventoryDeviceIdProperty = new List<ValueItem>();
             CurrentInventoryUserNameProperty = new List<ValueItem>();
@@ -240,85 +240,85 @@ namespace Count4U.Admin.Client.Blazor.Page
                     return;
                 }
                 if (this._profileFileService == null)
-				{
+                {
                     Console.WriteLine("Client.ObjectProfileFileEditBase.SaveObjectAsync() ERROR :  _profileFileService is null");
                     return;
                 }
 
-                    string uidKey1 = "";
-                string uidKey2 = "";
-                string uidKey3 =  "";
-                string uidKey4 = "";
-                string currentInventoryDeviceIdProperty = "";
-                string currentInventoryUserNameProperty = "";
-                string currentInventoryDeviceNameProperty = "";
-                this._profileFileService.RunUpdateFtpAndDbProfiles = null;
+                //string uidKey1 = "";
+                //string uidKey2 = "";
+                //string uidKey3 = "";
+                //string uidKey4 = "";
+                //string currentInventoryDeviceIdProperty = "";
+                //string currentInventoryUserNameProperty = "";
+                //string currentInventoryDeviceNameProperty = "";
+                //this._profileFileService.RunUpdateFtpAndDbProfiles = null;
 
-                try { uidKey1 = UIDKey1[0].Key; } catch { }
-                try { uidKey2 = UIDKey2[0].Key; } catch { }
-                try { uidKey3 = UIDKey3[0].Key; } catch { }
-                try { uidKey4 = UIDKey4[0].Key; } catch { }
-                try { currentInventoryDeviceIdProperty = CurrentInventoryDeviceIdProperty[0].Key; } catch { }
-                try { currentInventoryUserNameProperty = CurrentInventoryUserNameProperty[0].Key; } catch { }
-                try { currentInventoryDeviceNameProperty = CurrentInventoryDeviceNameProperty[0].Key; } catch { }
+                //try { uidKey1 = UIDKey1[0].Key; } catch { }
+                //try { uidKey2 = UIDKey2[0].Key; } catch { }
+                //try { uidKey3 = UIDKey3[0].Key; } catch { }
+                //try { uidKey4 = UIDKey4[0].Key; } catch { }
+                //try { currentInventoryDeviceIdProperty = CurrentInventoryDeviceIdProperty[0].Key; } catch { }
+                //try { currentInventoryUserNameProperty = CurrentInventoryUserNameProperty[0].Key; } catch { }
+                //try { currentInventoryDeviceNameProperty = CurrentInventoryDeviceNameProperty[0].Key; } catch { }
 
-                this._profileDomainObject.DatabaseSettings.CurrentInventoryDeviceIdProperty = currentInventoryDeviceIdProperty;
-                 this._profileDomainObject.DatabaseSettings.CurrentInventoryUserNameProperty = currentInventoryUserNameProperty;
-                this._profileDomainObject.DatabaseSettings.CurrentInventoryDeviceNameProperty = currentInventoryDeviceNameProperty;
-                this._profileDomainObject.DatabaseSettings.UIDKey = $"{uidKey1}|{uidKey2}|{uidKey3}|{uidKey4}";
-                this._profileDomainObject.InventoryListDefaultUIConfiguration.InventoryItemsProperties.InventoryItemDisplayProperty = 
-                    InventoryitemdisplaypropertyList.Where(x => x.index != 0).Select(x=>x).ToList();
+                //this._profileDomainObject.DatabaseSettings.CurrentInventoryDeviceIdProperty = currentInventoryDeviceIdProperty;
+                //this._profileDomainObject.DatabaseSettings.CurrentInventoryUserNameProperty = currentInventoryUserNameProperty;
+                //this._profileDomainObject.DatabaseSettings.CurrentInventoryDeviceNameProperty = currentInventoryDeviceNameProperty;
+                //this._profileDomainObject.DatabaseSettings.UIDKey = $"{uidKey1}|{uidKey2}|{uidKey3}|{uidKey4}";
+                //this._profileDomainObject.InventoryListDefaultUIConfiguration.InventoryItemsProperties.InventoryItemDisplayProperty =
+                //    InventoryitemdisplaypropertyList.Where(x => x.index != 0).Select(x => x).ToList();
 
-                Count4U.Service.Format.InventoryItemsProperties inventoryItemsProperties =
-                    new Count4U.Service.Format.InventoryItemsProperties(InventoryitemdisplaypropertyList.Where(x => x.index != 0).Select(x => x).ToList().Count);
-            //inventoryItemsProperties.InventoryItemDisplayProperty = InventoryitemdisplaypropertyList;
-                string inventoryItemsPropertiesXml = inventoryItemsProperties.ToXml();
-                Console.WriteLine("inventoryItemsPropertiesXml : " + inventoryItemsPropertiesXml);
+                //Count4U.Service.Format.InventoryItemsProperties inventoryItemsProperties =
+                //    new Count4U.Service.Format.InventoryItemsProperties(InventoryitemdisplaypropertyList.Where(x => x.index != 0).Select(x => x).ToList().Count);
+                ////inventoryItemsProperties.InventoryItemDisplayProperty = InventoryitemdisplaypropertyList;
+                //string inventoryItemsPropertiesXml = inventoryItemsProperties.ToXml();
+                //Console.WriteLine("inventoryItemsPropertiesXml : " + inventoryItemsPropertiesXml);
 
-                string inventoryItemsPropertiesJosn = await _jsRuntime.InvokeAsync<string>("BlazorUniversity.xml2json", inventoryItemsPropertiesXml);
+                //string inventoryItemsPropertiesJosn = await _jsRuntime.InvokeAsync<string>("BlazorUniversity.xml2json", inventoryItemsPropertiesXml);
 
-                string configProfileString = _profileEntety.ToString().ApplyProfileJosnStringChanges(this._profileDomainObject, inventoryItemsPropertiesJosn);
+                //string configProfileString = _profileEntety.ToString().ApplyProfileJosnStringChanges(this._profileDomainObject, inventoryItemsPropertiesJosn);
 
-                if (string.IsNullOrWhiteSpace(configProfileString) == true)
-                {
-                    Console.WriteLine("Client.ObjectProfileFileEditBase.SaveObjectAsync() ERROR :  configProfileString is empty");
-                }
+                //if (string.IsNullOrWhiteSpace(configProfileString) == true)
+                //{
+                //    Console.WriteLine("Client.ObjectProfileFileEditBase.SaveObjectAsync() ERROR :  configProfileString is empty");
+                //}
 
-                string currentXml = await _jsRuntime.InvokeAsync<string>("BlazorUniversity.josn2xml", configProfileString);
-                currentXml = currentXml.FixedInventoryListDefaultUIConfigurationXml(this._profileDomainObject.InventoryListDefaultUIConfiguration.ShowInventoryImageIndicator);
-                await _xmlDiffEditor.SetModifiedValue(currentXml);
-                //this._modifiedProfileXml = currentXml;
-                Console.WriteLine("Client.ObjectProfileFileEditBase.SaveObjectAsync() _modifiedProfileXml ok ");
-                StateHasChanged();
+                //string currentXml = await _jsRuntime.InvokeAsync<string>("BlazorUniversity.josn2xml", configProfileString);
+                //currentXml = currentXml.FixedInventoryListDefaultUIConfigurationXml(this._profileDomainObject.InventoryListDefaultUIConfiguration.ShowInventoryImageIndicator);
+                //await _xmlDiffEditor.SetModifiedValue(currentXml);
+                ////this._modifiedProfileXml = currentXml;
+                //Console.WriteLine("Client.ObjectProfileFileEditBase.SaveObjectAsync() _modifiedProfileXml ok ");
+                //StateHasChanged();
 
-                //  this._profileXmlFile = await this._profileFileService.GetProfileFileByInventorCode(inventorCode, @"http://localhost:12389");
-                if (this._profileXmlFile == null)
-                {
-                    return;     //Error
-                }
-                this._profileXmlFile.ProfileXml = currentXml;
-                //this._profileXmlFile = await this._profileFileService.SaveOrUpdateProfileFileOnFtp(this._profileXmlFile, @"http://localhost:12389");
-                //Console.WriteLine("Client.InventorProfileFileEditBase.SaveObjectAsync() SaveOrUpdateProfileFileOnFtp ok ");
-                //this._profileXmlFile = await this._profileFileService.UpdateOrInsertProfileFileInventorFromFtpToDb(this._profileXmlFile, @"http://localhost:12389");
-                //Console.WriteLine("Client.InventorProfileFileEditBase.SaveObjectAsync() UpdateOrInsertProfileFileInventorFromFtpToDb ok ");
-                //this._profileXmlFile = await this._profileFileService.GetProfileFileByInventorCode(inventorCode, @"http://localhost:12389");
-                //Console.WriteLine("Client.InventorProfileFileEditBase.SaveObjectAsync() GetProfileFileByInventorCode ok ");
-                //this._modifiedProfileXml = this._profileXmlFile.ProfileXml;
+                ////  this._profileXmlFile = await this._profileFileService.GetProfileFileByInventorCode(inventorCode, @"http://localhost:12389");
+                //if (this._profileXmlFile == null)
+                //{
+                //    return;     //Error
+                //}
+                //this._profileXmlFile.ProfileXml = currentXml;
+                ////this._profileXmlFile = await this._profileFileService.SaveOrUpdateProfileFileOnFtp(this._profileXmlFile, @"http://localhost:12389");
+                ////Console.WriteLine("Client.InventorProfileFileEditBase.SaveObjectAsync() SaveOrUpdateProfileFileOnFtp ok ");
+                ////this._profileXmlFile = await this._profileFileService.UpdateOrInsertProfileFileInventorFromFtpToDb(this._profileXmlFile, @"http://localhost:12389");
+                ////Console.WriteLine("Client.InventorProfileFileEditBase.SaveObjectAsync() UpdateOrInsertProfileFileInventorFromFtpToDb ok ");
+                ////this._profileXmlFile = await this._profileFileService.GetProfileFileByInventorCode(inventorCode, @"http://localhost:12389");
+                ////Console.WriteLine("Client.InventorProfileFileEditBase.SaveObjectAsync() GetProfileFileByInventorCode ok ");
+                ////this._modifiedProfileXml = this._profileXmlFile.ProfileXml;
 
-               // ProfileFile objectProfileFile = await this._profileFileService.GetProfileFileByCode(objectCode, @"http://localhost:12389");
+                //// ProfileFile objectProfileFile = await this._profileFileService.GetProfileFileByCode(objectCode, @"http://localhost:12389");
 
-                //this._profileXmlFile.Code = this.objectCode;
-                this._profileFileService.RunUpdateFtpAndDbProfiles = await this._profileFileService.AddToQueueUpdateFtpAndDbRun(this._profileXmlFile, @"http://localhost:12389");
-                StateHasChanged();
+                ////this._profileXmlFile.Code = this.objectCode;
+                //this._profileFileService.RunUpdateFtpAndDbProfiles = await this._profileFileService.AddToQueueUpdateFtpAndDbRun(this._profileXmlFile, @"http://localhost:12389");
+                //StateHasChanged();
 
-                try
-                {
-                    this._modifiedProfileXml = this._profileFileService.RunUpdateFtpAndDbProfiles[2].ProfileXml;
-                    StateHasChanged();
-                }
-                catch { }
+                //try
+                //{
+                //    this._modifiedProfileXml = this._profileFileService.RunUpdateFtpAndDbProfiles[2].ProfileXml;
+                //    StateHasChanged();
+                //}
+                //catch { }
 
-              
+
             }
             catch (Exception exp)
             {
@@ -347,7 +347,7 @@ namespace Count4U.Admin.Client.Blazor.Page
                     Console.WriteLine($"Client.ObjectProfileFileEditBase.GetProfileFiles() 1");
                     Console.WriteLine($"Client.ObjectProfileFileEditBase.GetProfileFiles() objectCode =={objectCode}");
                     this._profileXmlFile = await this._profileFileService.GetProfileFileByCode(objectCode, @"http://localhost:12389");
-                 //   this._profileXmlFile = await this._profileFileService.GetProfileFileByInventorCode(objectCode, @"http://localhost:12389");
+                    //   this._profileXmlFile = await this._profileFileService.GetProfileFileByInventorCode(objectCode, @"http://localhost:12389");
                     if (this._profileXmlFile == null)
                     {
                         return;
@@ -355,10 +355,19 @@ namespace Count4U.Admin.Client.Blazor.Page
                     if (string.IsNullOrWhiteSpace(this._profileXmlFile.ProfileXml) == false)
                     {
                         this._isXmlEmpty = false;
+                       // this._profileXmlFile.FixProfileXml();
                         this._originalProfileXml = this._profileXmlFile.ProfileXml;
-                        Console.WriteLine(" Client.ObjectProfileFileEditBase.GetProfileFile() >> this._originalProfile is " + this._originalProfileXml);
-                        this._profileEntety = await _jsRuntime.InvokeAsync<System.Text.Json.JsonElement>("BlazorUniversity.setDataJsObjectFromXml", this._originalProfileXml);
-                        Console.WriteLine($"Client.ObjectProfileFileEditBase.GetProfileFile() !!!ToProfileDomainObject profile >> {_profileEntety.ToString()}");
+
+                        //Console.WriteLine(" Client.ObjectProfileFileEditBase.GetProfileFile() >> 1");
+                        //Exception error = DeserializeXML.TryDeserializeXMLTextToObject<Count4U.Service.Format.Profile>(this._originalProfileXml);
+                        //Console.WriteLine($" Client.ObjectProfileFileEditBase.GetProfileFile() >>error {error.Message} {error.InnerException} {error.StackTrace}");
+                        this._profileDomainObject = await this._profileFileService.GetProfileFileObjectByCode(objectCode, @"http://localhost:12389");
+
+                        //this._profileDomainObject = DeserializeXML.DeserializeXMLTextToObject<Count4U.Service.Format.Profile>(this._originalProfileXml);
+                        Console.WriteLine($" Client.ObjectProfileFileEditBase.GetProfileFile() >>this._profileDomainObject == null {this._profileDomainObject == null}");
+                        Console.WriteLine(" Client.ObjectProfileFileEditBase.GetProfileFile() >> this._originalProfile is " + this._profileXmlFile.ProfileXml);
+                      //  this._profileEntety = await _jsRuntime.InvokeAsync<System.Text.Json.JsonElement>("BlazorUniversity.setDataJsObjectFromXml", this._originalProfileXml);
+                        //Console.WriteLine($"Client.ObjectProfileFileEditBase.GetProfileFile() !!!ToProfileDomainObject profile >> {_profileEntety.ToString()}");
                     }
                     else
                     {
@@ -403,7 +412,7 @@ namespace Count4U.Admin.Client.Blazor.Page
             {
                 this._profileFileService.RunUpdateFtpAndDbProfiles = null;
             }
-			else 
+            else
             {
                 Console.WriteLine($"Client.ObjectProfileFileEditBase.OnInitializedAsync() : _profileFileService is null");
             }
@@ -444,10 +453,10 @@ namespace Count4U.Admin.Client.Blazor.Page
                 }
                 else
                 {
-                  //  string tokenFromStorage = await this._sessionStorage.GetItemAsync<string>(SessionStorageKey.authToken);
-                  //  Console.WriteLine($"Client.InventorProfileFileEditBase.OnInitializedAsync() : got Token");
-       
-                 
+                    //  string tokenFromStorage = await this._sessionStorage.GetItemAsync<string>(SessionStorageKey.authToken);
+                    //  Console.WriteLine($"Client.InventorProfileFileEditBase.OnInitializedAsync() : got Token");
+
+
                 }
             }
             catch (Exception exc)
@@ -476,19 +485,19 @@ namespace Count4U.Admin.Client.Blazor.Page
                         Console.WriteLine($"Client.ObjectProfileFileEditBase.OnAfterRenderAsync() Start On<ProfileFile> {result.Code}");
                         //this._importFromPdaService.FileItemsInData = this._importFromPdaService.FileItemsInData.UpdateCommandResultInFileItems(
                         // this._importFromPdaService.FileItemsInData, result);
-                       // this._importFromPdaService.RunImportCommandResults.UpdateCommandResulByOperationCode(result);
+                        // this._importFromPdaService.RunImportCommandResults.UpdateCommandResulByOperationCode(result);
 
                         this._profileFileService.RunUpdateFtpAndDbProfiles.UpdateProfileFileByOperationCode(result);
-						this._profileFileService.RunUpdateFtpAndDbProfiles.UpdateProfileFileByOperationCode(result);
+                        this._profileFileService.RunUpdateFtpAndDbProfiles.UpdateProfileFileByOperationCode(result);
 
-						//SaveOrUpdatOnFtp = 5,
-						//UpdateOrInsertInventorFromFtpToDb = 6,
-						//GetByInventorCodeFromFtp = 7,
-						if (result.Step == ProfiFileStepEnum.SaveOrUpdatOnFtp)
+                        //SaveOrUpdatOnFtp = 5,
+                        //UpdateOrInsertInventorFromFtpToDb = 6,
+                        //GetByInventorCodeFromFtp = 7,
+                        if (result.Step == ProfiFileStepEnum.SaveOrUpdatOnFtp)
                         {
                             if (result.Successful == SuccessfulEnum.Successful)
                             {
-                             }
+                            }
                         }
                         else if (result.Step == ProfiFileStepEnum.UpdateOrInsertObjectFromFtpToDb)
                         {
@@ -542,102 +551,6 @@ namespace Count4U.Admin.Client.Blazor.Page
         public async Task CheckObjectAsync()
         {
 
-            try
-            {
-                if (this._profileDomainObject == null)
-                {
-                    Console.WriteLine("Client.ObjectProfileFileEditBase.CheckObjectAsync() ERROR :  _profileDomainObject is null");
-                }
-
-                string uidKey1 = "";
-                string uidKey2 = "";
-                string uidKey3 = "";
-                string uidKey4 = "";
-                string currentInventoryDeviceIdProperty = "";
-                string currentInventoryUserNameProperty = "";
-                string currentInventoryDeviceNameProperty = "";
-                try { uidKey1 = UIDKey1[0].Key; } catch { }
-                try { uidKey2 = UIDKey2[0].Key; } catch { }
-                try { uidKey3 = UIDKey3[0].Key; } catch { }
-                try { uidKey4 = UIDKey4[0].Key; } catch { }
-                try { currentInventoryDeviceIdProperty = CurrentInventoryDeviceIdProperty[0].Key; } catch { }
-                try { currentInventoryUserNameProperty = CurrentInventoryUserNameProperty[0].Key; } catch { }
-                try { currentInventoryDeviceNameProperty = CurrentInventoryDeviceNameProperty[0].Key; } catch { }
-
-                this._profileDomainObject.DatabaseSettings.CurrentInventoryDeviceIdProperty = currentInventoryDeviceIdProperty;
-                this._profileDomainObject.DatabaseSettings.CurrentInventoryUserNameProperty = currentInventoryUserNameProperty;
-                this._profileDomainObject.DatabaseSettings.CurrentInventoryDeviceNameProperty = currentInventoryDeviceNameProperty;
-                this._profileDomainObject.DatabaseSettings.UIDKey = $"{uidKey1}|{uidKey2}|{uidKey3}|{uidKey4}";
-
-                List<InventoryItemDisplayProperty> listItemDisplay = new List<InventoryItemDisplayProperty>();
-                int j = 0;
-                foreach (var it in InventoryitemdisplaypropertyList)
-				{
-                    if (string.IsNullOrWhiteSpace(it.itemtype + it.id) == true) continue;
-                    j++;
-                    it.index = j;
-                    listItemDisplay.Add(it);
-                }
-
-                this._profileDomainObject.InventoryListDefaultUIConfiguration.InventoryItemsProperties.InventoryItemDisplayProperty = listItemDisplay;
-
-                Count4U.Service.Format.InventoryItemsProperties inventoryItemsProperties =
-                    new Count4U.Service.Format.InventoryItemsProperties(listItemDisplay.Count);
-
-				string inventoryItemsPropertiesXml = inventoryItemsProperties.ToXml();
-				Console.WriteLine("inventoryItemsPropertiesXml 1111: " + inventoryItemsPropertiesXml);
-				string inventoryItemsPropertiesJosn = await _jsRuntime.InvokeAsync<string>("BlazorUniversity.xml2json", inventoryItemsPropertiesXml);
-				Console.WriteLine("inventoryItemsPropertiesJosn 1111: " + inventoryItemsPropertiesJosn);
-				string configProfileString = _profileEntety.ToString().ApplyProfileJosnStringChanges(this._profileDomainObject, inventoryItemsPropertiesJosn);
-				Console.WriteLine("configProfileString 2222: " + configProfileString);
-
-				foreach (var item in listItemDisplay)
-				{                
-                    Console.WriteLine($"Item|{item.index} |{item.id} | {item.Title.en} | {item.Title.he}");
-                    
-				}
-                if (string.IsNullOrWhiteSpace(configProfileString) == true)
-                {
-                    Console.WriteLine("Client.ObjectProfileFileEditBase.CheckObjectAsync() ERROR :  configProfileString is empty");
-                }
-
-                string currentXml = await _jsRuntime.InvokeAsync<string>("BlazorUniversity.josn2xml", configProfileString);
-               // Console.WriteLine("currentXml 33333: " + currentXml);
-
-                if (string.IsNullOrWhiteSpace(inventoryItemsPropertiesJosn) == false)
-                {
-                    currentXml = currentXml.FixedInventoryListDefaultUIConfigurationXml(this._profileDomainObject.InventoryListDefaultUIConfiguration.ShowInventoryImageIndicator);
-                }
-                await _xmlDiffEditor.SetModifiedValue(currentXml);
-                //         this._modifiedProfileXml = currentXml;
-                Console.WriteLine("Client.ObjectProfileFileEditBase.SaveObjectAsync() _modifiedProfileXml ok ");
-                StateHasChanged();
-            }
-            catch (Exception exp)
-            {
-                Console.WriteLine("Client.ObjectProfileFileEditBase.SaveObjectAsync() : Exception [" + exp.Message + "]");
-            }
-        }
-
-        public async Task AddNewItem(InventoryItemDisplayProperty item)
-        {
-            if (item == null) return;
-            if (string.IsNullOrWhiteSpace(item.id + item.itemtype) == true) return;
-            InventoryItemDisplayProperty newItem = new InventoryItemDisplayProperty(item);
-            var sort = InventoryitemdisplaypropertyList.OrderByDescending(x => x.index).ToList();
-            int newIndex = 9999;
-            if (sort.Count > 1)
-            {
-                newIndex = sort.FirstOrDefault().index + 1;
-            }
-            else
-			{
-                newIndex = 1;
-            }
-            newItem.index = newIndex;
-            InventoryitemdisplaypropertyList.Remove(item);
-            InventoryitemdisplaypropertyList.Add(newItem);
-            InventoryitemdisplaypropertyList.Add(new InventoryItemDisplayProperty() { });
         }
 
         public async Task DeleteItem(InventoryItemDisplayProperty item)
@@ -658,15 +571,15 @@ namespace Count4U.Admin.Client.Blazor.Page
                 InventoryitemdisplaypropertyList = InventoryitemdisplaypropertyList.Where(x => x.index > 0).OrderBy(x => x.index).ToList();
                 int k = 1;
                 foreach (var it in InventoryitemdisplaypropertyList)
-				{
+                {
                     it.index = k;
                     k++;
                 }
                 InventoryitemdisplaypropertyList.Add(new InventoryItemDisplayProperty());
                 //StateHasChanged();
             }
-			else
-			{
+            else
+            {
                 InventoryitemdisplaypropertyList = InventoryitemdisplaypropertyList.Where(x => x.index > 0).OrderBy(x => x.index).ToList();
                 int k = 1;
                 foreach (var it in InventoryitemdisplaypropertyList)
@@ -677,14 +590,14 @@ namespace Count4U.Admin.Client.Blazor.Page
                 InventoryitemdisplaypropertyList.Add(new InventoryItemDisplayProperty());
                 Console.WriteLine($"NOT Up {array.Length}");
                 return;
-			}
+            }
 
-            Console.WriteLine($"InventoryitemdisplaypropertyListMaxIndex   {InventoryitemdisplaypropertyList?.Count-1}");
+            Console.WriteLine($"InventoryitemdisplaypropertyListMaxIndex   {InventoryitemdisplaypropertyList?.Count - 1}");
         }
 
         public async Task Down(InventoryItemDisplayProperty item)
         {
-          //  InventoryitemdisplaypropertyListMaxIndex = 0;
+            //  InventoryitemdisplaypropertyListMaxIndex = 0;
             int fromIndex = item.index;
             var array = InventoryitemdisplaypropertyList.Where(x => x.index > fromIndex && x.index > 0).OrderBy(x => x.index).ToArray();
             if (array.Length > 0)
@@ -712,134 +625,35 @@ namespace Count4U.Admin.Client.Blazor.Page
                     k++;
                     it.index = k;
                 }
-               // InventoryitemdisplaypropertyListMaxIndex = k;
+                // InventoryitemdisplaypropertyListMaxIndex = k;
                 InventoryitemdisplaypropertyList.Add(new InventoryItemDisplayProperty());
                 Console.WriteLine($"NOT Down {array.Length}");
                 return;
             }
 
-            Console.WriteLine($"InventoryitemdisplaypropertyListMaxIndex   {InventoryitemdisplaypropertyList?.Count-1}");
-            
+            Console.WriteLine($"InventoryitemdisplaypropertyListMaxIndex   {InventoryitemdisplaypropertyList?.Count - 1}");
+
         }
 
         public async Task InitObjectAsync()
         {
-            //!! Convertor https://www.jerriepelser.com/blog/deserialize-different-json-object-same-class/
-            //!! Queue https://www.jerriepelser.com/blog/communicate-status-background-job-signalr/
+
             if (string.IsNullOrWhiteSpace(this._originalProfileXml) == true)
             {
                 Console.WriteLine("this._originalProfile is null");
                 return;
             }
 
-            this._profileDomainObject = this._profileEntety.ToString().ToProfileDomainObject();
-            Console.WriteLine($" !!!ToProfileDomainObject _profileObject >> {this._profileDomainObject}");
+            this._profileDomainObject = DeserializeXML.DeserializeXMLTextToObject<Count4U.Service.Format.Profile>(this._originalProfileXml);
 
-            if (_profileDomainObject != null)
-            {
-                if (this._profileDomainObject.InventoryProcessInformation != null)
-                {
-                    if (this._profileDomainObject.InventoryProcessInformation.Customer != null)
-                    {
-                        try
-                        {
-                            Console.WriteLine(" ToProfileDomainObject >> this._profileObject.InventoryProcessInformation.Customer.name :" + this._profileDomainObject.InventoryProcessInformation.Customer.name);
-                            Console.WriteLine(" ToProfileDomainObject >> this._profileObject.InventoryProcessInformation.Customer.code :" + this._profileDomainObject.InventoryProcessInformation.Customer.code);
-                        }
-                        catch { }
-                    }
-
-
-                    InventoryitemdisplaypropertyList = new List<InventoryItemDisplayProperty>();
-                    if (_profileDomainObject.InventoryListDefaultUIConfiguration != null
-                        && _profileDomainObject.InventoryListDefaultUIConfiguration.InventoryItemsProperties != null
-                        && _profileDomainObject.InventoryListDefaultUIConfiguration.InventoryItemsProperties.InventoryItemDisplayProperty != null)
-                    {
-                        Console.WriteLine("_profileDomainObject.InventoryListDefaultUIConfiguration.InventoryItemsProperties.InventoryItemDisplayProperty  not null");
-                        foreach (var item in _profileDomainObject.InventoryListDefaultUIConfiguration.InventoryItemsProperties.InventoryItemDisplayProperty)
-                        {
-                            InventoryitemdisplaypropertyList.Add(item);
-                        }
-                    }
-
-                    InventoryitemdisplaypropertyList.Add(new InventoryItemDisplayProperty() { });
-
-                    if (this._profileDomainObject.DatabaseSettings != null
-                        && this._profileDomainObject.DatabaseSettings.UIDKey != null)
-                    {
-                        Console.WriteLine("this._profileDomainObject.DatabaseSettings.UIDKey  not null");
-
-                        string[] arrayUIDKey = this._profileDomainObject.DatabaseSettings.UIDKey.Split('|');
-                        if (arrayUIDKey.Length > 0)
-                        {
-                            UIDKey1 = new List<ValueItem>() { new ValueItem() { Key = arrayUIDKey[0], Value = arrayUIDKey[0], CanDrag = true } };
-                            if (arrayUIDKey.Length > 1)
-                            {
-                                UIDKey2 = new List<ValueItem>() { new ValueItem() { Key = arrayUIDKey[1], Value = arrayUIDKey[1], CanDrag = true } };
-                                if (arrayUIDKey.Length > 2)
-                                {
-                                    UIDKey3 = new List<ValueItem>() { new ValueItem() { Key = arrayUIDKey[2], Value = arrayUIDKey[2], CanDrag = true } };
-                                    if (arrayUIDKey.Length > 3)
-                                    {
-                                        UIDKey4 = new List<ValueItem>() { new ValueItem() { Key = arrayUIDKey[3], Value = arrayUIDKey[3], CanDrag = true } };
-                                    }
-                                }
-                            }
-                        }
-                    }
-
-                    if (this._profileDomainObject.DatabaseSettings != null
-                      && this._profileDomainObject.DatabaseSettings.CurrentInventoryDeviceIdProperty != null)
-                    {
-                        string currentInventoryDeviceIdProperty = this._profileDomainObject.DatabaseSettings.CurrentInventoryDeviceIdProperty;
-                        ValueItem deviceId = FieldList.Where(x => x.Key == currentInventoryDeviceIdProperty).FirstOrDefault();
-                        if (deviceId != null)
-                        {
-                            CurrentInventoryDeviceIdProperty = new List<ValueItem>() { new ValueItem() { Key = deviceId.Key, Value = deviceId.Value, CanDrag = true } };
-                        }
-                    }
-
-                    if (this._profileDomainObject.DatabaseSettings != null
-                && this._profileDomainObject.DatabaseSettings.CurrentInventoryUserNameProperty != null)
-                    {
-
-                        string currentInventoryUserNameProperty = this._profileDomainObject.DatabaseSettings.CurrentInventoryUserNameProperty;
-                        ValueItem userName = FieldList.Where(x => x.Key == currentInventoryUserNameProperty).FirstOrDefault();
-                        if (userName != null)
-                        {
-                            CurrentInventoryUserNameProperty = new List<ValueItem>() { new ValueItem() { Key = userName.Key, Value = userName.Value, CanDrag = true } };
-                        }
-
-                    }
-
-                    if (this._profileDomainObject.DatabaseSettings != null
-                      && this._profileDomainObject.DatabaseSettings.CurrentInventoryDeviceNameProperty != null)
-                    {
-                        string currentInventoryDeviceNameProperty = this._profileDomainObject.DatabaseSettings.CurrentInventoryDeviceNameProperty;
-                        ValueItem deviceName = FieldList.Where(x => x.Key == currentInventoryDeviceNameProperty).FirstOrDefault();
-                        if (deviceName != null)
-                        {
-                            CurrentInventoryDeviceNameProperty = new List<ValueItem>() { new ValueItem() { Key = deviceName.Key, Value = deviceName.Value, CanDrag = true } };
-                        }
-                    }
-                    
-                }
-                else
-                {
-                    Console.WriteLine("  ToProfileDomainObject.InventoryProcessInformation >>  is null");
-                }
-            }
-            else
-            {
-                Console.WriteLine(" ToProfileDomainObject >> this._profileObject is null");
-            }
         }
-     
+
 
     }
 
-  
+
 
 
     public enum ScannerTypeEnum { RFID, Barcode }
 }
+

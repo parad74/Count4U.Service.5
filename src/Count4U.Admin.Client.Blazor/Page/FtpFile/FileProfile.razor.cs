@@ -28,15 +28,15 @@ namespace Count4U.Admin.Client.Blazor.Page.FtpFile
         protected GetResources LocalizationResources { get; set; }
 
 
-        public Count4U.Service.Format.Json.Customer _customerObject { get; set; }
-        public Count4U.Service.Format.Json.Profile _profileObject { get; set; }
+        public Count4U.Service.Format.Customer _customerObject { get; set; }
+        public Count4U.Service.Format.Profile _profileObject { get; set; }
 
         //[Inject]
         //IJSRuntime jsRuntime { get; set; }
 
         public FileProfileBase()
 		{
-            _customerObject = new Count4U.Service.Format.Json.Customer();
+            _customerObject = new Count4U.Service.Format.Customer();
             //       inTitle = @"<? xml version = '1.0' encoding = 'utf-8' ?>
             // <Profile>
             //<InventoryProcessInformation>

@@ -57,7 +57,7 @@ namespace Monitor.Service.Model
 		public string Message { get; set; }
    		public SuccessfulEnum Successful { get; set; }
 		public CommandResultCodeEnum ResultCode { get; set; }
-		public Count4U.Service.Format.Json.Profile ProfileJsonObject { get; set; }
+		public Count4U.Service.Format.Profile ProfileJsonObject { get; set; }
 
 		public List<string> Members { get; set; }
 		public override string ToString() => string.Join(" | ", this.Members.Select(x => x).ToList());
@@ -179,6 +179,12 @@ namespace Monitor.Service.Model
 			//}
 			this.Successful = SuccessfulEnum.Waiting;
 
+		}
+
+		public void FixProfileXml()
+		{
+			this.ProfileXml = this.ProfileXml.Replace("False", "false");
+			this.ProfileXml = this.ProfileXml.Replace("True", "true");
 		}
 		public override bool Equals(object obj)
 		{

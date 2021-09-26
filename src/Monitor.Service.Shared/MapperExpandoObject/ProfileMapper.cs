@@ -6,7 +6,7 @@ using Newtonsoft.Json;
 using System.Dynamic;
 using System.Linq;
 using Newtonsoft.Json.Converters;
-using Count4U.Service.Format.Json;
+using Count4U.Service.Format;
 using System.Xml.Serialization;
 using System.IO;
 using System.Xml.Linq;
@@ -15,13 +15,13 @@ namespace Monitor.Service.Shared.MapperExpandoObject
 {
 	public static class ProfileMapper
 	{
-		public static Count4U.Service.Format.Json.Profile ToProfileDomainObject(this string entity)
+		public static Count4U.Service.Format.Profile ToProfileDomainObject(this string entity)
 		{
-			Count4U.Service.Format.Json.Profile profileObject = new Count4U.Service.Format.Json.Profile();
+			Count4U.Service.Format.Profile profileObject = new Count4U.Service.Format.Profile();
 			if (string.IsNullOrWhiteSpace(entity) == true)
 				return profileObject;
 			
-			profileObject.InventoryProcessInformation = new Count4U.Service.Format.Json.Inventoryprocessinformation();
+			profileObject.InventoryProcessInformation = new Count4U.Service.Format.Inventoryprocessinformation();
 			try
 			{
 				dynamic profileEntity = JsonConvert.DeserializeObject<ExpandoObject>(entity, new ExpandoObjectConverter());
@@ -50,8 +50,21 @@ namespace Monitor.Service.Shared.MapperExpandoObject
 				try
 				{
 					dynamic _customer = _inventoryProcessInformation.Customer[0];
-					profileObject.InventoryProcessInformation.Customer.name = _customer._attributes.name;
-					profileObject.InventoryProcessInformation.Customer.code = _customer._attributes.code;
+					profileObject.InventoryProcessInformation.Customer.name = "";
+					profileObject.InventoryProcessInformation.Customer.code = "";           //???
+					if (_customer._attributes != null)
+					{
+						try
+						{
+							profileObject.InventoryProcessInformation.Customer.name = _customer._attributes.name != null ? _customer._attributes.name : "";
+						}
+						catch { }
+						try
+						{
+							profileObject.InventoryProcessInformation.Customer.code = _customer._attributes.code != null ? _customer._attributes.code : "";
+						}
+						catch { }
+					}
 				}
 				catch (Exception exc)
 				{
@@ -85,8 +98,14 @@ namespace Monitor.Service.Shared.MapperExpandoObject
 				try
 				{
 					dynamic _customer = _proofile.Customer[0];
-					profileObject.Customer.name = _customer._attributes.name;
-					profileObject.Customer.code = _customer._attributes.code;
+					profileObject.Customer.name = "";
+					profileObject.Customer.code = "";
+					if (_customer._attributes != null)
+					{
+						profileObject.Customer.name = _customer._attributes.name != null ? _customer._attributes.name : "";
+						profileObject.Customer.code = _customer._attributes.code != null ? _customer._attributes.code : "";
+					}
+
 				}
 				catch (Exception exc)
 				{
@@ -256,14 +275,14 @@ namespace Monitor.Service.Shared.MapperExpandoObject
 							Console.WriteLine("Exception 444  item.Title[0] :" + exc.Message);
 						}
 
-						Count4U.Service.Format.Json.InventoryItemDisplayProperty prop = new Count4U.Service.Format.Json.InventoryItemDisplayProperty()
+						Count4U.Service.Format.InventoryItemDisplayProperty prop = new Count4U.Service.Format.InventoryItemDisplayProperty()
 						{
 							index = index,
 							//indexString = index.ToString(),
 							id = attributes_id,
 							itemtype = attributes_itemtype,
 							invalid = invalid,
-							Title = new Count4U.Service.Format.Json.Title() { en = title_en, he = title_he }
+							Title = new Count4U.Service.Format.Title() { en = title_en, he = title_he }
 						};
 						profileObject.InventoryListDefaultUIConfiguration.InventoryItemsProperties.InventoryItemDisplayProperty.Add(prop);
 					}
@@ -287,8 +306,8 @@ namespace Monitor.Service.Shared.MapperExpandoObject
 					Console.WriteLine("profileObject.RFID.QCodeType:" + profileObject.RFID.QCodeType);
 					profileObject.RFID.SNCodeType = _rfid.SNCodeType[0]._text[0];
 					Console.WriteLine("profileObject.RFID.SNCodeType:" + profileObject.RFID.SNCodeType);
-					profileObject.RFID.RFIDTagWritten = _rfid.RFIDTagWritten[0]._text[0];
-					Console.WriteLine("profileObject.RFID.RFIDTagWritten:" + profileObject.RFID.RFIDTagWritten);
+					//profileObject.RFID.RFIDTagWritten = _rfid.RFIDTagWritten[0]._text[0];		  //ERROR
+					//Console.WriteLine("profileObject.RFID.RFIDTagWritten:" + profileObject.RFID.RFIDTagWritten);
 					foreach (var item in _rfidCommandArray)
 					{
   						if (item == null) continue;
@@ -312,7 +331,7 @@ namespace Monitor.Service.Shared.MapperExpandoObject
 						}
 
 				
-						Count4U.Service.Format.Json.Rfidcommand command = new Count4U.Service.Format.Json.Rfidcommand()
+						Count4U.Service.Format.Rfidcommand command = new Count4U.Service.Format.Rfidcommand()
 						{
 							 command = attributes_command,
 							type = attributes_type
@@ -323,7 +342,7 @@ namespace Monitor.Service.Shared.MapperExpandoObject
 				}
 				catch (Exception exc)
 				{
-					Console.WriteLine("Exception _rfid :" + exc.Message);
+					Console.WriteLine("Exception _rfid1 :" + exc.Message);
 				}
 
 			}
@@ -336,7 +355,7 @@ namespace Monitor.Service.Shared.MapperExpandoObject
 		}
 
 		
-		public static string ApplyProfileJosnStringChanges(this string entity, Count4U.Service.Format.Json.Profile domainObject,
+		public static string ApplyProfileJosnStringChanges(this string entity, Count4U.Service.Format.Profile domainObject,
 			string inventoryItemsPropertiesJosn)
 		{
 			if (domainObject == null)
@@ -530,7 +549,7 @@ namespace Monitor.Service.Shared.MapperExpandoObject
 				}
 				catch (Exception exc)
 				{
-					Console.WriteLine("Exception _rfid :" + exc.Message);
+					Console.WriteLine("Exception2 _rfid :" + exc.Message);
 				}
 
 				if(profileEntity == null) Console.WriteLine("profileEntity if null ");
@@ -551,11 +570,11 @@ namespace Monitor.Service.Shared.MapperExpandoObject
 
 	//};
 }
-		public static Count4U.Service.Format.Json.Profile ToProfileSimpleDomainObject(this string entity)
+		public static Count4U.Service.Format.Profile ToProfileSimpleDomainObject(this string entity)
 		{
 			if (string.IsNullOrWhiteSpace(entity) == true)
 				return null;
-			return new Count4U.Service.Format.Json.Profile()
+			return new Count4U.Service.Format.Profile()
 			{
 				//ID = entity.ID,
 				//ProfileFileUID = entity.ProfileFileUID != null ? entity.ProfileFileUID : "",
@@ -592,10 +611,10 @@ namespace Monitor.Service.Shared.MapperExpandoObject
 
 
 		public static string ToXml(
-		this Count4U.Service.Format.Json.InventoryItemsProperties inventoryItemDisplayPropertyList)
+		this Count4U.Service.Format.InventoryItemsProperties inventoryItemDisplayPropertyList)
 		{
 			string xml = "";
-			XmlSerializer xmlSerializer = new XmlSerializer(typeof(Count4U.Service.Format.Json.InventoryItemsProperties));
+			XmlSerializer xmlSerializer = new XmlSerializer(typeof(Count4U.Service.Format.InventoryItemsProperties));
 			using (StringWriter textWriter = new StringWriter())
 			{
 				xmlSerializer.Serialize(textWriter, inventoryItemDisplayPropertyList);
@@ -633,10 +652,10 @@ namespace Monitor.Service.Shared.MapperExpandoObject
 
 
 		public static string ToXml(
-		this Count4U.Service.Format.Json.Inventorylistdefaultuiconfiguration inventorylistdefaultuiconfiguration)
+		this Count4U.Service.Format.Inventorylistdefaultuiconfiguration inventorylistdefaultuiconfiguration)
 		{
 			string xml = "";
-			XmlSerializer xmlSerializer = new XmlSerializer(typeof(Count4U.Service.Format.Json.Inventorylistdefaultuiconfiguration));
+			XmlSerializer xmlSerializer = new XmlSerializer(typeof(Count4U.Service.Format.Inventorylistdefaultuiconfiguration));
 			using (StringWriter textWriter = new StringWriter())
 			{
 				xmlSerializer.Serialize(textWriter, inventorylistdefaultuiconfiguration);

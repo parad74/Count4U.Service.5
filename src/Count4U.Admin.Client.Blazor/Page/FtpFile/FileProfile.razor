@@ -146,7 +146,7 @@ else
     System.Xml.XmlDocument xmlDocument = new System.Xml.XmlDocument();
     private string _josnText { get; set; }
 
-    private Count4U.Service.Format.Json.Profile myDeserializedClass { get; set; }
+    private Count4U.Service.Format.Profile myDeserializedClass { get; set; }
 
     Dictionary<IBrowserFile, string> loadedFiles = new Dictionary<IBrowserFile, string>();
 
@@ -207,7 +207,7 @@ else
         try
         {
             string jsonText = XmlToJosn(xmlText);
-            myDeserializedClass = Newtonsoft.Json.JsonConvert.DeserializeObject<Count4U.Service.Format.Json.Profile>(jsonText);
+            myDeserializedClass = Newtonsoft.Json.JsonConvert.DeserializeObject<Count4U.Service.Format.Profile>(jsonText);
 
             Console.WriteLine(myDeserializedClass);
             //Console.WriteLine("xml :" + myDeserializedClass.Xml);
@@ -222,11 +222,11 @@ else
     {
         string ret = "";
         string jsonText = XmlToJosn(xmlText);
-        myDeserializedClass = Newtonsoft.Json.JsonConvert.DeserializeObject<Count4U.Service.Format.Json.Profile>(jsonText);
+        myDeserializedClass = Newtonsoft.Json.JsonConvert.DeserializeObject<Count4U.Service.Format.Profile>(jsonText);
 
         Console.WriteLine(myDeserializedClass);
 
-        XmlSerializer xmlSerializer = new XmlSerializer(typeof(Count4U.Service.Format.Json.Profile));
+        XmlSerializer xmlSerializer = new XmlSerializer(typeof(Count4U.Service.Format.Profile));
         using (StringWriter textWriter = new StringWriter())
         {
             xmlSerializer.Serialize(textWriter, myDeserializedClass);
@@ -237,7 +237,7 @@ else
         //return ret;
     }
 
-    private Count4U.Service.Format.Json.Profile testobject { get; set; }
+    private Count4U.Service.Format.Profile testobject { get; set; }
     private string XmlToObjectProfile(string xmlText)
     {
         outTitle = "";
@@ -245,12 +245,12 @@ else
         try
         {
             Console.WriteLine("DeSerialize Object  11");
-            XmlSerializer serializer = new XmlSerializer(typeof(Count4U.Service.Format.Json.Profile));
+            XmlSerializer serializer = new XmlSerializer(typeof(Count4U.Service.Format.Profile));
             Console.WriteLine("DeSerialize Object  12");
             using (StringReader reader = new StringReader(xmlText))
             {
                 Console.WriteLine("DeSerialize Object  13");
-                testobject = (Count4U.Service.Format.Json.Profile)serializer.Deserialize(reader);
+                testobject = (Count4U.Service.Format.Profile)serializer.Deserialize(reader);
                 Console.WriteLine("DeSerialize Object  14");
                 Console.WriteLine(testobject);
                 Console.WriteLine("DeSerialize Object  1");

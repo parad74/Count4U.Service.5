@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ganeral>
+<InventoryProcessInformation>
+	<Customer name="" code="" />
+	<Branch name="" code="" />
+	<Inventory code="" created_date="" />
+</InventoryProcessInformation>
+<InventoryProcessConfiguration>
+	<InventoryProcessMode>
+		<AssertModeEnabled>true</AssertModeEnabled>
+		<StockModeEnabled>true</StockModeEnabled>
+	</InventoryProcessMode>
+</InventoryProcessConfiguration>
+<ScannerType>Barcode</ScannerType>
+<LocationInventoryListScreenConfiguration>
+	<AddNewInventoryEnabled>true</AddNewInventoryEnabled>
+	<TemplateInventoriesEnabled>false</TemplateInventoriesEnabled>
+	<SignatureToVerifyClosureOfLocationRequired>
+		false
+	</SignatureToVerifyClosureOfLocationRequired>
+</LocationInventoryListScreenConfiguration>
+</ganeral>

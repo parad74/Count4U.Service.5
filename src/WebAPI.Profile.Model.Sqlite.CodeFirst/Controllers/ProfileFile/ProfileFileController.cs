@@ -153,6 +153,23 @@ namespace WebAPI.Monitor.Sqlite.CodeFirst.Controllers
 			return profileFile;
 		}
 
+
+		[HttpPost(WebApiProfileFile.GetProfileFileObjectByCode)]
+		public ActionResult<Count4U.Service.Format.Profile> GetProfileFileObjectByCode([FromBody] string objectCode)
+		{
+			ProfileFile profileFile = this._profileFileRepository.GetProfileFileByObjectCode(objectCode);
+			if (profileFile != null) 
+			{
+				Count4U.Service.Format.Profile profileFileObject1 =
+			  DeserializeXML.DeserializeXMLTextToObject<Count4U.Service.Format.Profile>(profileFile.ProfileXml);
+				profileFile.FixProfileXml();
+				Count4U.Service.Format.Profile profileFileObject = 
+					DeserializeXML.DeserializeXMLTextToObject<Count4U.Service.Format.Profile>(profileFile.ProfileXml);
+				return profileFileObject;
+			}
+			return new Count4U.Service.Format.Profile();
+		}
+
 		[HttpPost(WebApiProfileFile.GetProfileFileByInventorCode)]
 		public ActionResult<ProfileFile> GetProfileFileByInventorCode([FromBody] string inventorCode)
 		{

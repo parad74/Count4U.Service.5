@@ -23,7 +23,7 @@ namespace Count4U.Admin.Client.Blazor.Page
 	public class ProfileFileEditBase : ComponentBase
 	{
 		//[Parameter]
-		//public Count4U.Service.Format.Json.Profile _profileObject { get; set; }
+		//public Count4U.Service.Format.Profile _profileObject { get; set; }
 		[Parameter]
 		public ProfileFile _profileFile { get; set; }
 
@@ -40,7 +40,7 @@ namespace Count4U.Admin.Client.Blazor.Page
 		public async Task SaveObjectAsync()
 		{
 
-			XmlSerializer xmlSerializer = new XmlSerializer(typeof(Count4U.Service.Format.Json.Profile));
+			XmlSerializer xmlSerializer = new XmlSerializer(typeof(Count4U.Service.Format.Profile));
 			using (StringWriter textWriter = new StringWriter())
 			{
 				xmlSerializer.Serialize(textWriter, _profileFile.ProfileJsonObject);

@@ -18,7 +18,7 @@ namespace Monitor.Service.Shared
 		Task<ProfileFiles> GetProfileFilesWithSelectParam(SelectParams selectParams, string dataServerAddressUrl);
 		Task<ProfileFile> GetProfileFileByUid(string uid, string dataServerAddressUrl);
 		Task<ProfileFile> GetProfileFileByCode(string code, string dataServerAddressUrl);
-		
+		Task<Count4U.Service.Format.Profile> GetProfileFileObjectByCode(string code, string dataServerAddressUrl);
 		Task<ProfileFiles> GetProfilesFilesByParentCode(string parentCode, string dataServerAddressUrl);
 		Task<ProfileFiles> GetCustomerProfileFiles(string dataServerAddressUrl);
 		Task<ProfileFiles> GetBranchProfileFiles(string dataServerAddressUrl);
@@ -42,6 +42,7 @@ namespace Monitor.Service.Shared
 		Task<ProfileFile> SaveOrUpdateProfileFileOnFtp(ProfileFile profileFile, string dataServerAddressUrl);
 		Task<ProfileFile> UpdateOrInsertProfileFileInventorFromFtpToDb(ProfileFile profileFile, string dataServerAddressUrl);
 		Task<ProfileFile> GetProfileFileByInventorCode(string inventorCode, string dataServerAddressUrl);
+
 
 		Task<ProfileFile> SaveOrUpdateProfileFileOnFtpAndDB(ProfileFile profileFile, string dataServerAddressUrl);
 
@@ -233,6 +234,17 @@ namespace Monitor.Service.Shared
 			return result;
 		}
 
+
+	
+		public async Task<Count4U.Service.Format.Profile> GetProfileFileObjectByCode(string code, string dataServerAddressUrl)
+		{
+			if (string.IsNullOrWhiteSpace(dataServerAddressUrl) == true)
+				return null;
+			string request = Opetarion.UrlCombine(dataServerAddressUrl, WebApiProfileFile.GetProfileFileObjectByCode);
+			HttpResponseMessage response = await this._httpClient.PostAsJsonAsync<string>(request, code);
+			Count4U.Service.Format.Profile result = await response.Content.ReadFromJsonAsync<Count4U.Service.Format.Profile>();
+			return result;
+		}
 
 		public async Task<ProfileFile> GetProfileFileByInventorCode(string inventorCode, string dataServerAddressUrl)
 		{

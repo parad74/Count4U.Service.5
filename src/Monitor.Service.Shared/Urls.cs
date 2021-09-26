@@ -376,6 +376,8 @@
 		public const string GetInventoriesByBranchCode = @"api/webapiprofile/getinventoriesbybranchcode";
 		public const string GetProfileFilesByParentCode = @"api/webapiprofile/getprofilesbyparentcode";
 		public const string GetProfileFileByObjectCode = @"api/webapiprofile/getprofilebyobjectcode";
+		public const string GetProfileFileObjectByCode = @"api/webapiprofile/GetProfileFileObjectByCode";
+		
 public const string GetProfileFileByInventorCode = @"api/webapiprofile/getprofilebyinventorcode";
 		
 		public const string DeleteByUid = @"api/webapiprofile/deletebyid";

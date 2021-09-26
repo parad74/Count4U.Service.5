@@ -36,7 +36,7 @@ namespace Count4U.Admin.Client.Blazor.Page
 
         public bool _isXmlEmpty { get; set; }
 
-        private Count4U.Service.Format.Json.Profile myDeserializedClass { get; set; }
+        private Count4U.Service.Format.Profile myDeserializedClass { get; set; }
 
         protected GetResources LocalizationResources;
 
@@ -93,7 +93,7 @@ namespace Count4U.Admin.Client.Blazor.Page
             try
             {
                 string jsonText = await XmlToJosn(xmlText);
-                myDeserializedClass = Newtonsoft.Json.JsonConvert.DeserializeObject<Count4U.Service.Format.Json.Profile>(jsonText);
+                myDeserializedClass = Newtonsoft.Json.JsonConvert.DeserializeObject<Count4U.Service.Format.Profile>(jsonText);
 
                 Console.WriteLine(myDeserializedClass);
                 //Console.WriteLine("xml :" + myDeserializedClass.Xml);
@@ -108,11 +108,11 @@ namespace Count4U.Admin.Client.Blazor.Page
         {
             string ret = "";
             string jsonText = await XmlToJosn(xmlText);
-            myDeserializedClass = Newtonsoft.Json.JsonConvert.DeserializeObject<Count4U.Service.Format.Json.Profile>(jsonText);
+            myDeserializedClass = Newtonsoft.Json.JsonConvert.DeserializeObject<Count4U.Service.Format.Profile>(jsonText);
 
             Console.WriteLine(myDeserializedClass);
 
-            XmlSerializer xmlSerializer = new XmlSerializer(typeof(Count4U.Service.Format.Json.Profile));
+            XmlSerializer xmlSerializer = new XmlSerializer(typeof(Count4U.Service.Format.Profile));
             using (StringWriter textWriter = new StringWriter())
             {
                 xmlSerializer.Serialize(textWriter, myDeserializedClass);
@@ -129,10 +129,10 @@ namespace Count4U.Admin.Client.Blazor.Page
             Console.WriteLine("XmlToObjectProfile [" + xmlText.Length + "]");
             try
             {
-                XmlSerializer serializer = new XmlSerializer(typeof(Count4U.Service.Format.Json.Profile));
+                XmlSerializer serializer = new XmlSerializer(typeof(Count4U.Service.Format.Profile));
                 using (StringReader reader = new StringReader(xmlText))
                 {
-                    var test = (Count4U.Service.Format.Json.Profile)serializer.Deserialize(reader);
+                    var test = (Count4U.Service.Format.Profile)serializer.Deserialize(reader);
                     Console.WriteLine(test);
                     Console.WriteLine("Customer1 :" + test.InventoryProcessInformation.Customer.code + test.InventoryProcessInformation.Customer.name);
 
@@ -152,7 +152,7 @@ namespace Count4U.Admin.Client.Blazor.Page
         public async Task SaveObjectAsync()
         {
 
-            XmlSerializer xmlSerializer = new XmlSerializer(typeof(Count4U.Service.Format.Json.Profile));
+            XmlSerializer xmlSerializer = new XmlSerializer(typeof(Count4U.Service.Format.Profile));
             using (StringWriter textWriter = new StringWriter())
             {
                 xmlSerializer.Serialize(textWriter, _profileFile.ProfileJsonObject);
@@ -190,7 +190,7 @@ namespace Count4U.Admin.Client.Blazor.Page
                         // Console.WriteLine($"Client.InventorProfileGridBase.GetProfileFiles() 2 {this._profileFile.ProfileXml} ");
                         this._profileFile.ProfileJosn = await XmlToJosn(this._profileFile.ProfileXml);
                         this.StateHasChanged();
-                        myDeserializedClass = Newtonsoft.Json.JsonConvert.DeserializeObject<Count4U.Service.Format.Json.Profile>(this._profileFile.ProfileJosn);
+                        myDeserializedClass = Newtonsoft.Json.JsonConvert.DeserializeObject<Count4U.Service.Format.Profile>(this._profileFile.ProfileJosn);
                         this._profileFile.ProfileJsonObject = myDeserializedClass;
                         Console.WriteLine($"Client.InventorProfileFileShowBase.GetProfileFiles() 2 {this._profileFile.ProfileJsonObject.ToString()} ");
                         //!!! From JosnObject to XML работает надо переписать через запись через MemoryStreem

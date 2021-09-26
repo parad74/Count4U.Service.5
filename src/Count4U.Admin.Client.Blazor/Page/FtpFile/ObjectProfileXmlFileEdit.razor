@@ -1,0 +1,238 @@
+﻿@page "/objectprofilexmlfileedit/{objectCode}"
+@namespace Count4U.Admin.Client.Page
+@using Monitor.Service.Shared
+@inherits ObjectProfileXmlFileEditBase
+@attribute [Authorize(Policy = UserPolicy.IsProfile)]
+<style type="text/css">
+    .fieldflexitem {
+        /*   display: flex;
+            flex-direction: column;
+            justify-content: flex-start;*/
+        min-width: 50px;
+        background-color: azure
+    }
+
+    .fielditem50 {
+        /*   display: flex;
+            flex-direction: column;
+            justify-content: flex-start;*/
+        min-width: 50px;
+        min-height: 30px;
+        background-color: lightgrey;
+        vertical-align: middle
+    }
+
+    .flexlistcontainer {
+        display: flex;
+        flex-flow: row wrap;
+    }
+</style>
+
+<h6 class="bg-success p-1 text-white">Edit Profile</h6>
+
+<div>
+
+    @if (_isXmlEmpty == false)
+    {
+
+        @if (_profileXmlFile == null)
+        {
+            <p><em>Loading1 ...</em></p>
+        }
+        else if(_profileDomainObject == null)
+        {
+            <p><em>Loading2 ...</em></p>
+        }
+        
+        else if (LocalizationResources == null)
+        {
+            <p><em>Loading3...</em></p>
+        }
+        else
+        {
+            @*<EditForm EditContext="ProfileContext" OnValidSubmit="SaveObjectAsync">*@
+
+            <EditForm Model="@_profileDomainObject" OnValidSubmit="SaveObjectAsync">
+
+                <DataAnnotationsValidator />
+                <ValidationSummary />
+
+
+                <div class="form-group row">
+                    <label class="control-label col-md-2">Customer Code</label>
+                    <label class="control-label col-md-4">@_profileXmlFile.CustomerCode </label>
+                </div>
+
+                <div class="form-group row">
+                    <label class="control-label col-md-2">Customer Name</label>
+                    <div class="col-md-10">
+                        <input class="form-control" @bind="_profileXmlFile.CustomerName" />
+                    </div>
+                </div>
+
+                @if (_profileXmlFile.DomainObject == "Inventor")
+                {
+                    <div class="form-group row">
+                        <label class="control-label col-md-2">Branch Code</label>
+                        <label class="control-label col-md-4">@_profileXmlFile.BranchCode </label>
+                    </div>
+
+                    <div class="form-group row">
+                        <label class="control-label col-md-2">Branch Name</label>
+                        <div class="col-md-10">
+                            <input class="form-control" @bind="_profileXmlFile.BranchName" />
+                        </div>
+                    </div>
+                }
+
+                @if (_profileXmlFile.DomainObject == "Inventor")
+                {
+                    <div class="form-group row">
+                        <label class="control-label col-md-2">Inventory Code</label>
+                        <label class="control-label col-md-4">@_profileXmlFile.InventorCode </label>
+                    </div>
+
+                    <div class="form-group row">
+                        <label class="control-label col-md-2">Inventory Data</label>
+                        <label class="control-label col-md-4">@_profileXmlFile.InventorName </label>
+                    </div>
+                }
+
+                @*//< div class="radio-group-profile">
+                             //         <input id="rfid" ng-model="$ctrl.scannerType._text" type="radio" value="RFID"><label for="rfid">RFID</label>
+                             //         <input id="barcode" ng-model="$ctrl.scannerType._text" type="radio" value="Barcode"><label for="barcode">Barcode</label>
+                             //
+                    // </div>*@
+
+                @*<InputRadioGroup @bind-Value="_profileDomainObject.ScannerType">
+                        <div class="form-group row">
+                            <label class="control-label col-md-2">Scanner Type</label>
+                            <InputRadio id="rfid" Value="ScannerTypeEnum.RFID.ToString()" style="text-align: center" />
+                            <label class="control-label col-md-1" for="rfid">@ScannerTypeEnum.RFID.ToString()</label>
+
+                            <InputRadio id="barcode" Value="ScannerTypeEnum.Barcode.ToString()" style="text-align: center" />
+                            <label class="control-label col-md-1" for="barcode">@ScannerTypeEnum.Barcode.ToString()</label>
+
+                        </div>
+                    </InputRadioGroup>*@
+
+                <InputRadioGroup @bind-Value="_profileDomainObject.ScannerType">
+                    <div class="form-group row">
+                        <label class="control-label col-md-2">Scanner Type</label>
+                        <div style="padding-left : 16px">
+                            <InputRadio id="rfid" Value="ScannerTypeEnum.RFID.ToString()" />
+                        </div>
+                        <label class="control-label col-md-1" for="rfid">@ScannerTypeEnum.RFID.ToString()</label>
+                        <div>
+                            <InputRadio id="barcode" Value="ScannerTypeEnum.Barcode.ToString()" />
+                        </div>
+                        <label class="control-label col-md-1" for="barcode">@ScannerTypeEnum.Barcode.ToString()</label>
+                    </div>
+                </InputRadioGroup>
+
+                @*InventoryProcessMode*@
+                @*"InventoryProcessConfiguration": [
+                    {
+                    "InventoryProcessMode": [
+                    {
+                    "AssertModeEnabled": [ { "_text": [ "true" ] } ],
+                    "StockModeEnabled": [ { "_text": [ "false" ] } ]
+                    }
+                    ]
+                    }*@
+
+                @*<label>
+                        Engineering Approval:
+                        <InputCheckbox @bind-Value="starship.IsValidatedDesign" />
+                    </label>*@
+
+                @*<div class="col-xs-12">
+                        <div class="row">
+                            <profile-boolean class="col-xs-3" name="Add new inventory" object="$ctrl.locationInventory['AddNewInventoryEnabled'][0]"></profile-boolean>
+                            <profile-boolean on-validate="$ctrl.validateTemplateInventoryTable()" class="col-xs-3" name="Template inventories" object="$ctrl.locationInventory['TemplateInventoriesEnabled'][0]"></profile-boolean>
+                            <profile-boolean class="col-xs-3" name="Signature" object="$ctrl.locationInventory['SignatureToVerifyClosureOfLocationRequired'][0]"></profile-boolean>
+                        </div>
+                    </div>*@
+                <div class="form-group row">
+                    <label class="control-label col-md-2">Screen Configuration</label>
+                    <div style="padding-left : 16px">
+                        <InputCheckbox @bind-Value="_profileDomainObject.LocationInventoryListScreenConfiguration.AddNewInventoryEnabled" id="addnew" />
+                    </div>
+                    <label class="control-label  col-md-2" for="addnew">Add new inventory</label>
+                    <div>
+                        <InputCheckbox @bind-Value="_profileDomainObject.LocationInventoryListScreenConfiguration.TemplateInventoriesEnabled" id="template" />
+                    </div>
+                    <label class="control-label  col-md-2" for="template">Template inventories</label>
+                    <div>
+                        <InputCheckbox @bind-Value="_profileDomainObject.LocationInventoryListScreenConfiguration.SignatureToVerifyClosureOfLocationRequired" id="signature" />
+                    </div>
+                    <label class="control-label col-md-2" for="signature">Signature</label>
+                </div>
+
+                <div class="row">
+                    <div class="form-group">
+                        <button class="btn btn-outline-info" type="button" @onclick="@(() => InitObjectAsync())">Reset</button>
+                        <button class="btn btn-outline-info" type="button" @onclick="@(() => CheckObjectAsync())">Check</button>
+                        <button type="submit" class="btn btn-outline-success  btn-sm">Save to ftp</button>
+
+                        @*<button class="btn btn-light" @onclick="Cancel">Cancel</button>*@
+                    </div>
+                    <div class="col-md-3">
+                        @if (_profileFileService.RunUpdateFtpAndDbProfiles != null)
+                        {
+                            @foreach (var command in _profileFileService.RunUpdateFtpAndDbProfiles)
+                            {
+                                <div class="row" style="padding-top:3px">
+                                    <div class="col-auto">
+                                        @if (command.Successful == SuccessfulEnum.Waiting)
+                                        {
+                                            @*<WaitCursor2 />*@
+                                            <i class="icon-spinner icon-spin icon-large"></i>
+                                        }
+                                        else if (command.Successful == SuccessfulEnum.Successful)
+                                        {
+                                            @*<span class="badge badge-success">&#10003;</span>*@
+                                            <span class="badge badge-success"> <i class="icon-ok"></i></span>
+                                        }
+                                        else if (command.Successful == SuccessfulEnum.NotSuccessful)
+                                        {
+                                            <span class="badge badge-danger"><i class="icon-frown"></i></span>
+                                        }
+                                        else if (command.Successful == SuccessfulEnum.NotStart)
+                                        {
+                                            <span class="badge badge-danger"><i class="icon-beer"></i></span>
+                                        }
+                                        else if (command.Successful == SuccessfulEnum.Error)
+                                        {
+                                            <span class="badge badge-danger"><i class="icon-eye-open"></i></span>
+                                        }
+                                    </div>
+                                    <div class="col-auto">
+                                        <span class="badge badge-light">@command.Step.GetDisplayDescription()</span>
+                                    </div>
+                                </div>
+                            }
+                        }
+                    </div>
+
+                </div>
+
+            </EditForm>
+        }
+
+
+    }
+    else
+    {
+        <div> Profile not found </div>
+    }
+
+    <div class="editorContent">
+        <MonacoDiffEditorXml @ref="_xmlDiffEditor"
+                             Id="monacoDiffEditorXml"
+                             OriginalValue="@_originalProfileXml"
+                             ModifiedValue="@_modifiedProfileXml"
+                             CssClass="editor" />
+    </div>
+</div>
+
