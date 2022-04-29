@@ -68,7 +68,7 @@ namespace Count4U.Service.WebAPI.Authentication.Controllers
  			}
 
 			var newUser = new ApplicationUser { UserName = model.Email, Email = model.Email,  
-				CustomerCode = model.UserCustomerCode, 
+				CustomerCode = model.CustomerCode, 
 				FistName = model.UserDescription,
 				DateCreated = DateTime.Now
 			};

@@ -791,3 +791,26 @@ namespace Count4U.Common.Helpers.Ftp
 
 
 }
+
+//Нашел:
+//@api { POST} / v1 / organization /:id / profile Save profile
+//* @apiSuccessExample  {json}  Success - Response:
+// *HTTP / 1.1 200 OK
+//{
+//	"xml":"<Profile>\n
+//	* < Customer name =\"qwerty\" code=\"as21df\"\/>\n
+//	  *  < ScannerType > Barcode <\/ ScannerType >\n
+//			*  < LocationInventoryListScreenConfiguration >\n...}
+//}
+
+//Но надо знать :id.
+
+//16:18
+//Понятно.Значит криво и снаружи не достать. Да ладно тогда. 
+
+//Peter, 16:21
+//Нет, в ответе на /v1/c4u/customers/:customer - code / inventories
+//Ты получаешь "data": {
+//	"object": "Inventory",
+//        "organization_id": 1, .....
+//и его можно использовать

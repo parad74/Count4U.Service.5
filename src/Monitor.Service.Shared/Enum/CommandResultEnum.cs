@@ -145,8 +145,11 @@ namespace Monitor.Service.Model
 		[Display(Description = "Canseled", ShortName = "Canseled")]
 		Canseled = 16,
 		[Display(Description = "ForgotPassword", ShortName = "Forgot Password")]
-		ForgotPassword = 32
-
+		ForgotPassword = 32,
+		[Display(Description = "None", ShortName = "None")]
+		None = 64,
+		[Display(Description = "User not found", ShortName = "User not found")]
+		UserNotFound = 128	,
 
 	}
 

@@ -1,0 +1,26 @@
+﻿<div class="form-group">
+    <InputRadioGroup @bind-Value="_profileDomainObject.NetworkType">
+        <div class="medium-label pb-3">Network Type</div>
+        <div class="px-0"></div>
+        <div class="radio-group-profile">
+            <InputRadio id="rfid" disabled="@_isSubmit" Value="NetworkTypeEnum.Wifi.ToString()" />
+            <label for="rfid">@NetworkTypeEnum.Wifi.ToString()</label>
+            <InputRadio id="barcode" disabled="@_isSubmit" Value="NetworkTypeEnum.Bluetooth.ToString()" />
+            <label for="barcode">@NetworkTypeEnum.Bluetooth.ToString()</label>
+        </div>
+    </InputRadioGroup>
+</div>
+
+
+
+@code
+{
+    [Parameter]
+    public bool _isSubmit { get; set; }
+
+    [Parameter]
+    public Count4U.Service.Format.Profile _profileDomainObject { get; set; }
+
+
+    public enum NetworkTypeEnum { Wifi, Bluetooth }
+}

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Serialization;
+using Monitor.Service.Model;
 
 namespace Count4U.Service.Format
 {
@@ -43,25 +44,29 @@ namespace Count4U.Service.Format
 	public class Profile
 	{
 		[XmlElement(ElementName = "InventoryProcessInformation")]
-		public Inventoryprocessinformation InventoryProcessInformation { get; set; }
+		public InventoryProcessInformation InventoryProcessInformation { get; set; }
 
 		[XmlElement(ElementName = "InventoryProcessConfiguration")]
-		public Inventoryprocessconfiguration InventoryProcessConfiguration { get; set; }
+		public InventoryProcessConfiguration InventoryProcessConfiguration { get; set; }
 
-		[NonSerialized()]
+		[XmlIgnore]
 		public object[] comment;
 
 		[XmlElement(ElementName = "ScannerType")]
 		public string ScannerType { get; set; }
 
 		[XmlElement(ElementName = "LocationInventoryListScreenConfiguration")]
-		public Locationinventorylistscreenconfiguration LocationInventoryListScreenConfiguration { get; set; }
+		public LocationinventoryListScreenConfiguration LocationInventoryListScreenConfiguration { get; set; }
 
 		[XmlElement(ElementName = "InventoryListDefaultUIConfiguration")]
-		public Inventorylistdefaultuiconfiguration InventoryListDefaultUIConfiguration { get; set; }
+		public InventoryListDefaultUIConfiguration InventoryListDefaultUIConfiguration { get; set; }
 
 		[XmlElement(ElementName = "DatabaseSettings")]
-		public Databasesettings DatabaseSettings { get; set; }
+		public DatabaseSettings DatabaseSettings { get; set; }
+
+		[XmlElement(ElementName = "FastStockInventoryItemsConfiguration")]
+		public FastStockInventoryItemsConfiguration FastStockInventoryItemsConfiguration { get; set; }
+
 
 		[XmlElement(ElementName = "Forms")]
 		public Forms Forms { get; set; }
@@ -70,54 +75,129 @@ namespace Count4U.Service.Format
 		public Search Search { get; set; }
 
 		[XmlElement(ElementName = "ScreensConfiguration")]
-		public Screensconfiguration ScreensConfiguration { get; set; }
+		public ScreensConfiguration ScreensConfiguration { get; set; }
 
 		[XmlElement(ElementName = "InventoryImage")]
-		public Inventoryimage InventoryImage { get; set; }
+		public InventoryImage InventoryImage { get; set; }
 
 		[XmlElement(ElementName = "PrinterSettings")]
-		public Printersettings PrinterSettings { get; set; }
+		public PrinterSettings PrinterSettings { get; set; }
 
 		[XmlElement(ElementName = "RFID")]
 		public RFID RFID { get; set; }
 
-		[XmlElement(ElementName = "FastStockInventoryItemsConfiguration")]
-		public Faststockinventoryitemsconfiguration FastStockInventoryItemsConfiguration { get; set; }
-
-		[NonSerialized()]   //NOTUSE
-		public string BarcodeManipulations;
+	
+		[XmlIgnore]   //NOTUSE		? не понятно есть или нет
+		public BarcodeManipulations BarcodeManipulations;
 
 		[XmlElement(ElementName = "Version")]
 		public string Version { get; set; }
 
-		[XmlElement(ElementName = "Customer")]
-		public Customer Customer { get; set; }
+		[XmlElement(ElementName = "RfidType")]
+		public string RfidType { get; set; }
+
+		[XmlElement(ElementName = "NetworkType")]
+		public string NetworkType { get; set; }
+
+		//[XmlElement(ElementName = "Customer")]
+		//public Customer Customer { get; set; }
 
 		public Profile()
 		{
-			InventoryProcessInformation = new Inventoryprocessinformation();
-			InventoryProcessConfiguration = new Inventoryprocessconfiguration();
+			InventoryProcessInformation = new InventoryProcessInformation();
+			InventoryProcessConfiguration = new InventoryProcessConfiguration();
 			comment = new object[] { };
 			ScannerType = "";
-			LocationInventoryListScreenConfiguration = new Locationinventorylistscreenconfiguration();
-			InventoryListDefaultUIConfiguration = new Inventorylistdefaultuiconfiguration();
-			DatabaseSettings = new Databasesettings();
+			LocationInventoryListScreenConfiguration = new LocationinventoryListScreenConfiguration();
+			InventoryListDefaultUIConfiguration = new InventoryListDefaultUIConfiguration();
+			DatabaseSettings = new DatabaseSettings();
 			Forms = new Forms();
 			Search = new Search();
-			ScreensConfiguration = new Screensconfiguration();
-			InventoryImage = new Inventoryimage();
-			PrinterSettings = new Printersettings();
+			ScreensConfiguration = new ScreensConfiguration();
+			InventoryImage = new InventoryImage();
+			PrinterSettings = new PrinterSettings();
 			RFID = new RFID();
-			FastStockInventoryItemsConfiguration = new Faststockinventoryitemsconfiguration();
-			BarcodeManipulations = "";
+			FastStockInventoryItemsConfiguration = new FastStockInventoryItemsConfiguration();
+			BarcodeManipulations = new BarcodeManipulations();
 			Version = "";
-			Customer = new Customer();
+			RfidType = "";
+			NetworkType = "Wifi";
+		//Customer = new Customer();
+	}
+
+	
+	}
+
+	[Serializable()]
+	[XmlRoot(ElementName = "BarcodeManipulations")]
+	public class BarcodeManipulations
+	{
+		[XmlElement(ElementName = "Manipulation")]
+		public Manipulation Manipulation { get; set; }
+
+		[XmlElement(ElementName = "GroupManipulation")]
+		public GroupManipulation GroupManipulation { get; set; }
+
+		public BarcodeManipulations()
+		{
+			Manipulation = new Manipulation(); ;
+			GroupManipulation = new GroupManipulation();
+		}
+	}
+	//inventoryPropertyId
+	//[XmlAttribute(AttributeName = "inventoryPropertyId")]
+	[Serializable()]
+	[XmlRoot(ElementName = "Manipulation")]
+	public class Manipulation
+	{
+		[XmlAttribute(AttributeName = "type")]
+		public string manipulationType { get; set; }
+
+		[XmlAttribute(AttributeName = "char")]
+		public string manipulationChar { get; set; }
+
+		[XmlAttribute(AttributeName = "case_sensitive")]
+		public bool case_sensitive { get; set; }
+
+		[XmlAttribute(AttributeName = "target_length")]
+		public string target_length { get; set; }
+
+		[XmlAttribute(AttributeName = "number_of_characters")]
+		public string number_of_characters { get; set; }
+
+		[XmlAttribute(AttributeName = "direction")]
+		public string direction { get; set; }
+
+		
+		public Manipulation()
+		{
+			manipulationType = "";
+			manipulationChar = "";
+			case_sensitive = false;
+			target_length = "";
+			number_of_characters = "";
+			direction = "";
 		}
 	}
 
 	[Serializable()]
+	[XmlRoot(ElementName = "GroupManipulation")]
+	public class GroupManipulation
+	{
+		[XmlElement(ElementName = "Manipulation")]
+		public List<Manipulation> Manipulation { get; set; }
+		public GroupManipulation()
+		{
+			Manipulation = new List<Manipulation>();
+		}
+	}
+
+
+
+
+	[Serializable()]
 	[XmlRoot(ElementName = "InventoryProcessInformation")]
-	public class Inventoryprocessinformation
+	public class InventoryProcessInformation
 	{
 		[XmlElement(ElementName = "Customer")]
 		public Customer Customer { get; set; }
@@ -126,7 +206,7 @@ namespace Count4U.Service.Format
 		[XmlElement(ElementName = "Inventory")]
 		public Inventory Inventory { get; set; }
 
-		public Inventoryprocessinformation()
+		public InventoryProcessInformation()
 		{
 			Customer = new Customer();
 			Branch = new Branch();
@@ -174,48 +254,48 @@ namespace Count4U.Service.Format
 		[XmlAttribute(AttributeName = "created_date")]
 		public string created_date { get; set; }
 
-		[XmlAttribute(AttributeName = "inventor_date")]
-		public string inventor_date { get; set; }
+		//[XmlAttribute(AttributeName = "inventor_date")]
+		//public string inventor_date { get; set; }
 
 		public Inventory()
 		{
 			created_date = "";
 			code = "";
-			inventor_date = "";
+			//inventor_date = "";
 		}
 	}
 
 	[Serializable()]
 	[XmlRoot(ElementName = "InventoryProcessConfiguration")]
-	public class Inventoryprocessconfiguration
+	public class InventoryProcessConfiguration
 	{
 		[XmlElement(ElementName = "InventoryProcessMode")]
-		public Inventoryprocessmode InventoryProcessMode { get; set; }
+		public InventoryProcessMode InventoryProcessMode { get; set; }
 
-		public Inventoryprocessconfiguration()
+		public InventoryProcessConfiguration()
 		{
-			InventoryProcessMode = new Inventoryprocessmode();
+			InventoryProcessMode = new InventoryProcessMode();
 		}
 	}
 
 	[Serializable()]
 	[XmlRoot(ElementName = "InventoryProcessMode")]
-	public class Inventoryprocessmode
+	public class InventoryProcessMode
 	{
 		[XmlElement(ElementName = "AssertModeEnabled")]
-		public string AssertModeEnabled { get; set; }
+		public bool AssertModeEnabled { get; set; }
 		[XmlElement(ElementName = "StockModeEnabled")]
-		public string StockModeEnabled { get; set; }
-		public Inventoryprocessmode()
+		public bool StockModeEnabled { get; set; }
+		public InventoryProcessMode()
 		{
-			AssertModeEnabled = "";
-			StockModeEnabled = "";
+			AssertModeEnabled = true;
+			StockModeEnabled = false;
 		}
 	}
 
 	[Serializable()]
 	[XmlRoot(ElementName = "LocationinventoryListScreenConfiguration")]
-	public class Locationinventorylistscreenconfiguration
+	public class LocationinventoryListScreenConfiguration
 	{
 		[XmlElement(ElementName = "AddNewInventoryEnabled")]
 		public bool AddNewInventoryEnabled { get; set; }
@@ -224,20 +304,20 @@ namespace Count4U.Service.Format
 		[XmlElement(ElementName = "SignatureToVerifyClosureOfLocationRequired")]
 		public bool SignatureToVerifyClosureOfLocationRequired { get; set; }
 		[XmlElement(ElementName = "AddNewInventoryOfflineEnabled")]
-		public string AddNewInventoryOfflineEnabled { get; set; }
+		public bool AddNewInventoryOfflineEnabled { get; set; }
 
-		public Locationinventorylistscreenconfiguration()
+		public LocationinventoryListScreenConfiguration()
 		{
 			AddNewInventoryEnabled = false;
 			TemplateInventoriesEnabled = false;
 			SignatureToVerifyClosureOfLocationRequired = false;
-			AddNewInventoryOfflineEnabled = "";
+			AddNewInventoryOfflineEnabled = false;
 		}
 	}
 
 	[Serializable()]
 	[XmlRoot(ElementName = "InventoryListDefaultUIConfiguration")]
-	public class Inventorylistdefaultuiconfiguration
+	public class InventoryListDefaultUIConfiguration
 	{
 		[XmlElement(ElementName = "ShowInventoryImageIndicator")]
 		public bool ShowInventoryImageIndicator { get; set; }
@@ -245,13 +325,13 @@ namespace Count4U.Service.Format
 		[XmlElement(ElementName = "InventoryItemsProperties")]
 		public InventoryItemsProperties InventoryItemsProperties { get; set; }
 
-		public Inventorylistdefaultuiconfiguration()
+		public InventoryListDefaultUIConfiguration()
 		{
 			ShowInventoryImageIndicator = false;
 			InventoryItemsProperties = new InventoryItemsProperties();
 		}
 
-		public Inventorylistdefaultuiconfiguration(int len)
+		public InventoryListDefaultUIConfiguration(int len)
 		{
 			ShowInventoryImageIndicator = false;
 			InventoryItemsProperties = new InventoryItemsProperties(len);
@@ -263,11 +343,16 @@ namespace Count4U.Service.Format
 	public class InventoryItemsProperties
 	{
 		//public Inventoryitemdisplayproperty[] InventoryItemDisplayProperty { get; set; }
+
 		[XmlElement(ElementName = "InventoryItemDisplayProperty")]
 		public List<InventoryItemDisplayProperty> InventoryItemDisplayProperty { get; set; }
+
+		[XmlIgnore]
+		public InventoryItemDisplayProperty InventoryItemDisplayPropertyEmpty { get; set; }
 		public InventoryItemsProperties()
 		{
 			InventoryItemDisplayProperty = new List<InventoryItemDisplayProperty> ();
+			InventoryItemDisplayPropertyEmpty = new InventoryItemDisplayProperty();
 		}
 		public InventoryItemsProperties(int lenght)
 		{
@@ -289,19 +374,26 @@ namespace Count4U.Service.Format
 		[XmlAttribute(AttributeName = "itemtype")]
 		public string itemtype { get; set; }
 
-		//[NonSerialized]
+		//XmlIgnore
 		//public int index;
 
 		[XmlElement(ElementName = "Title")]
 		public Title Title { get; set; }
-
+ 
+	
 		[XmlElement(ElementName = "invalid")]
 		public bool invalid { get; set; }
 
-		
 		[XmlElement(ElementName = "id")]
 		public int index { get; set; }
 
+		[XmlIgnore]
+		public bool IsOpen { get; set; } = true;
+
+		public void ToggleButton()
+		{
+			IsOpen = !IsOpen;
+		}
 
 		public InventoryItemDisplayProperty()
 		{
@@ -346,10 +438,13 @@ namespace Count4U.Service.Format
 
 	[Serializable()]
 	[XmlRoot(ElementName = "DatabaseSettings")]
-	public class Databasesettings
+	public class DatabaseSettings
 	{
 		[XmlElement(ElementName = "UIDKey")]
 		public string UIDKey { get; set; }
+
+		[XmlIgnore]
+		public List<UidKey> UIDKeyList { get; set; } 
 
 		[XmlElement(ElementName = "CurrentInventoryDeviceIdProperty")]
 		public string CurrentInventoryDeviceIdProperty { get; set; }
@@ -363,7 +458,7 @@ namespace Count4U.Service.Format
 		[XmlElement(ElementName = "CurrentInventoryDeviceNameProperty")]
 		public string CurrentInventoryDeviceNameProperty { get; set; }
 
-		public Databasesettings()
+		public DatabaseSettings()
 		{
 			UIDKey = "";
 			CurrentInventoryDeviceIdProperty = "";
@@ -396,12 +491,12 @@ namespace Count4U.Service.Format
 		public List<Field> Fields { get; set; }
 
 		[XmlElement(ElementName = "KeepAllFieldsOnItemCodeChange")]
-		public string KeepAllFieldsOnItemCodeChange { get; set; }
+		public bool KeepAllFieldsOnItemCodeChange { get; set; }
 		public Form()
 		{
 			id = "";
 			Fields = new List<Field> ();
-			KeepAllFieldsOnItemCodeChange = "";
+			KeepAllFieldsOnItemCodeChange = false;
 		}
 	}
 
@@ -409,6 +504,9 @@ namespace Count4U.Service.Format
 	[XmlRoot(ElementName = "Field")]
 	public class Field
 	{
+		[XmlElement(ElementName = "Actions")]
+		public Actions Actions { get; set; }
+
 		[XmlElement(ElementName = "DataSource")]
 		public Datasource DataSource { get; set; }
 
@@ -427,8 +525,12 @@ namespace Count4U.Service.Format
 		[XmlElement(ElementName = "id")]
 		public string id { get; set; }
 
-		[XmlElement(ElementName = "Actions")]
-		public Actions Actions { get; set; }
+		[XmlIgnore]
+		public bool IsOpen { get; set; } = true;
+ 		public void ToggleButton()
+		{
+			IsOpen = !IsOpen;
+		}
 
 		public  Field()
 		{
@@ -495,27 +597,27 @@ namespace Count4U.Service.Format
 		[XmlAttribute(AttributeName = "itemtype")]
 		public string itemtype { get; set; }
 		[XmlAttribute(AttributeName = "mandatory")]
-		public string mandatory { get; set; }
+		public bool mandatory { get; set; }
 		[XmlAttribute(AttributeName = "type")]
 		public string type { get; set; }
 		[XmlAttribute(AttributeName = "typeview")]
 		public string typeview { get; set; }
 		[XmlAttribute(AttributeName = "viewonly")]
-		public string viewonly { get; set; }
+		public bool viewonly { get; set; }
 		[XmlAttribute(AttributeName = "camera_barcode_scanner_enable")]
-		public string camera_barcode_scanner_enable { get; set; }
+		public bool camera_barcode_scanner_enable { get; set; }
 
 		[XmlAttribute(AttributeName = "negative_value_enable")]
-		public string negative_value_enable { get; set; }
+		public bool negative_value_enable { get; set; }
 
 		[XmlAttribute(AttributeName = "add_enable")]
-		public string add_enable { get; set; }
+		public bool add_enable { get; set; }
 
 		[XmlAttribute(AttributeName = "clear_enable")]
-		public string clear_enable { get; set; }
+		public bool clear_enable { get; set; }
 
 		[XmlAttribute(AttributeName = "zero_value_enable")]
-		public string zero_value_enable { get; set; }
+		public bool zero_value_enable { get; set; }
 
 
 		public Details()
@@ -523,15 +625,15 @@ namespace Count4U.Service.Format
 			_default = "";
 			id = "";
 			itemtype = "";
-			mandatory = "";
+			mandatory = true;
 			type = "";
 			typeview = "";
-			viewonly = "";
-			camera_barcode_scanner_enable = "";
-			negative_value_enable = "";
-			add_enable = "";
-			clear_enable = "";
-			zero_value_enable = "";
+			viewonly = false;
+			camera_barcode_scanner_enable = false;
+			negative_value_enable = false;
+			add_enable = false;
+			clear_enable = false;
+			zero_value_enable = false;
 		}
 	}
 
@@ -569,21 +671,29 @@ namespace Count4U.Service.Format
 	public class Actions
 	{
 		[XmlAttribute(AttributeName = "SelectInFocus")]
-		public string SelectInFocus { get; set; }
+		public bool SelectInFocus { get; set; }
 	
 		[XmlAttribute(AttributeName = "AutoGenerateCode")]
 		public string AutoGenerateCode { get; set; }
+
 		[XmlElement(ElementName = "EnabledFilters")]
 		public Enabledfilters EnabledFilters { get; set; }
 
+		[XmlElement(ElementName = "Validations")]
+		public Validations Validations { get; set; }
+
+		
+
 		public Actions ()
 		{
-			SelectInFocus = "";
+			SelectInFocus = false;
 			AutoGenerateCode = "";
 			EnabledFilters = new Enabledfilters();
+			Validations = new Validations();
 	}
 	}
 
+	
 	[Serializable()]
 	[XmlRoot(ElementName = "EnabledFilters")]
 	public class Enabledfilters
@@ -643,69 +753,71 @@ namespace Count4U.Service.Format
 	[XmlRoot(ElementName = "Search")]
 	public class Search
 	{
-		[XmlElement(ElementName = "SearchByScannerScreenConfiguration")]
-		public Searchbyscannerscreenconfiguration SearchByScannerScreenConfiguration { get; set; }
-		[XmlElement(ElementName = "SearchInCatalogScreenConfiguration")]
-		public Searchincatalogscreenconfiguration SearchInCatalogScreenConfiguration { get; set; }
-		[XmlElement(ElementName = "SearchInLocationScreenConfiguration")]
-		public Searchinlocationscreenconfiguration SearchInLocationScreenConfiguration { get; set; }
 		[XmlElement(ElementName = "IgnoreChar")]
 		public string IgnoreChar { get; set; }
 
+		[XmlElement(ElementName = "SearchByScannerScreenConfiguration")]
+		public SearchByScannerScreenConfiguration SearchByScannerScreenConfiguration { get; set; }
+		[XmlElement(ElementName = "SearchInCatalogScreenConfiguration")]
+		public SearchInCatalogScreenConfiguration SearchInCatalogScreenConfiguration { get; set; }
+		[XmlElement(ElementName = "SearchInLocationScreenConfiguration")]
+		public SearchInLocationScreenConfiguration SearchInLocationScreenConfiguration { get; set; }
+		
+
 		public Search()
 		{
-			SearchByScannerScreenConfiguration = new Searchbyscannerscreenconfiguration();
-			SearchInCatalogScreenConfiguration = new Searchincatalogscreenconfiguration();
-			SearchInLocationScreenConfiguration = new Searchinlocationscreenconfiguration();
+			SearchByScannerScreenConfiguration = new SearchByScannerScreenConfiguration();
+			SearchInCatalogScreenConfiguration = new SearchInCatalogScreenConfiguration();
+			SearchInLocationScreenConfiguration = new SearchInLocationScreenConfiguration();
 			IgnoreChar = "";
 		}
 	}
 
 	[Serializable()]
 	[XmlRoot(ElementName = "SearchByScannerScreenConfiguration")]
-	public class Searchbyscannerscreenconfiguration
+	public class SearchByScannerScreenConfiguration
 	{
 		[XmlElement(ElementName = "AddNewInventoryEnabled")]
-		public string AddNewInventoryEnabled { get; set; }
+		public bool AddNewInventoryEnabled { get; set; }
 		[XmlElement(ElementName = "CameraBarcodeScannerEnabled")]
-		public string CameraBarcodeScannerEnabled { get; set; }
+		public bool CameraBarcodeScannerEnabled { get; set; }
 
 		[XmlElement(ElementName = "NavigateBackEnabled")]
-		public string NavigateBackEnabled { get; set; }
+		public bool NavigateBackEnabled { get; set; }
 
 		[XmlElement(ElementName = "SearchByProperties")]
-		public Searchbyproperties SearchByProperties { get; set; }
+		public SearchByProperties SearchByProperties { get; set; }
 
 		[XmlElement(ElementName = "SearchByScannerResultListDisplayProperties")]
-		public Searchbyscannerresultlistdisplayproperties SearchByScannerResultListDisplayProperties { get; set; }
+		public SearchByScannerResultListDisplayProperties SearchByScannerResultListDisplayProperties { get; set; }
 
 
-		public Searchbyscannerscreenconfiguration()
+		public SearchByScannerScreenConfiguration()
 		{
-			AddNewInventoryEnabled = "";
-			CameraBarcodeScannerEnabled = "";
-			NavigateBackEnabled = "";
-			SearchByProperties = new Searchbyproperties();
-			SearchByScannerResultListDisplayProperties = new Searchbyscannerresultlistdisplayproperties();
+			AddNewInventoryEnabled = true;
+			CameraBarcodeScannerEnabled = true;
+			NavigateBackEnabled = false;
+			SearchByProperties = new SearchByProperties();
+			SearchByScannerResultListDisplayProperties = new SearchByScannerResultListDisplayProperties();
 		}
 	}
 
 	[Serializable()]
 	[XmlRoot(ElementName = "SearchByProperties")]
-	public class Searchbyproperties
+	public class SearchByProperties
 	{
 		[XmlElement(ElementName = "SearchByProperty")]
-		public List<Searchbyproperty> SearchByProperty { get; set; }
+		public List<SearchByProperty> SearchByProperty { get; set; }
 
-		public Searchbyproperties ()
+		public SearchByProperties ()
 		{
-			SearchByProperty = new List<Searchbyproperty>();
+			SearchByProperty = new List<SearchByProperty>();
 		}
 	}
 
 	[Serializable()]
 	[XmlRoot(ElementName = "SearchByProperty")]
-	public class Searchbyproperty
+	public class SearchByProperty
 	{
 		[XmlAttribute(AttributeName = "id")]
 		public string id { get; set; }
@@ -713,29 +825,33 @@ namespace Count4U.Service.Format
 		[XmlElement(ElementName = "Title")]
 		public Title Title { get; set; }
 
-		public Searchbyproperty()
+		[XmlElement(ElementName = "id")]
+		public int index { get; set; }
+
+		public SearchByProperty()
 		{
 			id = "";
 			Title = new Title();
+			index = 0;
 		}
 	}
 
 
 	[Serializable()]
 	[XmlRoot(ElementName = "SearchByScannerResultListDisplayProperties")]
-	public class Searchbyscannerresultlistdisplayproperties
+	public class SearchByScannerResultListDisplayProperties
 	{
 		[XmlElement(ElementName = "SearchDisplayProperty")]
-		public List<Searchdisplayproperty> SearchDisplayProperty { get; set; }
-		public Searchbyscannerresultlistdisplayproperties()
+		public List<SearchDisplayProperty> SearchDisplayProperty { get; set; }
+		public SearchByScannerResultListDisplayProperties()
 		{
-			SearchDisplayProperty = new List<Searchdisplayproperty>();
+			SearchDisplayProperty = new List<SearchDisplayProperty>();
 		}
 	}
 
 	[Serializable()]
 	[XmlRoot(ElementName = "SearchDisplayProperty")]
-	public class Searchdisplayproperty
+	public class SearchDisplayProperty
 	{
 		[XmlAttribute(AttributeName = "id")]
 		public string id { get; set; }
@@ -743,201 +859,233 @@ namespace Count4U.Service.Format
 		[XmlElement(ElementName = "Title")]
 		public Title Title { get; set; }
 
+
+		//[XmlElement(ElementName = "he")]
+		//public string he { get; set; }
+	
 		[XmlElement(ElementName = "invalid")]
 		public bool invalid { get; set; }
 
-		[XmlElement(ElementName = "he")]
-		public string he { get; set; }
-
 		[XmlElement(ElementName = "id")]
-		public string index { get; set; }
+		public int index { get; set; }
 
-		public Searchdisplayproperty()
+		[XmlIgnore]
+		public bool IsOpen { get; set; } = true;
+
+		public void ToggleButton()
 		{
+			IsOpen = !IsOpen;
+		}
 
+		public SearchDisplayProperty()
+		{
 			id = "";
+			index = 0;
 			Title = new Title();
 			invalid = false;
-			he = "";
+			//he = "";
 		}
 	}
 
 	[Serializable()]
 	[XmlRoot(ElementName = "SearchInCatalogScreenConfiguration")]
-	public class Searchincatalogscreenconfiguration
+	public class SearchInCatalogScreenConfiguration
 	{
 		[XmlElement(ElementName = "AddNewItemIntoCatalogEnabled")]
 		public bool AddNewItemIntoCatalogEnabled { get; set; }
 		[XmlElement(ElementName = "CameraBarcodeScannerEnabled")]
 		public bool CameraBarcodeScannerEnabled { get; set; }
 		[XmlElement(ElementName = "SearchInCatalogResultListsDisplayProperties")]
-		public Searchincatalogresultlistsdisplayproperties SearchInCatalogResultListsDisplayProperties { get; set; }
+		public SearchInCatalogResultListsDisplayProperties SearchInCatalogResultListsDisplayProperties { get; set; }
 
-		public Searchincatalogscreenconfiguration()
+		public SearchInCatalogScreenConfiguration()
 		{
 			AddNewItemIntoCatalogEnabled = false;
 			CameraBarcodeScannerEnabled = false;
-			SearchInCatalogResultListsDisplayProperties = new Searchincatalogresultlistsdisplayproperties();
+			SearchInCatalogResultListsDisplayProperties = new SearchInCatalogResultListsDisplayProperties();
 		}
 	}
 
 	[Serializable()]
 	[XmlRoot(ElementName = "SearchInCatalogResultListsDisplayProperties")]
-	public class Searchincatalogresultlistsdisplayproperties
+	public class SearchInCatalogResultListsDisplayProperties
 	{
 		[XmlElement(ElementName = "SearchInCatalogByItemCodeResultListDisplayProperties")]
-		public Searchincatalogbyitemcoderesultlistdisplayproperties SearchInCatalogByItemCodeResultListDisplayProperties { get; set; }
+		public SearchInCatalogByItemCodeResultListDisplayProperties SearchInCatalogByItemCodeResultListDisplayProperties { get; set; }
 
 		[XmlElement(ElementName = "SearchInCatalogByItemNameResultListDisplayProperties")]
-		public Searchincatalogbyitemnameresultlistdisplayproperties SearchInCatalogByItemNameResultListDisplayProperties { get; set; }
+		public SearchInCatalogByItemNameResultListDisplayProperties SearchInCatalogByItemNameResultListDisplayProperties { get; set; }
 
-		public Searchincatalogresultlistsdisplayproperties()
+		[XmlElement(ElementName = "SearchInCatalogByItemCodeOrNameResultListDisplayProperties")]
+		public SearchInCatalogByItemCodeOrNameResultListDisplayProperties SearchInCatalogByItemCodeOrNameResultListDisplayProperties { get; set; }
+
+		
+		public SearchInCatalogResultListsDisplayProperties()
 		{
-			SearchInCatalogByItemCodeResultListDisplayProperties = new Searchincatalogbyitemcoderesultlistdisplayproperties();
-			SearchInCatalogByItemNameResultListDisplayProperties = new Searchincatalogbyitemnameresultlistdisplayproperties();
+			SearchInCatalogByItemCodeResultListDisplayProperties = new SearchInCatalogByItemCodeResultListDisplayProperties();
+			SearchInCatalogByItemNameResultListDisplayProperties = new SearchInCatalogByItemNameResultListDisplayProperties();
+			SearchInCatalogByItemCodeOrNameResultListDisplayProperties = new SearchInCatalogByItemCodeOrNameResultListDisplayProperties();
 		}
 	}
 
 	
 	[Serializable()]
 	[XmlRoot(ElementName = "SearchInCatalogByItemCodeResultListDisplayProperties")]
-	public class Searchincatalogbyitemcoderesultlistdisplayproperties
+	public class SearchInCatalogByItemCodeResultListDisplayProperties
 	{
 		[XmlElement(ElementName = "SearchDisplayProperty")]
-		public List<Searchdisplayproperty> SearchDisplayProperty { get; set; }
-		public Searchincatalogbyitemcoderesultlistdisplayproperties()
+		public List<SearchDisplayProperty> SearchDisplayProperty { get; set; }
+		public SearchInCatalogByItemCodeResultListDisplayProperties()
 		{
-			SearchDisplayProperty = new List<Searchdisplayproperty>();
+			SearchDisplayProperty = new List<SearchDisplayProperty>();
 		}
 	}
 
 	[Serializable()]
 	[XmlRoot(ElementName = "SearchInCatalogByItemNameResultListDisplayProperties")]
-	public class Searchincatalogbyitemnameresultlistdisplayproperties
+	public class SearchInCatalogByItemNameResultListDisplayProperties
 	{
 		[XmlElement(ElementName = "SearchDisplayProperty")]
-		public List<Searchdisplayproperty> SearchDisplayProperty { get; set; }
-		public Searchincatalogbyitemnameresultlistdisplayproperties()
+		public List<SearchDisplayProperty> SearchDisplayProperty { get; set; }
+		public SearchInCatalogByItemNameResultListDisplayProperties()
 		{
-			SearchDisplayProperty = new List<Searchdisplayproperty>();
+			SearchDisplayProperty = new List<SearchDisplayProperty>();
+		}
+	}
+
+	
+	[Serializable()]
+	[XmlRoot(ElementName = "SearchInCatalogByItemCodeOrNameResultListDisplayProperties")]
+	public class SearchInCatalogByItemCodeOrNameResultListDisplayProperties
+	{
+		[XmlElement(ElementName = "SearchDisplayProperty")]
+		public List<SearchDisplayProperty> SearchDisplayProperty { get; set; }
+		public SearchInCatalogByItemCodeOrNameResultListDisplayProperties()
+		{
+			SearchDisplayProperty = new List<SearchDisplayProperty>();
 		}
 	}
 
 	[Serializable()]
 	[XmlRoot(ElementName = "SearchInLocationScreenConfiguration")]
-	public class Searchinlocationscreenconfiguration
+	public class SearchInLocationScreenConfiguration
 	{
 		[XmlElement(ElementName = "CameraBarcodeScannerEnabled")]
 		public bool CameraBarcodeScannerEnabled { get; set; }
 
 		[XmlElement(ElementName = "SearchInLocationResultListsDisplayProperties")]
-		public Searchinlocationresultlistsdisplayproperties SearchInLocationResultListsDisplayProperties { get; set; }
+		public SearchInLocationResultListsDisplayProperties SearchInLocationResultListsDisplayProperties { get; set; }
 
 		[XmlElement(ElementName = "AddNewItemIntoCatalogEnabled")]
 		public bool AddNewItemIntoCatalogEnabled { get; set; }
 
-		public Searchinlocationscreenconfiguration()
+		public SearchInLocationScreenConfiguration()
 		{
 			CameraBarcodeScannerEnabled = false;
-			SearchInLocationResultListsDisplayProperties = new Searchinlocationresultlistsdisplayproperties();
+			SearchInLocationResultListsDisplayProperties = new SearchInLocationResultListsDisplayProperties();
 			AddNewItemIntoCatalogEnabled = false;
 		}
 	}
 
 	[Serializable()]
 	[XmlRoot(ElementName = "SearchInLocationResultListsDisplayProperties")]
-	public class Searchinlocationresultlistsdisplayproperties
+	public class SearchInLocationResultListsDisplayProperties
 	{
 		[XmlElement(ElementName = "SearchInLocationByItemSerialResultListDisplayProperties")]
-		public Searchinlocationbyitemserialresultlistdisplayproperties SearchInLocationByItemSerialResultListDisplayProperties { get; set; }
+		public SearchInLocationByItemSerialResultListDisplayProperties SearchInLocationByItemSerialResultListDisplayProperties { get; set; }
 
 		[XmlElement(ElementName = "SearchInLocationByItemCodeResultListDisplayProperties")]
-		public Searchinlocationbyitemcoderesultlistdisplayproperties SearchInLocationByItemCodeResultListDisplayProperties { get; set; }
+		public SearchInLocationByItemCodeResultListDisplayProperties SearchInLocationByItemCodeResultListDisplayProperties { get; set; }
 
 		[XmlElement(ElementName = "SearchInLocationByItemNameResultListDisplayProperties")]
-		public Searchinlocationbyitemnameresultlistdisplayproperties SearchInLocationByItemNameResultListDisplayProperties { get; set; }
+		public SearchInLocationByItemNameResultListDisplayProperties SearchInLocationByItemNameResultListDisplayProperties { get; set; }
 
-		public Searchinlocationresultlistsdisplayproperties()
+		public SearchInLocationResultListsDisplayProperties()
 		{
-			SearchInLocationByItemSerialResultListDisplayProperties = new Searchinlocationbyitemserialresultlistdisplayproperties();
-			SearchInLocationByItemCodeResultListDisplayProperties = new Searchinlocationbyitemcoderesultlistdisplayproperties();
-			SearchInLocationByItemNameResultListDisplayProperties = new Searchinlocationbyitemnameresultlistdisplayproperties();
+			SearchInLocationByItemSerialResultListDisplayProperties = new SearchInLocationByItemSerialResultListDisplayProperties();
+			SearchInLocationByItemCodeResultListDisplayProperties = new SearchInLocationByItemCodeResultListDisplayProperties();
+			SearchInLocationByItemNameResultListDisplayProperties = new SearchInLocationByItemNameResultListDisplayProperties();
 		}
 	}
 
 	[Serializable()]
 	[XmlRoot(ElementName = "SearchInLocationByItemSerialResultListDisplayProperties")]
-	public class Searchinlocationbyitemserialresultlistdisplayproperties
+	public class SearchInLocationByItemSerialResultListDisplayProperties
 	{
 		[XmlElement(ElementName = "SearchDisplayProperty")]
-		public List<Searchdisplayproperty> SearchDisplayProperty { get; set; }
+		public List<SearchDisplayProperty> SearchDisplayProperty { get; set; }
 
-		public Searchinlocationbyitemserialresultlistdisplayproperties()
+		public SearchInLocationByItemSerialResultListDisplayProperties()
 		{
-			SearchDisplayProperty = new List<Searchdisplayproperty>();
+			SearchDisplayProperty = new List<SearchDisplayProperty>();
 		}
 	}
 
 	[Serializable()]
 	[XmlRoot(ElementName = "SearchInLocationByItemCodeResultListDisplayProperties")]
-	public class Searchinlocationbyitemcoderesultlistdisplayproperties
+	public class SearchInLocationByItemCodeResultListDisplayProperties
 	{
 		[XmlElement(ElementName = "SearchDisplayProperty")]
-		public List<Searchdisplayproperty> SearchDisplayProperty { get; set; }
+		public List<SearchDisplayProperty> SearchDisplayProperty { get; set; }
 
-		public Searchinlocationbyitemcoderesultlistdisplayproperties()
+		public SearchInLocationByItemCodeResultListDisplayProperties()
 		{
-			SearchDisplayProperty = new List<Searchdisplayproperty>();
+			SearchDisplayProperty = new List<SearchDisplayProperty>();
 		}
 	}
 
 	[Serializable()]
 	[XmlRoot(ElementName = "SearchInLocationByItemNameResultListDisplayProperties")]
-	public class Searchinlocationbyitemnameresultlistdisplayproperties
+	public class SearchInLocationByItemNameResultListDisplayProperties
 	{
 		[XmlElement(ElementName = "SearchDisplayProperty")]
-		public List<Searchdisplayproperty> SearchDisplayProperty { get; set; }
+		public List<SearchDisplayProperty> SearchDisplayProperty { get; set; }
 
-		public Searchinlocationbyitemnameresultlistdisplayproperties()
+		public SearchInLocationByItemNameResultListDisplayProperties()
 		{
-			SearchDisplayProperty = new List<Searchdisplayproperty>();
+			SearchDisplayProperty = new List<SearchDisplayProperty>();
 		}
 	}
 
 	[Serializable()]
 	[XmlRoot(ElementName = "ScreensConfiguration")]
-	public class Screensconfiguration
+	public class ScreensConfiguration
 	{
 		[XmlElement(ElementName = "AddNewLocationScreen")]
-		public Addnewlocationscreen AddNewLocationScreen { get; set; }
+		public AddNewLocationScreen AddNewLocationScreen { get; set; }
 		[XmlElement(ElementName = "ItemCodeSummaryScreen")]
-		public Itemcodesummaryscreen ItemCodeSummaryScreen { get; set; }
+		public ItemCodeSummaryScreen ItemCodeSummaryScreen { get; set; }
 		[XmlElement(ElementName = "MoveInventoriesScreen")]
-		public Moveinventoriesscreen MoveInventoriesScreen { get; set; }
-		[XmlElement(ElementName = "AddQInventoryItemsInFastWayScreen")]
-		public Addqinventoryitemsinfastwayscreen AddQInventoryItemsInFastWayScreen { get; set; }
-		[XmlElement(ElementName = "AddSNInventoryItemsInFastWayScreen")]
-		public Addsninventoryitemsinfastwayscreen AddSNInventoryItemsInFastWayScreen { get; set; }
-		[XmlElement(ElementName = "WarehouseScreenRFID")]
-		public Warehousescreenrfid WarehouseScreenRFID { get; set; }
-		[XmlElement(ElementName = "AssertInventoryScreen")]
-		public Assertinventoryscreen AssertInventoryScreen { get; set; }
+		public MoveInventoriesScreen MoveInventoriesScreen { get; set; }
 
-		public Screensconfiguration()
+		[XmlElement(ElementName = "AddSNInventoryItemsInFastWayScreen")]
+		public AddSNInventoryItemsInFastWayScreen AddSNInventoryItemsInFastWayScreen { get; set; }
+
+		[XmlElement(ElementName = "AddQInventoryItemsInFastWayScreen")]
+		public AddQInventoryItemsInFastWayScreen AddQInventoryItemsInFastWayScreen { get; set; }
+
+
+		[XmlElement(ElementName = "WarehouseScreenRFID")]
+		public WarehouseScreenRFID WarehouseScreenRFID { get; set; }
+
+		[XmlElement(ElementName = "AssertInventoryScreen")]
+		public AssertInventoryScreen AssertInventoryScreen { get; set; }
+
+		public ScreensConfiguration()
 		{
-			AddNewLocationScreen = new Addnewlocationscreen();
-			ItemCodeSummaryScreen = new Itemcodesummaryscreen();
-			MoveInventoriesScreen = new Moveinventoriesscreen();
-			AddQInventoryItemsInFastWayScreen = new Addqinventoryitemsinfastwayscreen();
-			AddSNInventoryItemsInFastWayScreen = new Addsninventoryitemsinfastwayscreen();
-			WarehouseScreenRFID = new Warehousescreenrfid();
-			AssertInventoryScreen = new Assertinventoryscreen();
+			AddNewLocationScreen = new AddNewLocationScreen();
+			ItemCodeSummaryScreen = new ItemCodeSummaryScreen();
+			MoveInventoriesScreen = new MoveInventoriesScreen();
+			AddQInventoryItemsInFastWayScreen = new AddQInventoryItemsInFastWayScreen();
+			AddSNInventoryItemsInFastWayScreen = new AddSNInventoryItemsInFastWayScreen();
+			WarehouseScreenRFID = new WarehouseScreenRFID();
+			AssertInventoryScreen = new AssertInventoryScreen();
 		}
 	}
 
 	[Serializable()]
 	[XmlRoot(ElementName = "AddNewLocationScreen")]
-	public class Addnewlocationscreen
+	public class AddNewLocationScreen
 	{
 		[XmlElement(ElementName = "ScreenEnabled")]
 		public bool ScreenEnabled { get; set; }
@@ -945,7 +1093,7 @@ namespace Count4U.Service.Format
 		[XmlElement(ElementName = "ScreenEnabledOffline")]
 		public bool ScreenEnabledOffline { get; set; }
 
-		public Addnewlocationscreen()
+		public AddNewLocationScreen()
 		{
 			ScreenEnabled = false;
 			ScreenEnabledOffline = false;
@@ -954,11 +1102,11 @@ namespace Count4U.Service.Format
 
 	[Serializable()]
 	[XmlRoot(ElementName = "ItemCodeSummaryScreen")]
-	public class Itemcodesummaryscreen
+	public class ItemCodeSummaryScreen
 	{
 		[XmlElement(ElementName = "ScreenEnabled")]
 		public bool ScreenEnabled { get; set; }
-		public Itemcodesummaryscreen()
+		public ItemCodeSummaryScreen()
 		{
 			ScreenEnabled = false;
 		}
@@ -966,29 +1114,29 @@ namespace Count4U.Service.Format
 
 	[Serializable()]
 	[XmlRoot(ElementName = "MoveInventoriesScreen")]
-	public class Moveinventoriesscreen
+	public class MoveInventoriesScreen
 	{
 		[XmlElement(ElementName = "InventoryMoveSearchProperty")]
-		public Inventorymovesearchproperty InventoryMoveSearchProperty { get; set; }
+		public InventoryMoveSearchProperty InventoryMoveSearchProperty { get; set; }
 		[XmlElement(ElementName = "ScreenEnabled")]
 		public bool ScreenEnabled { get; set; }
-		public Moveinventoriesscreen()
+		public MoveInventoriesScreen()
 		{
-			InventoryMoveSearchProperty = new Inventorymovesearchproperty();
+			InventoryMoveSearchProperty = new InventoryMoveSearchProperty();
 		   ScreenEnabled = false;
 		}
 	}
 
 	[Serializable()]
 	[XmlRoot(ElementName = "InventoryMoveSearchProperty")]
-	public class Inventorymovesearchproperty
+	public class InventoryMoveSearchProperty
 	{
 		[XmlAttribute(AttributeName = "id")]
 		public string id { get; set; }
 
 		[XmlElement(ElementName = "Title")]
 		public Title Title { get; set; }
-		public Inventorymovesearchproperty()
+		public InventoryMoveSearchProperty()
 		{
 			Title = new Title();
 			id = "";
@@ -997,14 +1145,14 @@ namespace Count4U.Service.Format
 
 	[Serializable()]
 	[XmlRoot(ElementName = "AddQInventoryItemsInFastWayScreen")]
-	public class Addqinventoryitemsinfastwayscreen
+	public class AddQInventoryItemsInFastWayScreen
 	{
 		[XmlElement(ElementName = "CameraBarcodeScannerEnabled")]
 		public bool CameraBarcodeScannerEnabled { get; set; }
 
 		[XmlElement(ElementName = "ScreenEnabled")]
 		public bool ScreenEnabled { get; set; }
-		public Addqinventoryitemsinfastwayscreen()
+		public AddQInventoryItemsInFastWayScreen()
 		{
 			CameraBarcodeScannerEnabled = false;
 			ScreenEnabled = false;
@@ -1013,7 +1161,7 @@ namespace Count4U.Service.Format
 
 	[Serializable()]
 	[XmlRoot(ElementName = "AddSNInventoryItemsInFastWayScreen")]
-	public class Addsninventoryitemsinfastwayscreen
+	public class AddSNInventoryItemsInFastWayScreen
 	{
 		[XmlElement(ElementName = "CameraBarcodeScannerEnabled")]
 		public bool CameraBarcodeScannerEnabled { get; set; }
@@ -1024,7 +1172,7 @@ namespace Count4U.Service.Format
 		[XmlElement(ElementName = "ScreenEnabled")]
 		public bool ScreenEnabled { get; set; }
 
-		public Addsninventoryitemsinfastwayscreen()
+		public AddSNInventoryItemsInFastWayScreen()
 		{
 			CameraBarcodeScannerEnabled = false;
 			ScreenEnabled = false;
@@ -1050,7 +1198,7 @@ namespace Count4U.Service.Format
 
 	[Serializable()]
 	[XmlRoot(ElementName = "WarehouseScreenRFID")]
-	public class Warehousescreenrfid
+	public class WarehouseScreenRFID
 	{
 		[XmlElement(ElementName = "ScreenEnabled")]
 		public bool ScreenEnabled { get; set; }
@@ -1058,7 +1206,7 @@ namespace Count4U.Service.Format
 		[XmlElement(ElementName = "WarehouseScreenRFIDConnectionBeforeOpenRequired")]
 		public bool WarehouseScreenRFIDConnectionBeforeOpenRequired { get; set; }
 
-		public Warehousescreenrfid()
+		public WarehouseScreenRFID()
 		{
 			ScreenEnabled = false;
 			WarehouseScreenRFIDConnectionBeforeOpenRequired = false;
@@ -1067,7 +1215,7 @@ namespace Count4U.Service.Format
 
 	[Serializable()]
 	[XmlRoot(ElementName = "AssertInventoryScreen")]
-	public class Assertinventoryscreen
+	public class AssertInventoryScreen
 	{
 		[XmlElement(ElementName = "InventoryWizard")]
 		public string InventoryWizard { get; set; }
@@ -1075,7 +1223,7 @@ namespace Count4U.Service.Format
 		[XmlElement(ElementName = "CameraBarcodeScannerEnabled")]
 		public bool CameraBarcodeScannerEnabled { get; set; }
 
-		public Assertinventoryscreen()
+		public AssertInventoryScreen()
 		{
 			InventoryWizard = "";
 			CameraBarcodeScannerEnabled = false;
@@ -1084,93 +1232,109 @@ namespace Count4U.Service.Format
 
 	[Serializable()]
 	[XmlRoot(ElementName = "InventoryImage")]
-	public class Inventoryimage
+	public class InventoryImage
 	{
 		[XmlElement(ElementName = "InventoryImageEnabled")]
 		public bool InventoryImageEnabled { get; set; }
 		[XmlElement(ElementName = "ImageQuality")]
-		public string ImageQuality { get; set; }
+		public int ImageQuality { get; set; }
 		[XmlElement(ElementName = "InventoryImagePropertyId")]
 		public string InventoryImagePropertyId { get; set; }
 
-		public Inventoryimage()
+		public InventoryImage()
 		{
 			InventoryImageEnabled = false;
-			ImageQuality = "";
+			ImageQuality = 80;
 			InventoryImagePropertyId = "";
 		}
 	}
 
 	[Serializable()]
 	[XmlRoot(ElementName = "PrinterSettings")]
-	public class Printersettings
+	public class PrinterSettings
 	{
 		[XmlElement(ElementName = "ZebraPrinter")]
-		public Zebraprinter ZebraPrinter { get; set; }
+		public ZebraPrinter ZebraPrinter { get; set; }
 
-		public  Printersettings	 ()
+		public  PrinterSettings	 ()
 		{
-			ZebraPrinter = new Zebraprinter();
+			ZebraPrinter = new ZebraPrinter();
 		}
 	}
 
 	[Serializable()]
 	[XmlRoot(ElementName = "ZebraPrinter")]
-	public class Zebraprinter
+	public class ZebraPrinter
 	{
 		[XmlElement(ElementName = "PrintingFormats")]
-		public Printingformats PrintingFormats { get; set; }
-		public Zebraprinter()
+		public PrintingFormats PrintingFormats { get; set; }
+		public ZebraPrinter()
 		{
-			PrintingFormats = new Printingformats();
+			PrintingFormats = new PrintingFormats();
 		}
 	}
 
 	[Serializable()]
 	[XmlRoot(ElementName = "PrintingFormats")]
-	public class Printingformats
+	public class PrintingFormats
 	{
 		[XmlElement(ElementName = "PrintingFormat")]
-		public Printingformat PrintingFormat { get; set; }
+		public List<PrintingFormat> PrintingFormat { get; set; }
 
-		public Printingformats()
+		public PrintingFormats()
 		{
-			PrintingFormat = new Printingformat();
+			PrintingFormat = new List<PrintingFormat>();
 		}
 	}
 
 	[Serializable()]
 	[XmlRoot(ElementName = "PrintingFormat")]
-	public class Printingformat
+	public class PrintingFormat
 	{
 		[XmlElement(ElementName = "Format")]
 		public string Format { get; set; }
 
-		[XmlElement(ElementName = "FieldsMapping")]
-		public Fieldsmapping FieldsMapping { get; set; }
+		[XmlElement(ElementName = "Name")]
+		public string Name { get; set; }
 
-		public Printingformat()
+		[XmlElement(ElementName = "id")]
+		public int index { get; set; }
+
+		[XmlIgnore]
+		public bool IsOpen { get; set; } = true;
+
+		public void ToggleButton()
+		{
+			IsOpen = !IsOpen;
+		}
+
+		[XmlElement(ElementName = "FieldsMapping")]
+		public FieldsMapping FieldsMapping { get; set; }
+
+		public PrintingFormat()
 		{
 			Format = "";
-			FieldsMapping = new Fieldsmapping();
+			Name = "";
+			FieldsMapping = new FieldsMapping();
+			index = 0;
 		}
 	}
 
 	[Serializable()]
 	[XmlRoot(ElementName = "FieldsMapping")]
-	public class Fieldsmapping
+	public class FieldsMapping
 	{
 		[XmlElement(ElementName = "FieldMapping")]
-		public List<Fieldmapping> FieldMapping { get; set; }
-		public Fieldsmapping()
+		public List<FieldMapping> FieldMapping { get; set; }
+		public FieldsMapping()
 		{
-			FieldMapping = new List<Fieldmapping>();
+			FieldMapping = new List<FieldMapping>();
 		}
 	}
 
 	[Serializable()]
 	[XmlRoot(ElementName = "FieldMapping")]
-	public class Fieldmapping
+	public class FieldMapping
 	{
 		[XmlAttribute(AttributeName = "name")]
 		public string name { get; set; }
@@ -1182,14 +1346,22 @@ namespace Count4U.Service.Format
 		public string inventoryPropertyId { get; set; }
 
 		[XmlAttribute(AttributeName = "reverseValue")]
-		public string reverseValue { get; set; }
+		public bool reverseValue { get; set; }
 
-		public Fieldmapping()
+		[XmlIgnore]
+		public bool IsOpen { get; set; } = true;
+
+		public void ToggleButton()
+		{
+			IsOpen = !IsOpen;
+		}
+
+		public FieldMapping()
 		{
 			name = "";
 			dateFormat = "";
 			inventoryPropertyId = "";
-			reverseValue = "";
+			reverseValue = false;
 		}
 	}
 
@@ -1201,7 +1373,7 @@ namespace Count4U.Service.Format
 		public string QCodeType { get; set; }
 
 		[XmlElement(ElementName = "RFIDCommands")]
-		public Rfidcommands RFIDCommands { get; set; }
+		public RFIDCommands RFIDCommands { get; set; }
 
 		[XmlElement(ElementName = "RFIDTagWritten")]
 		public string RFIDTagWritten { get; set; }
@@ -1212,35 +1384,35 @@ namespace Count4U.Service.Format
 		public RFID()
 		{
 			QCodeType = "";
-			RFIDCommands = new Rfidcommands();
+			RFIDCommands = new RFIDCommands();
 			RFIDTagWritten = "";
 			SNCodeType = "";
 		}
 	}
 
 	[Serializable()]
-	[XmlRoot(ElementName = "RFID")]
-	public class Rfidcommands
+	[XmlRoot(ElementName = "RFIDCommands")]
+	public class RFIDCommands
 	{
 		[XmlElement(ElementName = "RFIDCommand")]
-		public List<Rfidcommand> RFIDCommand { get; set; }
+		public List<RFIDCommand> RFIDCommand { get; set; }
 
-		public Rfidcommands()
+		public RFIDCommands()
 		{
-			RFIDCommand = new List<Rfidcommand>();
+			RFIDCommand = new List<RFIDCommand>();
 		}
 	}
 
 	[Serializable()]
 	[XmlRoot(ElementName = "RFIDCommand")]
-	public class Rfidcommand
+	public class RFIDCommand
 	{
 		[XmlAttribute(AttributeName = "command")]
 		public string command { get; set; }
 
 		[XmlAttribute(AttributeName = "type")]
 		public string type { get; set; }
-		public Rfidcommand()
+		public RFIDCommand()
 		{
 			command = "";
 			type = "";
@@ -1249,13 +1421,13 @@ namespace Count4U.Service.Format
 
 	[Serializable()]
 	[XmlRoot(ElementName = "FastStockInventoryItemsConfiguration")]
-	public class Faststockinventoryitemsconfiguration
+	public class FastStockInventoryItemsConfiguration
 	{
 		[XmlElement(ElementName = "DefaultAutomaticQuantity")]
 		public string DefaultAutomaticQuantity { get; set; }
 
 		[XmlElement(ElementName = "EditFormSettings")]
-		public Editformsettings EditFormSettings { get; set; }
+		public EditFormSettings EditFormSettings { get; set; }
 
 		[XmlAttribute(AttributeName = "AddDefaultQuantityMode")]
 		public string AddDefaultQuantityMode { get; set; }
@@ -1275,10 +1447,10 @@ namespace Count4U.Service.Format
 		[XmlAttribute(AttributeName = "CameraBarcodeScannerStockInventory")]
 		public string CameraBarcodeScannerStockInventory { get; set; }
 
-		public Faststockinventoryitemsconfiguration()
+		public FastStockInventoryItemsConfiguration()
 		{
 			DefaultAutomaticQuantity = "";
-			EditFormSettings = new Editformsettings();
+			EditFormSettings = new EditFormSettings();
 			AddDefaultQuantityMode = "";
 			InsertNotExistInCatalogItems = "";
 			InsertDetailsForNotExistInCatalogItems = "";
@@ -1290,12 +1462,12 @@ namespace Count4U.Service.Format
 
 	[Serializable()]
 	[XmlRoot(ElementName = "EditFormSettings")]
-	public class Editformsettings
+	public class EditFormSettings
 	{
 		[XmlElement(ElementName = "Field")]
 		public List<Field> Field { get; set; }
 
-		public Editformsettings()
+		public EditFormSettings()
 		{
 			Field = new List<Field>();
 		}
@@ -1327,8 +1499,48 @@ namespace Count4U.Service.Format
 			en = "";
 			reg = "";
 		}
+
+		
 	}
 
-	
+	public class UidKey
+	{
+		public string Key { get; set; }
+		public string Value { get; set; }
+		public bool IsOpen { get; set; } = true;
+		public UidKey()
+		{
+			Key = "";
+			Value = "";
+		}
+		public void ToggleButton()
+		{
+			IsOpen = !IsOpen;
+		}
+
+	}
+
+	public static class ValidationCBI
+	{
+		public static void RefreshCBIFromProfileXml(this Count4U.Service.Format.Profile objectProfile, ProfileFile profileFileXml)
+		{
+			try
+			{
+				//Count4U.Service.Format.Profile profileDomainObject =
+				//			   DeserializeXML.DeserializeXMLTextToObject<Count4U.Service.Format.Profile>(this.ProfileXml);
+				objectProfile.InventoryProcessInformation.Customer.code = profileFileXml.CustomerCode != null ? profileFileXml.CustomerCode : "";
+				objectProfile.InventoryProcessInformation.Customer.name = profileFileXml.CustomerName != null ? profileFileXml.CustomerName : "";
+				objectProfile.InventoryProcessInformation.Branch.code = profileFileXml.BranchCode != null ? profileFileXml.BranchCode : "";
+				objectProfile.InventoryProcessInformation.Branch.name = profileFileXml.BranchName != null ? profileFileXml.BranchName : "";
+				objectProfile.InventoryProcessInformation.Inventory.code = profileFileXml.InventorCode != null ? profileFileXml.InventorCode : "";
+				objectProfile.InventoryProcessInformation.Inventory.created_date = profileFileXml.InventorName != null ? profileFileXml.InventorName : "";
+			}
+			catch (Exception exp)
+			{
+				Console.WriteLine("RefreshCBIFromProfileXml ERROR :" + exp.Message + exp.InnerException);
+			}
+		}
+	}
 
 }
+

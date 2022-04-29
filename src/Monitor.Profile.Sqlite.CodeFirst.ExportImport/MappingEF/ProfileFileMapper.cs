@@ -26,7 +26,7 @@ namespace Monitor.Sqlite.CodeFirst.MappingEF
 
 			return new Monitor.Service.Model.ProfileFile()
 			{
-				ID = entity.ID,
+		//		ID = entity.ID,
 				ProfileFileUID = entity.ProfileFileUID != null ? entity.ProfileFileUID : "",
 				Code = entity.Code != null ? entity.Code : "",
 				Name = name,
@@ -77,7 +77,7 @@ namespace Monitor.Sqlite.CodeFirst.MappingEF
 			}
 			return new Monitor.Service.Model.ProfileFile()
 			{
-				ID = entity.ID,
+		//		ID = entity.ID,
 				ProfileFileUID = entity.ProfileFileUID != null ? entity.ProfileFileUID : "",
 				Code = entity.Code != null ? entity.Code : "",
 				Name = name,
@@ -156,7 +156,7 @@ namespace Monitor.Sqlite.CodeFirst.MappingEF
 			}
 			return new Monitor.Sqlite.CodeFirst.ProfileFile()
 			{
-				ID = domainObject.ID,
+			//	ID = domainObject.ID,
 				ProfileFileUID = domainObject.ProfileFileUID != null ? domainObject.ProfileFileUID : "",
 				Code = domainObject.Code != null ? domainObject.Code : "",
 				Name = name,
@@ -193,20 +193,20 @@ namespace Monitor.Sqlite.CodeFirst.MappingEF
 				return;
 			string email = "";
 			string name = "";
-			if (entity.DomainObject == "Customer")
+			if (domainObject.DomainObject == "Customer")
 			{
-				email = entity.Code + @"@customer.com";
-				name = entity.CustomerName;
+				email = domainObject.Code + @"@customer.com";
+				name = domainObject.CustomerName;
 			}
-			else if (entity.DomainObject == "Branch")
+			else if (domainObject.DomainObject == "Branch")
 			{
-				name = entity.BranchName;
+				name = domainObject.BranchName;
 			}
-			else if (entity.DomainObject == "Inventor")
+			else if (domainObject.DomainObject == "Inventor")
 			{
-				name = entity.InventorName;
+				name = domainObject.InventorName;
 			}
-			entity.ID = domainObject.ID;
+		//	entity.ID = domainObject.ID;
 			entity.ProfileFileUID = domainObject.ProfileFileUID != null ? domainObject.ProfileFileUID : "";
 			entity.Code = domainObject.Code != null ? domainObject.Code : "";
 			entity.Name = name;

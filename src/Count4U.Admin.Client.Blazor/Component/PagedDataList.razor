@@ -52,6 +52,8 @@
                     </div>
                 }
             </div>
+            @if (ShowItemsPerPage == true)
+            {
             <div class="width_group">
                 <div class="col"></div>
                 <div class="form-row px-3">
@@ -67,10 +69,12 @@
                             <option value="15" selected="@(ItemsPerPage == 15)">15</option>
                             <option value="25" selected="@(ItemsPerPage == 25)">25</option>
                             <option value="50" selected="@(ItemsPerPage == 50)">50</option>
+                            <option value="100" selected="@(ItemsPerPage == 100)">100</option>
                         </select>
                     </div>
                 </div>
             </div>
+            }
         </div>
     </div>
 
@@ -78,58 +82,61 @@
     @code
 {
 
-        [Parameter]
-        public string Prev { get; set; }
+    [Parameter]
+    public string Prev { get; set; }
 
-        [Parameter]
-        public string Next { get; set; }
+    [Parameter]
+    public string Next { get; set; }
 
-        [Parameter]
-        public int Page { get; set; }
+    [Parameter]
+    public int Page { get; set; }
 
-        [Parameter]
-        public EventCallback<int> PageChanged { get; set; }
+    [Parameter]
+    public EventCallback<int> PageChanged { get; set; }
 
-        [Parameter]
-        public int ItemsPerPage { get; set; }
+    [Parameter]
+    public int ItemsPerPage { get; set; }
 
-        [Parameter]
-        public IEnumerable<TItem> Data { get; set; }
+    [Parameter]
+    public bool ShowItemsPerPage { get; set; } = true;
 
-        [Parameter]
-        public RenderFragment<TItem> ItemTemplate { get; set; }
+    [Parameter]
+    public IEnumerable<TItem> Data { get; set; }
 
-        [Parameter]
-        public RenderFragment<RenderFragment> ListTemplate { get; set; }
+    [Parameter]
+    public RenderFragment<TItem> ItemTemplate { get; set; }
 
-        public bool CanGoToPreviousPage => Page > 0;
-        public bool CanGoToNextPage => Page < LastPageIndex;
+    [Parameter]
+    public RenderFragment<RenderFragment> ListTemplate { get; set; }
 
-        private IEnumerable<TItem> CheckedData => Data ?? Array.Empty<TItem>();
-        private int LastPageIndex => CheckedData.Count() / ItemsPerPage;
+    public bool CanGoToPreviousPage => Page > 0;
+    public bool CanGoToNextPage => Page < LastPageIndex;
 
-        private IEnumerable<TItem> CurrentPage =>
-            CheckedData.Skip(Page * ItemsPerPage).Take(ItemsPerPage);
+    private IEnumerable<TItem> CheckedData => Data ?? Array.Empty<TItem>();
+    private int LastPageIndex => CheckedData.Count() / ItemsPerPage;
 
-        protected override void OnParametersSet()
+    private IEnumerable<TItem> CurrentPage =>
+        CheckedData.Skip(Page * ItemsPerPage).Take(ItemsPerPage);
+
+    protected override void OnParametersSet()
+    {
+        if (string.IsNullOrWhiteSpace(Prev) == true)
+            Prev = "Prev";
+        if (string.IsNullOrWhiteSpace(Next) == true)
+            Next = "Next";
+
+        if (ItemsPerPage < 1)
+            ItemsPerPage = 5;
+
+        if (Page < 0)
+            Page = 0;
+
+        if (Page > LastPageIndex)
+            Page = LastPageIndex;
+
+        if (ItemTemplate == null)
         {
-            if (string.IsNullOrWhiteSpace(Prev) == true)
-                Prev = "Prev";
-            if (string.IsNullOrWhiteSpace(Next) == true)
-                Next = "Next";
-
-            if (ItemsPerPage < 1)
-                ItemsPerPage = 5;
-
-            if (Page < 0)
-                Page = 0;
-
-            if (Page > LastPageIndex)
-                Page = LastPageIndex;
-
-            if (ItemTemplate == null)
-            {
-                ItemTemplate = (item) =>@:@{
+            ItemTemplate = (item) =>@:@{
             <li @key=item>@item.ToString()</li>}
                 ;
             }

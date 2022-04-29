@@ -11,7 +11,7 @@ namespace Monitor.Model.ServiceContract.Interface
 		Monitor.Service.Model.ProfileFiles GetTestDataProfileFiles();
 		Monitor.Service.Model.ProfileFiles GetProfileFiles(SelectParams selectParams);
 		Monitor.Service.Model.ProfileFile GetProfileFile(string profileFileUID);
-		string InsertOrUpdate(Monitor.Service.Model.ProfileFile profileFile);
+		string InsertOrUpdateByCode(Monitor.Service.Model.ProfileFile profileFile);
 
 		Monitor.Service.Model.ProfileFiles GetCustomersProfileFiles();
 
@@ -48,6 +48,9 @@ namespace Monitor.Model.ServiceContract.Interface
 		Task InsertBranchsBySubFolderList(string customerCode, List<string> branchCodes);
 		Task InsertInventoriesBySubFolderList(string customerCode, string branchCode, List<string> inventorCodes);
 		Monitor.Service.Model.ProfileFile InsertInventoriesByCBI(Monitor.Service.Model.ProfileFile profileFileModel);
+
+		Monitor.Service.Model.ProfileFile UpdateOrInsertObjectFromFtpToDb(Monitor.Service.Model.ProfileFile profileFileModel);
+
 		Task Update(Monitor.Service.Model.ProfileFile profileFile);
 	}
 }

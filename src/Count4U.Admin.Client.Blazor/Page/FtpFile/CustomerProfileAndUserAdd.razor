@@ -34,9 +34,9 @@ else
             &nbsp;<span class="oi oi-pencil text-white" aria-hidden="true"></span> &nbsp;
         </div>
     </div>
-    <div class="row">
+    <div class="row pr-3">     
 
-        <div class="col-10">
+        <div class="col-10 profile-menu-border" >
             <div class="card" style="border:none">
                 <div class="card-body" style="border:none">
                     @*<h4>@LocalizationResources.Register_User</h4>*@
@@ -52,7 +52,7 @@ else
                         <div class="form-group row">
                             <label class="col-form-label col-sm-3 px-0" for="customerCode">@LocalizationResources.Property_Inventor_CustomerCode&nbsp;</label>
                             <div class="col-sm-6 px-0">
-                                @if (IsSubmit == false)
+                      @*          @if (IsSubmit == false)
                                 {
                                     <InputTextOnInput id="customerCode" class="form-control"
                                                       @bind-Value="@_profileAndUserModel.RegisterModel.CustomerCodeNew"
@@ -60,11 +60,12 @@ else
                                     <ValidationMessage For="@(() => _profileAndUserModel.RegisterModel.CustomerCode)" />
                                 }
                                 else
-                                {
-                                    <InputTextOnInput id="customerCodereadonly" readonly class="form-control"
+                                {*@
+                                    <InputTextOnInput id="customerCodereadonly" readonly=@IsSubmit class="form-control"
                                                       @bind-Value="@_profileAndUserModel.RegisterModel.CustomerCodeNew"
                                                       placeholder=@LocalizationResources.Register_customer_code_from_Count4U />
-                                }
+                                    <ValidationMessage For="@(() => _profileAndUserModel.RegisterModel.CustomerCode)" />
+                               @* }*@
                             </div>
                         </div>
 
@@ -72,7 +73,7 @@ else
                         <div class="form-group  row">
                             <label class="col-form-label col-sm-3 px-0" for="email">@LocalizationResources.Register_Email_address&nbsp;</label>
                             <div class="col-sm-6 px-0">
-                                <InputText id="email" readonly class="form-control" @bind-Value="@_profileAndUserModel.RegisterModel.Email" dissable
+                                <InputText id="email" readonly  class="form-control" @bind-Value="@_profileAndUserModel.RegisterModel.Email" dissable
                                            placeholder="@LocalizationResources.Register_Email_will_be_use_as_login_for_your_account" />
                                 <ValidationMessage For="@(() => _profileAndUserModel.RegisterModel.Email)" />
                             </div>
@@ -100,16 +101,16 @@ else
                             <div class="form-group row">
                                 <label class="col-form-label col-sm-3 px-0" for="customerName">@LocalizationResources.Property_Inventor_CustomerName</label>
                                 <div class="col-sm-6 px-0">
-                                    @if (IsSubmit == false)
+                                 @*   @if (IsSubmit == false)
                                     {
                                         <InputText id="customerName" class="form-control" @bind-Value="@_profileAndUserModel.ProfileFile.CustomerName"
                                                    placeholder=@LocalizationResources.Register_customer_name_for_web />
                                     }
                                     else
-                                    {
-                                        <InputText id="customerNamereadonly" readonly class="form-control" @bind-Value="@_profileAndUserModel.ProfileFile.CustomerName"
+                                    {*@
+                                        <InputText id="customerNamereadonly" readonly=@IsSubmit class="form-control" @bind-Value="@_profileAndUserModel.ProfileFile.CustomerName"
                                                    placeholder=@LocalizationResources.Register_customer_name_for_web />
-                                    }
+                                    @*}*@
                                     @* <ValidationMessage For="@(() => _profileAndUserModel.ProfileFile.CustomerName)" />*@
                                 </div>
                             </div>
@@ -117,14 +118,14 @@ else
                             <div class="form-group row">
                                 <label class="col-form-label col-sm-3 px-0" for="description">@LocalizationResources.Property_Inventor_Description</label>
                                 <div class="col-sm-6 px-0">
-                                    @if (IsSubmit == false)
+                               @*     @if (IsSubmit == false)
                                     {
                                         <InputText id="description" class="form-control" @bind-Value="@_profileAndUserModel.ProfileFile.CustomerDescription" />
                                     }
                                     else
-                                    {
-                                        <InputText id="descriptionreadonly" readonly class="form-control" @bind-Value="@_profileAndUserModel.ProfileFile.CustomerDescription" />
-                                    }
+                                    {*@
+                                        <InputText id="descriptionreadonly" readonly=@IsSubmit class="form-control" @bind-Value="@_profileAndUserModel.ProfileFile.CustomerDescription" />
+                                  @*  }*@
                                 </div>
                             </div>
 
@@ -140,12 +141,10 @@ else
                             <div class="col-sm-9 px-0">
                                 <InputRadioGroup @bind-Value="_profileAndUserModel.RegisterModel.InheritProfile">
 
-
-                                    @if (_profileAndUserModel.RegisterModel.CustomerExist == false)
-                                        {
                                         <div class="row  mt-sm-2">
                                             <div class="col-sm-4  pl-4 ml-sm-2">
-                                                <InputRadio class="form-check-input" id="profile-default" Value="@InheritProfileString.Default" />
+                                                <InputRadio class="form-check-input" id="profile-default"  disabled="@_profileAndUserModel.RegisterModel.CustomerExist"  
+                                                            Value="@InheritProfileString.Default" />
                                                 &nbsp; <label class="form-check-label" for="profile-default">Default</label>
                                             </div>
                                             <div col-sm-5>
@@ -157,7 +156,8 @@ else
                                         </div>
                                         <div class="row">
                                             <div class="col-sm-4  pl-4 ml-sm-2">
-                                                <InputRadio class="form-check-input" id="profile-fromfile" Value="@InheritProfileString.File" />
+                                                <InputRadio class="form-check-input" id="profile-fromfile" disabled="@_profileAndUserModel.RegisterModel.CustomerExist" 
+                                                            Value="@InheritProfileString.File" />
                                                 &nbsp; <label class="form-check-label" for="profile-fromfile">File</label>
                                             </div>
                                             @if (_profileAndUserModel.RegisterModel.InheritProfile == @InheritProfileString.File)
@@ -185,7 +185,8 @@ else
                                         </div>
                                         <div class="row">
                                             <div class="col-sm-4 pl-4 ml-sm-2">
-                                                <InputRadio class="form-check-input" id="profile-fromcustomer" Value="@InheritProfileString.Customer" />
+                                                <InputRadio class="form-check-input" id="profile-fromcustomer" disabled="@_profileAndUserModel.RegisterModel.CustomerExist" 
+                                                            Value="@InheritProfileString.Customer" />
                                                 &nbsp; <label class="form-check-label" for="profile-fromcustomer">Customer</label>
                                             </div>
                                             @if (_profileAndUserModel.RegisterModel.InheritProfile == @InheritProfileString.Customer)
@@ -220,22 +221,8 @@ else
                                                 <span>&nbsp;</span>
                                             </div>
                                         </div>
-                                         }
-					                    else { 
-                                            <div class="row mt-sm-2">
-                                                <div class="col-sm-4 pl-4 ml-sm-2">
-                                                    <InputRadio class="form-check-input" id="profile-exist2" Value="@InheritProfileString.Exist" />
-                                                    &nbsp; <label class="form-check-label" for="profile-exist2">Exist</label>
-                                                </div>
-                                                <div col-sm-5>
-                                                    <button class="btn btn-outline-success btn-sm" style="visibility: hidden;" type="button">Exist</button> &nbsp; &nbsp;
-                                                    <span>&nbsp;</span>
-                                                </div>
-                                                
-                                                @*<div class="col">  </div>*@
-                                            </div>
-                                    }
-                                    </InputRadioGroup>
+                                  
+                                </InputRadioGroup>
                             </div>
                         </div>
 
@@ -244,75 +231,72 @@ else
 
                         @if (this._profileAndUserResult != null)
                         {
-                            @if (this._profileAndUserResult.RegisterResult == null)
-                            {
+                            @*@if (this._profileAndUserResult.RegisterResult == null)
+                            {*@
 
-                    <div class="col-sm-9 px-0">
-                        <div class="d-flex flex-row-reverse">
-                            <button @onclick="ToCustomers" class="btn btn-danger btn-sm search" data-toggle="tooltip" data-placement="bottom"><i class="oi oi-x text-white"></i>&nbsp; &nbsp; &nbsp;Cancel&nbsp;&nbsp;&nbsp;</button>&nbsp; &nbsp;
+                    <div class="row pt-5">
+                        @*<div class="d-flex flex-row-reverse">*@
+                        <div class="form-group  pt-2">
+
+                                        <button @onclick="ToCustomers" class="btn btn-outline-dark btn-sm search" disabled="@IsSubmit">
+                                    <i class="oi oi-x outline-dark"></i>&nbsp; &nbsp; &nbsp;Cancel&nbsp;&nbsp;&nbsp;
+                                </button>
 
                             @if (IsSubmit)
                             {
-                                <button class="btn btn-success btn-sm  search disabled" disabled><span class="fa fa-spinner fa-spin fa-lg fa-fw"></span>Waiting ...</button>
+                                <button class="btn btn-success btn-sm  search disabled mx-2" disabled><span class="fa fa-spinner fa-spin fa-lg fa-fw"></span>Waiting ...</button>
                             }
                             else
                             {
-                                <button type="submit" class="btn btn-success btn-sm search" data-toggle="tooltip" data-placement="bottom"><i class="oi oi-pencil text-white"></i>&nbsp; &nbsp; &nbsp;&nbsp;Save&nbsp;&nbsp;&nbsp;&nbsp;</button>
+                                 <button type="submit" class="btn btn-success btn-sm search mx-2"><i class="oi oi-pencil text-white"></i>&nbsp; &nbsp; &nbsp;&nbsp;Save&nbsp;&nbsp;&nbsp;&nbsp;</button>
                                 @*<button type="submit" class="btn btn-success btn-sm search"  data-toggle="tooltip" data-placement="bottom">Submit</button>*@
                             }
                         </div>
-                        </div>
-                        }
-                        else
-                        {
+                        <div class="col-md-6">
+                            @*////User*@
+                            @if (this._profileAndUserResult.RegisterResult != null)
+                            {
+                                <OperationResaltComponent Successful="@this._profileAndUserResult.RegisterResult.Successful"
+                                                          Error="@this._profileAndUserResult.RegisterResult.Error" Operation="Create User">
 
+                                </OperationResaltComponent>
 
-                        <button type="submit" class="btn btn btn-success" style="visibility: hidden;">Save</button>
-
-                        @if (this._profileAndUserResult.RegisterResult.Successful == SuccessfulEnum.Successful)
-                        {
-                            <div class="alert alert-success col-sm-9" role="alert">
-                                <p>@LocalizationResources.Register_Registered_Successfuly</p>
-                            </div>
-                        }
-
-                        @if (this._profileAndUserResult.RegisterResult.Successful == SuccessfulEnum.NotSuccessful)
-                        {
-                            <div class="alert alert-danger col-sm-9" role="alert">
-                                <p>@LocalizationResources.Register_Cant_register</p>
-                                <p>@this._profileAndUserResult.RegisterResult.Error</p>
-                            </div>
-                        }
-                        }
-                        }
-
-                        @if (this._profileAndUserModel != null)
-                        {
+                            }
+                            @*//Customer*@
                             @if (this._profileAndUserModel.ProfileFile != null)
                             {
-                                @if (this._profileAndUserModel.ProfileFile.Successful == SuccessfulEnum.Successful)
+                                @if (this._profileAndUserModel.ProfileFile.Successful != SuccessfulEnum.NotStart)
                                 {
-                                    <div class="alert alert-success col-sm-9" role="alert">
-                                        <p>Save on ftp successfuly</p>
-                                    </div>
-                                }
+                                    <OperationResaltComponent Successful="@this._profileAndUserModel.ProfileFile.Successful"
+                                                              Error="@this._profileAndUserModel.ProfileFile.Error" Operation="Copy Inherited Profile">
 
-                                @if (this._profileAndUserModel.ProfileFile.Successful == SuccessfulEnum.NotSuccessful)
-                                {
-                                    <div class="alert alert-danger col-sm-9" role="alert">
-                                        <p>Save on ftp not successfuly</p>
-                                        <p>@this._profileAndUserModel.ProfileFile.Error</p>
-                                    </div>
+                                    </OperationResaltComponent>
                                 }
                             }
+
+                            @if (_profileFileService.RunUpdateFtpAndDbProfiles != null)
+                            {
+                                @foreach (var command in _profileFileService.RunUpdateFtpAndDbProfiles)
+                                {
+                                    <OperationResaltComponent Successful="@command.Successful"
+                                                              Error="@command.Error" Operation="@command.Step.GetDisplayDescription()">
+
+                                    </OperationResaltComponent>
+
+                                }
+                            }
+                       </div>
+                        </div>
                         }
-                        @*<InputFile OnChange="OnInputFileChange" @ref="refInputFile" class="btn btn-outline-success  btn-sm col-3" />*@
+
 </EditForm>
                 </div>
 
             </div>
         </div>
-        <div class="col-2 p-1">
+
+
+        <div class="col-2 profile-menu-background">
             @if (IsSubmit)
             {
                 <MenuCustomerAddDissable></MenuCustomerAddDissable>
@@ -321,22 +305,23 @@ else
             {
                 @if (this._profileAndUserModel != null)
                 {
-                    @if (this._profileAndUserResult.RegisterResult != null)
+                    @if (this._profileAndUserModel.RegisterModel != null && this._profileAndUserModel.ProfileFile != null)
                     {
-                        @if (this._profileAndUserModel.ProfileFile.Successful == SuccessfulEnum.Successful)
-                        {
-                            <MenuCustomerAdded customerCode=@_profileAndUserModel.RegisterModel.CustomerCode
-                                               email=@_profileAndUserModel.RegisterModel.Email></MenuCustomerAdded>
+                            @if (this._profileAndUserModel.ProfileFile.Successful == SuccessfulEnum.Successful)
+                            {
+                                <MenuCustomerAdded customerCode=@_profileAndUserModel.RegisterModel.CustomerCode
+                                                   email=@_profileAndUserModel.RegisterModel.Email></MenuCustomerAdded>
+                            }
+                            else
+                            {
+                                <MenuCustomerAdd></MenuCustomerAdd>
+                            }
                         }
                         else
                         {
                             <MenuCustomerAdd></MenuCustomerAdd>
                         }
-                    }
-                    else
-                    {
-                        <MenuCustomerAdd></MenuCustomerAdd>
-                    }
+                    
                 }
             }
 

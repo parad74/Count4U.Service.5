@@ -1,0 +1,91 @@
+﻿<div class="form-group" style="margin-left: -15px;">
+    <div class="medium-label pb-3">Location inventory list screen configuration</div>
+    <div class="row">
+        <div class="col">
+            <div class="medium-label pb-3">Add new item into inventory</div>
+            @if (_profileDomainObject.LocationInventoryListScreenConfiguration != null)
+            {
+            <label class="switch">
+                <InputCheckbox class="checkbox" disabled="@_isSubmit" @bind-Value="_profileDomainObject.LocationInventoryListScreenConfiguration.AddNewInventoryEnabled" id="assetMode" />
+                <span class="slider round"></span>
+            </label>
+            @if (_profileDomainObject.LocationInventoryListScreenConfiguration.AddNewInventoryEnabled)
+            {
+                <span class="p-2">Enabled</span>
+            }
+            else
+            {
+                <span class="p-2">Disabled</span>
+            }
+            }
+
+
+        </div>
+        <div class="col">
+            <div class="medium-label pb-3">Template inventories</div>
+            <label class="switch">
+                <InputCheckbox class="checkbox" disabled="@_isSubmit" @bind-Value="_profileDomainObject.LocationInventoryListScreenConfiguration.TemplateInventoriesEnabled" id="stockmode" />
+                <span class="slider round"></span>
+            </label>
+
+            @if (_profileDomainObject.LocationInventoryListScreenConfiguration.TemplateInventoriesEnabled)
+            {
+                <span class="p-2">Enabled</span>
+            }
+            else
+            {
+                <span class="p-2">Disabled</span>
+            }
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col">
+            <div class="medium-label pb-3">Signature for location closing verification</div>
+
+            <label class="switch">
+                <InputCheckbox class="checkbox" disabled="@_isSubmit" @bind-Value="_profileDomainObject.LocationInventoryListScreenConfiguration.SignatureToVerifyClosureOfLocationRequired" id="signature" />
+                <span class="slider round"></span>
+            </label>
+            @if (_profileDomainObject.LocationInventoryListScreenConfiguration.SignatureToVerifyClosureOfLocationRequired)
+            {
+                <span class="p-2">Enabled</span>
+            }
+            else
+            {
+                <span class="p-2">Disabled</span>
+            }
+
+
+        </div>
+        <div class="col">
+            <div class="medium-label pb-3">Create new item in offline mode</div>
+            <label class="switch">
+                <InputCheckbox class="checkbox" disabled="@_isSubmit" @bind-Value="_profileDomainObject.LocationInventoryListScreenConfiguration.AddNewInventoryOfflineEnabled" id="create" />
+                <span class="slider round"></span>
+            </label>
+
+            @if (_profileDomainObject.LocationInventoryListScreenConfiguration.AddNewInventoryOfflineEnabled)
+            {
+                <span class="p-2">Enabled</span>
+            }
+            else
+            {
+                <span class="p-2">Disabled</span>
+            }
+        </div>
+    </div>
+</div>
+
+@code
+{
+    [Parameter]
+    public bool _isSubmit { get; set; }
+
+    [Parameter]
+    public Count4U.Service.Format.Profile _profileDomainObject { get; set; }
+
+    public enum ScannerTypeEnum { RFID, Barcode }
+
+
+}

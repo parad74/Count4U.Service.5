@@ -1,0 +1,335 @@
+﻿@using Monitor.Service.Shared;
+<style type="text/css">
+    .fa_custom {
+        color: #0b960f;
+        font-size: 16px;
+        font-weight: 500;
+        line-height: 20px;
+        letter-spacing: 0.15px;
+    }
+
+    .fa_custom_background {
+        background-color: #bfd0c0
+    }
+
+
+    .fa_custom_white {
+        color: #ffffff
+    }
+
+    .custom_table {
+        width: 100%;
+        table-layout: fixed;
+        overflow-wrap: break-word;
+    }
+
+    .select_border_color {
+        /*          border: 1px solid #0b960f;*/
+        border-radius: .1rem;
+    }
+
+    .upbutton {
+        background: transparent;
+        border: none;
+        font-size: 14px;
+        font-weight: 500;
+        line-height: 20px;
+        letter-spacing: 0.15px;
+        color: #727375;
+        /*        margin-bottom: 6px;
+        margin-top: 6px;*/
+    }
+</style>
+
+<div class="form-group" style="margin-left: -15px;">
+    <div class="medium-label pb-3">Additional screens configuration</div>
+
+    <div class="row">
+        <div class="col">
+            <div class="medium-label py-3">Add new location</div>
+            <label class="switch">
+                <InputCheckbox class="checkbox" disabled="@_isSubmit"
+                               @bind-Value="_profileDomainObject.ScreensConfiguration.AddNewLocationScreen.ScreenEnabled" id="addnewlocation" />
+                <span class="slider round"></span>
+            </label>
+            @if (_profileDomainObject.ScreensConfiguration.AddNewLocationScreen.ScreenEnabled)
+            {
+                <span class="p-2">Enabled</span>
+            }
+            else
+            {
+                <span class="p-2">Disabled</span>
+            }
+
+
+        </div>
+        <div class="col">
+            <div class="medium-label py-3">Create new location in offline mode</div>
+            <label class="switch">
+                <InputCheckbox class="checkbox" disabled="@_isSubmit"
+                               @bind-Value="_profileDomainObject.ScreensConfiguration.AddNewLocationScreen.ScreenEnabledOffline" id="offline" />
+                <span class="slider round"></span>
+            </label>
+
+            @if (_profileDomainObject.ScreensConfiguration.AddNewLocationScreen.ScreenEnabledOffline)
+            {
+                <span class="p-2">Enabled</span>
+            }
+            else
+            {
+                <span class="p-2">Disabled</span>
+            }
+        </div>
+    </div>
+    <div class="line-border row"></div>
+
+    <div class="row">
+        <div class="col">
+            <div class="medium-label py-3">Item code summary</div>
+            <label class="switch">
+                <InputCheckbox class="checkbox" disabled="@_isSubmit"
+                               @bind-Value="_profileDomainObject.ScreensConfiguration.ItemCodeSummaryScreen.ScreenEnabled" id="summery" />
+                <span class="slider round"></span>
+            </label>
+            @if (_profileDomainObject.ScreensConfiguration.ItemCodeSummaryScreen.ScreenEnabled)
+            {
+                <span class="p-2">Enabled</span>
+            }
+            else
+            {
+                <span class="p-2">Disabled</span>
+            }
+
+        </div>
+    </div>
+    <div class="line-border row"></div>
+
+    <div class="row">
+        <div class="col">
+            <div class="medium-label py-3">Move inventory items</div>
+            <label class="switch">
+                <InputCheckbox class="checkbox" disabled="@_isSubmit"
+                               @bind-Value="_profileDomainObject.ScreensConfiguration.MoveInventoriesScreen.ScreenEnabled" id="move" />
+                <span class="slider round"></span>
+            </label>
+            @if (_profileDomainObject.ScreensConfiguration.MoveInventoriesScreen.ScreenEnabled)
+            {
+                <span class="p-2">Enabled</span>
+            }
+            else
+            {
+                <span class="p-2">Disabled</span>
+            }
+
+        </div>
+    </div>
+    <div class="line-border row"></div>
+
+    <div class="row">
+        <div class="col">
+            <div class="medium-label py-3">Search by property</div>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="row">
+            <div class="col">
+                <div class="medium-label p-2">English title</div>
+                <div class="p-2" style="width:200px">
+                    <input class="form-control form-control-sm" disabled="@_isSubmit" 
+                           @bind="_profileDomainObject.ScreensConfiguration.MoveInventoriesScreen.InventoryMoveSearchProperty.Title.en" />
+                </div>
+            </div>
+            <div class="col">
+                <div class="medium-label p-2">Hebrew title (optional)</div>
+                <div class="p-2" style="width: 200px; text-align: right; direction: rtl;">
+                    <input class="form-control form-control-sm" disabled="@_isSubmit"
+                           @bind="_profileDomainObject.ScreensConfiguration.MoveInventoriesScreen.InventoryMoveSearchProperty.Title.he" />
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col">
+                <div class="medium-label p-2">Property (key for field)</div>
+                <div class="p-2" style="width: 200px">
+                    <select class="form-control form-control-sm select_border_color" disabled="@_isSubmit" 
+                            @bind="@_profileDomainObject.ScreensConfiguration.MoveInventoriesScreen.InventoryMoveSearchProperty.id">
+                        @foreach (var url in _fieldList)
+                        {
+                            <option value=@url.Key>@url.Value</option>
+                        }
+                    </select>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+
+    <div class="line-border row"></div>
+    <div class="row">
+        <div class="col">
+            <div class="medium-label py-3">
+                Fast SN Inventory Items Adding
+            </div>
+            <label class="switch">
+                <InputCheckbox class="checkbox" disabled="@_isSubmit" 
+                               @bind-Value="_profileDomainObject.ScreensConfiguration.AddSNInventoryItemsInFastWayScreen.ScreenEnabled" id="fastwayscreen" />
+                <span class="slider round"></span>
+            </label>
+            @if (_profileDomainObject.ScreensConfiguration.AddSNInventoryItemsInFastWayScreen.ScreenEnabled)
+            {
+                <span class="p-2">Enabled</span>
+            }
+            else
+            {
+                <span class="p-2">Disabled</span>
+            }
+
+
+        </div>
+        <div class="col">
+            <div class="medium-label py-3">
+                Camera barcode scanner
+            </div>
+            <label class="switch">
+                <InputCheckbox class="checkbox" disabled="@_isSubmit" 
+                               @bind-Value="_profileDomainObject.Search.SearchInCatalogScreenConfiguration.CameraBarcodeScannerEnabled" id="camerabarcodescanner" />
+                <span class="slider round"></span>
+            </label>
+
+            @if (_profileDomainObject.ScreensConfiguration.AddSNInventoryItemsInFastWayScreen.CameraBarcodeScannerEnabled)
+            {
+                <span class="p-2">Enabled</span>
+            }
+            else
+            {
+                <span class="p-2">Disabled</span>
+            }
+        </div>
+    </div>
+
+    <div class="medium-label py-3">
+        Default values
+    </div>
+    <div class="form-group">
+        <div class="row">
+            <div class="col">
+                <div class="medium-label p-2">Item code</div>
+                <div class="p-2" style="width:200px">
+                    <input class="form-control form-control-sm" disabled="@_isSubmit" 
+                           @bind="_profileDomainObject.ScreensConfiguration.AddSNInventoryItemsInFastWayScreen.DefaultValues.DefaultItemCode" />
+                </div>
+            </div>
+            <div class="col">
+                <div class="medium-label p-2">Quantity (only number ≥ 1)</div>
+                <div class="p-2" style="width: 200px; text-align: right; direction: rtl;">
+                    <input class="form-control form-control-sm" disabled="@_isSubmit" 
+                           @bind="_profileDomainObject.ScreensConfiguration.AddSNInventoryItemsInFastWayScreen.DefaultValues.DefaultQuantity" />
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="line-border row"></div>
+    <div class="row">
+        <div class="col">
+            <div class="medium-label py-3">
+                Fast Quantity Inventory Items Adding
+            </div>
+            <label class="switch">
+                <InputCheckbox class="checkbox" disabled="@_isSubmit" 
+                               @bind-Value="_profileDomainObject.ScreensConfiguration.AddQInventoryItemsInFastWayScreen.ScreenEnabled" id="fastq" />
+                <span class="slider round"></span>
+            </label>
+            @if (_profileDomainObject.ScreensConfiguration.AddQInventoryItemsInFastWayScreen.ScreenEnabled)
+            {
+                <span class="p-2">Enabled</span>
+            }
+            else
+            {
+                <span class="p-2">Disabled</span>
+            }
+
+
+        </div>
+        <div class="col">
+            <div class="medium-label py-3">
+                Camera barcode scanner
+            </div>
+            <label class="switch">
+                <InputCheckbox class="checkbox" disabled="@_isSubmit" 
+                               @bind-Value="_profileDomainObject.ScreensConfiguration.AddQInventoryItemsInFastWayScreen.CameraBarcodeScannerEnabled" id="create" />
+                <span class="slider round"></span>
+            </label>
+
+            @if (_profileDomainObject.ScreensConfiguration.AddQInventoryItemsInFastWayScreen.CameraBarcodeScannerEnabled)
+            {
+                <span class="p-2">Enabled</span>
+            }
+            else
+            {
+                <span class="p-2">Disabled</span>
+            }
+        </div>
+    </div>
+
+    <div class="line-border row"></div>
+    <div class="row">
+        <div class="col">
+            <div class="medium-label py-3">
+                Inventory Wizard ??? TEST Data
+            </div>
+            <label class="switch">
+                <InputCheckbox class="checkbox" disabled="@_isSubmit"
+                               @bind-Value="_profileDomainObject.ScreensConfiguration.WarehouseScreenRFID.ScreenEnabled" id="wizard" />
+                <span class="slider round"></span>
+            </label>
+            @if (_profileDomainObject.ScreensConfiguration.WarehouseScreenRFID.ScreenEnabled)
+            {
+                <span class="p-2">Enabled</span>
+            }
+            else
+            {
+                <span class="p-2">Disabled</span>
+            }
+
+
+        </div>
+        <div class="col">
+            <div class="medium-label py-3">
+                Camera barcode scanner
+            </div>
+            <label class="switch">
+                <InputCheckbox class="checkbox" disabled="@_isSubmit" 
+                               @bind-Value="_profileDomainObject.ScreensConfiguration.WarehouseScreenRFID.WarehouseScreenRFIDConnectionBeforeOpenRequired" id="create" />
+                <span class="slider round"></span>
+            </label>
+
+            @if (_profileDomainObject.ScreensConfiguration.WarehouseScreenRFID.WarehouseScreenRFIDConnectionBeforeOpenRequired)
+            {
+                <span class="p-2">Enabled</span>
+            }
+            else
+            {
+                <span class="p-2">Disabled</span>
+            }
+        </div>
+    </div>
+
+</div>
+
+
+@code
+{
+    [Parameter]
+    public bool _isSubmit { get; set; }
+
+    [Parameter]
+    public Count4U.Service.Format.Profile _profileDomainObject { get; set; }
+
+    [Parameter]
+    public List<ValueItem> _fieldList { get; set; }
+
+}

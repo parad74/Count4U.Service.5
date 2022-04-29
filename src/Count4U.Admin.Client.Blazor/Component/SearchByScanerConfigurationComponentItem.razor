@@ -1,0 +1,94 @@
+﻿@using Monitor.Service.Shared;
+<style type="text/css">
+    .fa_custom {
+        color: #0b960f;
+        font-size: 16px;
+        font-weight: 500;
+        line-height: 20px;
+        letter-spacing: 0.15px;
+    }
+
+    .fa_custom_background {
+        background-color: #bfd0c0
+    }
+
+
+    .fa_custom_white {
+        color: #ffffff
+    }
+
+    .custom_table {
+        width: 100%;
+        table-layout: fixed;
+        overflow-wrap: break-word;
+    }
+
+    .select_border_color {
+        /*          border: 1px solid #0b960f;*/
+        border-radius: .1rem;
+    }
+
+    .upbutton {
+        background: transparent;
+        border: none;
+        font-size: 14px;
+        font-weight: 500;
+        line-height: 20px;
+        letter-spacing: 0.15px;
+        color: #727375;
+        /*        margin-bottom: 6px;
+        margin-top: 6px;*/
+    }
+</style>
+
+<div class="form-group">
+    <div class="row">
+        <div class="col">
+            <div class="medium-label p-2">English title</div>
+            <div class="p-2" style="width:200px">
+                <input class="form-control form-control-sm" disabled="@_isSubmit" @bind="_item.Title.en" />
+            </div>
+        </div>
+        <div class="col">
+            <div class="medium-label p-2">Hebrew title (optional)</div>
+            <div class="p-2" style="width: 200px; text-align: right; direction: rtl;">
+                <input class="form-control form-control-sm" disabled="@_isSubmit" @bind="_item.Title.he" />
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col">
+            <div class="medium-label p-2">Property (key for field)</div>
+            <div class="p-2" style="width: 200px">
+                <select class="form-control form-control-sm select_border_color" disabled="@_isSubmit" @bind="@_item.id">
+                    @foreach (var url in _fieldList2)
+                    {
+                        <option value=@url.Key>@url.Value</option>
+                    }
+                </select>
+            </div>
+        </div>
+     
+    </div>
+</div>
+
+
+@code
+{
+    [Parameter]
+    public bool _isSubmit { get; set; }
+
+    [Parameter]
+    public Count4U.Service.Format.Profile _profileDomainObject { get; set; }
+
+    [Parameter]
+    public Count4U.Service.Format.SearchDisplayProperty _item { get; set; }
+
+    [Parameter]
+    public List<ValueItem> _fieldList2 { get; set; }
+
+    [Parameter]
+    public List<ValueItem> _itemType { get; set; }
+}
+

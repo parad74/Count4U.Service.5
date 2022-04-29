@@ -1,0 +1,216 @@
+﻿
+<profile-menu>
+    <div class="row px-0">
+        <button class="btn btn-lg profile-menu-inbutton" style="text-align:left;" @onclick="CustomerEdit">
+            <span>Edit Customer</span>
+        </button>
+        <div class="profile-menu-line-border row"></div>
+    </div>
+
+    @if (_currentOperation == 1)
+    {
+        <div class="row px-0">
+            <button class="btn btn-lg profile-menu-inbutton isDisabled" style="text-align:left;">General</button>
+            <div class="profile-menu-line-border row"></div>
+        </div>
+    }
+    else
+    {
+        <div class="row px-0">
+            <button class="btn btn-lg profile-menu-inbutton" style="text-align:left;" @onclick="()=>GoItemsPerPageChangeAsync(1)">General</button>
+            <div class="profile-menu-line-border row"></div>
+        </div>
+    }
+
+    @if (_currentOperation == 2)
+    {
+        <div class="row px-0">
+            <button class="btn btn-lg profile-menu-inbutton isDisabled" style="text-align: left;">Inventory list default UI configuration</button>
+            <div class="profile-menu-line-border row"></div>
+        </div>
+    }
+    else
+    {
+        <div class="row px-0">
+            <button class="btn btn-lg profile-menu-inbutton" style="text-align:left;"
+                    @onclick="()=>GoItemsPerPageChangeAsync(2)">
+                Inventory list default UI configuration
+            </button>
+            <div class="profile-menu-line-border row"></div>
+        </div>
+    }
+
+    @if (_currentOperation == 3)
+    {
+        <div class="row px-0">
+            <button class="btn btn-lg profile-menu-inbutton isDisabled" style="text-align: left;">Database settings</button>
+            <div class="profile-menu-line-border row"></div>
+        </div>
+    }
+    else
+    {
+        <div class="row px-0">
+            <button class="btn btn-lg profile-menu-inbutton" style="text-align: left;"
+                    @onclick="()=>GoItemsPerPageChangeAsync(3)">
+                Database settings
+            </button>
+            <div class="profile-menu-line-border row"></div>
+        </div>
+    }
+
+
+    @if (_currentOperation == 4)
+    {
+        <div class="row px-0">
+            <button class="btn btn-lg profile-menu-inbutton isDisabled" style="text-align: left;">Inventory item details form</button>
+            <div class="profile-menu-line-border row"></div>
+        </div>
+    }
+    else
+    {
+        <div class="row px-0">
+            <button class="btn btn-lg profile-menu-inbutton" style="text-align: left;"
+                    @onclick="()=>GoItemsPerPageChangeAsync(4)">
+                Inventory item details form
+            </button>
+            <div class="profile-menu-line-border row"></div>
+        </div>
+    }
+
+    @if (_currentOperation == 5)
+    {
+        <div class="row px-0">
+            <button class="btn btn-lg profile-menu-inbutton isDisabled" style="text-align: left;">Search configuration</button>
+            <div class="profile-menu-line-border row"></div>
+        </div>
+    }
+    else
+    {
+        <div class="row px-0">
+            <button class="btn btn-lg profile-menu-inbutton" style="text-align: left;"
+                    @onclick="()=>GoItemsPerPageChangeAsync(5)">
+                Search configuration
+            </button>
+            <div class="profile-menu-line-border row"></div>
+        </div>
+    }
+
+    @if (_currentOperation == 6)
+    {
+        <div class="row px-0">
+            <button class="btn btn-lg profile-menu-inbutton isDisabled" style="text-align: left;">Additional screens configuration</button>
+            <div class="profile-menu-line-border row"></div>
+        </div>
+    }
+    else
+    {
+        <div class="row px-0">
+            <button class="btn btn-lg profile-menu-inbutton" style="text-align: left;"
+                    @onclick="()=>GoItemsPerPageChangeAsync(6)">
+                Additional screens configuration
+            </button>
+            <div class="profile-menu-line-border row"></div>
+        </div>
+    }
+
+    @if (_currentOperation == 7)
+    {
+        <div class="row px-0">
+            <button class="btn btn-lg profile-menu-inbutton isDisabled" style="text-align: left;">Inventory images</button>
+            <div class="profile-menu-line-border row"></div>
+        </div>
+    }
+    else
+    {
+        <div class="row px-0">
+            <button class="btn btn-lg profile-menu-inbutton" style="text-align: left;"
+                    @onclick="()=>GoItemsPerPageChangeAsync(7)">
+                Inventory images
+            </button>
+            <div class="profile-menu-line-border row"></div>
+        </div>
+    }
+
+    @if (_currentOperation == 8)
+    {
+        <div class="row px-0">
+            <button class="btn btn-lg profile-menu-inbutton isDisabled" style="text-align: left;">Printer settings</button>
+            <div class="profile-menu-line-border row"></div>
+        </div>
+    }
+    else
+    {
+        <div class="row px-0">
+            <button class="btn btn-lg profile-menu-inbutton" style="text-align: left;"
+                    @onclick="()=>GoItemsPerPageChangeAsync(8)">
+                Printer settings
+            </button>
+            <div class="profile-menu-line-border row"></div>
+        </div>
+    }
+
+    @if (_currentOperation == 9)
+    {
+        <div class="row px-0">
+            <button class="btn btn-lg profile-menu-inbutton isDisabled" style="text-align: left;">Barcode scanner manipulations</button>
+            <div class="profile-menu-line-border row"></div>
+        </div>
+    }
+    else
+    {
+        <div class="row px-0">
+            <button class="btn btn-lg profile-menu-inbutton" style="text-align: left;"
+                    @onclick="()=>GoItemsPerPageChangeAsync(9)">
+                Barcode scanner manipulations
+            </button>
+            <div class="profile-menu-line-border row"></div>
+        </div>
+    }
+
+
+</profile-menu>
+
+
+@code
+{
+    [Parameter]
+    public int _currentOperation { get; set; } = 1;
+
+    [Parameter]
+    public string _customerCode { get; set; }
+
+    [Parameter]
+    public string _email { get; set; }
+
+    [Inject]
+    protected NavigationManager _navigationManager { get; set; }
+
+    //[Parameter]
+    //public EventCallback OnAddObjectClick { get; set; }
+
+    //public Task AddObjectAsync()
+    //{
+    //    Console.WriteLine($"OnAddObjectClick");
+    //    return OnAddObjectClick.InvokeAsync();
+    //}
+
+    [Parameter]
+    public EventCallback<int> OnChangePageClick { get; set; }
+
+    public Task GoItemsPerPageChangeAsync(int page)
+    {
+        _currentOperation = page;
+        return OnChangePageClick.InvokeAsync(page);
+        StateHasChanged();
+    }
+
+    public async Task CustomerEdit()
+    {
+        // "/customerprofileanduseredit/{code}"
+        if (string.IsNullOrWhiteSpace(_email) == true) _email = _customerCode + @"@customer.com";
+        this._navigationManager.NavigateTo("customerprofileanduseredit/" + _customerCode + "/" + _email);
+    }
+
+
+
+}

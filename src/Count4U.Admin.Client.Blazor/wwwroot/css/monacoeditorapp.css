@@ -17,3 +17,9 @@ div.editorContent {
     position: sticky;
     top: 0
 }
+
+.editorContentHidden {
+    height: 0px;
+    visibility: hidden;
+    overflow: hidden;
+}

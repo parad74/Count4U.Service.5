@@ -14,9 +14,9 @@
 
 
 @*@if (LocalizationResources == null)
-{
-    <p><em>Loading...</em></p>
-}*@
+    {
+        <p><em>Loading...</em></p>
+    }*@
 
 <div class="bg-success">You can set an item limit on a dropzone.</div>
 
@@ -70,8 +70,8 @@
 @*<Dropzone Class="flex-container" Items="FieldList" ItemWrapperClass="flex-item" TItem="ValueItem" OnItemDrop="@((i)=>lastRejected = i)" AllowsDrag='(d)=>d.CanDrag == true'>
             <DragDropSourceItem Item="@context" ></DragDropSourceItem>
     </Dropzone>*@
-
-<Dropzone Class="fieldflexList" Items="FieldList" ItemWrapperClass="flex-item" TItem="ValueItem" AllowsDrag='(d)=>d.CanDrag == true' OnItemDrop="@((i)=>RefreshList(i))">
+@*ItemWrapperClass="flex-item"*@
+<Dropzone Class="fieldflexList" Items="FieldList" TItem="ValueItem" AllowsDrag='(d)=>d.CanDrag == true' OnItemDrop="@((i)=>RefreshList(i))">
     <h5 style="padding-left : 12px"><span class="badge badge-secondary" style="background-color:darkseagreen; color:black"> @context.Value</span></h5>
 </Dropzone>
 

@@ -291,7 +291,7 @@ namespace Count4U.Service.WebAPI.Authentication.Controllers
 
             if (user == null)
             {
-                return new UserViewModel { Successful = SuccessfulEnum.NotSuccessful, Error = "User not find " };
+                return new UserViewModel { Successful = SuccessfulEnum.UserNotFound, Error = "User not find " };
             }
 
 

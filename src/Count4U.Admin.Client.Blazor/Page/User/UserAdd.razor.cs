@@ -105,7 +105,7 @@ namespace Count4U.Admin.Client.Page
 		{
   			this._registerModel = new RegisterModel();
 			Console.WriteLine($"this._registerModel before {this._registerModel.Email} {this._registerModel.Password}");
-			if (string.IsNullOrWhiteSpace(userCustomerCode) == false)	this._registerModel.UserCustomerCode = userCustomerCode;
+			if (string.IsNullOrWhiteSpace(userCustomerCode) == false)	this._registerModel.CustomerCode = userCustomerCode;
 			Console.WriteLine($"this._registerModel after {this._registerModel.Email} {this._registerModel.Password}");
 		}
 

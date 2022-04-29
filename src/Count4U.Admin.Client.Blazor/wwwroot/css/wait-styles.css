@@ -217,6 +217,7 @@
 }
 
 
+
 .btn.searchclearicon {
 	width: 1.9rem;
 	height: 1.9rem;
@@ -226,10 +227,23 @@
 
 .isDisabled {
 	color: currentColor;
-	cursor: not-allowed;
+	cursor: default !important;
 	opacity: 0.5;
 	text-decoration: none;
 }
+
+
+
+.btn.menu1 {
+	width: 200px;
+	height: 3rem;
+	padding-left: 7px;
+	padding-top: 3px;
+	border-left-width: 4px;
+	border-left-style: dotted;
+	font-size: .85rem;
+}
+
 
 /* stylelint-disable declaration-no-important
 	Right side table of contents

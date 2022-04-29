@@ -3,7 +3,7 @@
 
 	public static class SignalRHub
 	{
-		public const string HostHub = @"http://localhost:21029";	 //@"http://localhost:24024";    //@"http://localhost:27027";	 //@"http://localhost:15015";				  
+		public const string HostHub = @"http://localhost:21020";	 //@"http://localhost:24024";    //@"http://localhost:27027";	 //@"http://localhost:15015";				  
 		public const string ChatHub = @"/chathub";
 		public const string CommandHub = @"/commandhub";
 

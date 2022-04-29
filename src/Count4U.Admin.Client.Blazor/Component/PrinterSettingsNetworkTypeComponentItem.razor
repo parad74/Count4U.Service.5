@@ -1,0 +1,201 @@
+﻿@using Monitor.Service.Shared;
+<style type="text/css">
+    .fa_custom {
+        color: #0b960f;
+        font-size: 16px;
+        font-weight: 500;
+        line-height: 20px;
+        letter-spacing: 0.15px;
+    }
+
+    .fa_custom_background {
+        background-color: #bfd0c0
+    }
+
+
+    .fa_custom_white {
+        color: #ffffff
+    }
+
+    .custom_table {
+        width: 100%;
+        table-layout: fixed;
+        overflow-wrap: break-word;
+    }
+
+    .select_border_color {
+        /*          border: 1px solid #0b960f;*/
+        border-radius: .1rem;
+    }
+
+    .upbutton {
+        background: transparent;
+        border: none;
+        font-size: 14px;
+        font-weight: 500;
+        line-height: 20px;
+        letter-spacing: 0.15px;
+        color: #727375;
+        /*        margin-bottom: 6px;
+        margin-top: 6px;*/
+    }
+</style>
+
+<div class="form-group">
+    <div class="row">
+        <div class="medium-label p-2">Name</div>
+    </div>
+    <div class="row">
+        <div class="p-2" style="width:300px">
+            <input class="form-control" disabled="@_isSubmit" @bind="_item.Name" />
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="medium-label p-2">Format</div>
+    </div>
+    <div class="row">
+        <div class="p-2" style="width:100%">
+            <textarea class="form-control"
+                      rows="@_rows"
+                      @bind-value="_item.Format"
+                      @bind-value:event="oninput" />
+
+        </div>
+    </div>
+</div>
+
+<div class="medium-label pb-3">Field mapping</div>
+
+<div class="grid-container">
+    <Dropzone class="custom_table" Context="itemProperty" Accepts="(d, t) => 0 != 0"
+              Items="_item.FieldsMapping.FieldMapping"
+              InstantReplace="true" TItem="FieldMapping">
+        <div>
+            <div class="row mx-0" style="background-color: #bfd0c0;">
+                <div class="col text-white" style="padding-left: 20px;padding-top: 10px;"> #&nbsp;@itemProperty.name&nbsp;@itemProperty.inventoryPropertyId</div>
+                <div class="col pr-0">
+                    <div class="d-flex flex-row-reverse">
+                        <div class="col-1" style="background-color: white;">
+                            <button type="button" class="btn"
+                                    @onclick="@(() => DeleteItem(itemProperty))">
+                                <i class="fa fa-times text-md-left text-secondary"></i>
+                            </button>
+                        </div>
+                        @if (itemProperty.IsOpen == true)
+                        {
+                            <button type="button" class="btn" style="background-color: transparent;"
+                                    @onclick="@itemProperty.ToggleButton">
+                                <i class="fa fa-plus fa-right text-white"></i>
+                            </button>
+                        }
+                        else
+                        {
+                            <button type="button" class="btn" style="background-color: transparent"
+                                    @onclick="@itemProperty.ToggleButton">
+                                <i class="fa fa-minus fa-right text-white"></i>
+                            </button>
+                        }
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="m-1" style='display: @(itemProperty.IsOpen ? "none" : "block");'>
+                <PrinterSettingsNetworkTypeComponentVar _fieldList4="@_fieldList4"
+                                                _profileDomainObject="_profileDomainObject"
+                                                _isSubmit="_isSubmit" _fieldMappingItem="@itemProperty">
+        </PrinterSettingsNetworkTypeComponentVar>
+            </div>
+        </div>
+    </Dropzone>
+</div>
+<div>
+    <div class="row mx-0">
+        <div class="col text-success" style="padding-left: 20px;padding-top: 10px;"> # Add field mapping</div>
+        <div class="col pr-0">
+            <div class="d-flex flex-row-reverse">
+                <div class="col-1">
+                    <button type="button" class="btn"
+                            @onclick="@(() => AddNewEmptyItem())">
+                        <i class="fa fa-plus-square text-md-left text-success"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+@code
+{
+    [Parameter]
+    public bool _isSubmit { get; set; }
+    [Parameter]
+    public int _rows { get; set; } = 10;
+
+    [Parameter]
+    public Count4U.Service.Format.Profile _profileDomainObject { get; set; }
+
+    [Parameter]
+    public Count4U.Service.Format.PrintingFormat _item { get; set; }
+
+    [Parameter]
+    public List<ValueItem> _fieldList4 { get; set; }
+
+    //[Parameter]
+    //public List<ValueItem> _itemType { get; set; }
+
+    [Parameter]
+    public bool _showItemsPerPage { get; set; } = false;
+
+    private FieldMapping DropedItem = null;
+    private FieldMapping replacedItem = null;
+
+    public void OnItemDrop(FieldMapping item)
+    {
+        DropedItem = item;
+        //  ReIndex();
+        StateHasChanged();
+
+    }
+    public void OnReplacedItemDrop(FieldMapping item)
+    {
+        replacedItem = item;
+        //  ReIndex();
+        StateHasChanged();
+    }
+
+    public async Task DeleteItem(FieldMapping item)
+    {
+        _item.FieldsMapping.FieldMapping.Remove(item);
+    }
+
+    public async Task AddNewEmptyItem()
+    {
+        Console.WriteLine($"Client.AddNewEmptyItem");
+        FieldMapping newItem = new FieldMapping();
+        _item.FieldsMapping.FieldMapping.Add(newItem);
+        StateHasChanged();
+    }
+
+    //public void ReIndex()
+    //{
+    //    Console.WriteLine($"Client.ReIndex");
+    //    int i = 1;
+
+    //    foreach (var item in this._profileDomainObject.PrinterSettings.ZebraPrinter.PrintingFormats.PrintingFormat)
+    //    {
+    //        item.index = i;
+    //        i++;
+    //    }
+    //}
+}
+

@@ -302,19 +302,13 @@ namespace Count4U.Admin.Client.Blazor.Page
 			Console.WriteLine();
 			Console.WriteLine($"Client.CustomerProfileGridBase.OnInitializedAsync() : start");
 
-			if (string.IsNullOrWhiteSpace(code) == false)
-			{
-				this._filterCustomerModel.FilterSelectByField = FilterCustomerSelectParam.Code;
-				this._filterCustomerModel.FilterValue = code;
-				await this._localStorage.SetItemAsync(SessionStorageKey.filterCustomer, _filterCustomerModel.FilterSelectByField);
-				await this._localStorage.SetItemAsync(SessionStorageKey.filterValueCustomer, _filterCustomerModel.FilterValue);
-			}
-
+			
 			try
 			{
 				this.LocalizationResources = await this.I18nText.GetTextTableAsync<GetResources>(this);
 				if (this._localStorage != null)
 				{
+
 					string perPageString = await this._localStorage.GetItemAsync<string>(SessionStorageKey.onPageCustomerNumber);
 					int perPageInt = 15;
 					this.OnPageNumber = 15;

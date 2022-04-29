@@ -1,71 +1,50 @@
-﻿<table style="width: 100px; border-left-color: green; border-left-width:4px; border-left-style:dotted">
-    <tbody>
-        <tr>
-            <td>
-                <a href="/objectprofilexmlfileedit/@customerCode" class="p-2 m-2" style="color:green">Profile</a>
-            </td>
-        </tr>
-    </tbody>
-</table>
+﻿
+<profile-menu>
+    @*<ul class="list-unstyled profile-menu-list" style="position: absolute; right: 24px;">
+        <li>
+             <span @onclick="()=>NavigateToProfileEdit(customerCode)">Edit Profile&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+         </li>
+         <li>
+             <span @onclick="()=>NavigateToOldProfileEdit(customerCode)">Old</span>
+         </li>
+         <li>
+             <span @onclick="()=>NavigateToProfileShow(customerCode)">Test</span>
+         </li>*@
+    <div class="row px-0">
+        <button class="btn btn-lg profile-menu-inbutton" @onclick="()=>NavigateToProfileEdit(customerCode, email)">Edit Profile</button>
+        <div class="profile-menu-line-border row"></div>
+    </div>
+    <div class="row px-0">
+        <button class="btn btn-lg profile-menu-inbutton" @onclick="()=>NavigateToOldProfileEdit(customerCode)">Old</button>
+        <div class="profile-menu-line-border row"></div>
+    </div>
+    <div class="row px-0">
+        <button class="btn btn-lg profile-menu-inbutton" @onclick="()=>NavigateToProfileShow(customerCode)">Test</button>
+    </div>
 
-<table style="width: 100px; border-left-color: green; border-left-width:4px; border-left-style:dotted">
-    <tbody>
-        <tr>
-            <td>
-                <a href="/objectprofilefileedit/@customerCode" class="p-2 m-2" style="color:green">Old</a>
-            </td>
-        </tr>
-    </tbody>
-</table>
+    @if (IsShowCustomer)
+    {
+<div class="row px-0">
+    <div class="profile-menu-line-border row"></div>
+    <button class="btn btn-lg profile-menu-inbutton" @onclick="()=>NavigateToCustomerGrid(customerCode)">Customers</button>
+</div>
+        @*<li>
+                <span @onclick="()=>NavigateToCustomerGrid(customerCode)">Customers</span>
+            </li>*@
+    }
+    @if (IsShowUsers)
+    {
+<div class="row px-0">
+    <div class="profile-menu-line-border row"></div>
+    <button class="btn btn-lg profile-menu-inbutton" @onclick="()=>NavigateToUsersGrid(customerCode)">Users</button>
+</div>
+        <!--<li>
+            <span @onclick="()=>NavigateToUsersGrid(customerCode)">Users</span>-->
+        @*<a href="/usergrid/@customerCode" class="p-2 m-2" style="color:green">Users</a>*@
+        <!--</li>-->
+    }
 
-
-<table style="width: 100px; border-left-color: green; border-left-width:4px; border-left-style:dotted">
-    <tbody>
-        <tr>
-            <td>
-                <a href="/objectprofilefileshow/@customerCode" class="p-2 m-2" style="color:green">Check</a>
-            </td>
-        </tr>
-    </tbody>
-</table>
-
-
-@if (IsShowCustomer)
-{
-    <table style="width: 100px; border-left-color: green; border-left-width:4px; border-left-style:dotted">
-        <tbody>
-            <tr>
-                <td>
-                    <a href="/customergrid/@customerCode" class="p-2 m-2" style="color:green">Customers</a>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-}
-@if (IsShowUsers)
-{
-    <table style="width: 100px; border-left-color: green; border-left-width:4px; border-left-style:dotted">
-        <tbody>
-            <tr>
-                <td>
-                    <a href="/usergrid/@customerCode" class="p-2 m-2" style="color:green">Users</a>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-}
-
-
-
-
-@*<tr>
-        <td>
-            <a href="/rolegrid" class="p-2 m-2" style="color:green">Roles</a>
-        </td>
-    </tr>*@
-
-@*</tbody>
-    </table>*@
+</profile-menu>
 
 
 @code{
@@ -83,6 +62,42 @@
 
     [Parameter]
     public bool IsShowUsers { get; set; } = true;
+
+
+    [Inject]
+    protected NavigationManager _navigationManager { get; set; }
+
+
+    public async Task NavigateToProfileEdit(string _customerCode, string _email)
+    {
+
+        this._navigationManager.NavigateTo(@"/objectprofilexmlfileedit/" + _customerCode + @"/" + _email);
+    }
+
+    public async Task NavigateToOldProfileEdit(string _customerCode)
+    {
+
+        this._navigationManager.NavigateTo(@"/objectprofilefileedit/" + _customerCode);
+    }
+
+    public async Task NavigateToProfileShow(string _customerCode)
+    {
+
+        this._navigationManager.NavigateTo(@"/objectprofilefileshow/" + _customerCode);
+    }
+
+
+    public async Task NavigateToUsersGrid(string _customerCode)
+    {
+
+        this._navigationManager.NavigateTo(@"/usergrid/" + _customerCode);
+    }
+
+
+    public async Task NavigateToCustomerGrid(string _customerCode)
+    {
+        this._navigationManager.NavigateTo(@"/customergrid/" + _customerCode);
+    }
 
 
 }

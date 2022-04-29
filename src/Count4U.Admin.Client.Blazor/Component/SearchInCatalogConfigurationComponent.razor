@@ -1,0 +1,508 @@
+﻿@using Monitor.Service.Shared;
+<style type="text/css">
+    .fa_custom {
+        color: #0b960f;
+        font-size: 16px;
+        font-weight: 500;
+        line-height: 20px;
+        letter-spacing: 0.15px;
+    }
+
+    .fa_custom_background {
+        background-color: #bfd0c0
+    }
+
+
+    .fa_custom_white {
+        color: #ffffff
+    }
+
+    .custom_table {
+        width: 100%;
+        table-layout: fixed;
+        overflow-wrap: break-word;
+    }
+
+    .select_border_color {
+        /*          border: 1px solid #0b960f;*/
+        border-radius: .1rem;
+    }
+
+    .upbutton {
+        background: transparent;
+        border: none;
+        font-size: 14px;
+        font-weight: 500;
+        line-height: 20px;
+        letter-spacing: 0.15px;
+        color: #727375;
+        /*        margin-bottom: 6px;
+        margin-top: 6px;*/
+    }
+</style>
+
+<div class="form-group" style="margin-left: -15px;">
+    <div class="medium-label pb-3">SEARCH IN CATALOG</div>
+
+    <div class="row">
+        <div class="col">
+            <div class="medium-label py-3">Add new item into Catalog</div>
+            <label class="switch">
+                <InputCheckbox class="checkbox" disabled="@_isSubmit" @bind-Value="_profileDomainObject.Search.SearchInCatalogScreenConfiguration.AddNewItemIntoCatalogEnabled" id="addnewinventory" />
+                <span class="slider round"></span>
+            </label>
+            @if (_profileDomainObject.Search.SearchInCatalogScreenConfiguration.AddNewItemIntoCatalogEnabled)
+            {
+                <span class="p-2">Enabled</span>
+            }
+            else
+            {
+                <span class="p-2">Disabled</span>
+            }
+
+
+        </div>
+        <div class="col">
+            <div class="medium-label py-3">Camera barcode scanner</div>
+            <label class="switch">
+                <InputCheckbox class="checkbox" disabled="@_isSubmit" @bind-Value="_profileDomainObject.Search.SearchInCatalogScreenConfiguration.CameraBarcodeScannerEnabled" id="create" />
+                <span class="slider round"></span>
+            </label>
+
+            @if (_profileDomainObject.Search.SearchInCatalogScreenConfiguration.CameraBarcodeScannerEnabled)
+            {
+                <span class="p-2">Enabled</span>
+            }
+            else
+            {
+                <span class="p-2">Disabled</span>
+            }
+        </div>
+    </div>
+
+
+    <div class="line-border row"></div>
+    <div>
+        <div class="medium-label pb-3"> Display properties</div>
+        <div class="medium-label pb-3"> By item code</div>
+        <div class="grid-container">
+            <Dropzone class="custom_table" Context="itemDisplayProperty" Accepts="(d, t) => d.index != 0"
+                      Items="_profileDomainObject.Search.SearchInCatalogScreenConfiguration.SearchInCatalogResultListsDisplayProperties.
+                             SearchInCatalogByItemCodeResultListDisplayProperties.SearchDisplayProperty"
+                      InstantReplace="true" TItem="SearchDisplayProperty"
+                      OnItemDrop="@((p)=>OnSearchDisplayPropertyDrop(p))" OnReplacedItemDrop="@((p)=>OnReplacedSearchDisplayPropertyDrop(p))">
+                <div>
+                    <div class="row mx-0" style="background-color: #bfd0c0;">
+                        <div class="col text-white" style="padding-left: 20px;padding-top: 10px;"> #&nbsp;@itemDisplayProperty.index&nbsp;@itemDisplayProperty.id</div>
+                        <div class="col pr-0">
+                            <div class="d-flex flex-row-reverse">
+                                <div class="col-1" style="background-color: white;">
+                                    <button type="button" class="btn"
+                                            @onclick="@(() => DeleteSearchDisplayPropertyItem(itemDisplayProperty))">
+                                        <i class="fa fa-times text-md-left text-secondary"></i>
+                                    </button>
+                                </div>
+                                @if (itemDisplayProperty.IsOpen == true)
+                                {
+                                    <button type="button" class="btn" style="background-color: transparent;"
+                                            @onclick="@itemDisplayProperty.ToggleButton">
+                                        <i class="fa fa-plus fa-right text-white"></i>
+                                    </button>
+                                }
+                                else
+                                {
+                                    <button type="button" class="btn" style="background-color: transparent"
+                                            @onclick="@itemDisplayProperty.ToggleButton">
+                                        <i class="fa fa-minus fa-right text-white"></i>
+                                    </button>
+                                }
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="m-1" style='display: @(itemDisplayProperty.IsOpen ? "none" : "block");'>
+                        <SearchByScanerConfigurationComponentItem _item="@itemDisplayProperty"
+                                                                  _fieldList2="@_fieldList3" _itemType="@_itemType">
+                        </SearchByScanerConfigurationComponentItem>
+                    </div>
+                </div>
+            </Dropzone>
+        </div>
+        <div>
+            <div class="row mx-0">
+                <div class="col text-success" style="padding-left: 20px;padding-top: 10px;"> #</div>
+                <div class="col pr-0">
+                    <div class="d-flex flex-row-reverse">
+                        <div class="col-1">
+                            <button type="button" class="btn"
+                                    @onclick="@(() => AddNewDisplayPropertyItem())">
+                                <i class="fa fa-plus-square text-md-left text-success"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+    <div class="line-border row"></div>
+    <div>
+        <div class="medium-label pb-3"> By item name</div>
+        <div class="grid-container">
+            <Dropzone class="custom_table" Context="itemDisplayProperty1" Accepts="(d, t) => d.index != 0"
+                      Items="_profileDomainObject.Search.SearchInCatalogScreenConfiguration.SearchInCatalogResultListsDisplayProperties.
+                         SearchInCatalogByItemNameResultListDisplayProperties.SearchDisplayProperty"
+                      InstantReplace="true" TItem="SearchDisplayProperty"
+                      OnItemDrop="@((p)=>OnSearchDisplayPropertyDrop1(p))" OnReplacedItemDrop="@((p)=>OnReplacedSearchDisplayPropertyDrop1(p))">
+                <div>
+                    <div class="row mx-0" style="background-color: #bfd0c0;">
+                        <div class="col text-white" style="padding-left: 20px;padding-top: 10px;"> #&nbsp;@itemDisplayProperty1.index&nbsp;@itemDisplayProperty1.id</div>
+                        <div class="col pr-0">
+                            <div class="d-flex flex-row-reverse">
+                                <div class="col-1" style="background-color: white;">
+                                    <button type="button" class="btn"
+                                            @onclick="@(() => DeleteDisplayPropertyItem1(itemDisplayProperty1))">
+                                        <i class="fa fa-times text-md-left text-secondary"></i>
+                                    </button>
+                                </div>
+                                @if (itemDisplayProperty1.IsOpen == true)
+                                {
+                                    <button type="button" class="btn" style="background-color: transparent;"
+                                            @onclick="@itemDisplayProperty1.ToggleButton">
+                                        <i class="fa fa-plus fa-right text-white"></i>
+                                    </button>
+                                }
+                                else
+                                {
+                                    <button type="button" class="btn" style="background-color: transparent"
+                                            @onclick="@itemDisplayProperty1.ToggleButton">
+                                        <i class="fa fa-minus fa-right text-white"></i>
+                                    </button>
+                                }
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="m-1" style='display: @(itemDisplayProperty1.IsOpen ? "none" : "block");'>
+                        <SearchByScanerConfigurationComponentItem _item="@itemDisplayProperty1"
+                                                                  _fieldList2="@_fieldList3" _itemType="@_itemType">
+                        </SearchByScanerConfigurationComponentItem>
+                    </div>
+                </div>
+            </Dropzone>
+        </div>
+        <div>
+            <div class="row mx-0">
+                <div class="col text-success" style="padding-left: 20px;padding-top: 10px;"> #</div>
+                <div class="col pr-0">
+                    <div class="d-flex flex-row-reverse">
+                        <div class="col-1">
+                            <button type="button" class="btn"
+                                    @onclick="@(() => AddNewDisplayPropertyItem1())">
+                                <i class="fa fa-plus-square text-md-left text-success"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="line-border row"></div>
+    <div>
+        <div class="medium-label pb-3"> By item code and name (All)</div>
+        <div class="grid-container">
+            <Dropzone class="custom_table" Context="itemDisplayProperty2" Accepts="(d, t) => d.index != 0"
+                      Items="_profileDomainObject.Search.SearchInCatalogScreenConfiguration.SearchInCatalogResultListsDisplayProperties.
+                         SearchInCatalogByItemCodeOrNameResultListDisplayProperties.SearchDisplayProperty"
+                      InstantReplace="true" TItem="SearchDisplayProperty"
+                      OnItemDrop="@((p)=>OnSearchDisplayPropertyDrop2(p))" OnReplacedItemDrop="@((p)=>OnReplacedSearchDisplayPropertyDrop2(p))">
+                <div>
+                    <div class="row mx-0" style="background-color: #bfd0c0;">
+                        <div class="col text-white" style="padding-left: 20px;padding-top: 10px;"> #&nbsp;@itemDisplayProperty2.index&nbsp;@itemDisplayProperty2.id</div>
+                        <div class="col pr-0">
+                            <div class="d-flex flex-row-reverse">
+                                <div class="col-1" style="background-color: white;">
+                                    <button type="button" class="btn"
+                                            @onclick="@(() => DeleteDisplayPropertyItem2(itemDisplayProperty2))">
+                                        <i class="fa fa-times text-md-left text-secondary"></i>
+                                    </button>
+                                </div>
+                                @if (itemDisplayProperty2.IsOpen == true)
+                                {
+                                    <button type="button" class="btn" style="background-color: transparent;"
+                                            @onclick="@itemDisplayProperty2.ToggleButton">
+                                        <i class="fa fa-plus fa-right text-white"></i>
+                                    </button>
+                                }
+                                else
+                                {
+                                    <button type="button" class="btn" style="background-color: transparent"
+                                            @onclick="@itemDisplayProperty2.ToggleButton">
+                                        <i class="fa fa-minus fa-right text-white"></i>
+                                    </button>
+                                }
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="m-1" style='display: @(itemDisplayProperty2.IsOpen ? "none" : "block");'>
+                        <SearchByScanerConfigurationComponentItem _item="@itemDisplayProperty2"
+                                                                  _fieldList2="@_fieldList3" _itemType="@_itemType">
+                        </SearchByScanerConfigurationComponentItem>
+                    </div>
+                </div>
+            </Dropzone>
+        </div>
+        <div>
+            <div class="row mx-0">
+                <div class="col text-success" style="padding-left: 20px;padding-top: 10px;"> #</div>
+                <div class="col pr-0">
+                    <div class="d-flex flex-row-reverse">
+                        <div class="col-1">
+                            <button type="button" class="btn"
+                                    @onclick="@(() => AddNewDisplayPropertyItem2())">
+                                <i class="fa fa-plus-square text-md-left text-success"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+@code
+{
+    [Parameter]
+    public bool _isSubmit { get; set; }
+
+    [Parameter]
+    public Count4U.Service.Format.Profile _profileDomainObject { get; set; }
+
+    [Parameter]
+    public List<ValueItem> _fieldList3 { get; set; }
+
+    [Parameter]
+    public List<ValueItem> _itemType { get; set; }
+
+    [Parameter]
+    public bool _showItemsPerPage { get; set; } = false;
+
+
+
+    private SearchDisplayProperty DropedSearchDisplayPropertyItem = null;
+    private SearchDisplayProperty ReplacedSearchDisplayPropertyItem = null;
+
+    public void OnSearchDisplayPropertyDrop(SearchDisplayProperty item)
+    {
+        DropedSearchDisplayPropertyItem = item;
+        DisplayReIndex();
+        StateHasChanged();
+
+    }
+    public void OnReplacedSearchDisplayPropertyDrop(SearchDisplayProperty item)
+    {
+        ReplacedSearchDisplayPropertyItem = item;
+        DisplayReIndex();
+        StateHasChanged();
+    }
+
+
+    public void DisplayReIndex()
+    {
+        Console.WriteLine($"Client.DisplayReIndex");
+        int i = 1;
+
+        foreach (var item in _profileDomainObject.Search.SearchInCatalogScreenConfiguration.SearchInCatalogResultListsDisplayProperties.
+                                                                                SearchInCatalogByItemCodeResultListDisplayProperties.SearchDisplayProperty)
+        {
+            item.index = i;
+            i++;
+        }
+    }
+
+    public async Task DeleteSearchDisplayPropertyItem(SearchDisplayProperty item)
+    {
+        _profileDomainObject.Search.SearchInCatalogScreenConfiguration.SearchInCatalogResultListsDisplayProperties.
+                                                                                SearchInCatalogByItemCodeResultListDisplayProperties.SearchDisplayProperty.Remove(item);
+    }
+
+
+    public async Task AddNewDisplayPropertyItem()
+    {
+        // _profileDomainObject.Search.SearchByScannerScreenConfiguration.SearchByScannerResultListDisplayProperties.SearchDisplayProperty
+        Console.WriteLine($"Client.AddNewDisplayPropertyItem");
+        SearchDisplayProperty newItem = new SearchDisplayProperty();
+        this._profileDomainObject.Search.SearchInCatalogScreenConfiguration.SearchInCatalogResultListsDisplayProperties.
+                                                                                SearchInCatalogByItemCodeResultListDisplayProperties.SearchDisplayProperty =
+          this._profileDomainObject.Search.SearchInCatalogScreenConfiguration.SearchInCatalogResultListsDisplayProperties.
+                                                                                SearchInCatalogByItemCodeResultListDisplayProperties.SearchDisplayProperty.Where(x => x.index > 0).OrderBy(x => x.index).ToList();
+
+        var sort = this._profileDomainObject.Search.SearchInCatalogScreenConfiguration.SearchInCatalogResultListsDisplayProperties.
+                                                                                SearchInCatalogByItemCodeResultListDisplayProperties.SearchDisplayProperty.OrderByDescending(x => x.index).ToList();
+        int newIndex = 9999;
+        if (sort.Count > 1)
+        {
+            newIndex = sort.FirstOrDefault().index + 1;
+        }
+        else
+        {
+            newIndex = 1;
+        }
+        newItem.index = newIndex;
+        this._profileDomainObject.Search.SearchInCatalogScreenConfiguration.SearchInCatalogResultListsDisplayProperties.
+                                                                                SearchInCatalogByItemCodeResultListDisplayProperties.SearchDisplayProperty.Add(newItem);
+
+
+        StateHasChanged();
+    }
+
+    //==================== name ==========
+
+    private SearchDisplayProperty DropedSearchDisplayPropertyItem1 = null;
+    private SearchDisplayProperty ReplacedSearchDisplayPropertyItem1 = null;
+
+    public void OnSearchDisplayPropertyDrop1(SearchDisplayProperty item)
+    {
+        DropedSearchDisplayPropertyItem1 = item;
+        DisplayReIndex1();
+        StateHasChanged();
+
+    }
+    public void OnReplacedSearchDisplayPropertyDrop1(SearchDisplayProperty item)
+    {
+        ReplacedSearchDisplayPropertyItem1 = item;
+        DisplayReIndex1();
+        StateHasChanged();
+    }
+
+
+    public void DisplayReIndex1()
+    {
+        Console.WriteLine($"Client.DisplayReIndex");
+        int i = 1;
+
+        foreach (var item in _profileDomainObject.Search.SearchInCatalogScreenConfiguration.SearchInCatalogResultListsDisplayProperties.
+                                                                                SearchInCatalogByItemNameResultListDisplayProperties.SearchDisplayProperty)
+        {
+            item.index = i;
+            i++;
+        }
+    }
+
+    public async Task DeleteDisplayPropertyItem1(SearchDisplayProperty item)
+    {
+        _profileDomainObject.Search.SearchInCatalogScreenConfiguration.SearchInCatalogResultListsDisplayProperties.
+                                                                                SearchInCatalogByItemNameResultListDisplayProperties.SearchDisplayProperty.Remove(item);
+    }
+
+
+    public async Task AddNewDisplayPropertyItem1()
+    {
+        // _profileDomainObject.Search.SearchByScannerScreenConfiguration.SearchByScannerResultListDisplayProperties.SearchDisplayProperty
+        Console.WriteLine($"Client.AddNewDisplayPropertyItem");
+        SearchDisplayProperty newItem = new SearchDisplayProperty();
+        this._profileDomainObject.Search.SearchInCatalogScreenConfiguration.SearchInCatalogResultListsDisplayProperties.
+                                                                                SearchInCatalogByItemNameResultListDisplayProperties.SearchDisplayProperty =
+          this._profileDomainObject.Search.SearchInCatalogScreenConfiguration.SearchInCatalogResultListsDisplayProperties.
+                                                                                SearchInCatalogByItemNameResultListDisplayProperties.SearchDisplayProperty.Where(x => x.index > 0).OrderBy(x => x.index).ToList();
+
+        var sort = this._profileDomainObject.Search.SearchInCatalogScreenConfiguration.SearchInCatalogResultListsDisplayProperties.
+                                                                                SearchInCatalogByItemNameResultListDisplayProperties.SearchDisplayProperty.OrderByDescending(x => x.index).ToList();
+        int newIndex = 9999;
+        if (sort.Count > 1)
+        {
+            newIndex = sort.FirstOrDefault().index + 1;
+        }
+        else
+        {
+            newIndex = 1;
+        }
+        newItem.index = newIndex;
+        this._profileDomainObject.Search.SearchInCatalogScreenConfiguration.SearchInCatalogResultListsDisplayProperties.
+                                                                                SearchInCatalogByItemNameResultListDisplayProperties.SearchDisplayProperty.Add(newItem);
+
+
+        StateHasChanged();
+    }
+
+
+    //==================== name and item ==========
+
+    private SearchDisplayProperty DropedSearchDisplayPropertyItem2 = null;
+    private SearchDisplayProperty ReplacedSearchDisplayPropertyItem2 = null;
+
+    public void OnSearchDisplayPropertyDrop2(SearchDisplayProperty item)
+    {
+        DropedSearchDisplayPropertyItem1 = item;
+        DisplayReIndex2();
+        StateHasChanged();
+
+    }
+    public void OnReplacedSearchDisplayPropertyDrop2(SearchDisplayProperty item)
+    {
+        ReplacedSearchDisplayPropertyItem1 = item;
+        DisplayReIndex2();
+        StateHasChanged();
+    }
+
+
+    public void DisplayReIndex2()
+    {
+        Console.WriteLine($"Client.DisplayReIndex");
+        int i = 1;
+
+        foreach (var item in _profileDomainObject.Search.SearchInCatalogScreenConfiguration.SearchInCatalogResultListsDisplayProperties.
+                                                                                SearchInCatalogByItemCodeOrNameResultListDisplayProperties.SearchDisplayProperty)
+        {
+            item.index = i;
+            i++;
+        }
+    }
+
+    public async Task DeleteDisplayPropertyItem2(SearchDisplayProperty item)
+    {
+        _profileDomainObject.Search.SearchInCatalogScreenConfiguration.SearchInCatalogResultListsDisplayProperties.
+                                                                                SearchInCatalogByItemCodeOrNameResultListDisplayProperties.SearchDisplayProperty.Remove(item);
+    }
+
+
+    public async Task AddNewDisplayPropertyItem2()
+    {
+        // _profileDomainObject.Search.SearchByScannerScreenConfiguration.SearchByScannerResultListDisplayProperties.SearchDisplayProperty
+        Console.WriteLine($"Client.AddNewDisplayPropertyItem");
+        SearchDisplayProperty newItem = new SearchDisplayProperty();
+        this._profileDomainObject.Search.SearchInCatalogScreenConfiguration.SearchInCatalogResultListsDisplayProperties.
+                                                                                SearchInCatalogByItemCodeOrNameResultListDisplayProperties.SearchDisplayProperty =
+          this._profileDomainObject.Search.SearchInCatalogScreenConfiguration.SearchInCatalogResultListsDisplayProperties.
+                                                                                SearchInCatalogByItemCodeOrNameResultListDisplayProperties.SearchDisplayProperty.Where(x => x.index > 0).OrderBy(x => x.index).ToList();
+
+        var sort = this._profileDomainObject.Search.SearchInCatalogScreenConfiguration.SearchInCatalogResultListsDisplayProperties.
+                                                                                SearchInCatalogByItemCodeOrNameResultListDisplayProperties.SearchDisplayProperty.OrderByDescending(x => x.index).ToList();
+        int newIndex = 9999;
+        if (sort.Count > 1)
+        {
+            newIndex = sort.FirstOrDefault().index + 1;
+        }
+        else
+        {
+            newIndex = 1;
+        }
+        newItem.index = newIndex;
+        this._profileDomainObject.Search.SearchInCatalogScreenConfiguration.SearchInCatalogResultListsDisplayProperties.
+                                                                                SearchInCatalogByItemCodeOrNameResultListDisplayProperties.SearchDisplayProperty.Add(newItem);
+
+
+        StateHasChanged();
+    }
+
+
+}

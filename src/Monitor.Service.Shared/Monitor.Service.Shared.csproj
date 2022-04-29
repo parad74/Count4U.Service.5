@@ -11,12 +11,12 @@
  	<ItemGroup>
 		<PackageReference Include="Microsoft.AspNetCore.Http.Abstractions" Version="2.2.0" />
 		<PackageReference Include="Microsoft.AspNetCore.Mvc.Core" Version="2.2.5" />
-		<PackageReference Include="Microsoft.Windows.Compatibility" Version="5.0.0" />
-		<PackageReference Include="Microsoft.AspNetCore.SignalR.Client" Version="5.0.0" />
+		<PackageReference Include="Microsoft.Windows.Compatibility" Version="5.0.2" />
+		<PackageReference Include="Microsoft.AspNetCore.SignalR.Client" Version="5.0.10" />
 		<PackageReference Include="Microsoft.AspNetCore.Http.Abstractions" Version="2.2.0" />
 		<PackageReference Include="Microsoft.Bcl.AsyncInterfaces" Version="5.0.0" />
 		<!--<PackageReference Include="Microsoft.AspNetCore.Mvc.Core" Version="2.2.5" />-->
-		<PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="5.0.0" />
+		<PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="5.0.2" />
 		<PackageReference Include="System.Net.Http.Json" Version="5.0.0" />
 		 <PackageReference Include="Microsoft.Extensions.Http" Version="5.0.0" />
 		<PackageReference Include="Microsoft.Extensions.Logging" Version="5.0.0" />
@@ -29,18 +29,18 @@
 		<!--<PackageReference Include="Mailjet.Api" Version="1.2.2" />-->
 		<!--<PackageReference Include="MailKit" Version="2.7.0" />-->
 		<PackageReference Include="Microsoft.AspNetCore.Mvc.Abstractions" Version="2.2.0" />
-		<PackageReference Include="Microsoft.AspNetCore.Components" Version="5.0.0" />
-		<PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="5.0.0" />
-		<PackageReference Include="System.Text.Json" Version="5.0.0" />
+		<PackageReference Include="Microsoft.AspNetCore.Components" Version="5.0.10" />
+		<PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="5.0.10" />
+		<PackageReference Include="System.Text.Json" Version="5.0.2" />
 	</ItemGroup>
 
 	<ItemGroup>
-		<PackageReference Include="Microsoft.AspNetCore.Components" Version="5.0.0" />
-		<PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="5.0.0" />
+		<PackageReference Include="Microsoft.AspNetCore.Components" Version="5.0.10" />
+		<PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="5.0.10" />
 	</ItemGroup>
 	
 	<ItemGroup>
-    <PackageReference Include="Microsoft.AspNetCore.Http.Features" Version="5.0.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Http.Features" Version="5.0.10" />
     <PackageReference Include="NETCore.MailKit" Version="2.0.3" />
 		
   </ItemGroup>
@@ -51,6 +51,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <ProjectReference Include="..\Count4U.Model.Common\Count4U.Model.Common.csproj" />
 	  <ProjectReference Include="..\Service.Model.EF.SelectParam\Service.Model.EF.SelectParam.csproj" />
 	</ItemGroup>
 

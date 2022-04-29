@@ -1,0 +1,193 @@
+﻿@using Monitor.Service.Shared;
+<style type="text/css">
+    .fa_custom {
+        color: #0b960f;
+        font-size: 16px;
+        font-weight: 500;
+        line-height: 20px;
+        letter-spacing: 0.15px;
+    }
+
+    .fa_custom_background {
+        background-color: #bfd0c0
+    }
+
+
+    .fa_custom_white {
+        color: #ffffff
+    }
+
+    .custom_table {
+        width: 100%;
+        table-layout: fixed;
+        overflow-wrap: break-word;
+    }
+
+    .select_border_color {
+        /*          border: 1px solid #0b960f;*/
+        border-radius: .1rem;
+    }
+
+    .upbutton {
+        background: transparent;
+        border: none;
+        font-size: 14px;
+        font-weight: 500;
+        line-height: 20px;
+        letter-spacing: 0.15px;
+        color: #727375;
+        /*        margin-bottom: 6px;
+        margin-top: 6px;*/
+    }
+</style>
+
+<div class="form-group" style="margin-left: -15px;">
+    <div class="medium-label pb-3">Printer Settings</div>
+    <div class="row">
+        <div class="col pb-3">
+            <PrinterSettingsNetworkTypeComponent _isSubmit="@_isSubmit"
+                                                 _profileDomainObject="@_profileDomainObject">
+
+            </PrinterSettingsNetworkTypeComponent>
+        </div>
+    </div>
+    <div class="medium-label pb-3">Printer formats</div>
+ 
+    <div class="grid-container">
+        <Dropzone class="custom_table" Context="itemProperty" Accepts="(d, t) => d.index != 0"
+                  Items="_profileDomainObject.PrinterSettings.ZebraPrinter.PrintingFormats.PrintingFormat"
+                  InstantReplace="true" TItem="PrintingFormat"
+                  OnItemDrop="@((p)=>OnItemDrop(p))" OnReplacedItemDrop="@((p)=>OnReplacedItemDrop(p))">
+            <div>
+                <div class="row mx-0" style="background-color: #bfd0c0;">
+                    <div class="col text-white" style="padding-left: 20px;padding-top: 10px;"> #&nbsp;@itemProperty.index&nbsp;@itemProperty.Name</div>
+                    <div class="col pr-0">
+                        <div class="d-flex flex-row-reverse">
+                            <div class="col-1" style="background-color: white;">
+                                <button type="button" class="btn"
+                                        @onclick="@(() => DeleteItem(itemProperty))">
+                                    <i class="fa fa-times text-md-left text-secondary"></i>
+                                </button>
+                            </div>
+                            @if (itemProperty.IsOpen == true)
+                            {
+                                <button type="button" class="btn" style="background-color: transparent;"
+                                        @onclick="@itemProperty.ToggleButton">
+                                    <i class="fa fa-plus fa-right text-white"></i>
+                                </button>
+                            }
+                            else
+                            {
+                                <button type="button" class="btn" style="background-color: transparent"
+                                        @onclick="@itemProperty.ToggleButton">
+                                    <i class="fa fa-minus fa-right text-white"></i>
+                                </button>
+                            }
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="m-1" style='display: @(itemProperty.IsOpen ? "none" : "block");'>
+                    <PrinterSettingsNetworkTypeComponentItem  
+                                                             _profileDomainObject="_profileDomainObject"
+                                                             _isSubmit="_isSubmit"_item="@itemProperty"
+                                                             _fieldList4="@_fieldList4">
+                    </PrinterSettingsNetworkTypeComponentItem>
+                </div>
+            </div>
+        </Dropzone>
+    </div>
+    <div>
+        <div class="row mx-0">
+            <div class="col text-success" style="padding-left: 20px;padding-top: 10px;"> # Add printing format</div>
+            <div class="col pr-0">
+                <div class="d-flex flex-row-reverse">
+                    <div class="col-1">
+                        <button type="button" class="btn"
+                                @onclick="@(() => AddNewEmptyItem())">
+                            <i class="fa fa-plus-square text-md-left text-success"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+@code
+{
+    [Parameter]
+    public bool _isSubmit { get; set; }
+
+    [Parameter]
+    public Count4U.Service.Format.Profile _profileDomainObject { get; set; }
+
+    [Parameter]
+    public List<ValueItem> _fieldList4 { get; set; }
+
+    //[Parameter]
+    //public List<ValueItem> _itemType { get; set; }
+
+    [Parameter]
+    public bool _showItemsPerPage { get; set; } = false;
+
+    private PrintingFormat DropedItem = null;
+    private PrintingFormat replacedItem = null;
+
+    public void OnItemDrop(PrintingFormat item)
+    {
+        DropedItem = item;
+        ReIndex();
+        StateHasChanged();
+
+    }
+    public void OnReplacedItemDrop(PrintingFormat item)
+    {
+        replacedItem = item;
+        ReIndex();
+        StateHasChanged();
+    }
+
+    public async Task DeleteItem(PrintingFormat item)
+    {
+        _profileDomainObject.PrinterSettings.ZebraPrinter.PrintingFormats.PrintingFormat.Remove(item);
+    }
+
+    public async Task AddNewEmptyItem()
+    {
+        Console.WriteLine($"Client.AddNewEmptyItem");
+        PrintingFormat newItem = new PrintingFormat();
+        this._profileDomainObject.PrinterSettings.ZebraPrinter.PrintingFormats.PrintingFormat =
+          this._profileDomainObject.PrinterSettings.ZebraPrinter.PrintingFormats.PrintingFormat.Where(x => x.index > 0).OrderBy(x => x.index).ToList();
+
+        var sort = _profileDomainObject.PrinterSettings.ZebraPrinter.PrintingFormats.PrintingFormat.OrderByDescending(x => x.index).ToList();
+        int newIndex = 9999;
+        if (sort.Count > 1)
+        {
+            newIndex = sort.FirstOrDefault().index + 1;
+        }
+        else
+        {
+            newIndex = 1;
+        }
+        newItem.index = newIndex;
+        _profileDomainObject.PrinterSettings.ZebraPrinter.PrintingFormats.PrintingFormat.Add(newItem);
+
+
+        StateHasChanged();
+    }
+
+    public void ReIndex()
+    {
+        Console.WriteLine($"Client.ReIndex");
+        int i = 1;
+
+        foreach(var item in this._profileDomainObject.PrinterSettings.ZebraPrinter.PrintingFormats.PrintingFormat)
+        {
+            item.index = i;
+            i++;
+        }
+    }
+}

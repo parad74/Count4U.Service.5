@@ -1,0 +1,61 @@
+﻿<div class="form-group" style="margin-left: -15px;">
+    <div class="medium-label pb-3">Inventory Process Configuration</div>
+    <div class="row">
+        <div class="col">
+            <div class="medium-label pb-3">Asset Mode</div>
+          
+                <label class="switch">
+                    <InputCheckbox class="checkbox"  disabled="@_isSubmit"  @bind-Value="_profileDomainObject.InventoryProcessConfiguration.InventoryProcessMode.AssertModeEnabled" id="assetMode" />
+                    <span class="slider round"></span>
+                </label>
+            
+            @if (_profileDomainObject.InventoryProcessConfiguration.InventoryProcessMode.AssertModeEnabled)
+            {
+                <span class="p-2">Enabled</span>
+            }
+            else
+            {
+                <span class="p-2">Disabled</span>
+            }
+
+
+        </div>
+        <div class="col">
+            <div class="medium-label pb-3">Stock Mode</div>
+          
+                <label class="switch">
+                    <InputCheckbox class="checkbox"  disabled="@_isSubmit" @bind-Value="_profileDomainObject.InventoryProcessConfiguration.InventoryProcessMode.StockModeEnabled" id="stockmode" />
+                    <span class="slider round"></span>
+                </label>
+          
+
+            @if (_profileDomainObject.InventoryProcessConfiguration.InventoryProcessMode.StockModeEnabled)
+            {
+                <span class="p-2">Enabled</span>
+            }
+            else
+            {
+                <span class="p-2">Disabled</span>
+            }
+        </div>
+    </div>
+</div>
+
+
+    @code
+{
+        [Parameter]
+        public bool _isSubmit { get; set; }
+
+        [Parameter]
+        public Count4U.Service.Format.Profile _profileDomainObject { get; set; }
+
+        public enum ScannerTypeEnum { RFID, Barcode }
+    }
+
+    @*<InventoryProcessConfiguration>
+            <InventoryProcessMode>
+                <AssertModeEnabled>true</AssertModeEnabled>
+                <StockModeEnabled>true</StockModeEnabled>
+            </InventoryProcessMode>
+        </InventoryProcessConfiguration>*@

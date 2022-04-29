@@ -1,0 +1,48 @@
+﻿@*<InputRadioGroup @bind-Value="_scannerType">
+        <div class="radio-group-profile">
+            <label class="control-label col-md-2">Scanner Type</label>
+            <div style="padding-left : 16px">
+                <InputRadio id="rfid" Value="ScannerTypeEnum.RFID.ToString()" />
+            </div>
+            <label class="control-label col-md-1" for="rfid">@ScannerTypeEnum.RFID.ToString()</label>
+            <div>
+                <InputRadio id="barcode" Value="ScannerTypeEnum.Barcode.ToString()" />
+            </div>
+            <label class="control-label col-md-1" for="barcode">@ScannerTypeEnum.Barcode.ToString()</label>
+        </div>
+    </InputRadioGroup>*@
+
+<div class="form-group" style="margin-left: -15px;">
+    <InputRadioGroup @bind-Value="_profileDomainObject.ScannerType">
+        <div class="medium-label pb-3">Scanner Type</div>
+        <div class="px-0"></div>
+            <div class="radio-group-profile">
+                <InputRadio id="rfid"  disabled="@_isSubmit" Value="ScannerTypeEnum.RFID.ToString()" />
+                <label for="rfid">@ScannerTypeEnum.RFID.ToString()</label>
+                <InputRadio id="barcode"  disabled="@_isSubmit"  Value="ScannerTypeEnum.Barcode.ToString()" />
+                <label for="barcode">@ScannerTypeEnum.Barcode.ToString()</label>
+            </div>
+    </InputRadioGroup>
+</div>
+
+
+
+    @code
+{
+        [Parameter]
+        public bool _isSubmit { get; set; }
+
+        [Parameter]
+        public Count4U.Service.Format.Profile _profileDomainObject { get; set; }
+
+        //[Parameter]
+        //public string _scannerType { get; set; }
+
+        public enum ScannerTypeEnum { RFID, Barcode }
+    }
+
+    @*//< div class="radio-group-profile">
+                 //         <input id="rfid" ng-model="$ctrl.scannerType._text" type="radio" value="RFID"><label for="rfid">RFID</label>
+                 //         <input id="barcode" ng-model="$ctrl.scannerType._text" type="radio" value="Barcode"><label for="barcode">Barcode</label>
+                 //
+        // </div>*@

@@ -15,7 +15,7 @@ namespace Monitor.Profile.Sqlite.CodeFirst.ExportImport
 	public interface IProfileHandler
 	{
 		Task<ProfileFile[]> AddToQueueUpdateFtpAndDbRun(ProfileFile addToQueueProfileFile);
-		Task<ProfileFile> SaveOrUpdatOnFtp(ProfileFile profileFile, CancellationToken cancellationToken);
+		Task<ProfileFile> SaveOrUpdateOnFtp(ProfileFile profileFile, CancellationToken cancellationToken);
 		Task<ProfileFile> GetByCodeFromFtp(ProfileFile profileFile, CancellationToken cancellationToken);
 		Task<ProfileFile> UpdateOrInsertObjectFromFtpToDb(ProfileFile profileFile, CancellationToken cancellationToken);
 
@@ -79,7 +79,7 @@ namespace Monitor.Profile.Sqlite.CodeFirst.ExportImport
 					//new Monitor.Service.Model.ProfileFile(OperationIndexEnum.i_11, ProfiFileStepEnum.AddInQueue, sessionCode, addToQueueProfileFile),
 					new Monitor.Service.Model.ProfileFile(OperationIndexEnum.c_01,  ProfiFileStepEnum.SaveOrUpdatOnFtp,  sessionCode, addToQueueProfileFile),
 					new Monitor.Service.Model.ProfileFile(OperationIndexEnum.c_02, ProfiFileStepEnum.UpdateOrInsertObjectFromFtpToDb, sessionCode, addToQueueProfileFile),
-					new Monitor.Service.Model.ProfileFile(OperationIndexEnum.c_03, ProfiFileStepEnum.GetByCodeFromFtp, sessionCode, addToQueueProfileFile)
+				//	new Monitor.Service.Model.ProfileFile(OperationIndexEnum.c_03, ProfiFileStepEnum.GetByCodeFromFtp, sessionCode, addToQueueProfileFile)
 			};
 
 			//Save in Queue and DB 
@@ -126,7 +126,7 @@ namespace Monitor.Profile.Sqlite.CodeFirst.ExportImport
 
 		//======================== SaveOrUpdatOnFtp ==================================================
 		[StepProfile(Name = ProfiFileStepEnum.SaveOrUpdatOnFtp)]
-		public async Task<ProfileFile> SaveOrUpdatOnFtp(ProfileFile profileFile, CancellationToken cancellationToken)
+		public async Task<ProfileFile> SaveOrUpdateOnFtp(ProfileFile profileFile, CancellationToken cancellationToken)
 		{
 			var result = await Task<ProfileFile>.Factory.StartNew(() =>
 			{
@@ -146,7 +146,7 @@ namespace Monitor.Profile.Sqlite.CodeFirst.ExportImport
 				}
 				#endregion
 	  			this._settingsFtpRepository.InitProperty(profileFile);
-				ProfileFile retProfileFile = this._settingsFtpRepository.ProfileFileSendToFtp(profileFile, false);
+				ProfileFile retProfileFile = this._settingsFtpRepository.ProfileFileSendToFtp(profileFile, true);
 				if (retProfileFile.Successful == SuccessfulEnum.NotSuccessful) return retProfileFile;
 
 				profileFile.Successful = SuccessfulEnum.Successful;
@@ -185,6 +185,8 @@ namespace Monitor.Profile.Sqlite.CodeFirst.ExportImport
 		//	return result;
 		//}
 
+
+		//TODO	  CurrentPath должен быть
 		private ProfileFile GetByCodeFromFtpPrivate(ProfileFile profileFile, CancellationToken cancellationToken)
 		{
 			try
@@ -198,8 +200,10 @@ namespace Monitor.Profile.Sqlite.CodeFirst.ExportImport
 				//ProfileFile profileFile = this._profileFileRepository.GetProfileFileByObjectCode(inProfileFile.Code);
 
 				this._settingsFtpRepository.InitProperty(profileFile);
-				ProfileFile retProfileFile = this._profileFileRepository.InsertInventoriesByCBI(profileFile);
-				if (retProfileFile.Successful == SuccessfulEnum.NotSuccessful) return retProfileFile;
+				string profileTest = "";
+				string messageCreateFolder = "";
+				this._settingsFtpRepository.CopyProfileFileFromFtpToMemoryStream(profileFile.CurrentPath, ref profileTest, ref messageCreateFolder);
+				profileFile.ProfileXml = profileTest;
 
 				profileFile.Successful = SuccessfulEnum.Successful;
 				profileFile.ResultCode = CommandResultCodeEnum.Ok;
@@ -216,6 +220,7 @@ namespace Monitor.Profile.Sqlite.CodeFirst.ExportImport
 
 		}
 
+		//TODO
 		private ProfileFile GetByInventorCodeFromFtpPrivate(ProfileFile profileFile, CancellationToken cancellationToken)
 		{
 			try
@@ -280,8 +285,24 @@ namespace Monitor.Profile.Sqlite.CodeFirst.ExportImport
 				#endregion
 
 				//ProfileFile profileFile = this._profileFileRepository.GetProfileFileByObjectCode(inProfileFile.Code);
-				this._settingsFtpRepository.InitProperty(profileFile);
-				ProfileFile retProfileFile = this._profileFileRepository.GetProfileFileInventor(profileFile);
+				//	this._settingsFtpRepository.InitProperty(profileFile);
+				//ProfileFile retProfileFile = this._profileFileRepository.GetProfileFileInventor(profileFile);
+				ProfileFile retProfileFile = profileFile;
+				if (profileFile.DomainObject == "Customer" 
+					|| profileFile.DomainObject == "Branch"
+					|| profileFile.DomainObject == "Inventor")
+				{
+					retProfileFile = this._profileFileRepository.UpdateOrInsertObjectFromFtpToDb(profileFile);
+				}
+				else 
+				{
+					profileFile.Successful = SuccessfulEnum.NotSuccessful;
+					profileFile.ResultCode = CommandResultCodeEnum.Error;
+					profileFile.ErrorCode = CommandErrorCodeEnum.CommandResultWithException;
+					profileFile.Message += $" ERROR UpdateOrInsertObjectFromFtpToDbPrivate >> Unknown DomainObject {profileFile.DomainObject}";
+					return profileFile;
+				}
+
 				if (retProfileFile.Successful == SuccessfulEnum.NotSuccessful) return retProfileFile;
 
 				profileFile.Successful = SuccessfulEnum.Successful;
@@ -293,7 +314,7 @@ namespace Monitor.Profile.Sqlite.CodeFirst.ExportImport
 				profileFile.Successful = SuccessfulEnum.NotSuccessful;
 				profileFile.ResultCode = CommandResultCodeEnum.Error;
 				profileFile.ErrorCode = CommandErrorCodeEnum.CommandResultWithException;
-				profileFile.Message += " ERROR UpdateOrInsertInventorFromFtpToDbPrivate >> " + ecx.Message;
+				profileFile.Message += " ERROR UpdateOrInsertObjectFromFtpToDbPrivate >> " + ecx.Message;
 				return profileFile;
 			}
 

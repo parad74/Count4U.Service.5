@@ -29,8 +29,23 @@ namespace Count4U.Service.Shared
 		IAsyncEnumerable<int> RefillParallelApproveStatusBitSelectParamsAsync(List<SelectParams> spl, string dataServerAddressUrl, CancellationToken ct = default);
 		Task<bool> TestUpdateFileItemsInData(string dataServerAddressUrl);
 
-	}
-	public class IturService : IIturService
+	}		
+	//https://habr.com/ru/post/573434/
+	//	static async IAsyncEnumerable<int> PrintNumbers(int n)
+	//	{
+	//		for (int i = 0; i < n; i++) yield return i;
+	//	}
+
+	//using Stream stream = Console.OpenStandardOutput();
+	//var data = new { Data = PrintNumbers(3) };
+	//	await JsonSerializer.SerializeAsync(stream, data); // prints {"Data":[0,1,2]}
+//	===========
+//	var stream = new MemoryStream(Encoding.UTF8.GetBytes("[0,1,2,3,4]"));
+//	await foreach (int item in JsonSerializer.DeserializeAsyncEnumerable<int>(stream))
+//{
+//    Console.WriteLine(item);
+//}
+public class IturService : IIturService
 	{
 		private readonly HttpClient _httpClient;
 		//private readonly IJwtService _jwtService;

@@ -1,6 +1,58 @@
 ﻿@page "/customerprofile"
-<h3>CustomerProfile</h3>
-@*<p>@Configuration["message"]</p>*@
-@code {
+<div class="grid-container">
+    <Dropzone Context="data" Items="Items" InstantReplace="true" TItem="string" OnItemDrop="@((p)=>OnItemDrop(p))" OnReplacedItemDrop="@((p)=>OnReplacedItemDrop(p))">
+        <div>
+            <div class="grid-item">@data</div>
+        </div>
+    </Dropzone>
+</div>
 
+@code {
+    private string DropedItem = "";
+    private string replacedItem = "";
+    public List<string> Items = new List<string>()
+{
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7",
+        "8",
+        "9",
+    };
+    public void OnItemDrop(string item)
+    {
+        DropedItem = item;
+        StateHasChanged();
+    }
+    public void OnReplacedItemDrop(string item)
+    {
+        replacedItem = item;
+        StateHasChanged();
+    }
 }
+
+@*<Dropzone Items="MyItems">
+        <MyCompoenent Item="@context"></MyComponent>
+    </Dropzone>*@
+
+@*The item can only be dropped if the given Func returns true. The first parameter is the item that is currently being dragged.
+    The second parameter is the item directly under the current item or null when there is a gap.*@
+@*<Dropzone Accepts='(d, t) => d.Gender == "Male"'>
+    </Dropzone>*@
+
+@*<Dropzone InstantReplace="true">
+
+    </Dropzone>*@
+
+@*Чтобы стилизовать блоки dropzone, вы можете либо создать селектор css 
+    для plk-dd-dropzone, либо назначить классы для dropzone:
+
+< Dropzone  Class = " my-a my-b " >
+plk-dd-drag-over (класс, добавленный к элементу, который в данный момент перетаскивается)
+plk-dd-in-transit (класс, добавленный к элементу, который в данный момент перетаскивается)
+plk-dd-spacing (класс, добавляемый в div, который находится между двумя элементами)
+plk-dd-spacing-drag-over (класс, добавленный в div, который в настоящее время является целью перетаскивания)
+plk-dd-inprogess (класс, добавляемый в зону перетаскивания, когда выполняется операция перетаскивания)*@

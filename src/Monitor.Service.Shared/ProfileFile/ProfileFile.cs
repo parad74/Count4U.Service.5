@@ -2,6 +2,7 @@
 using System.Linq;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using Count4U.Model.Common;
 
 namespace Monitor.Service.Model
 {
@@ -183,8 +184,45 @@ namespace Monitor.Service.Model
 
 		public void FixProfileXml()
 		{
+			int index = this.ProfileXml.IndexOf('<');
+			if (index > 0)
+			{
+				this.ProfileXml = this.ProfileXml.Substring(index, this.ProfileXml.Length - index);
+			}
 			this.ProfileXml = this.ProfileXml.Replace("False", "false");
 			this.ProfileXml = this.ProfileXml.Replace("True", "true");
+			this.ProfileXml = this.ProfileXml.Replace(@" />", @"/>");
+		}
+
+		public void RefreshCBIProfileXml()
+		{
+			try
+			{
+				Count4U.Service.Format.Profile profileDomainObject =
+							   DeserializeXML.DeserializeXMLTextToObject<Count4U.Service.Format.Profile>(this.ProfileXml);
+				//can return null
+				if (profileDomainObject == null)
+				{
+					this.ProfileXml = "";
+					return;
+				}
+				profileDomainObject.InventoryProcessInformation.Customer.code = this.CustomerCode != null ? this.CustomerCode : "";
+				profileDomainObject.InventoryProcessInformation.Customer.name = this.CustomerName != null ? this.CustomerName : "";
+				profileDomainObject.InventoryProcessInformation.Branch.code = this.BranchCode != null ? this.BranchCode : "";
+				profileDomainObject.InventoryProcessInformation.Branch.name = this.BranchName != null ? this.BranchName : "";
+				profileDomainObject.InventoryProcessInformation.Inventory.code = this.InventorCode != null ? this.InventorCode : "";
+				profileDomainObject.InventoryProcessInformation.Inventory.created_date = this.InventorName != null ? this.InventorName : "";
+				string currentXml = profileDomainObject.SerializeToXml();
+				this.ProfileXml = currentXml;
+			}
+			catch(Exception exp)
+			{
+				this.ProfileXml = "";
+				this.Error = "RefreshCBIProfileXml ERROR :" + exp.Message + exp.InnerException;
+				this.Successful = SuccessfulEnum.NotSuccessful;
+				Console.WriteLine("RefreshCBIProfileXml ERROR :" + exp.Message + exp.InnerException);
+
+			}
 		}
 		public override bool Equals(object obj)
 		{

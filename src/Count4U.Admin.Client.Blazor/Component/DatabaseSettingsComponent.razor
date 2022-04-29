@@ -1,0 +1,148 @@
+﻿@using Monitor.Service.Shared;
+
+<style type="text/css">
+    .fa_custom {
+        color: #0b960f;
+        font-size: 16px;
+        font-weight: 500;
+        line-height: 20px;
+        letter-spacing: 0.15px;
+    }
+
+    .fa_custom_background {
+        background-color: #bfd0c0
+    }
+
+
+    .fa_custom_white {
+        color: #ffffff
+    }
+
+      .select_border_color {
+        /*          border: 1px solid #0b960f;*/
+        border-radius: .1rem;
+        width : 250px;
+    }
+
+</style>
+
+<div class="form-group" style="margin-left: -15px;">
+    <div class="medium-label pb-3">Database Settings</div>
+    <div class="medium-label pb-3">UID key</div>
+
+    <div class="row pt-1 ml-0">
+        <select class="form-control form-control-sm select_border_color" disabled @bind="@_profileDomainObject.DatabaseSettings.UIDKeyList[0].Key">
+            @foreach (var url in _fieldList2)
+            {
+                <option value=@url.Key>@url.Value</option>
+            }
+        </select>
+    </div>
+
+    <div class="row  pt-1  ml-0">
+        <select class="form-control form-control-sm select_border_color" disabled @bind="@_profileDomainObject.DatabaseSettings.UIDKeyList[1].Key">
+            @foreach (var url in _fieldList2)
+            {
+                <option value=@url.Key>@url.Value</option>
+            }
+        </select>
+    </div>
+
+    <div class="row pt-1 ml-0">
+        <select class="form-control form-control-sm select_border_color" disabled @bind="@_profileDomainObject.DatabaseSettings.UIDKeyList[2].Key">
+            @foreach (var url in _fieldList2)
+            {
+                <option value=@url.Key>@url.Value</option>
+            }
+        </select>
+    </div>
+
+    @for (int i = 3; i < _profileDomainObject.DatabaseSettings.UIDKeyList.Count; i++)
+    {
+    <div class="row  pt-1 ml-0">
+        <select class="form-control form-control-sm select_border_color" disabled="@_isSubmit" @bind="@_profileDomainObject.DatabaseSettings.UIDKeyList[i].Key">
+            @foreach (var url in _fieldList2)
+            {
+                <option value=@url.Key>@url.Value</option>
+            }
+        </select>
+    </div>
+    }
+
+    <div class="row">
+        <div class="col pt-4 ml-0">
+            <div class="medium-label  pb-3">Clear inventory data after upload</div>
+
+            <label class="switch">
+                <InputCheckbox class="checkbox" disabled="@_isSubmit" @bind-Value="_profileDomainObject.DatabaseSettings.ClearInventoryDataAfterUpload" id="assetMode" />
+                <span class="slider round"></span>
+            </label>
+
+            @if (_profileDomainObject.DatabaseSettings.ClearInventoryDataAfterUpload)
+            {
+                <span class="p-2">Enabled</span>
+            }
+            else
+            {
+                <span class="p-2">Disabled</span>
+            }
+        </div>
+    </div>
+
+             <div class="row">
+                <div class="col pt-4 ml-0">
+                    <div class="medium-label py-2">Current inventory device id</div>
+                    <select class="form-control form-control-sm select_border_color" disabled="@_isSubmit" @bind="@_profileDomainObject.DatabaseSettings.CurrentInventoryDeviceIdProperty">
+                        @foreach (var url in _fieldList3)
+                        {
+                            <option value=@url.Key>@url.Value</option>
+                        }
+                    </select>
+                </div>
+                <div class="col pt-4 ml-0">
+                    <div class="medium-label py-2">Current inventory login user name</div>
+                    <select class="form-control form-control-sm select_border_color" disabled="@_isSubmit" @bind="@_profileDomainObject.DatabaseSettings.CurrentInventoryUserNameProperty">
+                        @foreach (var url in _fieldList3)
+                        {
+                            <option value=@url.Key>@url.Value</option>
+                        }
+                    </select>
+                </div>
+                <div class="col pt-4 ml-0">
+                    <div class="medium-label py-2">Current inventory device name</div>
+                    <select class="form-control form-control-sm select_border_color" disabled="@_isSubmit" @bind="@_profileDomainObject.DatabaseSettings.CurrentInventoryDeviceNameProperty">
+                        @foreach (var url in _fieldList3)
+                        {
+                            <option value=@url.Key>@url.Value</option>
+                        }
+                    </select>
+                </div>
+            </div>
+
+
+        </div>
+
+
+        @code
+{
+            [Parameter]
+            public bool _isSubmit { get; set; }
+
+            [Parameter]
+            public Count4U.Service.Format.Profile _profileDomainObject { get; set; }
+
+            [Parameter]
+            public List<ValueItem> _fieldList2 { get; set; }
+
+            [Parameter]
+            public List<ValueItem> _fieldList3 { get; set; }
+
+            
+
+            private bool IsOpen { get; set; } = false;
+
+            private void ToggleButton()
+            {
+                IsOpen = !IsOpen;
+            }
+        }

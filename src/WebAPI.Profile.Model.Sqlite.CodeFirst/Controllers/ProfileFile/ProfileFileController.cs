@@ -135,6 +135,7 @@ namespace WebAPI.Monitor.Sqlite.CodeFirst.Controllers
 		public ActionResult<ProfileFile> GetProfileFileById([FromBody]string profileFileUID)
 		{
 			ProfileFile profileFile = this._profileFileRepository.GetProfileFile(profileFileUID);
+			profileFile.FixProfileXml();
 			return profileFile;
 		}
 
@@ -150,6 +151,12 @@ namespace WebAPI.Monitor.Sqlite.CodeFirst.Controllers
 		public ActionResult<ProfileFile> GetProfileFileByObjectCode([FromBody] string objectCode)
 		{
 			ProfileFile profileFile = this._profileFileRepository.GetProfileFileByObjectCode(objectCode);
+			if (profileFile != null)
+			{
+				profileFile.FixProfileXml();
+				profileFile.Successful = SuccessfulEnum.Successful;
+			}
+
 			return profileFile;
 		}
 
@@ -160,12 +167,12 @@ namespace WebAPI.Monitor.Sqlite.CodeFirst.Controllers
 			ProfileFile profileFile = this._profileFileRepository.GetProfileFileByObjectCode(objectCode);
 			if (profileFile != null) 
 			{
-				Count4U.Service.Format.Profile profileFileObject1 =
-			  DeserializeXML.DeserializeXMLTextToObject<Count4U.Service.Format.Profile>(profileFile.ProfileXml);
+				//Count4U.Service.Format.Profile profileFileObject1 =
+			 // DeserializeXML.DeserializeXMLTextToObject<Count4U.Service.Format.Profile>(profileFile.ProfileXml);
 				profileFile.FixProfileXml();
 				Count4U.Service.Format.Profile profileFileObject = 
 					DeserializeXML.DeserializeXMLTextToObject<Count4U.Service.Format.Profile>(profileFile.ProfileXml);
-				return profileFileObject;
+				return profileFileObject;		//TODO can return null	 ??
 			}
 			return new Count4U.Service.Format.Profile();
 		}
@@ -174,6 +181,11 @@ namespace WebAPI.Monitor.Sqlite.CodeFirst.Controllers
 		public ActionResult<ProfileFile> GetProfileFileByInventorCode([FromBody] string inventorCode)
 		{
 			ProfileFile profileFile = this._profileFileRepository.GetProfileFileByInventorCode(inventorCode);
+			if (profileFile != null)
+			{
+				profileFile.FixProfileXml();
+				profileFile.Successful = SuccessfulEnum.Successful;
+			}
 			return profileFile;
 		}
 
@@ -203,6 +215,7 @@ namespace WebAPI.Monitor.Sqlite.CodeFirst.Controllers
 		[HttpPost(WebApiProfileFile.Insert)]
 		public ActionResult<string> Insert([FromBody] ProfileFile profileFile)
 		{
+			profileFile.FixProfileXml();
 			string uid = this._profileFileRepository.Insert(profileFile);
 			return uid;
 		}
@@ -224,6 +237,7 @@ namespace WebAPI.Monitor.Sqlite.CodeFirst.Controllers
 		[HttpPost(WebApiProfileFile.Update)]
 		public ActionResult<ProfileFile> Update([FromBody] ProfileFile profileFile)
 		{
+			profileFile.FixProfileXml();
 			this._profileFileRepository.Update(profileFile);
 			return profileFile;
 		}
@@ -232,9 +246,10 @@ namespace WebAPI.Monitor.Sqlite.CodeFirst.Controllers
 		public ActionResult<ProfileFile> SaveOrUpdateProfileFileOnFtp([FromBody] ProfileFile profileFile)
 		{
 			try 
-			{ 
+			{
+				profileFile.FixProfileXml();
 				this._settingsFtpRepository.InitProperty(profileFile);
-				this._settingsFtpRepository.ProfileFileSendToFtp(profileFile, false);
+				this._settingsFtpRepository.ProfileFileSendToFtp(profileFile, true);
 				profileFile.Successful = SuccessfulEnum.Successful;
 				return profileFile;
 			}
@@ -276,6 +291,7 @@ namespace WebAPI.Monitor.Sqlite.CodeFirst.Controllers
 			try
 			{
 				//SaveOrUpdateProfileFileOnFtp
+				profileFile.FixProfileXml();
 				this._settingsFtpRepository.InitProperty(profileFile);
 				this._settingsFtpRepository.ProfileFileSendToFtp(profileFile, true);
 
@@ -287,11 +303,20 @@ namespace WebAPI.Monitor.Sqlite.CodeFirst.Controllers
 				profileFile.ProfileXml = profileTest;
 
 				//insert   profile in db
-				string uid = this._profileFileRepository.Insert(profileFile);
-				
-				profileFile.ProfileFileUID = uid;
-				profileFile.Successful = SuccessfulEnum.Successful;
-				return profileFile;
+				string code = this._profileFileRepository.InsertOrUpdateByCode(profileFile);
+				ProfileFile ret = this._profileFileRepository.GetProfileFileByObjectCode(code);
+				if (ret != null)
+				{
+					ret.Successful = SuccessfulEnum.Successful;
+					return ret;
+				}
+				else
+				{
+					profileFile.Successful = SuccessfulEnum.NotSuccessful;
+					profileFile.ResultCode = CommandResultCodeEnum.Unknown;
+					profileFile.Error = "Something problem in DB 2";
+					return profileFile;
+				}
 			}
 			catch (Exception exc)
 			{
@@ -324,14 +349,16 @@ namespace WebAPI.Monitor.Sqlite.CodeFirst.Controllers
 
 
 		[HttpPost(WebApiProfileFile.AddProfileFileCustomersToDb)]
-		public ActionResult<ProfileFile> AddProfileFileCustomersToDb([FromBody] ProfileFile profileFileModel)
+		public ActionResult<ProfileFile> AddProfileFileCustomersToDb([FromBody] ProfileFile profileFile)
 		{
 			try
 			{
+				if (profileFile == null) return new ProfileFile();
+				profileFile.FixProfileXml();
 				//List<string> list = this._settingsFtpRepository.GetSubFolder("mINV", "Customer" );
 				List<string> list = this._settingsFtpRepository.GetCustomerCodeListFromFtp();
 				this._profileFileRepository.InsertCustomersBySubFolderList(list);
-				return profileFileModel;
+				return profileFile;
 			}
 			catch (Exception exc)
 			{
@@ -345,10 +372,11 @@ namespace WebAPI.Monitor.Sqlite.CodeFirst.Controllers
 
 
 		[HttpPost(WebApiProfileFile.SaveProfileFileBranchesFromFtpToDb)]
-		public ActionResult<List<string>> SaveProfileFileBranchesFromFtpToDb([FromBody] ProfileFile profileFileModel)
+		public ActionResult<List<string>> SaveProfileFileBranchesFromFtpToDb([FromBody] ProfileFile profileFile)
 		{
-			if (profileFileModel == null) return new List<string>();
-			string customerCode = profileFileModel.CustomerCode;
+			if (profileFile == null) return new List<string>();
+			profileFile.FixProfileXml();
+			string customerCode = profileFile.CustomerCode;
 			if(string.IsNullOrWhiteSpace(customerCode) == true) return new List<string>();
 
 			try
@@ -366,12 +394,14 @@ namespace WebAPI.Monitor.Sqlite.CodeFirst.Controllers
 		}
 
 		[HttpPost(WebApiProfileFile.SaveProfileFileInventorsFromFtpToDb)]
-		public ActionResult<List<string>> SaveProfileFileInventorsFromFtpToDb([FromBody] ProfileFile profileFileModel)
+		public ActionResult<List<string>> SaveProfileFileInventorsFromFtpToDb([FromBody] ProfileFile profileFile)
 		{
-			if (profileFileModel == null) return new List<string>();
-			string customerCode = profileFileModel.CustomerCode;
+			if (profileFile == null) return new List<string>();
+			profileFile.FixProfileXml();
+			
+			string customerCode = profileFile.CustomerCode;
 			if (string.IsNullOrWhiteSpace(customerCode) == true) return new List<string>();
-			string branchCode = profileFileModel.BranchCode;
+			string branchCode = profileFile.BranchCode;
 			if (string.IsNullOrWhiteSpace(branchCode) == true) return new List<string>();
 			try
 			{
@@ -390,22 +420,23 @@ namespace WebAPI.Monitor.Sqlite.CodeFirst.Controllers
 
 
 		[HttpPost(WebApiProfileFile.UpdateOrInsertProfileFileInventorFromFtpToDb)]
-		public ActionResult<ProfileFile> UpdateOrInsertProfileFileInventorFromFtpToDb([FromBody] ProfileFile profileFileModel)
+		public ActionResult<ProfileFile> UpdateOrInsertProfileFileInventorFromFtpToDb([FromBody] ProfileFile profileFile)
 		{
-			 if (profileFileModel == null)
+			 if (profileFile == null)
 			{
 				return new ProfileFile();
 			}
 			try
 			{
-				ProfileFile ret = this._profileFileRepository.InsertInventoriesByCBI(profileFileModel);
+				profileFile.FixProfileXml();
+				ProfileFile ret = this._profileFileRepository.InsertInventoriesByCBI(profileFile);
 				if (ret == null) return new ProfileFile();
 				return ret;
 			}
 			catch (Exception exc)
 			{
 				string message = exc.Message;
-				return profileFileModel;
+				return profileFile;
 			}
 
 		}
@@ -428,10 +459,11 @@ namespace WebAPI.Monitor.Sqlite.CodeFirst.Controllers
 		}
 
 		[HttpPost(WebApiProfileFile.GetBranchCodeListFromDb)]
-		public ActionResult<List<string>> GetBranchCodeListFromDb([FromBody] ProfileFile profileFileModel)
+		public ActionResult<List<string>> GetBranchCodeListFromDb([FromBody] ProfileFile profileFile)
 		{
-			if (profileFileModel == null) return new List<string>();
-			string customerCode = profileFileModel.CustomerCode;
+			if (profileFile == null) return new List<string>();
+			profileFile.FixProfileXml();
+			string customerCode = profileFile.CustomerCode;
 			if (string.IsNullOrWhiteSpace(customerCode) == true) return new List<string>();
 
 			try
@@ -448,12 +480,13 @@ namespace WebAPI.Monitor.Sqlite.CodeFirst.Controllers
 		}
 
 		[HttpPost(WebApiProfileFile.GetInventorCodeListFromDb)]
-		public ActionResult<List<string>> GetInventorCodeListFromDb([FromBody] ProfileFile profileFileModel)
+		public ActionResult<List<string>> GetInventorCodeListFromDb([FromBody] ProfileFile profileFile)
 		{
-			if (profileFileModel == null) return new List<string>();
-			string customerCode = profileFileModel.CustomerCode;
+			if (profileFile == null) return new List<string>();
+			profileFile.FixProfileXml();
+			string customerCode = profileFile.CustomerCode;
 			if (string.IsNullOrWhiteSpace(customerCode) == true) return new List<string>();
-			string branchCode = profileFileModel.BranchCode;
+			string branchCode = profileFile.BranchCode;
 			if (string.IsNullOrWhiteSpace(branchCode) == true) return new List<string>();
 			try
 			{

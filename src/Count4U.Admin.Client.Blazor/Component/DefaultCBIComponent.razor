@@ -1,0 +1,41 @@
+﻿<div class="form-group row">
+    <div class="name">
+        <div class="medium-label">Customer Name</div>
+        <div class="regular-label customer-property">@_profileFile.CustomerName</div>
+    </div>
+    <div class="name">
+        <div class="medium-label">Code</div>
+        <div class="regular-label customer-property">@_profileFile.CustomerCode</div>
+    </div>
+</div>
+
+@if (_profileFile.DomainObject != "Customer")
+{
+
+    <div class="name">
+        <div class="medium-label">Branch Name</div>
+        <div class="regular-label customer-property">@_profileFile.BranchName</div>
+    </div>
+    <div class="name">
+        <div class="medium-label">Code</div>
+        <div class="regular-label customer-property">@_profileFile.BranchCode</div>
+    </div>
+}
+
+@if (_profileFile.DomainObject == "Inventor")
+{
+    <div class="name">
+        <div class="medium-label">Inventory Name</div>
+        <div class="regular-label customer-property">@_profileFile.InventorName</div>
+    </div>
+    <div class="name">
+        <div class="medium-label">Code</div>
+        <div class="regular-label customer-property">@_profileFile.InventorCode</div>
+    </div>
+}
+
+@code
+{
+    [Parameter]
+    public ProfileFile _profileFile { get; set; }
+}

@@ -1,28 +1,43 @@
-﻿<table style="width: 100px; border-left-color: green; border-left-width:4px; border-left-style:dotted">
-    <tbody>
-        <tr>
-            <td>
-                <a href="/customerprofileanduseredit/@customerCode/@email" class="p-2 m-2" style="color:green">Edit</a>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <a href="/usergrid/@customerCode" class="p-2 m-2" style="color:green">Users</a>
-            </td>
-        </tr>
-        @*<tr>
-                <td>
-                    <a href="/rolegrid" class="p-2 m-2" style="color:green">Roles</a>
-                </td>
-            </tr>*@
+﻿<profile-menu>
+    @*<ul class="list-unstyled profile-menu-list" style="position: absolute; right: 24px;">
+        <li>
+            <span @onclick="()=>NavigateToUserEdit(customerCode, email)">User Edit</span>
+        </li>
+        <li>
+            <span @onclick="()=>NavigateToUsersGrid(customerCode)">Users</span>
+        </li>
+    </ul>*@
+    <div class="row px-0">
+        <button class="btn btn-lg profile-menu-inbutton" @onclick="()=>NavigateToUserEdit(customerCode, email)">User Edit</button>
+        <div class="profile-menu-line-border row"></div>
+    </div>
+    <div class="row px-0">
+        <button class="btn btn-lg profile-menu-inbutton" @onclick="()=>NavigateToUsersGrid(customerCode)">Users</button>
+    </div>
+</profile-menu>
 
-    </tbody>
-</table>
-@code
-{
+
+@code{
+
     [Parameter]
     public string customerCode { get; set; }
 
     [Parameter]
     public string email { get; set; }
+
+    [Inject]
+    protected NavigationManager _navigationManager { get; set; }
+
+    public async Task NavigateToUsersGrid(string _customerCode)
+    {
+
+        this._navigationManager.NavigateTo(@"/usergrid/" + _customerCode);
+    }
+
+    public async Task NavigateToUserEdit(string _customerCode, string _email)
+    {
+        this._navigationManager.NavigateTo(@"/customerprofileanduseredit/" + _customerCode + @"/" + _email);
+    }
+
+
 }

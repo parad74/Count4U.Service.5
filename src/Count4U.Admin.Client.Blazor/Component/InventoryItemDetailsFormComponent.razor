@@ -1,0 +1,205 @@
+﻿@using Monitor.Service.Shared;
+<style type="text/css">
+    .fa_custom {
+        color: #0b960f;
+        font-size: 16px;
+        font-weight: 500;
+        line-height: 20px;
+        letter-spacing: 0.15px;
+    }
+
+    .fa_custom_background {
+        background-color: #bfd0c0
+    }
+
+
+    .fa_custom_white {
+        color: #ffffff
+    }
+
+    .custom_table {
+        width: 100%;
+        table-layout: fixed;
+        overflow-wrap: break-word;
+    }
+
+    .select_border_color {
+        /*          border: 1px solid #0b960f;*/
+        border-radius: .1rem;
+    }
+
+    .upbutton {
+        background: transparent;
+        border: none;
+        font-size: 14px;
+        font-weight: 500;
+        line-height: 20px;
+        letter-spacing: 0.15px;
+        color: #727375;
+        /*        margin-bottom: 6px;
+        margin-top: 6px;*/
+    }
+</style>
+
+<div class="form-group" style="margin-left: -15px;">
+    <div class="medium-label pb-3">Inventory item details form</div>
+    <div class="row pb-3">
+        <div class="col  pb-3">
+            <div class="medium-label pb-3">Keep all fields on item code change</div>
+            @if (_profileDomainObject.Forms != null)
+            {
+                @if (_profileDomainObject.Forms.Form != null)
+                {
+                    <label class="switch">
+                        <InputCheckbox class="checkbox" disabled="@_isSubmit" @bind-Value="_profileDomainObject.Forms.Form.KeepAllFieldsOnItemCodeChange" id="assetMode" />
+                        <span class="slider round"></span>
+                    </label>
+                    @if (_profileDomainObject.Forms.Form.KeepAllFieldsOnItemCodeChange)
+                    {
+                        <span class="p-2">Enabled</span>
+                    }
+                    else
+                    {
+                        <span class="p-2">Disabled</span>
+                    }
+                }
+            }
+            </div>
+
+    </div>
+
+    <div class="grid-container">
+        <Dropzone class="custom_table" Context="itemProperty" 
+                  Items="_profileDomainObject.Forms.Form.Fields"
+                  InstantReplace="true" TItem="Field"
+                  OnItemDrop="@((p)=>OnItemDrop(p))" OnReplacedItemDrop="@((p)=>OnReplacedItemDrop(p))">
+            <div>
+                <div class="row mx-0" style="background-color: #bfd0c0;">
+                    <div class="col text-white" style="padding-left: 20px;padding-top: 10px;"> #&nbsp;@itemProperty.id</div>
+                    <div class="col pr-0">
+                        <div class="d-flex flex-row-reverse">
+                            <div class="col-1" style="background-color: white;">
+                                <button type="button" class="btn"
+                                        @onclick="@(() => DeleteItem(itemProperty))">
+                                    <i class="fa fa-times text-md-left text-secondary"></i>
+                                </button>
+                            </div>
+                            @if (itemProperty.IsOpen == true)
+                            {
+                                <button type="button" class="btn" style="background-color: transparent;"
+                                        @onclick="@itemProperty.ToggleButton">
+                                    <i class="fa fa-plus fa-right text-white"></i>
+                                </button>
+                            }
+                            else
+                            {
+                                <button type="button" class="btn" style="background-color: transparent"
+                                        @onclick="@itemProperty.ToggleButton">
+                                    <i class="fa fa-minus fa-right text-white"></i>
+                                </button>
+                            }
+                        </div>
+                    </div>
+                </div>
+
+
+                @*<div class="m-1" style='display: @(itemProperty.IsOpen ? "none" : "block");'>
+                    <InventoryDefaultUIconfigurationItem _item="@itemProperty" _fieldList2="@_fieldList2" _itemType="@_itemType">
+                    </InventoryDefaultUIconfigurationItem>
+                </div>*@
+            </div>
+        </Dropzone>
+    </div>
+    <div>
+        <div class="row mx-0">
+            <div class="col text-success" style="padding-left: 20px;padding-top: 10px;"> #</div>
+            <div class="col pr-0">
+                <div class="d-flex flex-row-reverse">
+                    <div class="col-1">
+                        <button type="button" class="btn"
+                                @onclick="@(() => AddNewEmptyItem())">
+                            <i class="fa fa-plus-square text-md-left text-success"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+@code
+{
+    [Parameter]
+    public bool _isSubmit { get; set; }
+
+    [Parameter]
+    public Count4U.Service.Format.Profile _profileDomainObject { get; set; }
+
+    [Parameter]
+    public List<ValueItem> _fieldList2 { get; set; }
+
+    [Parameter]
+    public List<ValueItem> _itemType { get; set; }
+
+    [Parameter]
+    public bool _showItemsPerPage { get; set; } = false;
+
+    private Field DropedItem = null;
+    private Field replacedItem = null;
+
+    public void OnItemDrop(Field item)
+    {
+        DropedItem = item;
+        ReIndex();
+        StateHasChanged();
+
+    }
+    public void OnReplacedItemDrop(Field item)
+    {
+        replacedItem = item;
+        ReIndex();
+        StateHasChanged();
+    }
+
+    public async Task DeleteItem(Field item)
+    {
+       // _profileDomainObject.InventoryListDefaultUIConfiguration.InventoryItemsProperties.InventoryItemDisplayProperty.Remove(item);
+    }
+
+    public async Task AddNewEmptyItem()
+    {
+        //Console.WriteLine($"Client.AddNewEmptyItem");
+        //InventoryItemDisplayProperty newItem = new InventoryItemDisplayProperty();
+        //this._profileDomainObject.InventoryListDefaultUIConfiguration.InventoryItemsProperties.InventoryItemDisplayProperty =
+        //  this._profileDomainObject.InventoryListDefaultUIConfiguration.InventoryItemsProperties.InventoryItemDisplayProperty.Where(x => x.index > 0).OrderBy(x => x.index).ToList();
+
+        //var sort = _profileDomainObject.InventoryListDefaultUIConfiguration.InventoryItemsProperties.InventoryItemDisplayProperty.OrderByDescending(x => x.index).ToList();
+        //int newIndex = 9999;
+        //if (sort.Count > 1)
+        //{
+        //    newIndex = sort.FirstOrDefault().index + 1;
+        //}
+        //else
+        //{
+        //    newIndex = 1;
+        //}
+        //newItem.index = newIndex;
+        //_profileDomainObject.InventoryListDefaultUIConfiguration.InventoryItemsProperties.InventoryItemDisplayProperty.Add(newItem);
+
+
+        StateHasChanged();
+    }
+
+    public void ReIndex()
+    {
+        Console.WriteLine($"Client.ReIndex");
+        int i = 1;
+
+        //foreach (var item in this._profileDomainObject.InventoryListDefaultUIConfiguration.InventoryItemsProperties.InventoryItemDisplayProperty)
+        //{
+        //    item.index = i;
+        //    i++;
+        //}
+    }
+}

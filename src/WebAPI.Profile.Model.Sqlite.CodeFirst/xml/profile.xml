@@ -1,7 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Profile>
+    <!--<Customer name="בית אבות קשת" code="862" />-->
+    <!--  RFID or Barcode  -->
+    <!--
+        UI configuration for Inventory List (LocationDetails) screen.
+        Note: To add new property use id as field name from Inventory class.
+        Also, if property is a member of class that Inventory class contains reference on, you have to
+        use id as ClassName.Field name. f.e. Catalog.ItemName
+    -->
+    <Customer name="Test (862)" code="001"/>
     <InventoryProcessInformation>
-        <Customer name="" code=""/>
+        <Customer name="Test (862)" code="001"/>
         <Branch name="" code=""/>
         <Inventory code="" created_date=""/>
     </InventoryProcessInformation>
@@ -299,6 +308,19 @@
                         <id>2</id>
                     </SearchDisplayProperty>
                 </SearchInCatalogByItemNameResultListDisplayProperties>
+                <!-- ptara #5 Element added -->
+                <SearchInCatalogByItemCodeOrNameResultListDisplayProperties>
+                    <SearchDisplayProperty id="ItemName">
+                        <Title en="Item Name" he="תיאור פריט"/>
+                        <invalid>false</invalid>
+                        <id>1</id>
+                    </SearchDisplayProperty>
+                    <SearchDisplayProperty id="ItemCode">
+                        <Title en="Item Code" he="קוד פריט"/>
+                        <invalid>false</invalid>
+                        <id>2</id>
+                    </SearchDisplayProperty>
+                </SearchInCatalogByItemCodeOrNameResultListDisplayProperties>
             </SearchInCatalogResultListsDisplayProperties>
         </SearchInCatalogScreenConfiguration>
         <SearchInLocationScreenConfiguration>
@@ -392,7 +414,7 @@
     <InventoryImage>
         <InventoryImageEnabled>false</InventoryImageEnabled>
         <ImageQuality>80</ImageQuality>
-        <InventoryImagePropertyId/>
+        <InventoryImagePropertyId></InventoryImagePropertyId>
     </InventoryImage>
     <PrinterSettings>
         <ZebraPrinter>
@@ -428,7 +450,7 @@
                     </FieldsMapping>
                 </PrintingFormat>
             </PrintingFormats>
-        </ZebraPrinter>
+        </ZebraPrinter>           type
     </PrinterSettings>
     <RFID>
         <QCodeType>0</QCodeType>
@@ -439,7 +461,29 @@
             <RFIDCommand command="ATTRIBUTE FIELDSTRENGTH=27dB" type="rfid_adjust_reader_strength"/>
             <RFIDCommand command="FACDFLT" type="rfid_reset_to_default"/>
         </RFIDCommands>
-        <RFIDTagWritten/>
+        <RFIDTagWritten></RFIDTagWritten>
         <SNCodeType>1</SNCodeType>
     </RFID>
-<Version>1</Version></Profile>
+	<!---<BarcodeManipulations>
+
+		<Manipulation type="israel_market_barcode"/>
+
+
+		-<GroupManipulation>
+
+			<Manipulation type="delete_all_character" char="f" case_sensitive="true"/>
+
+			<Manipulation type="add_leading_character" char="1" target_length="9"/>
+
+			<Manipulation type="delete_leading_character" char="3" case_sensitive="true"/>
+
+			<Manipulation type="israel_market_barcode"/>
+
+			<Manipulation type="substring" number_of_characters="9" direction="start"/>
+
+			<Manipulation type="substring_and_mask" char="e" target_length="5" number_of_characters="4" direction="end"/>
+
+		</GroupManipulation>
+
+	</BarcodeManipulations>-->
+</Profile>

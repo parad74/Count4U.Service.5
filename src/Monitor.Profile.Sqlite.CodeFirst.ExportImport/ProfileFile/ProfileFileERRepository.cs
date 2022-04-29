@@ -791,6 +791,91 @@ namespace Monitor.Sqlite.CodeFirst
 
 			return profileFileModel;
 		}
+
+
+		public Monitor.Service.Model.ProfileFile UpdateOrInsertObjectFromFtpToDb(Monitor.Service.Model.ProfileFile profileFile)
+		{
+			if (profileFile == null)
+			{
+				return new Monitor.Service.Model.ProfileFile(SuccessfulEnum.NotSuccessful, CommandResultCodeEnum.ValidateError, CommandErrorCodeEnum.ProfileFileIsNull) { Error = $"ERROR InsertCustomerByCBI : ProfileFile is null" };
+			}
+
+			//if (profileFile.DomainObject != "Customer")
+			//{
+			//	return new Monitor.Service.Model.ProfileFile(SuccessfulEnum.NotSuccessful, CommandResultCodeEnum.ValidateError, CommandErrorCodeEnum.ProfileFileIsNull) { Error = $"ERROR InsertCustomerByCBI : DomainObject != Customer" };
+			//}
+			profileFile.FixProfileXml();
+
+			string code = profileFile.Code;
+			if (string.IsNullOrWhiteSpace(code) == true)
+			{
+				profileFile.Successful = SuccessfulEnum.NotSuccessful;
+				profileFile.ResultCode = CommandResultCodeEnum.ValidateError;
+				profileFile.Error = "Code  Is Empty";
+				return profileFile;
+			}
+
+			//Monitor.Service.Model.ProfileFiles profileFileList = new Service.Model.ProfileFiles();
+			try { 
+
+			//	Monitor.Service.Model.ProfileFile profileFile = new Monitor.Service.Model.ProfileFile();
+				//profileFile.Code = customerCode;
+				//profileFile.CustomerCode = customerCode;
+				//profileFile.SubFolder = customerCode;
+				//profileFile.CurrentPath = @"Customer\" + customerCode;
+				//profileFile.DomainObject = "Customer";
+				//profileFile.Email = customerCode + @"@customer.com";
+
+				this._settingsFtpRepository.InitProperty(profileFile);
+				string profileTest = "";
+				string messageCreateFolder = "";
+				this._settingsFtpRepository.CopyProfileFileFromFtpToMemoryStream(profileFile.CurrentPath, ref profileTest, ref messageCreateFolder);
+				profileFile.ProfileXml = profileTest;
+
+				//this.DeleteByCode(profileFile.Code);
+				string codeRet = this.InsertOrUpdateByCode(profileFile);
+				Monitor.Service.Model.ProfileFile ret = GetProfileFileByObjectCode(codeRet);
+				if (ret != null)
+				{
+					ret.Successful = SuccessfulEnum.Successful;
+					return ret;
+				}
+				else
+				{
+					profileFile.Successful = SuccessfulEnum.NotSuccessful;
+					profileFile.ResultCode = CommandResultCodeEnum.Unknown;
+					profileFile.Error = "Something problem in Db";
+					return profileFile;
+				}
+			}
+
+			catch (DbEntityValidationException e)
+			{
+				string error1 = "";
+				foreach (var eve in e.EntityValidationErrors)
+				{
+					error1 += string.Format("Entity of type \"{0}\" in state \"{1}\" has the following validation errors:",
+						eve.Entry.Entity.GetType().Name, eve.Entry.State);
+					foreach (var ve in eve.ValidationErrors)
+					{
+						error1 += string.Format("- Property: \"{0}\", Error: \"{1}\"", ve.PropertyName, ve.ErrorMessage);
+					}
+				}
+				throw;
+			}
+			catch (System.Data.Entity.Infrastructure.DbUpdateException e)
+			{
+				string error2 = "";
+				foreach (var eve in e.Entries)
+				{
+					error2 += $"Entity of type {eve.Entity.GetType().Name} in state {eve.State} could not be updated";
+				}
+				throw;
+			}
+
+			return profileFile;
+		}
+		
 		public Task Update(Monitor.Service.Model.ProfileFile profileFile)
 		{
 			if (profileFile == null)
@@ -807,30 +892,30 @@ namespace Monitor.Sqlite.CodeFirst
 		}
 
 
-		public string InsertOrUpdate(Monitor.Service.Model.ProfileFile profileFile)
+		public string InsertOrUpdateByCode(Monitor.Service.Model.ProfileFile profileFile)
 		{
 			if (profileFile == null)
 				return "";
 
 		//	DeleteByCode(profileFile.Code);
 
-			ProfileFile entity = GetEntitiesByProfileFileUID(_context, profileFile.ProfileFileUID);
+			ProfileFile entity = GetEntitiesByCode(_context, profileFile.Code);
 			if (entity != null) //update
 			{
 				entity.ApplyChanges(profileFile);
 				_context.SaveChanges();
-				return entity.ProfileFileUID;
+				return entity.Code;
 			}
 			else      //insert
 			{
 				entity = profileFile.ToEntity();
 				_context.ProfileFileDatas.Add(entity);
 				_context.SaveChanges();
-				var entity1 = GetEntitiesByProfileFileUID(_context, profileFile.ProfileFileUID);
+				var entity1 = GetEntitiesByCode(_context, profileFile.Code);
 				if (entity1 == null)
 					return "";
 				else
-					return entity1.ProfileFileUID;
+					return entity1.Code;
 			}
 		}
 		#endregion
@@ -846,18 +931,31 @@ namespace Monitor.Sqlite.CodeFirst
 		private Monitor.Sqlite.CodeFirst.ProfileFile GetEntitiesByCode(MonitorSqliteDBContext db, string code)
 		{
 			var entity = db.ProfileFileDatas.Where(e => (e.Code == code)).FirstOrDefault();
+			if (entity!= null) 
+			{ 
+				entity.Error = "";
+				entity.Message = "";
+				entity.Successful = (int)SuccessfulEnum.None; 
+			}
 			return entity;
 		}
 
 		private Monitor.Sqlite.CodeFirst.ProfileFile GetEntitiesByInventorCode(MonitorSqliteDBContext db, string inventorCode)
 		{
 			var entity = db.ProfileFileDatas.Where(e => (e.InventorCode == inventorCode)).FirstOrDefault();
+			if (entity != null)
+			{
+				entity.Error = "";
+				entity.Message = "";
+				entity.Successful = (int)SuccessfulEnum.None;
+			}
 			return entity;
 		}
 
 		private List<Monitor.Sqlite.CodeFirst.ProfileFile> GetEntitiesByParentCode(MonitorSqliteDBContext db, string parentCode)
 		{
 			var entitys = db.ProfileFileDatas.Where(e => (e.ParentCode == parentCode)).Select(x => x).ToList();
+
 			return entitys;
 		}
 
@@ -901,6 +999,12 @@ namespace Monitor.Sqlite.CodeFirst
 		private Monitor.Sqlite.CodeFirst.ProfileFile GetEntitiesByProfileFileUID(MonitorSqliteDBContext db, string profileFileUID)
 		{
 			var entity = db.ProfileFileDatas.Where(e => (e.ProfileFileUID == profileFileUID)).FirstOrDefault();
+			if (entity != null)
+			{
+				entity.Error = "";
+				entity.Message = "";
+				entity.Successful = (int)SuccessfulEnum.None;
+			}
 			return entity;
 		}
 		#endregion

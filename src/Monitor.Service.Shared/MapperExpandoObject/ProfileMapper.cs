@@ -21,7 +21,7 @@ namespace Monitor.Service.Shared.MapperExpandoObject
 			if (string.IsNullOrWhiteSpace(entity) == true)
 				return profileObject;
 			
-			profileObject.InventoryProcessInformation = new Count4U.Service.Format.Inventoryprocessinformation();
+			profileObject.InventoryProcessInformation = new Count4U.Service.Format.InventoryProcessInformation();
 			try
 			{
 				dynamic profileEntity = JsonConvert.DeserializeObject<ExpandoObject>(entity, new ExpandoObjectConverter());
@@ -95,22 +95,22 @@ namespace Monitor.Service.Shared.MapperExpandoObject
 
 
 				//======================	Customer  ===========================================
-				try
-				{
-					dynamic _customer = _proofile.Customer[0];
-					profileObject.Customer.name = "";
-					profileObject.Customer.code = "";
-					if (_customer._attributes != null)
-					{
-						profileObject.Customer.name = _customer._attributes.name != null ? _customer._attributes.name : "";
-						profileObject.Customer.code = _customer._attributes.code != null ? _customer._attributes.code : "";
-					}
+				//try
+				//{
+				//	dynamic _customer = _proofile.Customer[0];
+				//	profileObject.Customer.name = "";
+				//	profileObject.Customer.code = "";
+				//	if (_customer._attributes != null)
+				//	{
+				//		profileObject.Customer.name = _customer._attributes.name != null ? _customer._attributes.name : "";
+				//		profileObject.Customer.code = _customer._attributes.code != null ? _customer._attributes.code : "";
+				//	}
 
-				}
-				catch (Exception exc)
-				{
-					Console.WriteLine("Exception ToProfileDomainObject _customer :" + exc.Message);
-				}
+				//}
+				//catch (Exception exc)
+				//{
+				//	Console.WriteLine("Exception ToProfileDomainObject _customer :" + exc.Message);
+				//}
 
 				//< div class="radio-group-profile">
 				//         <input id = "rfid" ng-model="$ctrl.scannerType._text" type="radio" value="RFID"><label for="rfid">RFID</label>
@@ -331,7 +331,7 @@ namespace Monitor.Service.Shared.MapperExpandoObject
 						}
 
 				
-						Count4U.Service.Format.Rfidcommand command = new Count4U.Service.Format.Rfidcommand()
+						Count4U.Service.Format.RFIDCommand command = new Count4U.Service.Format.RFIDCommand()
 						{
 							 command = attributes_command,
 							type = attributes_type
@@ -411,16 +411,16 @@ namespace Monitor.Service.Shared.MapperExpandoObject
 					Console.WriteLine("Exception ApplyProfileJosnStringChanges InventoryProcessInformation .Inventory[0] :" + exc.Message);
 				}
 
-				Console.WriteLine("ApplyProfileJosnStringChanges InventoryProcessInformation 4");
-				try
-				{
-					profileEntity.Profile[0].Customer[0]._attributes.code = domainObject.Customer.code;
-					profileEntity.Profile[0].Customer[0]._attributes.name = domainObject.Customer.name;
-				}
-				catch (Exception exc)
-				{
-					Console.WriteLine("Exception ApplyProfileJosnStringChanges .Customer[0] :" + exc.Message);
-				}
+				//Console.WriteLine("ApplyProfileJosnStringChanges InventoryProcessInformation 4");
+				//try
+				//{
+				//	profileEntity.Profile[0].Customer[0]._attributes.code = domainObject.Customer.code;
+				//	profileEntity.Profile[0].Customer[0]._attributes.name = domainObject.Customer.name;
+				//}
+				//catch (Exception exc)
+				//{
+				//	Console.WriteLine("Exception ApplyProfileJosnStringChanges .Customer[0] :" + exc.Message);
+				//}
 
 				Console.WriteLine("ApplyProfileJosnStringChanges InventoryProcessInformation 5");
 				try
@@ -652,10 +652,10 @@ namespace Monitor.Service.Shared.MapperExpandoObject
 
 
 		public static string ToXml(
-		this Count4U.Service.Format.Inventorylistdefaultuiconfiguration inventorylistdefaultuiconfiguration)
+		this Count4U.Service.Format.InventoryListDefaultUIConfiguration inventorylistdefaultuiconfiguration)
 		{
 			string xml = "";
-			XmlSerializer xmlSerializer = new XmlSerializer(typeof(Count4U.Service.Format.Inventorylistdefaultuiconfiguration));
+			XmlSerializer xmlSerializer = new XmlSerializer(typeof(Count4U.Service.Format.InventoryListDefaultUIConfiguration));
 			using (StringWriter textWriter = new StringWriter())
 			{
 				xmlSerializer.Serialize(textWriter, inventorylistdefaultuiconfiguration);

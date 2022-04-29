@@ -17,7 +17,6 @@ using Microsoft.AspNetCore.SignalR.Client;
 using Count4U.Admin.Client.Blazor.I18nText;
 using Monitor.Service.Urls;
 using Count4U.Service.Shared;
-using Count4U.Service.Format;
 
 namespace Count4U.Admin.Client.Blazor.Page
 {
@@ -479,7 +478,7 @@ namespace Count4U.Admin.Client.Blazor.Page
                        // this._importFromPdaService.RunImportCommandResults.UpdateCommandResulByOperationCode(result);
 
                         this._profileFileService.RunUpdateFtpAndDbProfiles.UpdateProfileFileByOperationCode(result);
-						this._profileFileService.RunUpdateFtpAndDbProfiles.UpdateProfileFileByOperationCode(result);
+					//	this._profileFileService.RunUpdateFtpAndDbProfiles.UpdateProfileFileByOperationCode(result);
 
 						//SaveOrUpdatOnFtp = 5,
 						//UpdateOrInsertInventorFromFtpToDb = 6,
@@ -496,12 +495,12 @@ namespace Count4U.Admin.Client.Blazor.Page
                             {
                             }
                         }
-                        else if (result.Step == ProfiFileStepEnum.GetByCodeFromFtp)
-                        {
-                            if (result.Successful == SuccessfulEnum.Successful)
-                            {
-                            }
-                        }
+                        //else if (result.Step == ProfiFileStepEnum.GetByCodeFromFtp)
+                        //{
+                        //    if (result.Successful == SuccessfulEnum.Successful)
+                        //    {
+                        //    }
+                        //}
                         this.StateHasChanged();
                     });
 
@@ -834,12 +833,7 @@ namespace Count4U.Admin.Client.Blazor.Page
                 Console.WriteLine(" ToProfileDomainObject >> this._profileObject is null");
             }
         }
-     
-
     }
 
-  
-
-
-    public enum ScannerTypeEnum { RFID, Barcode }
+    public enum ScannerTypeEnum1 { RFID, Barcode }
 }

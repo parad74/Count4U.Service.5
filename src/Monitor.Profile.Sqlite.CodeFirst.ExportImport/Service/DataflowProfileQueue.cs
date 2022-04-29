@@ -87,7 +87,7 @@ namespace Monitor.Profile.Sqlite.CodeFirst.ExportImport
 					 case ProfiFileStepEnum.SaveOrUpdatOnFtp:
 						 {
 								 this._hubCommandSignalRRepository.SendNotifyFromWebAPIAsync($" Step Start [{ProfileFileArray[i].Step}] with result [{ProfileFileArray[i].Successful.ToString()}]");
-								 ProfileFileArray[i] = this._profileHandler.SaveOrUpdatOnFtp(ProfileFileArray[i], cancellationToken).Result;
+								 ProfileFileArray[i] = this._profileHandler.SaveOrUpdateOnFtp(ProfileFileArray[i], cancellationToken).Result;
 								 this._hubCommandSignalRRepository.SendNotifyFromWebAPIAsync($" Step End [{ProfileFileArray[i].Step}] with result [{ProfileFileArray[i].Successful.ToString()}]");
 
 								 break;
@@ -95,6 +95,7 @@ namespace Monitor.Profile.Sqlite.CodeFirst.ExportImport
 					 case ProfiFileStepEnum.UpdateOrInsertObjectFromFtpToDb:
 						 {
 								 this._hubCommandSignalRRepository.SendNotifyFromWebAPIAsync($" Step Start [{ProfileFileArray[i].Step}] with result [{ProfileFileArray[i].Successful.ToString()}]");
+								
 								 ProfileFileArray[i] = this._profileHandler.UpdateOrInsertObjectFromFtpToDb(ProfileFileArray[i], cancellationToken).Result;
 								 this._hubCommandSignalRRepository.SendNotifyFromWebAPIAsync($" Step End [{ProfileFileArray[i].Step}] with result [{ProfileFileArray[i].Successful.ToString()}]");
 								 break;
@@ -106,13 +107,13 @@ namespace Monitor.Profile.Sqlite.CodeFirst.ExportImport
 						//		 this._hubCommandSignalRRepository.SendNotifyFromWebAPIAsync($" Step End [{ProfileFileArray[i].Step}] with result [{ProfileFileArray[i].Successful.ToString()}]");
 						//		 break;
 						// }
-					case ProfiFileStepEnum.GetByCodeFromFtp:
-							 {
-								 this._hubCommandSignalRRepository.SendNotifyFromWebAPIAsync($" Step Start [{ProfileFileArray[i].Step}] with result [{ProfileFileArray[i].Successful.ToString()}]");
-								 ProfileFileArray[i] = this._profileHandler.GetByCodeFromFtp(ProfileFileArray[i], cancellationToken).Result;
-								 this._hubCommandSignalRRepository.SendNotifyFromWebAPIAsync($" Step End [{ProfileFileArray[i].Step}] with result [{ProfileFileArray[i].Successful.ToString()}]");
-								 break;
-							 }
+					//case ProfiFileStepEnum.GetByCodeFromFtp:
+					//		 {
+					//			 this._hubCommandSignalRRepository.SendNotifyFromWebAPIAsync($" Step Start [{ProfileFileArray[i].Step}] with result [{ProfileFileArray[i].Successful.ToString()}]");
+					//			 ProfileFileArray[i] = this._profileHandler.GetByCodeFromFtp(ProfileFileArray[i], cancellationToken).Result;
+					//			 this._hubCommandSignalRRepository.SendNotifyFromWebAPIAsync($" Step End [{ProfileFileArray[i].Step}] with result [{ProfileFileArray[i].Successful.ToString()}]");
+					//			 break;
+					//		 }
 
 						 default:
 						 {

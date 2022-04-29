@@ -22,16 +22,16 @@ namespace Monitor.Service.Model
 		[Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
 		public string ConfirmPassword { get; set; } = "";
 
-		private string _userCustomerCode = "";
-		[Display(Name = "User Customer Code")]
-		public string UserCustomerCode
-		{
-			get { return _userCustomerCode; }
-			set
-			{
-				_userCustomerCode = value;
-			}
-		}
+		//private string _userCustomerCode = "";
+		//[Display(Name = "User Customer Code")]
+		//public string UserCustomerCode
+		//{
+		//	get { return _userCustomerCode; }
+		//	set
+		//	{
+		//		_userCustomerCode = value;
+		//	}
+		//}
 
 
 		private string _customerCode = "";
@@ -58,9 +58,11 @@ namespace Monitor.Service.Model
 				this.ConfirmPassword = value + @"@customer.com";
 				this.InheritProfile = InheritProfileString.Default;
 				this.CustomerExist = false;
+				this._hidden = "visibility: visible;";
 				if (CustomerProfileCodesFromDB.CodeDictionary.ContainsKey(value))
 				{
 					CustomerExist = true;
+					this._hidden = "visibility: hidden;";
 					InheritProfile = InheritProfileString.Exist;
 				}
 				else
@@ -73,6 +75,10 @@ namespace Monitor.Service.Model
 		[JsonIgnore]
 		[Display(Name = "Customer Ecxist")]
 		public bool CustomerExist { get; set; } = false;
+
+		[JsonIgnore]
+		public string _hidden { get; set; } = "visible";//"hidden";
+
 
 		[Display(Name = "User Description")]
 		public string UserDescription { get; set; } = "";
@@ -125,21 +131,29 @@ namespace Monitor.Service.Model
 		{
 			if (userViewModel != null)
 			{
-				this.UserID = userViewModel.UserID;
-				this.Email = userViewModel.Email;
-				this.CustomerCode = userViewModel.CustomerCode;
-				this.DateCreated = userViewModel.DateCreated.ToString("dd-MM-yyyy HH:mm");
-				Console.WriteLine($"userViewModel.DateCreated {userViewModel.DateCreated}");
-				Console.WriteLine($"DateCreated {DateCreated}");
-				//this.CustomerDescription = userViewModel.Description;
-				IsOwner = false;
-				IsWorker = false;
-				IsManager = false;
-				foreach (string role in userViewModel.InRoles)
+				try
 				{
-					if (role == "Owner") IsOwner = true;
-					else if (role == "Worker") IsWorker = true;
-					else if (role == "Manager") IsManager = true;
+					this.UserID = userViewModel.UserID;
+					this.Email = userViewModel.Email;
+					this.CustomerCode = userViewModel.CustomerCode;
+					this.DateCreated = userViewModel.DateCreated.ToString("dd-MM-yyyy HH:mm");
+					Console.WriteLine($"userViewModel.DateCreated {userViewModel.DateCreated}");
+					Console.WriteLine($"DateCreated {DateCreated}");
+					//this.CustomerDescription = userViewModel.Description;
+					IsOwner = false;
+					IsWorker = false;
+					IsManager = false;
+					foreach (string role in userViewModel.InRoles)
+					{
+						if (role == "Owner") IsOwner = true;
+						else if (role == "Worker") IsWorker = true;
+						else if (role == "Manager") IsManager = true;
+					}
+				}
+				catch (Exception exc)
+				{
+					Console.WriteLine($"ERROR RefreshRegisterModel {exc.Message}");
+					return this;
 				}
 			}
 			return this;

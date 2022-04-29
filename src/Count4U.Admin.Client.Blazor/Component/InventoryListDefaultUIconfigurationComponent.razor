@@ -1,0 +1,297 @@
+﻿@using Monitor.Service.Shared;
+<style type="text/css">
+    .fa_custom {
+        color: #0b960f; 
+        font-size: 16px;
+        font-weight: 500;
+        line-height: 20px;
+        letter-spacing: 0.15px;
+
+    }
+
+    .fa_custom_background {
+        background-color: #bfd0c0
+    }
+    
+
+    .fa_custom_white {
+        color: #ffffff
+    }
+
+    .select_border_color {
+        /*          border: 1px solid #0b960f;*/
+        border-radius: .1rem;
+    }
+
+    .upbutton {
+        background: transparent;
+        border: none;
+        font-size: 14px;
+        font-weight: 500;
+        line-height: 20px;
+        letter-spacing: 0.15px;
+        color: #727375;
+/*        margin-bottom: 6px;
+        margin-top: 6px;*/
+    }
+</style>
+
+<div class="form-group" style="margin-left: -15px;">
+    <div class="medium-label pb-3">Inventory list default UI configuration</div>
+    <div class="row pb-3">
+        <div class="col  pb-3">
+            <div class="medium-label pb-3">Show inventory image indicator</div>
+            @if (_profileDomainObject.InventoryListDefaultUIConfiguration != null)
+            {
+                <label class="switch">
+                    <InputCheckbox class="checkbox" disabled="@_isSubmit" @bind-Value="_profileDomainObject.InventoryListDefaultUIConfiguration.ShowInventoryImageIndicator" id="assetMode" />
+                    <span class="slider round"></span>
+                </label>
+                @if (_profileDomainObject.InventoryListDefaultUIConfiguration.ShowInventoryImageIndicator)
+                {
+                    <span class="p-2">Enabled</span>
+                }
+                else
+                {
+                    <span class="p-2">Disabled</span>
+                }
+            }
+        </div>
+
+    </div>
+
+    <PagedDataList Data="_profileDomainObject.InventoryListDefaultUIConfiguration.InventoryItemsProperties.InventoryItemDisplayProperty"
+                   Prev="Prev" Next="Next" ShowItemsPerPage="@_showItemsPerPage" ItemsPerPage="100">
+        <ListTemplate Context="listOfUIConfiguration">
+
+            <table class="table">
+                <thead>
+                    <tr class="fa_custom_background fa_custom">
+                        <th scope="col" style="padding-left: 30px;padding-right: 20px;"><span class="fa_custom">#</span> </th>
+                        <th scope="col" style="padding-left: 20px;padding-right: 20px;"></th>
+                        <th scope="col" style="padding-left: 20px;padding-right: 20px;"><span class="fa_custom">Data link</span> </th>
+                        <th scope="col" style="padding-left: 20px;padding-right: 20px;"><span class="fa_custom">Type</span> </th>
+                        <th scope="col" style="padding-left: 20px;padding-right: 20px;"><span class="fa_custom">Title En</span> </th>
+                        <th scope="col" style="padding-left: 20px;padding-right: 20px;"><span class="fa_custom">Title He</span> </th>
+                        <th scope="col" style="padding-left: 20px;padding-right: 20px;"></th>
+
+                    </tr>
+                </thead>
+                <tbody>
+                    @listOfUIConfiguration
+                </tbody>
+            </table>
+        </ListTemplate>
+        <ItemTemplate Context="itemUI">
+            <tr @key=@itemUI>
+                @*<td>@role.RoleID</td>*@
+                <td style="padding-left: 30px;padding-right: 10px;width:20px">@itemUI.index</td>
+                <td style="padding-top: 0px; padding-bottom: 0px; padding-left: 0px; padding-right: 10px; width: 50px ">
+                    @if (itemUI.index > 1)
+                    {
+                        <button class="btn btn-sm upbutton p-0" style="width:30px" disabled="@_isSubmit" @onclick="@(() => Up(itemUI))">
+                            <i class="fa fa-chevron-up" aria-hidden="true"></i>
+                            @*<span class="oi oi-chevron-top"></span>*@
+                        </button>
+                    }
+                    else
+                    {
+                        <button class="btn btn-sm upbutton p-0" style="width:30px">
+                        </button>
+                    }
+
+                    @if (itemUI.index > 0)
+                    {
+                        @if (itemUI.index < _profileDomainObject.InventoryListDefaultUIConfiguration.InventoryItemsProperties.InventoryItemDisplayProperty.Count - 1)
+                        {
+
+                            <button class="btn btn-sm  upbutton p-0" style="width:30px" disabled="@_isSubmit" @onclick="@(() => Down(itemUI))">
+                                <i class="fa fa-chevron-down" aria-hidden="true"></i>
+                                @*<span class="oi oi-chevron-bottom"></span>*@
+                            </button>
+                        }
+                    }
+                </td>
+
+
+                <td style="padding-left: 10px;padding-right: 10px;width:200px">
+                    <select class="form-control form-control-sm select_border_color" disabled="@_isSubmit" @bind="@itemUI.id">
+                        @foreach (var url in _fieldList2)
+                        {
+                            <option value=@url.Key>@url.Value</option>
+                        }
+                    </select>
+                </td>
+                @*<td style="padding-left: 30px;padding-right: 30px;width:120px">@itemUI.itemtype</td>*@
+                <td style="padding-left: 10px;padding-right: 10px;width:100px">
+                    <select class="form-control form-control-sm select_border_color" disabled="@_isSubmit" @bind="@itemUI.itemtype">
+                        @foreach (var url in _itemType)
+                        {
+                            <option value=@url.Key>@url.Value</option>
+                        }
+                    </select>
+                </td>
+                <td style="padding-left: 10px;padding-right: 10px;width:160px">
+                    <input class="form-control form-control-sm" disabled="@_isSubmit" @bind="itemUI.Title.en" />
+                </td>
+                <td style="padding-left: 10px; padding-right: 10px; width: 160px ; text-align: right;  direction: rtl;">
+                    <input class="form-control form-control-sm" disabled="@_isSubmit" @bind="itemUI.Title.he" />
+                </td>
+
+                @if (itemUI.index > 0)
+                {
+                    <td style="padding-left: 10px;padding-right: 10px;width:100px">
+                        <button type="button" class="btn btn-outline-danger  btn-sm" style="width:90px" disabled="@_isSubmit" @onclick="@(() => DeleteItem(itemUI))">
+                            <i class="fa fa-times text-danger"></i>&nbsp; &nbsp;<span>Delete</span>
+                        </button>
+                    </td>
+
+                }
+                else
+                {
+                    <td style="padding-left: 10px;padding-right: 10px;width:100px">
+                        <div>
+                            <button type="button" class="btn btn-outline-success  btn-sm" style="width:90px" disabled="@_isSubmit" @onclick="@(() => AddItem(itemUI))">
+                                <i class="fa fa-plus text-success"></i>&nbsp; &nbsp;<span>Add</span>
+                            </button>
+                        </div>
+                    </td>
+
+                }
+            </tr>
+
+        </ItemTemplate>
+    </PagedDataList>
+
+</div>
+
+@code
+{
+    [Parameter]
+    public bool _isSubmit { get; set; }
+
+    [Parameter]
+    public Count4U.Service.Format.Profile _profileDomainObject { get; set; }
+
+    [Parameter]
+    public List<ValueItem> _fieldList2 { get; set; }
+
+    [Parameter]
+    public List<ValueItem> _itemType { get; set; }
+
+    [Parameter]
+    public bool _showItemsPerPage { get; set; } = false;
+
+
+    public async Task DeleteItem(InventoryItemDisplayProperty item)
+    {
+        _profileDomainObject.InventoryListDefaultUIConfiguration.InventoryItemsProperties.InventoryItemDisplayProperty.Remove(item);
+    }
+
+    public async Task AddItem(InventoryItemDisplayProperty item)
+    {
+        Console.WriteLine($"Client.AddItem");
+        if (item == null) return;
+        if (string.IsNullOrWhiteSpace(item.id + item.itemtype) == true) return;
+        InventoryItemDisplayProperty newItem = new InventoryItemDisplayProperty(item);
+        var sort = _profileDomainObject.InventoryListDefaultUIConfiguration.InventoryItemsProperties.InventoryItemDisplayProperty.OrderByDescending(x => x.index).ToList();
+        int newIndex = 9999;
+        if (sort.Count > 1)
+        {
+            newIndex = sort.FirstOrDefault().index + 1;
+        }
+        else
+        {
+            newIndex = 1;
+        }
+        newItem.index = newIndex;
+        _profileDomainObject.InventoryListDefaultUIConfiguration.InventoryItemsProperties.InventoryItemDisplayProperty.Remove(item);
+        _profileDomainObject.InventoryListDefaultUIConfiguration.InventoryItemsProperties.InventoryItemDisplayProperty.Add(newItem);
+        _profileDomainObject.InventoryListDefaultUIConfiguration.InventoryItemsProperties.InventoryItemDisplayProperty.Add(new InventoryItemDisplayProperty() { });
+
+    }
+
+    public async Task Up(InventoryItemDisplayProperty item)
+    {
+        int fromIndex = item.index;
+        var array = _profileDomainObject.InventoryListDefaultUIConfiguration.
+            InventoryItemsProperties.InventoryItemDisplayProperty.Where(x => x.index < fromIndex && x.index > 0).OrderByDescending(x => x.index).ToArray();
+        if (array.Length > 0)
+        {
+            int toIndex = array[0].index;
+            array[0].index = fromIndex;
+            item.index = toIndex;
+
+            _profileDomainObject.InventoryListDefaultUIConfiguration.InventoryItemsProperties.InventoryItemDisplayProperty =
+                _profileDomainObject.InventoryListDefaultUIConfiguration.InventoryItemsProperties.InventoryItemDisplayProperty.Where(x => x.index > 0).OrderBy(x => x.index).ToList();
+            int k = 1;
+            foreach (var it in _profileDomainObject.InventoryListDefaultUIConfiguration.InventoryItemsProperties.InventoryItemDisplayProperty)
+            {
+                it.index = k;
+                k++;
+            }
+            _profileDomainObject.InventoryListDefaultUIConfiguration.InventoryItemsProperties.InventoryItemDisplayProperty.Add(new InventoryItemDisplayProperty());
+            //StateHasChanged();
+        }
+        else
+        {
+            _profileDomainObject.InventoryListDefaultUIConfiguration.InventoryItemsProperties.InventoryItemDisplayProperty =
+                _profileDomainObject.InventoryListDefaultUIConfiguration.InventoryItemsProperties.InventoryItemDisplayProperty.Where(x => x.index > 0).OrderBy(x => x.index).ToList();
+            int k = 1;
+            foreach (var it in _profileDomainObject.InventoryListDefaultUIConfiguration.InventoryItemsProperties.InventoryItemDisplayProperty)
+            {
+                it.index = k;
+                k++;
+            }
+            _profileDomainObject.InventoryListDefaultUIConfiguration.InventoryItemsProperties.InventoryItemDisplayProperty.Add(new InventoryItemDisplayProperty());
+            Console.WriteLine($"NOT Up {array.Length}");
+            return;
+        }
+
+        Console.WriteLine($"InventoryitemdisplaypropertyListMaxIndex   {_profileDomainObject.InventoryListDefaultUIConfiguration.InventoryItemsProperties.InventoryItemDisplayProperty?.Count - 1}");
+    }
+
+    public async Task Down(InventoryItemDisplayProperty item)
+    {
+        //  InventoryitemdisplaypropertyListMaxIndex = 0;
+        int fromIndex = item.index;
+        var array = _profileDomainObject.InventoryListDefaultUIConfiguration.InventoryItemsProperties.InventoryItemDisplayProperty.
+            Where(x => x.index > fromIndex && x.index > 0).OrderBy(x => x.index).ToArray();
+        if (array.Length > 0)
+        {
+            int toIndex = array[0].index;
+            array[0].index = fromIndex;
+            item.index = toIndex;
+
+            _profileDomainObject.InventoryListDefaultUIConfiguration.InventoryItemsProperties.InventoryItemDisplayProperty =
+                _profileDomainObject.InventoryListDefaultUIConfiguration.InventoryItemsProperties.InventoryItemDisplayProperty.Where(x => x.index > 0).OrderBy(x => x.index).ToList();
+            int k = 0;
+            foreach (var it in _profileDomainObject.InventoryListDefaultUIConfiguration.InventoryItemsProperties.InventoryItemDisplayProperty)
+            {
+                k++;
+                it.index = k;
+            }
+            //InventoryitemdisplaypropertyListMaxIndex = k ;
+            _profileDomainObject.InventoryListDefaultUIConfiguration.InventoryItemsProperties.InventoryItemDisplayProperty.Add(new InventoryItemDisplayProperty());
+        }
+        else
+        {
+            _profileDomainObject.InventoryListDefaultUIConfiguration.InventoryItemsProperties.InventoryItemDisplayProperty =
+                _profileDomainObject.InventoryListDefaultUIConfiguration.InventoryItemsProperties.InventoryItemDisplayProperty.Where(x => x.index > 0).OrderBy(x => x.index).ToList();
+            int k = 0;
+            foreach (var it in _profileDomainObject.InventoryListDefaultUIConfiguration.InventoryItemsProperties.InventoryItemDisplayProperty)
+            {
+                k++;
+                it.index = k;
+            }
+            // InventoryitemdisplaypropertyListMaxIndex = k;
+            _profileDomainObject.InventoryListDefaultUIConfiguration.InventoryItemsProperties.InventoryItemDisplayProperty.
+                Add(new InventoryItemDisplayProperty());
+            Console.WriteLine($"NOT Down {array.Length}");
+            return;
+        }
+
+        Console.WriteLine($"InventoryitemdisplaypropertyListMaxIndex   {_profileDomainObject.InventoryListDefaultUIConfiguration.InventoryItemsProperties.InventoryItemDisplayProperty?.Count - 1}");
+
+    }
+}

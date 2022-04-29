@@ -1,0 +1,105 @@
+﻿
+<profile-menu>
+    <div class="row px-0">
+        <button class="btn btn-lg profile-menu-inbutton" style="text-align:left;" @onclick="CustomerEdit">
+            <span>Edit Customer</span>
+        </button>
+        <div class="profile-menu-line-border row"></div>
+    </div>
+
+    <div class="row px-0">
+        <button class="btn btn-lg profile-menu-inbutton isDisabled" style="text-align:left;">General isDisabled</button>
+        <div class="profile-menu-line-border row"></div>
+    </div>
+
+
+
+    <div class="row px-0">
+        <button class="btn btn-lg profile-menu-inbutton isDisabled" style="text-align: left;">Inventory list default UI configuration</button>
+        <div class="profile-menu-line-border row"></div>
+    </div>
+
+
+
+    <div class="row px-0">
+        <button class="btn btn-lg profile-menu-inbutton isDisabled" style="text-align: left;">Database settings</button>
+        <div class="profile-menu-line-border row"></div>
+    </div>
+
+
+    <div class="row px-0">
+        <button class="btn btn-lg profile-menu-inbutton isDisabled" style="text-align: left;">Inventory item details form</button>
+        <div class="profile-menu-line-border row"></div>
+    </div>
+
+    <div class="row px-0">
+        <button class="btn btn-lg profile-menu-inbutton isDisabled" style="text-align: left;">Search configuration</button>
+        <div class="profile-menu-line-border row"></div>
+    </div>
+
+    <div class="row px-0">
+        <button class="btn btn-lg profile-menu-inbutton isDisabled" style="text-align: left;">Additional screens configuration</button>
+        <div class="profile-menu-line-border row"></div>
+    </div>
+
+    <div class="row px-0">
+        <button class="btn btn-lg profile-menu-inbutton isDisabled" style="text-align: left;">Inventory images</button>
+        <div class="profile-menu-line-border row"></div>
+    </div>
+
+    <div class="row px-0">
+        <button class="btn btn-lg profile-menu-inbutton isDisabled" style="text-align: left;">Printer settings</button>
+        <div class="profile-menu-line-border row"></div>
+    </div>
+
+    <div class="row px-0">
+        <button class="btn btn-lg profile-menu-inbutton isDisabled" style="text-align: left;">Barcode scanner manipulations</button>
+        <div class="profile-menu-line-border row"></div>
+    </div>
+
+</profile-menu>
+
+
+@code
+{
+    //   int _currentOperation { get; set; } = 1;
+
+    [Parameter]
+    public string _customerCode { get; set; }
+
+    [Parameter]
+    public string _email { get; set; }
+
+    [Inject]
+    protected NavigationManager _navigationManager { get; set; }
+
+    //[Parameter]
+    //public EventCallback OnAddObjectClick { get; set; }
+
+    //public Task AddObjectAsync()
+    //{
+    //    Console.WriteLine($"OnAddObjectClick");
+    //    return OnAddObjectClick.InvokeAsync();
+    //}
+
+    //[Parameter]
+    //public EventCallback<int> OnChangePageClick { get; set; }
+
+    //public Task GoItemsPerPageChangeAsync(int page)
+    //{
+    //    _currentOperation = page;
+    //    return OnChangePageClick.InvokeAsync(page);
+    //    StateHasChanged();
+    //}
+
+    public async Task CustomerEdit()
+    {
+        if (string.IsNullOrWhiteSpace(_customerCode) == true) return;
+            // "/customerprofileanduseredit/{code}"
+            if (string.IsNullOrWhiteSpace(_email) == true) _email = _customerCode + @"@customer.com";
+        this._navigationManager.NavigateTo("customerprofileanduseredit/" + _customerCode + "/" + _email);
+    }
+
+
+
+}

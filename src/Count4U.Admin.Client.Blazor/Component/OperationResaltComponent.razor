@@ -1,0 +1,62 @@
+﻿<div class="row p-0 m-0">
+    <div class="col-auto">
+        @if (Successful == SuccessfulEnum.Waiting)
+        {
+            @*<WaitCursor2 />*@
+            <span class="fa fa-spinner fa-spin fa-lg fa-fw"></span>
+        }
+        else if (Successful == SuccessfulEnum.Successful)
+        {
+            @*<span class="badge badge-success">&#10003;</span>*@
+            @*<span class="badge badge-success"> <i class="icon-ok"></i></span>*@
+            <i class="fa fa-check text-success" aria-hidden="true"></i>
+        }
+        else if (Successful == SuccessfulEnum.NotSuccessful)
+        {
+            @*<i class="fa-remove text-danger"></i>*@
+            <i class="fa fa-check text-danger" aria-hidden="true"></i>
+        }
+        else if (Successful == SuccessfulEnum.NotStart)
+        {
+            @*<i class="fa-pause text-dark"></i>*@
+            <i class="fa fa-check text-dark" aria-hidden="true"></i>
+        }
+        else if (Successful == SuccessfulEnum.Error)
+        {
+            @*<i class="fa-remove text-danger"></i>*@
+            <i class="fa fa-check text-danger" aria-hidden="true"></i>
+        }
+        else
+        {
+            <span class="fa fa-spinner fa-spin fa-lg fa-fw"></span>
+        }
+
+    </div>
+    <div class="col-auto p-0 m-0">
+        <span class="badge badge-light profile-menu-inbutton  p-0 m-0">@Operation</span>
+    </div>
+    <div class="col-auto p-0 m-0">
+        @if (Successful == SuccessfulEnum.NotSuccessful
+         || Successful == SuccessfulEnum.Error)
+        {
+            @*@if (string.IsNullOrWhiteSpace(Error) == false)
+            {*@
+                <span class="badge badge-danger"> @Error</span>
+            //}
+        }
+    </div>
+
+</div>
+
+@code{
+    [Parameter]
+    public SuccessfulEnum Successful { get; set; }
+
+    [Parameter]
+    public string Error { get; set; }
+
+    [Parameter]
+    public string Operation { get; set; }
+
+
+}
